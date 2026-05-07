@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks FP&A Case Study - Neha Saraswat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-ochre-light: #ff6830;
+            --accent-rust: #b5342b;
+            --accent-rust-light: #cd5545;
+            --accent-rust-deep: #7d2220;
+            --border-light: #eae6df;
+
+            --ff-display: 'Georgia', serif;
+            --ff-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            --ff-mono: 'Monaco', monospace;
+        }
+
+        body {
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            font-family: var(--ff-body);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--surface-bone);
+            border-bottom: 1px solid var(--border-light);
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .case-study-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .case-study-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 40px;
+            background: var(--accent-rust);
+        }
+
+        h1 {
+            font-family: var(--ff-display);
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .meta {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .intro-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        /* Metadata Box */
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .metadata-item {
+            flex: 1;
+        }
+
+        .metadata-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .metadata-value {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: var(--ff-display);
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-rust);
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-family: var(--ff-display);
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+
+        h3:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        em {
+            font-style: italic;
+            color: var(--accent-rust);
+        }
+
+        /* Images */
+        img {
+            width: 100%;
+            height: auto;
+            margin: 40px 0;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .image-caption {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: -32px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Feature Boxes */
+        .feature-box {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 32px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--accent-ochre);
+        }
+
+        .feature-box h4 {
+            margin-top: 0;
+            color: var(--accent-ochre);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-box p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .feature-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-box ul {
+            margin-bottom: 0;
+        }
+
+        .feature-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Decision Boxes */
+        .decision {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 32px;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        .decision h4 {
+            margin-top: 0;
+            color: var(--accent-rust);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* Results Section */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .result-item {
+            background: white;
+            border: 1px solid var(--border-light);
+            padding: 32px;
+        }
+
+        .result-item h4 {
+            color: var(--accent-ochre);
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .result-item p {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .result-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-item ul {
+            margin-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .result-item li {
+            font-size: 14px;
+        }
+
+        /* Divider */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 60px 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-light);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Video */
+        video {
+            width: 100%;
+            height: auto;
+            margin: 40px 0;
+            border: 1px solid var(--border-light);
+            display: block;
+            background: #000;
+        }
+
+        .video-caption {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: -32px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .metadata {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Neha Saraswat</h1>
+            <a href="PORTFOLIO.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="case-study-title">
+                <h1>Building a 0→1 Financial Planning Product</h1>
+            </div>
+            <p class="meta">QuickBooks Online • 2021–2023 (Launch) | 2021–2024 (Role Duration)</p>
+
+            <p class="intro-text">
+                QuickBooks is the financial backbone for tens of millions of SMBs. When I joined in 2021, it had no integrated planning or forecasting capability for mid-market customers — a gap that mattered at scale. Within my first six months at Intuit, I was called to lead FP&A in addition to heading design for QuickBooks Desktop. My mandate: design and lead a 0→1 financial planning product, from first concept through general availability.
+            </p>
+
+            <div class="metadata">
+                <div class="metadata-item">
+                    <span class="metadata-label">Role</span>
+                    <div class="metadata-value">Group Product Design Manager</div>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">FP&A Core Team</span>
+                    <div class="metadata-value">Senior Designer · Content Designer · Researcher</div>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Reach</span>
+                    <div class="metadata-value">1.5M customers</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- The Challenge -->
+        <section>
+            <h2>The Challenge</h2>
+            <p>
+                Mid-market SMBs lacked integrated tools for forward-looking financial planning. <strong>85% of our target customers were running their entire financial planning on spreadsheets</strong> — outside QuickBooks entirely. Only 13% could identify business issues in time to act on them, and 80% said they moved too slowly to correct course. Annual budgets were taking 2–3 months to produce. The product gap wasn't marginal. It was structural.
+            </p>
+            <p>
+                Key customer pain points:
+            </p>
+            <ul>
+                <li><em>What will my cash flow look like next quarter?</em> → Requires manual Excel modeling</li>
+                <li><em>How should I adjust inventory based on demand forecasts?</em> → No integrated planning tool</li>
+                <li><em>Which business scenarios are most profitable?</em> → Requires expensive third-party tools</li>
+            </ul>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-planning-vs-reporting.png" alt="Planning vs Reporting Strategy">
+            <p class="image-caption">Strategic positioning: Planning-first product vs traditional reporting</p>
+        </section>
+
+        <!-- The Approach -->
+        <section>
+            <h2>The Approach</h2>
+
+            <h3>Phase 1: Discovery + Team Building (Months 1-4)</h3>
+            <p>
+                Rather than jump into design, I started with <strong>strategic discovery</strong>. But critically, I did this while <strong>simultaneously building a design team in India</strong>—a move that was unconventional but strategic.
+            </p>
+
+            <div class="feature-box">
+                <h4>Discovery Work</h4>
+                <ul>
+                    <li>Interviewed 40+ mid-market finance teams to understand planning workflows</li>
+                    <li>Mapped competitive landscape (Adaptive Insights, Anaplan, Prophix)</li>
+                    <li>Workshopped with Intuit leadership on product strategy and success criteria</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <h4>The FP&A Team</h4>
+                <p style="font-size: 15px; margin-bottom: 12px;">The core team was deliberately tight — a senior designer, a senior content designer, and an associate researcher working closely with me. Small enough for speed and coherence; senior enough to move without hand-holding.</p>
+                <p style="font-size: 15px; margin-bottom: 0;">In parallel, I was building and leading Intuit India's design community — seeding other product teams, establishing design as a career path, and growing what became a 50+ designer organisation across Intuit India. That broader work ran alongside FP&A but was a separate undertaking.</p>
+            </div>
+
+            <h3>Phase 2: Strategic Positioning (Months 2-4)</h3>
+            <p>
+                Three pivotal design decisions shaped the entire product:
+            </p>
+
+            <div class="decision">
+                <h4>Decision 1: Planning over Reporting</h4>
+                <p><strong>Not:</strong> Extend QuickBooks with more advanced financial reports</p>
+                <p><strong>Instead:</strong> Go beyond reporting toward forward-looking financial planning — starting with cashflow projection</p>
+                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
+                    <strong>My thinking:</strong> Businesses of all sizes and stages were struggling with the same thing — knowing what their cash position would look like weeks or months ahead. Reporting told them what had happened. Cashflow projection told them what was coming. That forward-looking predictability was the gap no existing QuickBooks feature addressed, and it was the right place to start.
+                </p>
+            </div>
+
+            <div class="decision">
+                <h4>Decision 2: Simplify Complexity Through Design</h4>
+                <p><strong>Not:</strong> Require finance experts to build models</p>
+                <p><strong>Instead:</strong> Embed AI to democratize planning through intuitive interfaces</p>
+                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
+                    <strong>My execution:</strong> I designed the Forecast Builder interface, Scenario Comparison experience, and Insights Dashboard — each tested with real customers and iterated 20+ times based on feedback. The AI capabilities went deep: payment consolidation, transaction summaries, and prediction of future money flow — surfaces that transformed raw financial data into decisions a business owner could actually act on.
+                </p>
+            </div>
+
+            <div class="decision">
+                <h4>Decision 3: New SKU Strategy</h4>
+                <p><strong>Not:</strong> Build another feature within QB Online</p>
+                <p><strong>Instead:</strong> Position as a new, premium SKU within the Intuit ecosystem</p>
+                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
+                    <strong>Impact:</strong> This decision rippled across the entire organization. It influenced product roadmaps, sales strategy, and enterprise tier positioning, contributing to the <strong>Intuit Enterprise Suite</strong>.
+                </p>
+            </div>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-segment-map.png" alt="Customer segment map: Side Jobs, Solopreneurs, Small Business Employers, Mid-Market">
+            <p class="image-caption">Segment map: from germination through expansion — where FP&A tools become essential and where mid-market begins</p>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-business-stages.png" alt="Business stages: Germination, Convincing, Finding Footing, Steady State, Expansion, Slipping, End Game">
+            <p class="image-caption">Business stages framework: the seven stages of a business's life — each with distinct planning needs that shaped how we designed the product</p>
+        </section>
+
+        <!-- Phase 3: Design System -->
+        <section>
+            <h3>Phase 3: AI-Native Component Design</h3>
+            <p>
+                FP&A didn't build Intuit's foundational design system — but we were the first product to ride the AI bus. For both generative conversational AI and emerging agentic systems, we were the first team at Intuit to create components specifically designed for AI-driven experiences.
+            </p>
+            <p>
+                This wasn't just about visual consistency. We were working through questions that had no established answers yet: How should an AI prediction be presented so users trust it but don't over-rely on it? How do you surface an AI recommendation in a way that's explainable without being overwhelming? How do you design components that could extend gracefully as AI capabilities evolved — so the system wouldn't need to be rebuilt every time the model improved?
+            </p>
+            <p>
+                The three design challenges we worked through: <strong>acceptability</strong> (would users trust and act on AI outputs?), <strong>explainability</strong> (could they understand why the AI said what it said?), and <strong>extendability</strong> (would these components hold up as agentic AI moved from suggestion to action?). The answers shaped components that became reference points for other Intuit teams moving into AI product work.
+            </p>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-design-system.png" alt="Information architecture for integrated planning — one of the first artefacts created for the FP&A initiative">
+            <p class="image-caption">Information architecture for integrated planning — one of the first artefacts created, mapping how planning data, reporting, and forecasting would connect across the product</p>
+        </section>
+
+        <hr>
+
+        <!-- The Hands-On Design Work -->
+        <section>
+            <h2>The Product Work</h2>
+
+            <video controls preload="metadata">
+                <source src="portfolio-content/assets/quickbooks%20video/XFCER_2023_1.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">Vision video created at the close of the research phase — not a product demo but a provocation. We used this to generate curiosity, secure stakeholder buy-in, and bring investment to the initiative. A roadshow of sorts: conducted across the month to build alignment across teams and geographies, globally.</p>
+
+            <h3>Forecast Builder</h3>
+            <p>
+                <strong>Problem:</strong> Non-experts need to build financial forecasts without being intimidated.
+            </p>
+            <p>
+                <strong>Approach:</strong> Guided experience (step-by-step wizard), familiar mental models (templates based on common scenarios), transparency (show underlying assumptions), and AI as assistant (suggestions, not mandates).
+            </p>
+            <p>
+                <strong>What testing taught us:</strong> We designed every day, tested every week, and released every sprint. Users wanted to see <em>why</em> the AI recommended something; complex terminology scared people away; confidence levels were critical for trust.
+            </p>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/solution/solution-forecast-builder.png" alt="Forecast Builder — 2026 interface">
+            <p class="image-caption">Forecast Builder — 2026 interface</p>
+
+            <h3>Scenario Comparison & Insights Dashboard</h3>
+            <p>
+                <strong>Problem:</strong> Business owners needed to weigh financial decisions without needing a finance degree to interpret the data.
+            </p>
+            <p>
+                <strong>Approach:</strong> Side-by-side scenario comparison to make the impact of "what-if" decisions tangible — key metrics surfaced, drill-down available. For the Insights Dashboard, AI surfaced the most important signals automatically: anomaly detection, trend forecasting, actionable next steps.
+            </p>
+            <p>
+                <strong>Design philosophy:</strong> Make intelligence visible without overwhelming the user. The same rhythm applied — design, test, release, repeat.
+            </p>
+
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/solution/solution-insights-dashboard.png" alt="Insights Dashboard — 2026 interface">
+            <p class="image-caption">Insights Dashboard — 2026 interface</p>
+
+        </section>
+
+        <hr>
+
+        <!-- The Results -->
+        <section>
+            <h2>The Results</h2>
+
+            <h3>Product Impact</h3>
+            <p>We went GA within 6 months of inception — through learning and failing fast. Speed was as much a design decision as any interface choice.</p>
+            <ul>
+                <li><strong>Year-1 adoption:</strong> 12% penetration of QuickBooks ecosystem (~600K–700K customers activated)</li>
+                <li><strong>Current state (2024):</strong> ~1.5M mid-market customers actively use FP&A features (30% of QB Online's base)</li>
+                <li><strong>60%+ trial-to-paid conversion</strong> among engaged beta customers</li>
+                <li><strong>NPS score: 52</strong> (strong for an enterprise product)</li>
+            </ul>
+
+            <h3>Business Impact</h3>
+            <ul>
+                <li>Contributed to <strong>SKU evolution</strong> within Intuit—opened new pricing tiers and enterprise positioning</li>
+                <li>Part of the <strong>Intuit Enterprise Suite</strong> strategy</li>
+                <li>Established <strong>AI as a core differentiator</strong> for Intuit</li>
+                <li>Significant growth in high-margin subscription revenue</li>
+            </ul>
+
+        </section>
+
+        <hr>
+
+        <!-- The Legacy -->
+        <section>
+            <h2>The Legacy</h2>
+
+            <p>
+                Three years after launch, the Financial Planning & Analysis product is a <strong>self-sustaining business</strong> with a dedicated product and engineering team, expanding feature set, and continued AI evolution.
+            </p>
+            <p>
+                The design practices established on FP&A — the AI component patterns, the information architecture, the way we structured user testing — became reference points for other Intuit teams moving into AI product work. The product itself continued evolving: agentic workflows, expanded SKUs, deeper enterprise positioning.
+            </p>
+            <p style="margin-top: 40px; font-style: italic;">
+                Starting something from nothing inside a mature ecosystem — and watching it hold its shape long after you've moved on — is a different kind of satisfaction than shipping a feature. That's what this was.
+            </p>
+        </section>
+
+        <hr>
+
+        <section>
+            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-competitive-positioning.png" alt="Market differentiation: FP&A vs traditional competitors">
+            <p class="image-caption">Market differentiation: QuickBooks FP&A vs traditional competitors</p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                © 2026 Neha Saraswat • Product • Design • GTM<br>
+                <a href="PORTFOLIO.html" style="color: var(--accent-ochre); text-decoration: none;">← Back to Portfolio</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neha Saraswat — Resume</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 60px 80px;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 40px;
+            padding-bottom: 24px;
+            border-bottom: 3px solid var(--accent-rust);
+            margin-bottom: 36px;
+        }
+
+        .name {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            color: var(--text-primary);
+        }
+
+        .title-tag {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            margin-top: 6px;
+        }
+
+        .contact-block {
+            text-align: right;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .contact-block a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        /* ── SUMMARY ── */
+        .summary {
+            font-size: 14.5px;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 720px;
+        }
+
+        .summary strong { color: var(--text-primary); }
+
+        /* ── SECTION ── */
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+        }
+
+        /* ── ROLE ── */
+        .role {
+            margin-bottom: 24px;
+        }
+
+        .role-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 2px;
+        }
+
+        .role-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .role-period {
+            font-size: 12px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .role-company {
+            font-size: 13px;
+            color: var(--accent-ochre);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .role-scope {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .role ul {
+            margin-left: 16px;
+            list-style: none;
+        }
+
+        .role ul li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 5px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .role ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--border);
+        }
+
+        .role ul li strong {
+            color: var(--text-primary);
+        }
+
+        /* ── METRICS ROW ── */
+        .metrics {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 10px 0 8px;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .metric-number {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+            max-width: 120px;
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px 32px;
+        }
+
+        .skill-group-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .skill-group-items {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── DIVIDER ── */
+        .role-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 20px 0;
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            body { background: white; font-size: 12px; }
+            .page { padding: 30px 40px; }
+            .name { font-size: 28px; }
+        }
+
+        @media (max-width: 640px) {
+            .page { padding: 30px 20px; }
+            .header { grid-template-columns: 1fr; }
+            .contact-block { text-align: left; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div>
+            <div class="name">Neha Saraswat</div>
+            <div class="title-tag">Product &nbsp;·&nbsp; Design &nbsp;·&nbsp; GTM</div>
+        </div>
+        <div class="contact-block">
+            <a href="mailto:neha.saraswat@gmail.com">neha.saraswat@gmail.com</a><br>
+            <a href="https://linkedin.com/in/nehasaraswat" target="_blank">linkedin.com/in/nehasaraswat</a><br>
+            <a href="PORTFOLIO.html">Portfolio</a>
+        </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <p class="summary">
+        Design executive, systems thinker, and builder with <strong>20+ years</strong> of experience across fintech, commerce, AI, and emerging ventures. I work at the intersection of product strategy, design, and go-to-market — leading 0→1 launches, enterprise platform transformations, and organisational scaling across the US and India. I've built and led teams from 3 to 60+, designed AI-native products before the category had a name, and consistently taken on roles where the design problem and the business problem were the same thing.
+    </p>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+        <div class="section-title">Experience</div>
+
+        <!-- INTUIT VEP -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Head of Design — Virtual Expert Platform</div>
+                <div class="role-period">2023 – 2025</div>
+            </div>
+            <div class="role-company">Intuit</div>
+            <ul>
+                <li>Led design for Intuit's AI-native Virtual Expert Platform — reimagining customer and expert experiences around agentic, low-touch operating model</li>
+                <li>Led <strong>inception, pilot, and GA of CRM</strong> across all QuickBooks SKUs — first structured CRM offering for Intuit's SMB base</li>
+                <li>Launched <strong>appointment capabilities to 10K enterprise customers</strong> at Intuit Enterprise Suite (July 2025), enabling B-to-C-to-C scheduling</li>
+                <li>Restructured teams and workflows around AI-first architecture; replaced array of third-party solutions with unified end-to-end platform</li>
+                <li>Designed foundational experiences for agentic AI handoffs — connecting customers with the right experts, managing expert operations, facilitating interactions autonomously</li>
+            </ul>
+            <div class="metrics" style="margin-top: 14px;">
+                <div class="metric"><span class="metric-number">+45%</span><span class="metric-label">Live services revenue growth</span></div>
+                <div class="metric"><span class="metric-number">~40%</span><span class="metric-label">Cost reduction through automation</span></div>
+                <div class="metric"><span class="metric-number">10K</span><span class="metric-label">Enterprise customers at launch</span></div>
+                <div class="metric"><span class="metric-number">120</span><span class="metric-label">ITPY expert connections (FY25)</span></div>
+            </div>
+        </div>
+
+        <hr class="role-divider">
+
+        <!-- INTUIT QB FP&A -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Group Product Design Manager — QuickBooks FP&A (0→1)</div>
+                <div class="role-period">2021 – 2024</div>
+            </div>
+            <div class="role-company">Intuit</div>
+            <div class="role-scope">Concurrently: Head of Design, QuickBooks Desktop &amp; QuickBooks Online app/client</div>
+            <ul>
+                <li>Built QuickBooks Financial Planning &amp; Analysis from inception through general availability — <strong>first integrated planning product</strong> in the QB ecosystem, launching within 6 months of inception</li>
+                <li>Identified cashflow projection as the founding feature — addressing forward-looking predictability as the universal gap across all business stages and sizes</li>
+                <li><strong>First at Intuit</strong> to design AI-native components for generative and agentic systems — working through acceptability, explainability, and extendability before the patterns existed</li>
+                <li>Created the segment map and business-stage framework (Germination → End Game) that shaped product strategy and SKU positioning</li>
+                <li>Proposed new SKU strategy that influenced Intuit's enterprise tier, contributing directly to <strong>Intuit Enterprise Suite</strong></li>
+                <li>Led a deliberate small core team (Senior Designer, Content Designer, Researcher) — designed every day, tested every week, shipped every sprint</li>
+            </ul>
+            <div class="metrics" style="margin-top: 14px;">
+                <div class="metric"><span class="metric-number">1.5M</span><span class="metric-label">Customers by year 3</span></div>
+                <div class="metric"><span class="metric-number">12%</span><span class="metric-label">Year-one ecosystem penetration</span></div>
+                <div class="metric"><span class="metric-number">60%+</span><span class="metric-label">Beta trial-to-paid conversion</span></div>
+                <div class="metric"><span class="metric-number">NPS 52</span><span class="metric-label">Strong for enterprise product</span></div>
+            </div>
+        </div>
+
+        <hr class="role-divider">
+
+        <!-- WALMART -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Design Manager III — Walmart.com &amp; Assortment Platform</div>
+                <div class="role-period">2020 – 2021</div>
+            </div>
+            <div class="role-company">Walmart</div>
+            <div class="role-scope">One of 4 design leaders on Walmart.com funnel &amp; 4th design leader in the box for Assortment &amp; Merchandising (under Valerie Casey)</div>
+            <ul>
+                <li><strong>Walmart.com:</strong> Owned search, typeahead, personalisation, PDP, bundles, help flows, and post-sale surfaces — designed GenAI search, geo-aware store mapping, Shop with Friends, and Blue App/Walmart+ consolidation during 3× COVID traffic surge</li>
+                <li><strong>Assortment &amp; Merchandising (0→1):</strong> Investigated profound interdependence of demand, supply, pricing, and logistics — built 0→1 platform via design sprints, integrating disparate data into streamlined decision tools for buyers</li>
+                <li>Reduced final assortment decision cycles from <strong>3–5 weeks to 1.5 weeks</strong>; 10% manual touchpoint reduction</li>
+                <li>Contributed to Walmart+ onboarding design (launched Sept 2020, now <strong>11M+ members</strong>)</li>
+            </ul>
+            <div class="metrics" style="margin-top: 14px;">
+                <div class="metric"><span class="metric-number">$5B+</span><span class="metric-label">Merchant efficiency gains</span></div>
+                <div class="metric"><span class="metric-number">$6–8B</span><span class="metric-label">Additional operational savings (shared)</span></div>
+                <div class="metric"><span class="metric-number">0.03%</span><span class="metric-label">Quarterly funnel lifts, multiple quarters</span></div>
+            </div>
+        </div>
+
+        <hr class="role-divider">
+
+        <!-- INDIA DESIGN LEADERSHIP -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Head of Design, India Operations</div>
+                <div class="role-period">2016 – 2024</div>
+            </div>
+            <div class="role-company">Intuit · Walmart · [247].ai</div>
+            <ul>
+                <li>Led India design operations across three organisations — grew design teams from <strong>17 to 62 designers</strong> while running concurrent product leadership roles</li>
+                <li>Established design as a viable career path in India's enterprise tech sector; ensured designers worked on real, independent products — not support or replication work</li>
+                <li>At Intuit: seeded 50+ designers across product teams; convened and led <strong>#D4</strong> — Intuit India's design conference around "Design for Delight"</li>
+                <li>Built talent pipelines, mentorship structures, and design culture that outlasted each tenure; several mentees moved into leadership roles and founded their own studios</li>
+            </ul>
+        </div>
+
+        <hr class="role-divider">
+
+        <!-- 247.ai -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Craft Leader — Conversational AI Platform</div>
+                <div class="role-period">2014 – 2019</div>
+            </div>
+            <div class="role-company">[247].ai</div>
+            <ul>
+                <li>Led platform unification of fragmented acquired products into a coherent <strong>Customer Engagement Cloud</strong> and Customer Acquisition Cloud on a unified data warehouse</li>
+                <li>Built design system ground-up as shared language across previously isolated product teams; ran all organisation-wide design sprints</li>
+                <li>Developed a <strong>digital twin</strong> to visualise enterprise migration paths — making the transition legible for leadership and customers alike</li>
+                <li>Predated mainstream AI product discourse while designing for AI-human handoffs, agent-assisted operations, and multimodal customer engagement</li>
+            </ul>
+            <div class="metrics" style="margin-top: 14px;">
+                <div class="metric"><span class="metric-number">5%</span><span class="metric-label">Operational cost savings through unification</span></div>
+                <div class="metric"><span class="metric-number">3%</span><span class="metric-label">Improvement in real-time reassessment</span></div>
+            </div>
+        </div>
+
+        <hr class="role-divider">
+
+        <!-- MOONGAZING -->
+        <div class="role">
+            <div class="role-header">
+                <div class="role-title">Founder</div>
+                <div class="role-period">Ongoing</div>
+            </div>
+            <div class="role-company">Moongazing &nbsp;·&nbsp; Stealth Venture</div>
+            <ul>
+                <li>Founded Moongazing (moongazing.in) — a design and product venture</li>
+                <li>Building a stealth-mode startup alongside portfolio advisory work</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+        <div class="section-title">Areas of Focus</div>
+        <div class="skills-grid">
+            <div>
+                <div class="skill-group-title">Product</div>
+                <div class="skill-group-items">0→1 product development<br>AI-native product design<br>Agentic system design<br>SKU &amp; platform strategy<br>Go-to-market</div>
+            </div>
+            <div>
+                <div class="skill-group-title">Design</div>
+                <div class="skill-group-items">Systems thinking<br>Design sprints<br>Design systems<br>Information architecture<br>AI component design</div>
+            </div>
+            <div>
+                <div class="skill-group-title">Leadership</div>
+                <div class="skill-group-items">Enterprise transformation<br>Org design &amp; restructuring<br>Cross-geography teams<br>Design capability building<br>Mentorship &amp; career dev.</div>
+            </div>
+            <div>
+                <div class="skill-group-title">Domains</div>
+                <div class="skill-group-items">Fintech &amp; SMB tools<br>Enterprise commerce<br>Conversational AI<br>Workforce management<br>CRM &amp; expert platforms</div>
+            </div>
+            <div>
+                <div class="skill-group-title">Methods</div>
+                <div class="skill-group-items">Generative research<br>Follow-the-user studies<br>Design sprints<br>Rapid prototyping<br>Vision storytelling</div>
+            </div>
+            <div>
+                <div class="skill-group-title">Sectors</div>
+                <div class="skill-group-items">Fintech · Commerce<br>Conversational AI<br>Enterprise SaaS<br>Emerging markets<br>Consumer platforms</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

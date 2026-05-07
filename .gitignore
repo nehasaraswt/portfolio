@@ -1,0 +1,75 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+**/.DS_Store
+
+# Claude workspace
+.claude/
+
+# Internal working docs
+CLAUDE.md
+DESIGN.md
+DATA_AUDIT_AND_VERIFICATION.md
+RECOMMENDED_CASE_STUDY_FIXES.md
+PORTFOLIO_CONTENT_STRATEGY.md
+IMAGE_EXTRACTION_GUIDE.md
+FILES_CREATED.txt
+PORTFOLIO_ASSETS_READY.md
+PORTFOLIO_STYLE_GUIDE.md
+PORTFOLIO_PACKAGE_SUMMARY.md
+PORTFOLIO_QUICK_START.md
+PORTFOLIO_TEMPLATE.html
+PORTFOLIO_WIREFRAMES.txt
+QUICKBOOKS_CASE_STUDY_COMPLETE.md
+SCREENSHOT_CHECKLIST.md
+VIDEO_SCREENSHOT_GUIDE.md
+WALMART_ASSORTMENT_IMAGES_GUIDE.md
+
+# Source RTF files (private)
+*.rtf
+
+# Research & reference PDFs
+FP&A foundational studies.pdf
+Planning & Budgeting_ Concept review.pptx.pdf
+QuickBooks FP&A - Update.pptx.pdf
+
+# Walmart research HTML
+LIve Shopper - Walmart.com.html
+LIve Shopper - Walmart.com.pdf
+LIve Shopper - Walmart.com_files/
+
+# Old resumes
+Resume of Neha Saraswat 2.pdf
+Resume of Neha Saraswat March 2026.pdf
+
+# Working scripts
+capture_diagrams.py
+capture_video_frames.sh
+capture_with_chrome.sh
+
+# Diagram working files
+diagram-*.html
+
+# Reference examples
+examples/
+
+# Loose working files
+Pasted Graphic.png
+Screen Shot*
+Screenshot*
+videoframe_*
+
+# Working scripts / utilities
+extract_images.py
+video-extractor.html
+
+# Reference PDF leaves
+leaves/
+
+# Duplicate / unused assets
+walmart hero.webp
+walmart-case-study-preview.html
+
+# ABOUT.md kept — referenced in portfolio

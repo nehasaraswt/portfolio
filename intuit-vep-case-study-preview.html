@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuit VEP — Autonomous Operations Platform Case Study</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border-light: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--accent-rust);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding-bottom: 16px;
+            border-bottom: 4px solid var(--accent-rust);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin: 28px 0 40px;
+            padding: 20px;
+            background: rgba(181, 52, 43, 0.05);
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            color: var(--accent-rust);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 18px;
+            padding-left: 14px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        p strong { color: var(--text-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .feature-box {
+            background: white;
+            border-left: 4px solid var(--accent-ochre);
+            padding: 20px 20px 14px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box strong {
+            color: var(--accent-ochre);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .feature-box p { margin-bottom: 0; }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li strong { color: var(--text-primary); }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .result-card .number {
+            color: var(--accent-rust);
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .positioning-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(181, 52, 43, 0.05);
+            border-left: 4px solid var(--accent-rust);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-bar {
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bar a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 18px; }
+            .metadata { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+            <span style="font-size: 12px; color: #aaa;">Neha Saraswat • Product • Design • GTM</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Intuit VEP — Autonomous Operations Platform</h1>
+        <p class="subtitle">Reimagining Intuit's Virtual Expert Platform as an AI-native, agentic operation — transforming how businesses connect with experts, manage appointments, and automate customer interactions</p>
+
+        <div class="metadata">
+            <div>
+                <div class="meta-label">Company</div>
+                <div class="meta-value">Intuit</div>
+            </div>
+            <div>
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">2023–2025</div>
+            </div>
+            <div>
+                <div class="meta-label">Role</div>
+                <div class="meta-value">Head of Design</div>
+            </div>
+            <div>
+                <div class="meta-label">Platform</div>
+                <div class="meta-value">Virtual Expert Platform</div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW -->
+        <h2>The Context</h2>
+
+        <p>I took an internal mobility to lead one of the fastest-growing initiatives at Intuit. The AI-native Virtual Expert Platform needed fundamental rethinking — and the timing was right. Customer and expert experiences alike needed to be completely reimagined to support ever-evolving AI interventions, with agentic AI increasingly at disposal.</p>
+
+        <p>My job was to restructure the work and the teams, move at speed, and always look at the shortest path to success for our end users, customers, and experts alike. Not iterating on what existed — rebuilding it around what AI made possible.</p>
+
+        <!-- OPPORTUNITY -->
+        <h2>The Opportunity</h2>
+
+        <p>The biggest opportunity was steering the ship while changing it all together. The platform needed to not just serve the customers of today and tomorrow, but simultaneously leap toward future capabilities — meeting the aspirations of future customers, the challenges of evolving technology, and the promises of what agentic AI made possible.</p>
+
+        <p>We understood that for the platform to be relevant, it needed to be sellable to Intuit's full customer base and stand on its own for large-scale customers. The wide spectrum of the user base — from micro-SMBs to enterprise accounts — was both the challenge and the prize. Customers were using a variety of piecemeal solutions, unaware that a unified platform could address all of it.</p>
+
+        <p>The insight that unlocked the strategy: <strong>CRM through "Appointments" could be the foot in the door.</strong> It was a common, clearly defined need across business sizes — a hook capable of driving adoption of the broader suite. With the July 2025 launch of Intuit Enterprise Suite, VEP's appointment capabilities went live to 10K customers, unlocking their potential to schedule meetings directly with their customers (B to C to C).</p>
+
+        <!-- REALISATION -->
+        <h2>The Realisation</h2>
+
+        <p>The appointments insight clarified what the platform needed to become at a deeper level. If the entry point was a concrete, high-frequency task — scheduling — then the whole platform had to be trustworthy enough, automated enough, and intelligent enough for a business to run through it. That pointed directly to three things that had to be true.</p>
+
+        <div class="feature-box">
+            <strong>Agentic AI as the operating model</strong>
+            <p>The focus was on building foundational experiences that connect customers with the right experts, manage those experts, and facilitate their interactions — in an AI-driven autonomous operation. AI handles the routine; humans provide oversight and step in where AI can't yet. That required reimagining what "interface" means for a platform where the default is autonomous, not assisted.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>The integration imperative</strong>
+            <p>Seamless handoffs between AI and human experts require a truly integrated interface. Piecemeal solutions create seams that customers feel. True platform autonomy — and the business value that comes with it — requires cross-functional alignment, dedicated resources, and sustained leadership prioritisation.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Appointments as the wedge</strong>
+            <p>Rather than leading with the full platform, we designed around a concrete, high-value entry point and let the platform expand from there. Appointments gave customers something immediately useful — and gave us the relationship through which everything else could follow.</p>
+        </div>
+
+        <!-- THE WORK -->
+        <h2>The Work</h2>
+
+        <p>The operations platform was reimagined as one consolidated approach — weaving together the disparate pieces of offering into a coherent whole.</p>
+
+        <ul>
+            <li><strong>Led inception, pilot, and GA of CRM</strong> for all QuickBooks SKUs — giving every SMB on the platform access to structured customer relationship management for the first time</li>
+            <li><strong>Reimagined operations workflows</strong> toward low-touch and no-touch experiences — reducing the manual coordination that had been the default</li>
+            <li><strong>Replaced the array of 3P solutions</strong> with an end-to-end platform — eliminating redundancy and giving customers a single source of truth</li>
+            <li><strong>Redefined SKU lineups and go-to-market strategy</strong> to support both internal Intuit customer service and CRM/WFM solutions across QuickBooks SKUs</li>
+            <li><strong>Restructured teams</strong> around the new AI-native operating model — not just designing the experience but reorienting how the organisation worked to build and support it</li>
+        </ul>
+
+        <!-- RESULTS -->
+        <h2>The Results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">120</span>
+                <p>ITPY expert connections driven in FY25 through the unified appointments and CRM platform</p>
+            </div>
+            <div class="result-card">
+                <span class="number">+45%</span>
+                <p>Live services revenue growth — connecting customers with experts at scale through the platform</p>
+            </div>
+            <div class="result-card">
+                <span class="number">~40%</span>
+                <p>Cost reduction through automation and elimination of redundancies across the AI-native platform</p>
+            </div>
+            <div class="result-card">
+                <span class="number">10K</span>
+                <p>Customers unlocked appointment capabilities at Intuit Enterprise Suite launch (July 2025)</p>
+            </div>
+        </div>
+
+        <!-- WHAT MADE IT NOTABLE -->
+        <h2>What Made It Notable</h2>
+
+        <ul>
+            <li><strong>Org restructuring as part of the design work</strong> — building the right platform required building the right organisation around it. Team structure, prioritisation models, and cross-functional alignment were design problems as much as the product itself was.</li>
+            <li><strong>Platform thinking, not feature thinking</strong> — every decision was evaluated for how it served the full platform — CRM, WFM, appointments, expert marketplace — not just the immediate product surface. That discipline is what made the platform coherent rather than a collection of capabilities.</li>
+            <li><strong>Bridging now and next simultaneously</strong> — the platform had to serve existing customers reliably while being rebuilt around assumptions that were still proving themselves. That tension — operational continuity against architectural ambition — was present in every decision.</li>
+        </ul>
+
+        <div class="positioning-quote">
+            "Led design for Intuit's Virtual Expert Platform — reimagining customer and expert experiences for an AI-native, agentic operating model. Drove CRM adoption across all QuickBooks SKUs, launched appointment capabilities to 10K enterprise customers, and contributed to 45% live services revenue growth and ~40% operational cost reduction. Restructured teams and workflows around a low-touch, AI-first platform architecture."
+        </div>
+
+        <div class="footer-bar">
+            <p><strong>Project:</strong> Intuit VEP — Autonomous Operations Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2023–2025</p>
+            <p style="margin-top: 8px;"><strong>Impact:</strong> 120 ITPY connections &nbsp;•&nbsp; +45% live services revenue &nbsp;•&nbsp; ~40% cost reduction &nbsp;•&nbsp; 10K launch customers</p>
+            <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

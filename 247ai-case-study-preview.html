@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[247].ai — Conversational AI Platform Case Study</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border-light: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--accent-rust);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding-bottom: 16px;
+            border-bottom: 4px solid var(--accent-rust);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin: 28px 0 40px;
+            padding: 20px;
+            background: rgba(181, 52, 43, 0.05);
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            color: var(--accent-rust);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 18px;
+            padding-left: 14px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        p strong { color: var(--text-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .feature-box {
+            background: white;
+            border-left: 4px solid var(--accent-ochre);
+            padding: 20px 20px 14px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box strong {
+            color: var(--accent-ochre);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .feature-box p { margin-bottom: 0; }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li strong { color: var(--text-primary); }
+
+        ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        ol li {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .result-card .number {
+            color: var(--accent-rust);
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .positioning-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(181, 52, 43, 0.05);
+            border-left: 4px solid var(--accent-rust);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-bar {
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bar a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 18px; }
+            .metadata { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+            <span style="font-size: 12px; color: #aaa;">Neha Saraswat • Product • Design • GTM</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>[247].ai — Conversational AI Platform</h1>
+        <p class="subtitle">Unifying a fragmented enterprise AI ecosystem — from disparate acquired products to a coherent, self-serve conversational AI platform</p>
+
+        <div class="metadata">
+            <div>
+                <div class="meta-label">Company</div>
+                <div class="meta-value">[247].ai</div>
+            </div>
+            <div>
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">2014–2019</div>
+            </div>
+            <div>
+                <div class="meta-label">Role</div>
+                <div class="meta-value">Craft Leader</div>
+            </div>
+            <div>
+                <div class="meta-label">Scope</div>
+                <div class="meta-value">Enterprise Platform Unification</div>
+            </div>
+        </div>
+
+        <!-- PROBLEM STATEMENT -->
+        <h2>The Problem</h2>
+
+        <p>Customers need their problems resolved before they arise — customer care setups need to be equipped, staffed, and prepared for any unpredictability or volatility. Combined, this poses fundamental challenges of optimisation at the routine operational level.</p>
+
+        <p>The core challenge lay in the system's inherent fragmentation and lack of cohesion, which disabled effective operations and user performance. The product landscape was defined by products that had been acquired or created at different times, leaving them disparate and ill-connected.</p>
+
+        <p>This multifaceted challenge unfolded — and I took it up — over a multi-year journey at [247].ai.</p>
+
+        <!-- OPPORTUNITY -->
+        <h2>The Opportunity</h2>
+
+        <p>Fragmentation at the product level pointed to a deeper question: <strong>who should this system actually serve, and what would it need to become to serve them well?</strong> That became the starting point for research.</p>
+
+        <p>We went deep — follow-the-user studies, story studies, direct documentation of system parts that hadn't been updated or used in years. I benchmarked across the industry to understand where conversational AI was heading, not just where [247].ai had been.</p>
+
+        <!-- REALISATION -->
+        <h2>The Realisation</h2>
+
+        <p>We started at the supply side — and it was inevitable that we would end up touching all parts of the system. While my team took up the notifications and Agent part of the system, I came to serve the supply management and enterprise insight part.</p>
+
+        <p>The system was eventually defined as a <strong>Customer Engagement Cloud</strong> and a <strong>Customer Acquisition Cloud</strong>, with a common reporting and insight layer to serve both. This gave the product an architecture it had never had — coherent, legible, and operable as a whole.</p>
+
+        <!-- THE INITIATIVE -->
+        <h2>What Changed It</h2>
+
+        <p>It wasn't until three things happened simultaneously that we started to see real change:</p>
+
+        <ol>
+            <li><strong>We started reacting as a larger team to standardise components across the system</strong> — and designed the design system ground-up, from scratch. My team and I built this as the shared language the entire platform would operate on.</li>
+            <li><strong>My team and I identified this as a "system on board" challenge</strong> — and built a digital twin to visualise future models for moving enterprise customers. Making the migration path legible changed how leadership and customers thought about the transition.</li>
+            <li><strong>We reached out to each of the other product owners and isolated teams</strong> to see how their product was actually connected to the larger system. What looked like fragmentation was partly lack of visibility — once teams could see the connections, standardisation became possible.</li>
+        </ol>
+
+        <p>At the same time, the organisation adopted design sprints as its model of innovation. I ended up running all the design sprints across the organisation — surfacing problems, aligning teams, and moving decisions that had been stalled for years.</p>
+
+        <p>All of it culminated in most systems being standardised and working together by end of 2019.</p>
+
+        <!-- RESULTS -->
+        <h2>The Results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">Unified</span>
+                <p>Disparate acquired products evolved into a single self-serve B2B conversational AI platform on a unified data warehouse</p>
+            </div>
+            <div class="result-card">
+                <span class="number">5%</span>
+                <p>Operational cost savings through standardisation, merging, and unification of product cases across the organisation</p>
+            </div>
+            <div class="result-card">
+                <span class="number">Any channel</span>
+                <p>Any customer, any brand, any channel — served by human or agent via voice, digital, or multimodal content</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3%</span>
+                <p>Improvement in real-time reassessment capabilities through workforce optimisation and unified planning and routing</p>
+            </div>
+        </div>
+
+        <ul>
+            <li><strong>Self-serve SaaS platform</strong> — the loose collection of tools became a managed platform with modular subscription capabilities</li>
+            <li><strong>Single source of truth</strong> — unified operations across the organisation, reducing redundancy and improving response coherence</li>
+            <li><strong>Workforce optimisation</strong> — unified human and virtual agents under one planning and routing model, enabling proactive real-time reassessment</li>
+            <li><strong>Design system adopted organisation-wide</strong> — became the standard across previously isolated product teams</li>
+        </ul>
+
+        <div class="positioning-quote">
+            "This work predated mainstream AI product discourse — but it was fundamentally about designing for AI-human handoffs, agent-assisted operations, and multimodal customer engagement. We were solving those problems before the industry had names for them. The platform that emerged was coherent, operable, and built to scale — which is more than could be said of what we started with."
+        </div>
+
+        <div class="footer-bar">
+            <p><strong>Project:</strong> [247].ai Conversational AI Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2014–2019</p>
+            <p style="margin-top: 8px;"><strong>Scope:</strong> Enterprise platform unification &nbsp;•&nbsp; Design system &nbsp;•&nbsp; Organisation-wide design sprints</p>
+            <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

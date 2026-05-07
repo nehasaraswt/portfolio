@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neha Saraswat — Product • Design • GTM | Leadership Portfolio</title>
+    <meta name="description" content="Product · Design · GTM leader specializing in product strategy, design systems, and go-to-market transformation. Portfolio of enterprise digital product work.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Neha Saraswat — Product • Design • GTM">
+    <meta property="og:description" content="Product, design, and GTM leader specializing in product strategy, organizational transformation, and emerging market expansion">
+    <meta property="og:type" content="website">
+
+    <style>
+        /* ========================
+           DESIGN TOKENS
+           ======================== */
+        :root {
+            /* Colors */
+            --surface-bone: #fefdfb;
+            --surface-white: #ffffff;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --text-tertiary: #c4c7c7;
+            --accent-ochre: #b04000;
+            --accent-ochre-light: #ff6830;
+            --accent-rust: #b5342b;
+            --accent-rust-light: #cd5545;
+            --accent-rust-deep: #7d2220;
+            --border-light: #eae6df;
+            --border-dark: #c4c7c7;
+            --inverse-black: #000000;
+            --inverse-light: #f3f0e9;
+
+            /* Typography */
+            --ff-display: 'Newsreader', Georgia, serif;
+            --ff-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            --ff-mono: 'Space Grotesk', 'SF Mono', Monaco, monospace;
+
+            --fs-display: 48px;
+            --fs-headline-lg: 32px;
+            --fs-headline-md: 24px;
+            --fs-body-lg: 18px;
+            --fs-body-md: 16px;
+            --fs-label: 12px;
+
+            --fw-headline: 600;
+            --fw-subheading: 500;
+            --fw-body: 400;
+
+            --lh-display: 1.1;
+            --lh-headline: 1.2;
+            --lh-body: 1.6;
+
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 40px;
+            --container-margin: 48px;
+            --gutter: 20px;
+
+            /* Transitions */
+            --transition-quick: 0.15s ease-out;
+            --transition-normal: 0.2s ease-out;
+            --transition-smooth: 0.3s ease-out;
+        }
+
+        /* ========================
+           RESET & BASE STYLES
+           ======================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--ff-body);
+            color: var(--text-primary);
+            background-color: var(--surface-bone);
+            font-size: var(--fs-body-md);
+            line-height: var(--lh-body);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========================
+           TYPOGRAPHY
+           ======================== */
+        h1 {
+            font-family: var(--ff-display);
+            font-size: var(--fs-display);
+            font-weight: var(--fw-headline);
+            line-height: var(--lh-display);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-md);
+        }
+
+        h2 {
+            font-family: var(--ff-display);
+            font-size: var(--fs-headline-lg);
+            font-weight: var(--fw-subheading);
+            line-height: var(--lh-headline);
+            margin-bottom: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        h3 {
+            font-family: var(--ff-display);
+            font-size: var(--fs-headline-md);
+            font-weight: var(--fw-subheading);
+            line-height: 1.3;
+            margin-bottom: var(--space-md);
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all var(--transition-normal);
+        }
+
+        a:hover {
+            color: var(--accent-ochre);
+            border-bottom-color: var(--accent-ochre);
+        }
+
+        .label-caps {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* ========================
+           LAYOUT & GRID
+           ======================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-margin);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--gutter);
+        }
+
+        .grid--2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* ========================
+           COMPONENTS
+           ======================== */
+
+        /* Header / Navigation */
+        header {
+            background-color: var(--surface-bone);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-lg) var(--container-margin);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--ff-display);
+            font-size: var(--fs-headline-md);
+            font-weight: var(--fw-headline);
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-ochre);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px var(--container-margin);
+            min-height: 60vh;
+            background-color: var(--surface-bone);
+        }
+
+        .hero h1 {
+            margin-bottom: var(--space-md);
+        }
+
+        .hero .subtitle {
+            font-family: var(--ff-display);
+            font-size: var(--fs-headline-lg);
+            font-weight: var(--fw-subheading);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero .description {
+            max-width: 700px;
+            font-size: var(--fs-body-lg);
+            line-height: var(--lh-body);
+            margin-bottom: var(--space-xl);
+            color: var(--text-secondary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: var(--space-md) var(--space-xl);
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-quick);
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background-color: var(--inverse-black);
+            color: var(--surface-white);
+        }
+
+        .btn--primary:hover {
+            background-color: var(--text-secondary);
+        }
+
+        .btn--secondary {
+            background-color: transparent;
+            border-color: var(--accent-ochre);
+            color: var(--accent-ochre);
+        }
+
+        .btn--secondary:hover {
+            background-color: var(--accent-ochre-light);
+            color: var(--surface-white);
+            border-color: var(--accent-ochre-light);
+        }
+
+        /* Section Divider */
+        .divider {
+            display: flex;
+            justify-content: center;
+            padding: 60px 0;
+            margin: 0 var(--container-margin);
+        }
+
+        .divider::after {
+            content: '';
+            width: 60%;
+            height: 1px;
+            background-color: var(--border-light);
+        }
+
+        /* Card */
+        .card {
+            border: 1px solid var(--border-light);
+            padding: var(--space-lg);
+            background-color: var(--surface-white);
+            transition: all var(--transition-normal);
+        }
+
+        .card:hover {
+            border-color: var(--accent-ochre);
+            transform: scale(1.02);
+        }
+
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: var(--border-light);
+            margin-bottom: var(--space-lg);
+            border: 1px solid var(--border-light);
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card .label-caps {
+            display: block;
+            margin-bottom: var(--space-md);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: var(--fs-body-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .card a {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-ochre);
+        }
+
+        /* Section */
+        section {
+            padding: 80px var(--container-margin);
+        }
+
+        section h2 {
+            max-width: 600px;
+        }
+
+        .section--light {
+            background-color: var(--surface-bone);
+        }
+
+        .section--dark {
+            background-color: var(--inverse-black);
+            color: var(--inverse-light);
+        }
+
+        .section--dark h2 {
+            color: var(--inverse-light);
+        }
+
+        .section--dark p {
+            color: var(--border-dark);
+        }
+
+        /* Metadata Grid */
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+
+        .metadata-item {
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: var(--space-lg);
+        }
+
+        .metadata-label {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+
+        .metadata-value {
+            font-family: var(--ff-display);
+            font-size: var(--fs-headline-md);
+            color: var(--text-primary);
+            font-weight: var(--fw-headline);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--inverse-black);
+            color: var(--inverse-light);
+            padding: var(--space-xl) var(--container-margin);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: var(--fs-body-md);
+            color: var(--text-tertiary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-lg);
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--inverse-light);
+            transition: all var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-ochre);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            margin: var(--space-xl) 0;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ========================
+           RESPONSIVE
+           ======================== */
+        @media (max-width: 1024px) {
+            :root {
+                --container-margin: 32px;
+                --fs-display: 40px;
+                --fs-headline-lg: 28px;
+            }
+
+            .grid--2 {
+                grid-template-columns: 1fr;
+            }
+
+            .metadata {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 50vh;
+                padding: 80px var(--container-margin);
+            }
+
+            section {
+                padding: 60px var(--container-margin);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --container-margin: 16px;
+                --fs-display: 32px;
+                --fs-headline-lg: 24px;
+                --fs-headline-md: 18px;
+                --space-xl: 24px;
+            }
+
+            .nav-links {
+                gap: var(--space-lg);
+            }
+
+            .hero {
+                min-height: 40vh;
+                padding: 60px var(--container-margin);
+            }
+
+            section {
+                padding: 40px var(--container-margin);
+            }
+
+            nav {
+                padding: var(--space-md) var(--container-margin);
+            }
+        }
+
+        /* ========================
+           ACCESSIBILITY
+           ======================== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 2px solid var(--accent-ochre);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Neha Saraswat</a>
+            <ul class="nav-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Neha-Saraswat-Resume.pdf" target="_blank">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div style="display: flex; gap: 60px; align-items: flex-start; width: 100%; max-width: 900px;">
+            <div style="flex: 1;">
+                <h1>Neha Saraswat</h1>
+                <p class="subtitle">Product • Design • GTM</p>
+                <p style="font-size: var(--fs-label); color: var(--text-secondary); margin-bottom: var(--space-lg);"><a href="https://moongazing.in" target="_blank" style="color: var(--accent-ochre); text-decoration: none; border-bottom: 1px solid var(--accent-ochre);">Founder Moongazing</a></p>
+                <p class="description">
+                    Strategic leader specializing in product transformation, enterprise systems, and organizational impact. I build cross-functional practices that integrate product strategy, design, and go-to-market to influence business outcomes.
+                </p>
+                <a href="#work" class="btn btn--primary">View Work</a>
+            </div>
+            <div style="flex: 0 0 260px; position: relative; width: 260px; height: 260px;">
+                <!-- Blurred background halo -->
+                <div style="position: absolute; inset: -16px; background: url('portfolio-content/assets/hero-images/Neha-headshot.jpg') center top/cover; filter: blur(18px); opacity: 0.45; border-radius: 50%; transform: scale(1.05);"></div>
+                <!-- Sharp circular portrait -->
+                <img src="portfolio-content/assets/hero-images/Neha-headshot.jpg" alt="Neha Saraswat" style="position: relative; z-index: 1; width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid white; box-shadow: 0 6px 28px rgba(0,0,0,0.13);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work -->
+    <section id="work" class="section--light">
+        <div class="container">
+            <h2>Featured Work</h2>
+
+            <!-- Row 1: QB FP&A and India Design Community -->
+            <div class="grid grid--2">
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/Quickbooks fpna.png') center/cover no-repeat;"></div>
+                    <span class="label-caps">Product Strategy & AI • 2021–2024</span>
+                    <h3>QuickBooks FP&A — 0→1 Financial Planning</h3>
+                    <p>Led design for QuickBooks Financial Planning & Analysis from inception through GA — shifting the product from reporting-focused to planning-first, introducing early AI-assisted forecasting, and reaching 1.5M customers with 12% year-one penetration.</p>
+                    <a href="quickbooks-case-study-preview.html">View Case Study →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/D4.png') center/cover no-repeat;"></div>
+                    <span class="label-caps">Design Leadership & Org Building • 2016–2024</span>
+                    <h3>Building Design Capability in India</h3>
+                    <p>Grew enterprise design from 17 to 62 designers across Intuit, Walmart, and 247.ai — establishing design as a career path in India's tech industry, building community through #D4 (Intuit India's design conference), and creating talent pipelines that outlasted each tenure.</p>
+                    <a href="india-design-community-case-study-preview.html">View Case Study →</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Row 2: Walmart -->
+            <div class="grid grid--2" style="margin-top: var(--space-xl);">
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/walmart hero.jpeg') center/cover no-repeat;"></div>
+                    <span class="label-caps">Commerce Journey • 2020–2021</span>
+                    <h3>Walmart.com — Funnel Transformation</h3>
+                    <p>Led experience strategy across discovery, conversion, support, and post-sale engagement at Walmart.com during COVID acceleration — unifying fragmented customer journeys, optimising core commerce touchpoints, and contributing to Walmart+ onboarding (now 11M+ members).</p>
+                    <a href="walmart-dot-com-case-study-preview.html">View Case Study →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/walmart-assortment-.png') center/cover no-repeat;"></div>
+                    <span class="label-caps">Enterprise Platform • 2020–2021</span>
+                    <h3>Walmart — Assortment & Merchandising</h3>
+                    <p>Led Walmart's 0→1 merchandising platform — redesigning how buyers plan, price, and position product across physical and digital retail. Reduced decision cycles from 5–7 days to 1–2 days, contributing to $5B+ in merchant efficiency gains.</p>
+                    <a href="walmart-assortment-case-study-preview.html">View Case Study →</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Row 3: 247.ai and Intuit VEP -->
+            <div class="grid grid--2" style="margin-top: var(--space-xl);">
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/walmart-assortment-.png') center/cover no-repeat; filter: grayscale(0.4) brightness(0.9);"></div>
+                    <span class="label-caps">Conversational AI • 2014–2019</span>
+                    <h3>[247].ai — Conversational AI Platform</h3>
+                    <p>Led platform unification at [247].ai — restructuring fragmented acquired products into a coherent Customer Engagement Cloud. Built the design system ground-up, ran organisation-wide design sprints, and helped evolve a loose collection of tools into a self-serve, multimodal conversational AI SaaS.</p>
+                    <a href="247ai-case-study-preview.html">View Case Study →</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image" style="background: url('portfolio-content/assets/hero-images/Quickbooks feature.png') center/cover no-repeat; filter: hue-rotate(200deg) brightness(0.85);"></div>
+                    <span class="label-caps">AI-Native Platform • 2023–2025</span>
+                    <h3>Intuit VEP — Autonomous Operations</h3>
+                    <p>Reimagined Intuit's Virtual Expert Platform as an AI-native, agentic operation. Led CRM launch across all QuickBooks SKUs, delivered 45% live services revenue growth, and drove ~40% cost reduction through automation — while restructuring teams around a low-touch, AI-first architecture.</p>
+                    <a href="intuit-vep-case-study-preview.html">View Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="section--light">
+        <div class="container">
+            <h2>About</h2>
+
+            <p style="max-width: 700px; font-size: var(--fs-body-lg);">
+                I'm a Design Executive, systems thinker, and builder with 20+ years of experience shaping consumer and enterprise product ecosystems across fintech, commerce, AI, and emerging ventures. My work combines industrial design, UX, and organizational strategy to create products, teams, and systems that scale with clarity, craft, and measurable business impact.
+            </p>
+
+            <p style="max-width: 700px; color: var(--text-secondary);">
+                I've led large-scale transformations at Intuit and Walmart, helped early-stage ventures shape product direction and design capability, and founded ventures including Moongazing and a stealth-mode startup. I also convened and led #D4, Intuit India's design conference, helping build a strong design community around the philosophy of "Design for Delight."
+            </p>
+
+            <p style="max-width: 700px; color: var(--text-secondary);">
+                I'm particularly interested in the intersection of human behavior, systems thinking, AI-native experiences, and timeless design — translating complexity into intuitive products, scalable operations, and enduring design culture.
+            </p>
+
+            <img src="portfolio-content/assets/hero-images/neha-speaker-panel.jpg"
+                 alt="Neha Saraswat speaking at design and product conferences"
+                 style="max-width: 100%; margin-top: var(--space-xl); border-radius: 8px; border: 1px solid var(--border-light);">
+            <p style="font-size: var(--fs-label); color: var(--text-secondary); margin-top: var(--space-sm); font-family: var(--ff-mono); letter-spacing: 0.05em;">
+                Speaking at design and product leadership conferences
+            </p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section--dark">
+        <div class="container" style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: var(--inverse-light);">Let's Work Together</h2>
+            <p style="color: var(--border-dark); margin-bottom: var(--space-xl);">
+                I'm interested in product leadership roles, design transformation, go-to-market strategy, and opportunities where integrated product, design, and market strategy can influence organizational outcomes.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
+                <a href="mailto:neha.saraswat@gmail.com" class="btn btn--primary">Send Email</a>
+                <a href="https://linkedin.com/in/nehasaraswat" target="_blank" class="btn btn--secondary">LinkedIn</a>
+                <a href="Neha-Saraswat-Resume.pdf" target="_blank" class="btn btn--secondary">View Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2026 Neha Saraswat. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="https://linkedin.com/in/nehasaraswat" target="_blank">LinkedIn</a></li>
+                <li><a href="mailto:neha.saraswat@gmail.com">Email</a></li>
+                <li><a href="#" id="admin-trigger" style="font-size: 10px; opacity: 0.3; text-decoration: none; cursor: pointer;">⚙</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 8px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <h3 style="margin-bottom: 20px;">Portfolio Access Manager</h3>
+
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Password Expiration</label>
+                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                    <button id="exp-week" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">1 Week</button>
+                    <button id="exp-month" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">1 Month</button>
+                    <button id="exp-custom" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">Custom</button>
+                </div>
+                <input type="number" id="custom-days" placeholder="Days (if custom)" style="width: 100%; padding: 8px; border: 1px solid #eae6df; border-radius: 4px; display: none; margin-bottom: 16px;">
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Generated Password</label>
+                <div style="display: flex; gap: 8px;">
+                    <input type="text" id="generated-password" readonly style="flex: 1; padding: 10px; border: 1px solid #eae6df; border-radius: 4px; background: #fefdfb; font-family: monospace;">
+                    <button id="copy-password" style="padding: 10px 16px; background: #b04000; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">Copy</button>
+                </div>
+            </div>
+
+            <button id="generate-btn" style="width: 100%; padding: 12px; background: #b5342b; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-bottom: 12px;">Generate New Password</button>
+
+            <div style="background: #fefdfb; padding: 16px; border-radius: 4px; margin-bottom: 16px; font-size: 13px;">
+                <div style="margin-bottom: 8px;"><strong>Status:</strong> <span id="password-status">No password generated</span></div>
+                <div><strong>Expires:</strong> <span id="password-expiry">—</span></div>
+            </div>
+
+            <button id="close-admin" style="width: 100%; padding: 10px; background: #eae6df; color: #2e2e2b; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Close</button>
+        </div>
+    </div>
+
+    <!-- Password Gate Modal -->
+    <div id="password-gate" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 999; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 8px; padding: 40px; max-width: 400px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <h3 style="margin-bottom: 12px;">Access Detailed Case Study</h3>
+            <p style="color: #565758; margin-bottom: 24px; font-size: 14px;">This content is password-protected. Enter the password to view.</p>
+
+            <input type="password" id="password-input" placeholder="Enter password" style="width: 100%; padding: 12px; border: 1px solid #eae6df; border-radius: 4px; margin-bottom: 16px; font-size: 16px;">
+
+            <div id="password-error" style="color: #b5342b; font-size: 13px; margin-bottom: 16px; display: none;"></div>
+
+            <button id="submit-password" style="width: 100%; padding: 12px; background: #b04000; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-bottom: 8px;">Unlock</button>
+            <button id="close-gate" style="width: 100%; padding: 10px; background: #eae6df; color: #2e2e2b; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== PASSWORD MANAGEMENT ====================
+
+        const STORAGE_KEY = 'portfolio_password_data';
+        let currentSelectedExpiration = 7; // days
+
+        // Initialize password status on page load
+        function initPasswordSystem() {
+            updatePasswordStatus();
+            checkPasswordGate();
+        }
+
+        // Generate random password
+        function generatePassword(length = 12) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return password;
+        }
+
+        // Update password display and status
+        function updatePasswordStatus() {
+            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            const statusEl = document.getElementById('password-status');
+            const expiryEl = document.getElementById('password-expiry');
+            const passwordInputEl = document.getElementById('generated-password');
+
+            if (data.password && data.expiresAt) {
+                const expiresDate = new Date(data.expiresAt);
+                const now = new Date();
+
+                if (expiresDate > now) {
+                    statusEl.textContent = '✓ Active';
+                    statusEl.style.color = '#b04000';
+                    expiryEl.textContent = expiresDate.toLocaleDateString() + ' ' + expiresDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    passwordInputEl.value = data.password;
+                } else {
+                    statusEl.textContent = '✗ Expired';
+                    statusEl.style.color = '#b5342b';
+                    expiryEl.textContent = expiresDate.toLocaleDateString();
+                    passwordInputEl.value = '';
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+        }
+
+        // Generate new password
+        function generateNewPassword() {
+            const newPassword = generatePassword(12);
+            const expiresAt = new Date();
+            expiresAt.setDate(expiresAt.getDate() + currentSelectedExpiration);
+
+            const data = {
+                password: newPassword,
+                expiresAt: expiresAt.toISOString(),
+                createdAt: new Date().toISOString()
+            };
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            updatePasswordStatus();
+        }
+
+        // Check if user has valid password, show gate if not
+        function checkPasswordGate() {
+            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            const now = new Date();
+
+            const hasValidPassword = data.password && data.expiresAt && (new Date(data.expiresAt) > now);
+
+            if (!hasValidPassword) {
+                // Mark detailed sections as locked
+                document.querySelectorAll('[data-case-study]').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        }
+
+        // Validate password and unlock sections
+        function validatePassword() {
+            const inputPassword = document.getElementById('password-input').value;
+            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            const errorEl = document.getElementById('password-error');
+
+            if (!data.password) {
+                errorEl.textContent = 'No password has been generated yet. Please try again later.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (new Date(data.expiresAt) <= new Date()) {
+                errorEl.textContent = 'Password has expired. Please request a new one.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (inputPassword === data.password) {
+                // Correct password - unlock sections
+                document.getElementById('password-gate').style.display = 'none';
+                document.querySelectorAll('[data-case-study]').forEach(el => {
+                    el.style.display = 'block';
+                });
+                sessionStorage.setItem('portfolio_unlocked', 'true');
+            } else {
+                errorEl.textContent = 'Incorrect password. Please try again.';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        // ==================== ADMIN PANEL CONTROLS ====================
+
+        document.getElementById('admin-trigger').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('admin-modal').style.display = 'flex';
+            updatePasswordStatus();
+        });
+
+        document.getElementById('close-admin').addEventListener('click', () => {
+            document.getElementById('admin-modal').style.display = 'none';
+        });
+
+        document.getElementById('exp-week').addEventListener('click', () => {
+            currentSelectedExpiration = 7;
+            updateExpirationButtons();
+        });
+
+        document.getElementById('exp-month').addEventListener('click', () => {
+            currentSelectedExpiration = 30;
+            updateExpirationButtons();
+        });
+
+        document.getElementById('exp-custom').addEventListener('click', () => {
+            document.getElementById('custom-days').style.display = 'block';
+            updateExpirationButtons();
+        });
+
+        document.getElementById('custom-days').addEventListener('change', (e) => {
+            currentSelectedExpiration = parseInt(e.target.value) || 7;
+        });
+
+        function updateExpirationButtons() {
+            document.getElementById('exp-week').style.background = currentSelectedExpiration === 7 ? '#b04000' : 'white';
+            document.getElementById('exp-week').style.color = currentSelectedExpiration === 7 ? 'white' : '#2e2e2b';
+            document.getElementById('exp-month').style.background = currentSelectedExpiration === 30 ? '#b04000' : 'white';
+            document.getElementById('exp-month').style.color = currentSelectedExpiration === 30 ? 'white' : '#2e2e2b';
+            document.getElementById('exp-custom').style.background = (currentSelectedExpiration !== 7 && currentSelectedExpiration !== 30) ? '#b04000' : 'white';
+            document.getElementById('exp-custom').style.color = (currentSelectedExpiration !== 7 && currentSelectedExpiration !== 30) ? 'white' : '#2e2e2b';
+        }
+
+        document.getElementById('generate-btn').addEventListener('click', generateNewPassword);
+
+        document.getElementById('copy-password').addEventListener('click', () => {
+            const password = document.getElementById('generated-password').value;
+            if (password) {
+                navigator.clipboard.writeText(password).then(() => {
+                    const btn = document.getElementById('copy-password');
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.textContent = originalText; }, 2000);
+                });
+            }
+        });
+
+        // ==================== PASSWORD GATE CONTROLS ====================
+
+        document.getElementById('submit-password').addEventListener('click', validatePassword);
+        document.getElementById('password-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') validatePassword();
+        });
+
+        document.getElementById('close-gate').addEventListener('click', () => {
+            document.getElementById('password-gate').style.display = 'none';
+        });
+
+        // Show password gate modal when accessing locked sections
+        document.querySelectorAll('a[href^="#walmart"], a[href^="#quickbooks"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                const hasValidPassword = data.password && data.expiresAt && (new Date(data.expiresAt) > new Date());
+
+                if (!hasValidPassword && !sessionStorage.getItem('portfolio_unlocked')) {
+                    e.preventDefault();
+                    document.getElementById('password-gate').style.display = 'flex';
+                    document.getElementById('password-input').focus();
+                }
+            });
+        });
+
+        // Initialize on page load
+        window.addEventListener('load', initPasswordSystem);
+    </script>
+</body>
+</html>

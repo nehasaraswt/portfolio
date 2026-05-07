@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Assortment & Merchandising Platform — Case Study</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border-light: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--accent-rust);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding-bottom: 16px;
+            border-bottom: 4px solid var(--accent-rust);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin: 28px 0 40px;
+            padding: 20px;
+            background: rgba(181, 52, 43, 0.05);
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            color: var(--accent-rust);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 18px;
+            padding-left: 14px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        p strong { color: var(--text-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .feature-box {
+            background: white;
+            border-left: 4px solid var(--accent-ochre);
+            padding: 20px 20px 14px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box strong {
+            color: var(--accent-ochre);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .feature-box p {
+            margin-bottom: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .result-card .number {
+            color: var(--accent-rust);
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .positioning-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(181, 52, 43, 0.05);
+            border-left: 4px solid var(--accent-rust);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-bar {
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bar a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 18px; }
+            .metadata { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+            <span style="font-size: 12px; color: #aaa;">Neha Saraswat • Product • Design • GTM</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Assortment & Merchandising Platform Transformation</h1>
+        <p class="subtitle">Redesigning how Walmart's buyers plan, price, and position product across physical and digital retail at enterprise scale</p>
+
+        <div class="metadata">
+            <div>
+                <div class="meta-label">Company</div>
+                <div class="meta-value">Walmart</div>
+            </div>
+            <div>
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">2020–2021</div>
+            </div>
+            <div>
+                <div class="meta-label">Role</div>
+                <div class="meta-value">Design Manager III</div>
+            </div>
+            <div>
+                <div class="meta-label">Scope</div>
+                <div class="meta-value">0→1 Platform Design</div>
+            </div>
+            <div>
+                <div class="meta-label">Teams</div>
+                <div class="meta-value">Cross-functional, US + India</div>
+            </div>
+        </div>
+
+        <!-- CHALLENGE -->
+        <h2>The Challenge</h2>
+
+        <p>Walmart's retail advantage depends on getting assortment right — the right basket of goods, at the right price, in the right channel. I joined as the final addition to the team conceived to be the Indian extension of the core team — the fourth design leader in the box, working under Valerie Casey, with accountability for the assortment and merchandising design workstream. When I joined, that entire system was held together by merchant expertise, spreadsheets, and manual coordination across fragmented teams.</p>
+
+        <p>As ecommerce accelerated during COVID, those limitations became a business-critical failure point. Decisions that needed to happen in hours were taking 3–5 weeks for final assortment calls. Buyers were making pricing and placement calls without real-time inventory or demand data. The scale and speed required for digital retail had outgrown the infrastructure supporting it.</p>
+
+        <p>Investigation revealed the profound interdependence of all influencing factors — demand, supply, pricing, and logistics. You couldn't design one without understanding all the others. <strong>The mandate wasn't to digitize broken processes. It was to redesign how merchandising decisions get made at enterprise scale.</strong></p>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/process/Group 18778.png" alt="Walmart merchandising system context and challenge">
+        <p class="img-caption">Merchandising infrastructure: fragmented systems, manual coordination, decision latency</p>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/process/image 19.png" alt="Assortment planning workflow before transformation">
+        <p class="img-caption">Before: spreadsheet-driven workflows with no real-time data visibility</p>
+
+        <!-- KEY DECISIONS -->
+        <h2>Key Decisions</h2>
+
+        <div class="feature-box">
+            <strong>1. Data-First, Not Workflow-First</strong>
+            <p>Rather than digitizing existing processes, I reframed the design problem: the bottleneck wasn't the workflow—it was information access. Buyers were making consequential decisions blind. I designed the platform to surface the right data at the point of decision, then let the workflows emerge from that visibility.</p>
+        </div>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/solution/mask-group-18402x.png" alt="Assortment management dashboard interface">
+        <p class="img-caption">Assortment Management Dashboard: real-time signals surfaced at the point of decision</p>
+
+        <div class="feature-box">
+            <strong>2. Introduced Adjacency-Aware Merchandising Logic</strong>
+            <p>I designed workflows that let buyers make assortment decisions based on product relationships, placement strategy, and operational dependencies—not just individual SKUs in isolation. This adjacency-aware approach unlocked more coherent decision-making across categories.</p>
+        </div>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/solution/mask-group-18402x 1.png" alt="Price optimization and adjacency planning interface">
+        <p class="img-caption">Price optimization interface: factors driving recommendations made visible and overrideable</p>
+
+        <div class="feature-box">
+            <strong>3. Unified Physical and Digital Merchandising Models</strong>
+            <p>One of the structural problems was that in-store and ecommerce assortments operated in silos. I contributed to aligning these into shared operational systems, reducing fragmentation and enabling buyers to think across channels rather than sequentially.</p>
+        </div>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/results/draw-strategy402x.png" alt="Strategic framework for unified merchandising">
+        <p class="img-caption">Strategic framework: aligning physical and digital merchandising operations</p>
+
+        <div class="feature-box">
+            <strong>4. Designed for Organizational Change, Not Just Interface Improvement</strong>
+            <p>This wasn't a UI modernization project. Changing the interface changed what decisions were possible and who could make them. I designed with the organizational model in mind—altering buyer responsibilities, approval structures, and how merchandising teams coordinated across functions.</p>
+        </div>
+
+        <!-- THE WORK -->
+        <h2>The Work</h2>
+
+        <p>We acted through design sprints — integrating disparate data into streamlined tools and sequencing information for buyers in the order they actually needed to make decisions. Three core decision interfaces formed the platform's foundation:</p>
+
+        <h3>Assortment Management Dashboard</h3>
+        <p>Buyers needed to manage which products to carry across regions, categories, and seasons — with real-time demand and inventory signals. I designed a data surface that started macro (what's trending, what's at risk, what's out of stock) and allowed confident drill-down without losing context. The goal was to collapse 3–5 weeks of coordination into decisions that could happen in days.</p>
+
+        <h3>Price Optimization Interface</h3>
+        <p>Pricing had to respond to demand, competitor pricing, and inventory — in near real-time. My design made the reasoning visible: what factors drove the recommendation, what confidence level the system had, and how to override with a logged rationale. The goal was a tool that augmented buyer judgment rather than replacing it.</p>
+
+        <h3>Approval Workflows</h3>
+        <p>Enterprise governance required multi-stakeholder approval on merchandising changes. I designed clear approval hierarchies, emergency fast-track paths for crisis decisions, and notification systems that actually drove action. Every step's status was visible across the chain.</p>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/results/image 21.png" alt="Platform interface showing buyer workflows">
+        <p class="img-caption">Buyer workflow interface: approval hierarchies, decision trails, and status visibility</p>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/results/image 22.png" alt="Merchandising platform results view">
+        <p class="img-caption">Results and performance visibility: closing the loop between decisions and outcomes</p>
+
+        <!-- RESULTS -->
+        <h2>The Results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">$5B+</span>
+                <p>Merchant time savings and manual touchpoint reduction — 10% fewer manual interventions across the assortment workflow</p>
+            </div>
+            <div class="result-card">
+                <span class="number">$6–8B</span>
+                <p>Additional operational savings through space optimization and consolidation (shared attribution)</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3–5 wks → 1.5 wks</span>
+                <p>Time for final assortment calls reduced from 3–5 weeks to a remarkable 1.5 weeks</p>
+            </div>
+            <div class="result-card">
+                <span class="number">Enterprise</span>
+                <p>Workflows adopted by thousands of Walmart buyers and merchandisers across channels</p>
+            </div>
+        </div>
+
+        <!-- WHAT MADE IT NOTABLE -->
+        <h2>What Made It Notable</h2>
+
+        <ul>
+            <li><strong>Design influencing organizational structure</strong> — The platform didn't just change tools. It changed buyer roles, approval models, and how merchandising teams coordinated. That kind of impact only happens when design engages with the org model, not just the interface.</li>
+            <li><strong>Bridging physical and digital retail</strong> — In-store and ecommerce assortments had operated as separate systems for years. Contributing to a unified model across both tracks required understanding each deeply enough to design for the seams between them.</li>
+            <li><strong>High-stakes systems thinking under crisis</strong> — Built during COVID-driven ecommerce acceleration, when the cost of slow merchandising decisions was measured in billions and speed wasn't optional.</li>
+        </ul>
+
+        <img src="portfolio-content/case-studies/walmart-assortment-merchandising/images/results/walmart-fulfillment-physical-retail.jpg" alt="Walmart associate scanning inventory in-store — the physical retail operations the platform was designed to serve">
+        <p class="img-caption">The physical reality behind the platform: buyers using the assortment system to manage what lands on these shelves — from planning through fulfillment</p>
+
+        <div class="positioning-quote">
+            "The harder problem wasn't the interface. It was understanding how demand, supply, pricing, and logistics were entangled — and designing a system that made those interdependencies visible, so buyers could act on them rather than be paralysed by them. That's what this platform did."
+        </div>
+
+        <div class="footer-bar">
+            <p><strong>Project:</strong> Walmart Assortment & Merchandising Platform Transformation &nbsp;•&nbsp; <strong>Timeline:</strong> 2020–2021</p>
+            <p style="margin-top: 8px;"><strong>Impact:</strong> $5B+ merchant efficiency &nbsp;•&nbsp; 10% touchpoint reduction &nbsp;•&nbsp; 3–5 wks → 1.5 wks decision cycles &nbsp;•&nbsp; $6–8B additional savings</p>
+            <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

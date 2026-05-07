@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Design Capability in India — Neha Saraswat</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border-light: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--accent-rust);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding-bottom: 16px;
+            border-bottom: 4px solid var(--accent-rust);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin: 28px 0 40px;
+            padding: 20px;
+            background: rgba(181, 52, 43, 0.05);
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            color: var(--accent-rust);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 18px;
+            padding-left: 14px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        p strong { color: var(--text-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .feature-box {
+            background: white;
+            border-left: 4px solid var(--accent-ochre);
+            padding: 20px 20px 14px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box strong {
+            color: var(--accent-ochre);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .feature-box p {
+            margin-bottom: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li strong { color: var(--text-primary); }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .result-card .number {
+            color: var(--accent-rust);
+            font-size: 20px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .positioning-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(181, 52, 43, 0.05);
+            border-left: 4px solid var(--accent-rust);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-bar {
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bar a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 24px; }
+            h2 { font-size: 18px; }
+            .metadata { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+            <span style="font-size: 12px; color: #aaa;">Neha Saraswat • Product • Design • GTM</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Building Design Capability in India</h1>
+        <p class="subtitle">Growing enterprise design from a nascent practice to a recognised discipline — establishing design as a career, building community, and creating talent pipelines that outlasted my tenure</p>
+
+        <div class="metadata">
+            <div>
+                <div class="meta-label">Companies</div>
+                <div class="meta-value">Intuit · Walmart · 247.ai</div>
+            </div>
+            <div>
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">2016–2024</div>
+            </div>
+            <div>
+                <div class="meta-label">Role</div>
+                <div class="meta-value">Head of Design, India</div>
+            </div>
+            <div>
+                <div class="meta-label">Scale</div>
+                <div class="meta-value">17 → 62 designers</div>
+            </div>
+        </div>
+
+        <!-- THE CONTEXT -->
+        <h2>The Context</h2>
+
+        <p>Throughout my career, I've been fortunate to design and build at par with US peers — owning products, driving strategy, and working as a full design partner rather than a support function. I didn't experience the ceiling many Indian designers ran into. But I could see it clearly beyond my own teams.</p>
+
+        <p>The Indian design community was apprehensive of US-based companies — and not without reason. The concern was that working for a global tech firm would mean replicating or supporting what US teams had already decided. Not owning a product. Not making the consequential calls. The fear was real: talented designers choosing not to join, or joining and quietly looking for a way out, because they sensed the work wouldn't be theirs.</p>
+
+        <p>Across three organisations — 247.ai, Walmart, and Intuit — my job was two-sided. I had to ensure that great talent wanted to come work with us. And I had to ensure that once they did, they got to work on great products — not derivative work, not support work, but real design accountability on real products. Both sides mattered equally. One without the other doesn't hold.</p>
+
+        <!-- THE APPROACH -->
+        <h2>The Approach</h2>
+
+        <div class="feature-box">
+            <strong>Seed teams, don't staff positions</strong>
+            <p>Rather than backfilling headcount into existing structures, I focused on seeding product teams with design capability — pairing designers with engineers and PMs from day one, establishing design presence in the room where decisions were made, not downstream of them.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Build career paths, not just teams</strong>
+            <p>Designers in India needed to see where they could go without leaving the country. I worked to create growth tracks, mentorship structures, and visibility with global leadership — so that advancement didn't require relocation. Several designers I worked with moved into leadership roles at Intuit India and beyond.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Establish culture before process</strong>
+            <p>Process without culture collapses the moment you step back. I focused on design culture first — craft standards, critique rituals, shared vocabulary, and a sense of ownership over product outcomes. The process followed naturally from that foundation.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Create community infrastructure</strong>
+            <p>Individual teams can't carry a discipline forward on their own. I convened and led <strong>#D4</strong> — Intuit India's design conference — built around the philosophy of "Design for Delight." It gave designers across Intuit India a shared stage, a shared language, and a reason to think of themselves as part of something bigger than a single product team.</p>
+        </div>
+
+        <!-- #D4 -->
+        <h2>#D4 — Design for Delight</h2>
+
+        <video controls preload="metadata" style="width: 100%; border-radius: 6px; margin: 28px 0; display: block; background: #000;">
+            <source src="portfolio-content/assets/D4-BlackBG.mp4" type="video/mp4">
+        </video>
+        <p class="img-caption">#D4 — Intuit India's design conference</p>
+
+        <p>#D4 became more than an event. Designers submitted talks, debated ideas, and came away with a sense that the work they were doing in India was the work — not a reduced version of it. It established a standard for what design culture in India could look like, and gave designers a stage to grow into, not just occupy.</p>
+
+        <img src="portfolio-content/assets/hero-images/neha-speaker-panel.jpg"
+             alt="Neha Saraswat speaking at design and product leadership conferences"
+             style="border-radius: 6px;">
+        <p class="img-caption">Speaking at design and product leadership conferences — community-building as a leadership practice</p>
+
+        <!-- THE SCALE -->
+        <h2>The Scale of the Work</h2>
+
+        <p>Across Intuit, Walmart, and 247.ai, I grew design organisations in India from 17 to 62 designers. That number understates what actually happened: alongside headcount growth, I was building the infrastructure around which design could compound — hiring practices, onboarding models, design systems, mentorship programmes, and relationships with global product leadership.</p>
+
+        <p>At Intuit specifically, the community grew from a seeded group into a 50+ designer presence across product teams. This work ran concurrently with leading QB FP&A, QuickBooks Desktop, and QuickBooks Online — not as a separate initiative, but woven into how I operated every day.</p>
+
+        <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/results/results-intuit-recognition.jpg"
+             alt="Neha Saraswat featured on Intuit's website"
+             style="border-radius: 6px;">
+        <p class="img-caption">Featured on Intuit's website — a marker of the visibility and recognition that the India design work helped create</p>
+
+        <!-- RESULTS -->
+        <h2>The Results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">17 → 62</span>
+                <p>Designers grown across India design operations at Intuit, Walmart, and 247.ai</p>
+            </div>
+            <div class="result-card">
+                <span class="number">50+</span>
+                <p>Designer community built at Intuit India, seeded across product teams</p>
+            </div>
+            <div class="result-card">
+                <span class="number">#D4</span>
+                <p>Intuit India's design conference — convened and led around "Design for Delight"</p>
+            </div>
+            <div class="result-card">
+                <span class="number">Legacy</span>
+                <p>Talent pipelines, career paths, and design culture that outlasted my tenure at each organisation</p>
+            </div>
+        </div>
+
+        <ul>
+            <li>Several designers I mentored moved into mid-level and leadership roles at Intuit and other organisations</li>
+            <li>Some went on to start their own design studios in India</li>
+            <li>Contributed to Intuit recognising India as a <strong>design capability centre</strong> — not just an engineering resource</li>
+            <li>Helped establish design as a visible, viable career path in India's enterprise tech sector</li>
+            <li>Built models for cross-geography design leadership that influenced how distributed teams operated</li>
+        </ul>
+
+        <!-- WHAT MADE IT NOTABLE -->
+        <h2>What Made It Notable</h2>
+
+        <ul>
+            <li><strong>Org-building as a design problem</strong> — Growing a design capability requires the same systems thinking as product design: understanding users (designers), mapping the journey (career path), removing friction (barriers to advancement), and building for scale.</li>
+            <li><strong>Community as infrastructure</strong> — #D4 wasn't a nice-to-have. It was how design culture became self-sustaining rather than dependent on any single leader.</li>
+            <li><strong>Designed for longevity</strong> — The measure of this work isn't what existed while I was there. It's what continued after I left.</li>
+        </ul>
+
+        <div class="positioning-quote">
+            "Led design for India operations across Intuit, Walmart, and 247.ai — growing from 17 to 62 designers, establishing design as a career path in India's tech industry, and building communities and talent pipelines that continue to compound. Convened and led #D4, Intuit India's design conference, around the philosophy of Design for Delight."
+        </div>
+
+        <div class="footer-bar">
+            <p><strong>Project:</strong> Building Design Capability in India &nbsp;•&nbsp; <strong>Timeline:</strong> 2016–2024</p>
+            <p style="margin-top: 8px;"><strong>Scale:</strong> 17 → 62 designers &nbsp;•&nbsp; Intuit · Walmart · 247.ai &nbsp;•&nbsp; #D4 Design Conference</p>
+            <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
