@@ -816,37 +816,6 @@
             }
         }
 
-        // Validate password and unlock sections
-        function validatePassword() {
-            const inputPassword = document.getElementById('password-input').value;
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-            const errorEl = document.getElementById('password-error');
-
-            if (!data.password) {
-                errorEl.textContent = 'No password has been generated yet. Please try again later.';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            if (new Date(data.expiresAt) <= new Date()) {
-                errorEl.textContent = 'Password has expired. Please request a new one.';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            if (inputPassword === data.password) {
-                // Correct password - unlock sections
-                document.getElementById('password-gate').style.display = 'none';
-                document.querySelectorAll('[data-case-study]').forEach(el => {
-                    el.style.display = 'block';
-                });
-                sessionStorage.setItem('portfolio_unlocked', 'true');
-            } else {
-                errorEl.textContent = 'Incorrect password. Please try again.';
-                errorEl.style.display = 'block';
-            }
-        }
-
         // ==================== ADMIN PANEL CONTROLS ====================
 
         document.getElementById('admin-trigger').addEventListener('click', (e) => {
@@ -912,19 +881,55 @@
             document.getElementById('password-gate').style.display = 'none';
         });
 
-        // Show password gate modal when accessing locked sections
-        document.querySelectorAll('a[href^="#walmart"], a[href^="#quickbooks"]').forEach(link => {
+        // Intercept all case study links and gate them
+        let pendingUrl = null;
+
+        document.querySelectorAll('a[href*="-case-study-preview.html"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
                 const hasValidPassword = data.password && data.expiresAt && (new Date(data.expiresAt) > new Date());
 
                 if (!hasValidPassword && !sessionStorage.getItem('portfolio_unlocked')) {
                     e.preventDefault();
+                    pendingUrl = link.href;
                     document.getElementById('password-gate').style.display = 'flex';
+                    document.getElementById('password-input').value = '';
+                    document.getElementById('password-error').style.display = 'none';
                     document.getElementById('password-input').focus();
                 }
             });
         });
+
+        // Validate password and navigate to intended case study
+        function validatePassword() {
+            const inputPassword = document.getElementById('password-input').value;
+            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            const errorEl = document.getElementById('password-error');
+
+            if (!data.password) {
+                errorEl.textContent = 'No password has been generated yet. Please try again later.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (new Date(data.expiresAt) <= new Date()) {
+                errorEl.textContent = 'Password has expired. Please request a new one.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (inputPassword === data.password) {
+                document.getElementById('password-gate').style.display = 'none';
+                sessionStorage.setItem('portfolio_unlocked', 'true');
+                if (pendingUrl) {
+                    window.location.href = pendingUrl;
+                    pendingUrl = null;
+                }
+            } else {
+                errorEl.textContent = 'Incorrect password. Please try again.';
+                errorEl.style.display = 'block';
+            }
+        }
 
         // Initialize on page load
         window.addEventListener('load', initPasswordSystem);
