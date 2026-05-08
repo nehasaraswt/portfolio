@@ -791,32 +791,23 @@
     <!-- Admin Panel Modal -->
     <div id="admin-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
         <div style="background: white; border-radius: 8px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-            <h3 style="margin-bottom: 20px;">Portfolio Access Manager</h3>
+            <h3 style="margin-bottom: 8px;">Portfolio Access Manager</h3>
+            <p style="font-size: 13px; color: #565758; margin-bottom: 28px;">Share this password with recruiters to unlock all case studies.</p>
 
-            <div style="margin-bottom: 30px;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Password Expiration</label>
-                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-                    <button id="exp-week" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">1 Week</button>
-                    <button id="exp-month" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">1 Month</button>
-                    <button id="exp-custom" style="flex: 1; padding: 10px; border: 2px solid #b04000; background: white; border-radius: 4px; cursor: pointer; font-size: 13px;">Custom</button>
-                </div>
-                <input type="number" id="custom-days" placeholder="Days (if custom)" style="width: 100%; padding: 8px; border: 1px solid #eae6df; border-radius: 4px; display: none; margin-bottom: 16px;">
-            </div>
-
-            <div style="margin-bottom: 30px;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Generated Password</label>
+            <div style="margin-bottom: 24px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Current Password</label>
                 <div style="display: flex; gap: 8px;">
-                    <input type="text" id="generated-password" readonly style="flex: 1; padding: 10px; border: 1px solid #eae6df; border-radius: 4px; background: #fefdfb; font-family: monospace;">
+                    <input type="text" id="generated-password" readonly style="flex: 1; padding: 10px; border: 1px solid #eae6df; border-radius: 4px; background: #fefdfb; font-family: monospace; font-size: 15px; letter-spacing: 0.05em;">
                     <button id="copy-password" style="padding: 10px 16px; background: #b04000; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600;">Copy</button>
                 </div>
             </div>
 
-            <button id="generate-btn" style="width: 100%; padding: 12px; background: #b5342b; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-bottom: 12px;">Generate New Password</button>
-
-            <div style="background: #fefdfb; padding: 16px; border-radius: 4px; margin-bottom: 16px; font-size: 13px;">
-                <div style="margin-bottom: 8px;"><strong>Status:</strong> <span id="password-status">No password generated</span></div>
-                <div><strong>Expires:</strong> <span id="password-expiry">—</span></div>
+            <div style="background: #fefdfb; padding: 16px; border-radius: 4px; margin-bottom: 20px; font-size: 13px;">
+                <div style="margin-bottom: 8px;"><strong>Status:</strong> <span id="password-status">—</span></div>
+                <div><strong>Valid until:</strong> <span id="password-expiry">—</span></div>
             </div>
+
+            <p style="font-size: 12px; color: #888; margin-bottom: 20px;">To rotate the password, ask Claude Code to update <code>VALID_PASSWORD</code> in PORTFOLIO.html.</p>
 
             <button id="close-admin" style="width: 100%; padding: 10px; background: #eae6df; color: #2e2e2b; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Close</button>
         </div>
@@ -839,138 +830,41 @@
 
     <script>
         // ==================== PASSWORD MANAGEMENT ====================
+        // To rotate: ask Claude Code to update VALID_PASSWORD and PASSWORD_EXPIRES below.
 
-        const STORAGE_KEY = 'portfolio_password_data';
-        let currentSelectedExpiration = 7; // days
+        const VALID_PASSWORD  = 'Ns8kM4vR2pQx';
+        const PASSWORD_EXPIRES = '2026-06-08'; // YYYY-MM-DD
 
-        // Initialize password status on page load
-        function initPasswordSystem() {
-            updatePasswordStatus();
-            checkPasswordGate();
-        }
-
-        // Generate random password
-        function generatePassword(length = 12) {
-            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let password = '';
-            for (let i = 0; i < length; i++) {
-                password += charset.charAt(Math.floor(Math.random() * charset.length));
-            }
-            return password;
-        }
-
-        // Update password display and status
-        function updatePasswordStatus() {
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-            const statusEl = document.getElementById('password-status');
-            const expiryEl = document.getElementById('password-expiry');
-            const passwordInputEl = document.getElementById('generated-password');
-
-            if (data.password && data.expiresAt) {
-                const expiresDate = new Date(data.expiresAt);
-                const now = new Date();
-
-                if (expiresDate > now) {
-                    statusEl.textContent = '✓ Active';
-                    statusEl.style.color = '#b04000';
-                    expiryEl.textContent = expiresDate.toLocaleDateString() + ' ' + expiresDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    passwordInputEl.value = data.password;
-                } else {
-                    statusEl.textContent = '✗ Expired';
-                    statusEl.style.color = '#b5342b';
-                    expiryEl.textContent = expiresDate.toLocaleDateString();
-                    passwordInputEl.value = '';
-                    localStorage.removeItem(STORAGE_KEY);
-                }
-            }
-        }
-
-        // Generate new password
-        function generateNewPassword() {
-            const newPassword = generatePassword(12);
-            const expiresAt = new Date();
-            expiresAt.setDate(expiresAt.getDate() + currentSelectedExpiration);
-
-            const data = {
-                password: newPassword,
-                expiresAt: expiresAt.toISOString(),
-                createdAt: new Date().toISOString()
-            };
-
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            updatePasswordStatus();
-        }
-
-        // Check if user has valid password, show gate if not
-        function checkPasswordGate() {
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-            const now = new Date();
-
-            const hasValidPassword = data.password && data.expiresAt && (new Date(data.expiresAt) > now);
-
-            if (!hasValidPassword) {
-                // Mark detailed sections as locked
-                document.querySelectorAll('[data-case-study]').forEach(el => {
-                    el.style.display = 'none';
-                });
-            }
-        }
-
-        // ==================== ADMIN PANEL CONTROLS ====================
+        // ==================== ADMIN PANEL ====================
 
         document.getElementById('admin-trigger').addEventListener('click', (e) => {
             e.preventDefault();
+            const expDate = new Date(PASSWORD_EXPIRES);
+            const isActive = expDate > new Date();
+            document.getElementById('generated-password').value = VALID_PASSWORD;
+            document.getElementById('password-status').textContent = isActive ? '✓ Active' : '✗ Expired';
+            document.getElementById('password-status').style.color = isActive ? '#b04000' : '#b5342b';
+            document.getElementById('password-expiry').textContent = expDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
             document.getElementById('admin-modal').style.display = 'flex';
-            updatePasswordStatus();
         });
 
         document.getElementById('close-admin').addEventListener('click', () => {
             document.getElementById('admin-modal').style.display = 'none';
         });
 
-        document.getElementById('exp-week').addEventListener('click', () => {
-            currentSelectedExpiration = 7;
-            updateExpirationButtons();
-        });
-
-        document.getElementById('exp-month').addEventListener('click', () => {
-            currentSelectedExpiration = 30;
-            updateExpirationButtons();
-        });
-
-        document.getElementById('exp-custom').addEventListener('click', () => {
-            document.getElementById('custom-days').style.display = 'block';
-            updateExpirationButtons();
-        });
-
-        document.getElementById('custom-days').addEventListener('change', (e) => {
-            currentSelectedExpiration = parseInt(e.target.value) || 7;
-        });
-
-        function updateExpirationButtons() {
-            document.getElementById('exp-week').style.background = currentSelectedExpiration === 7 ? '#b04000' : 'white';
-            document.getElementById('exp-week').style.color = currentSelectedExpiration === 7 ? 'white' : '#2e2e2b';
-            document.getElementById('exp-month').style.background = currentSelectedExpiration === 30 ? '#b04000' : 'white';
-            document.getElementById('exp-month').style.color = currentSelectedExpiration === 30 ? 'white' : '#2e2e2b';
-            document.getElementById('exp-custom').style.background = (currentSelectedExpiration !== 7 && currentSelectedExpiration !== 30) ? '#b04000' : 'white';
-            document.getElementById('exp-custom').style.color = (currentSelectedExpiration !== 7 && currentSelectedExpiration !== 30) ? 'white' : '#2e2e2b';
-        }
-
-        document.getElementById('generate-btn').addEventListener('click', generateNewPassword);
-
         document.getElementById('copy-password').addEventListener('click', () => {
             const password = document.getElementById('generated-password').value;
             if (password) {
                 navigator.clipboard.writeText(password).then(() => {
                     const btn = document.getElementById('copy-password');
-                    const originalText = btn.textContent;
+                    const original = btn.textContent;
                     btn.textContent = 'Copied!';
-                    setTimeout(() => { btn.textContent = originalText; }, 2000);
+                    setTimeout(() => { btn.textContent = original; }, 2000);
                 });
             }
         });
 
-        // ==================== PASSWORD GATE CONTROLS ====================
+        // ==================== PASSWORD GATE ====================
 
         document.getElementById('submit-password').addEventListener('click', validatePassword);
         document.getElementById('password-input').addEventListener('keypress', (e) => {
@@ -981,15 +875,12 @@
             document.getElementById('password-gate').style.display = 'none';
         });
 
-        // Intercept all case study links and gate them
+        // Intercept all case study links
         let pendingUrl = null;
 
         document.querySelectorAll('a[href*="-case-study-preview.html"]').forEach(link => {
             link.addEventListener('click', (e) => {
-                const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-                const hasValidPassword = data.password && data.expiresAt && (new Date(data.expiresAt) > new Date());
-
-                if (!hasValidPassword && !sessionStorage.getItem('portfolio_unlocked')) {
+                if (!sessionStorage.getItem('portfolio_unlocked')) {
                     e.preventDefault();
                     pendingUrl = link.href;
                     document.getElementById('password-gate').style.display = 'flex';
@@ -1000,39 +891,25 @@
             });
         });
 
-        // Validate password and navigate to intended case study
         function validatePassword() {
-            const inputPassword = document.getElementById('password-input').value;
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            const entered = document.getElementById('password-input').value.trim();
             const errorEl = document.getElementById('password-error');
 
-            if (!data.password) {
-                errorEl.textContent = 'No password has been generated yet. Please try again later.';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            if (new Date(data.expiresAt) <= new Date()) {
+            if (new Date(PASSWORD_EXPIRES) <= new Date()) {
                 errorEl.textContent = 'Password has expired. Please request a new one.';
                 errorEl.style.display = 'block';
                 return;
             }
 
-            if (inputPassword === data.password) {
+            if (entered === VALID_PASSWORD) {
                 document.getElementById('password-gate').style.display = 'none';
                 sessionStorage.setItem('portfolio_unlocked', 'true');
-                if (pendingUrl) {
-                    window.location.href = pendingUrl;
-                    pendingUrl = null;
-                }
+                if (pendingUrl) { window.location.href = pendingUrl; pendingUrl = null; }
             } else {
                 errorEl.textContent = 'Incorrect password. Please try again.';
                 errorEl.style.display = 'block';
             }
         }
-
-        // Initialize on page load
-        window.addEventListener('load', initPasswordSystem);
     </script>
 </body>
 </html>
