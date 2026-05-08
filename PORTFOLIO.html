@@ -453,6 +453,53 @@
         /* ========================
            RESPONSIVE
            ======================== */
+        /* ── HERO LAYOUT ── */
+        .hero-content {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero-image {
+            flex: 0 0 260px;
+            position: relative;
+            width: 260px;
+            height: 260px;
+        }
+
+        .hero-image-halo {
+            position: absolute;
+            inset: -16px;
+            background: url('portfolio-content/assets/hero-images/Neha-headshot.jpg') center top/cover;
+            filter: blur(18px);
+            opacity: 0.45;
+            border-radius: 50%;
+            transform: scale(1.05);
+        }
+
+        .hero-image img {
+            position: relative;
+            z-index: 1;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 3px solid white;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.13);
+        }
+
+        /* ── NAV MOBILE ── */
+        .nav-links-list {
+            display: flex;
+            gap: var(--space-xl);
+            list-style: none;
+        }
+
         @media (max-width: 1024px) {
             :root {
                 --container-margin: 32px;
@@ -483,22 +530,69 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                align-items: center;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .hero-image {
+                flex: 0 0 180px;
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero-image img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero-image-halo {
+                background-size: cover;
+            }
+
+            .hero-text .btn {
+                display: inline-block;
+            }
+        }
+
         @media (max-width: 640px) {
             :root {
-                --container-margin: 16px;
-                --fs-display: 32px;
-                --fs-headline-lg: 24px;
-                --fs-headline-md: 18px;
-                --space-xl: 24px;
+                --container-margin: 20px;
+                --fs-display: 30px;
+                --fs-headline-lg: 22px;
+                --fs-headline-md: 17px;
+                --space-xl: 20px;
             }
 
             .nav-links {
                 gap: var(--space-lg);
             }
 
+            .nav-links a {
+                font-size: 13px;
+            }
+
             .hero {
-                min-height: 40vh;
-                padding: 60px var(--container-margin);
+                min-height: auto;
+                padding: 48px var(--container-margin) 40px;
+            }
+
+            .hero-content {
+                gap: 24px;
+            }
+
+            .hero-image {
+                flex: 0 0 140px;
+                width: 140px;
+                height: 140px;
+            }
+
+            .hero-image img {
+                width: 140px;
+                height: 140px;
             }
 
             section {
@@ -507,6 +601,14 @@
 
             nav {
                 padding: var(--space-md) var(--container-margin);
+            }
+
+            .grid--2 {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: var(--space-lg);
             }
         }
 
@@ -545,8 +647,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div style="display: flex; gap: 60px; align-items: flex-start; width: 100%; max-width: 900px;">
-            <div style="flex: 1;">
+        <div class="hero-content">
+            <div class="hero-text">
                 <h1>Neha Saraswat</h1>
                 <p class="subtitle">Product • Design • GTM</p>
                 <p style="font-size: var(--fs-label); color: var(--text-secondary); margin-bottom: var(--space-lg);"><a href="https://moongazing.in" target="_blank" style="color: var(--accent-ochre); text-decoration: none; border-bottom: 1px solid var(--accent-ochre);">Founder Moongazing</a></p>
@@ -555,11 +657,9 @@
                 </p>
                 <a href="#work" class="btn btn--primary">View Work</a>
             </div>
-            <div style="flex: 0 0 260px; position: relative; width: 260px; height: 260px;">
-                <!-- Blurred background halo -->
-                <div style="position: absolute; inset: -16px; background: url('portfolio-content/assets/hero-images/Neha-headshot.jpg') center top/cover; filter: blur(18px); opacity: 0.45; border-radius: 50%; transform: scale(1.05);"></div>
-                <!-- Sharp circular portrait -->
-                <img src="portfolio-content/assets/hero-images/Neha-headshot.jpg" alt="Neha Saraswat" style="position: relative; z-index: 1; width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3px solid white; box-shadow: 0 6px 28px rgba(0,0,0,0.13);">
+            <div class="hero-image">
+                <div class="hero-image-halo"></div>
+                <img src="portfolio-content/assets/hero-images/Neha-headshot.jpg" alt="Neha Saraswat">
             </div>
         </div>
     </section>
