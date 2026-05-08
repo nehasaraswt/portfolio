@@ -187,9 +187,27 @@
 
         @media (max-width: 768px) {
             .container { padding: 30px 20px; }
+            .header-content { padding: 0 20px; }
             h1 { font-size: 24px; }
             h2 { font-size: 18px; }
-            .metadata { grid-template-columns: 1fr; gap: 15px; }
+            h3 { font-size: 14px; }
+            .metadata { grid-template-columns: 1fr; gap: 14px; }
+            .results-grid { grid-template-columns: 1fr; }
+            .feature-box { padding: 16px 16px 12px; }
+            .positioning-quote { padding: 16px 18px; font-size: 14px; }
+            .result-card { padding: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 24px 16px; }
+            .header-content { padding: 0 16px; }
+            h1 { font-size: 21px; }
+            h2 { font-size: 16px; }
+            .meta-label { font-size: 10px; }
+            .meta-value { font-size: 13px; }
+            p { font-size: 14px; }
+            li { font-size: 14px; }
+            .result-card .number { font-size: 17px; }
         }
 
         .logo-mark {
