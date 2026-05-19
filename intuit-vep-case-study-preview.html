@@ -264,8 +264,8 @@
 
     <div class="container">
 
-        <h1>Intuit VEP — Autonomous Operations Platform</h1>
-        <p class="subtitle">Reimagining Intuit's Virtual Expert Platform as an AI-native, agentic operation — transforming how businesses connect with experts, manage appointments, and automate customer interactions</p>
+        <h1>Intuit VEP — Autonomous Operations, Conversations & Appointments</h1>
+        <p class="subtitle">Designing the human-AI collaboration layer for Intuit's Virtual Expert Platform — autonomous triage and resolution, natural language customer conversations, and enterprise appointment scheduling</p>
 
         <div class="metadata">
             <div>
@@ -278,7 +278,7 @@
             </div>
             <div>
                 <div class="meta-label">Role</div>
-                <div class="meta-value">Head of Design</div>
+                <div class="meta-value">Design Lead, Autonomous Operations · Conversations · Appointments</div>
             </div>
             <div>
                 <div class="meta-label">Platform</div>
@@ -286,48 +286,46 @@
             </div>
         </div>
 
-        <!-- OVERVIEW -->
+        <!-- CONTEXT -->
         <h2>The Context</h2>
 
-        <p>I took an internal mobility to lead one of the fastest-growing initiatives at Intuit. The AI-native Virtual Expert Platform needed fundamental rethinking — and the timing was right. Customer and expert experiences alike needed to be completely reimagined to support ever-evolving AI interventions, with agentic AI increasingly at disposal.</p>
+        <p>Intuit's Virtual Expert Platform connected small businesses with financial experts — but the experience was largely manual, human-coordinated, and fragmented across touchpoints. I led design for three of VEP's most critical workstreams: <strong>autonomous operations</strong> (AI-driven triage and resolution), <strong>conversations</strong> (natural language interface between customers and expert systems), and <strong>appointments</strong> (enterprise scheduling, launched to 10K customers at Intuit Enterprise Suite).</p>
 
-        <p>My job was to restructure the work and the teams, move at speed, and always look at the shortest path to success for our end users, customers, and experts alike. Not iterating on what existed — rebuilding it around what AI made possible.</p>
+        <p>This was not a v2 project. The platform needed to be rebuilt around what AI could now do — with no existing industry patterns for how to design human-AI handoffs at this scale.</p>
 
         <!-- OPPORTUNITY -->
         <h2>The Opportunity</h2>
 
-        <p>The biggest opportunity was steering the ship while changing it all together. The platform needed to not just serve the customers of today and tomorrow, but simultaneously leap toward future capabilities — meeting the aspirations of future customers, the challenges of evolving technology, and the promises of what agentic AI made possible.</p>
+        <p>The core design problem was that AI and humans needed to <em>share</em> the platform — not take turns. Where does AI act autonomously? Where does it escalate? How does that transition feel trustworthy rather than abrupt? Getting that right across three distinct surfaces — operations, conversations, and appointments — was the challenge.</p>
 
-        <p>We understood that for the platform to be relevant, it needed to be sellable to Intuit's full customer base and stand on its own for large-scale customers. The wide spectrum of the user base — from micro-SMBs to enterprise accounts — was both the challenge and the prize. Customers were using a variety of piecemeal solutions, unaware that a unified platform could address all of it.</p>
-
-        <p>The insight that unlocked the strategy: <strong>CRM through "Appointments" could be the foot in the door.</strong> It was a common, clearly defined need across business sizes — a hook capable of driving adoption of the broader suite. With the July 2025 launch of Intuit Enterprise Suite, VEP's appointment capabilities went live to 10K customers, unlocking their potential to schedule meetings directly with their customers (B to C to C).</p>
+        <p>Appointments was the clearest entry point: a concrete, high-frequency task that worked across business sizes. At the July 2025 Intuit Enterprise Suite launch, it went live to 10K enterprise customers — enabling businesses to schedule directly with their customers, end-to-end through the platform.</p>
 
         <!-- REALISATION -->
-        <h2>The Realisation</h2>
-
-        <p>The appointments insight clarified what the platform needed to become at a deeper level. If the entry point was a concrete, high-frequency task — scheduling — then the whole platform had to be trustworthy enough, automated enough, and intelligent enough for a business to run through it. That pointed directly to three things that had to be true.</p>
+        <h2>Key Decisions</h2>
 
         <div class="feature-box">
-            <strong>Agentic AI as the operating model</strong>
-            <p>The focus was on building foundational experiences that connect customers with the right experts, manage those experts, and facilitate their interactions — in an AI-driven autonomous operation. AI handles the routine; humans provide oversight and step in where AI can't yet. That required reimagining what "interface" means for a platform where the default is autonomous, not assisted.</p>
+            <strong>Autonomous-first, not assisted-first</strong>
+            <p>The default state of the platform was AI acting — not AI assisting. That required inverting typical UX assumptions: instead of showing the AI helping, the question became how a human steps in when AI can't. Every interface decision across all three workstreams was anchored to that inversion.</p>
         </div>
 
         <div class="feature-box">
-            <strong>The integration imperative</strong>
-            <p>Seamless handoffs between AI and human experts require a truly integrated interface. Piecemeal solutions create seams that customers feel. True platform autonomy — and the business value that comes with it — requires cross-functional alignment, dedicated resources, and sustained leadership prioritisation.</p>
+            <strong>Human-AI handoffs as a first-class design problem</strong>
+            <p>Seamless handoffs require legibility on both sides: the human needs to know what the AI has done, and the customer needs to trust the transition. I defined the interaction principles governing when AI acts autonomously, when it escalates to human judgment, and how decisions are explained and overridden — before the industry had established patterns for this.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Trust built into the interface, not assumed from the AI</strong>
+            <p>Users would only accept AI-driven resolution if they trusted what the AI was doing. That trust couldn't be asserted — it had to be designed. Transparency about AI actions, clear override paths, and legible escalation logic were core requirements across all three workstreams, not edge cases.</p>
         </div>
 
         <!-- THE WORK -->
         <h2>The Work</h2>
 
-        <p>The operations platform was reimagined as one consolidated approach — weaving together the disparate pieces of offering into a coherent whole.</p>
-
         <ul>
-            <li><strong>Led inception, pilot, and GA of CRM</strong> for all QuickBooks SKUs — giving every SMB on the platform access to structured customer relationship management for the first time</li>
-            <li><strong>Reimagined operations workflows</strong> toward low-touch and no-touch experiences — reducing the manual coordination that had been the default</li>
-            <li><strong>Replaced the array of 3P solutions</strong> with an end-to-end platform — eliminating redundancy and giving customers a single source of truth</li>
-            <li><strong>Redefined SKU lineups and go-to-market strategy</strong> to support both internal Intuit customer service and CRM/WFM solutions across QuickBooks SKUs</li>
-            <li><strong>Restructured teams</strong> around the new AI-native operating model — not just designing the experience but reorienting how the organisation worked to build and support it</li>
+            <li><strong>Autonomous operations</strong> — designed AI-driven triage, resolution, and escalation workflows; replaced manual human-in-the-loop coordination with low-touch agentic models</li>
+            <li><strong>Conversations</strong> — designed the natural language interface layer: how customers interact with expert systems before a human agent is ever involved, including fallback and handoff patterns</li>
+            <li><strong>Appointments</strong> — launched enterprise scheduling to 10K customers at Intuit Enterprise Suite; B2C scheduling integrated natively into the QuickBooks ecosystem</li>
+            <li><strong>Interaction principles</strong> — established the design language for human-AI collaboration on VEP: when AI acts, when it escalates, how decisions surface and can be overridden</li>
         </ul>
 
         <!-- RESULTS -->
@@ -335,20 +333,16 @@
 
         <div class="results-grid">
             <div class="result-card">
-                <span class="number">120</span>
-                <p>ITPY expert connections driven in FY25 through the unified appointments and CRM platform</p>
-            </div>
-            <div class="result-card">
                 <span class="number">+45%</span>
                 <p>Live services revenue growth — connecting customers with experts at scale through the platform</p>
             </div>
             <div class="result-card">
                 <span class="number">~40%</span>
-                <p>Cost reduction through automation and elimination of redundancies across the AI-native platform</p>
+                <p>Cost reduction through automation and elimination of manual coordination</p>
             </div>
             <div class="result-card">
                 <span class="number">10K</span>
-                <p>Customers unlocked appointment capabilities at Intuit Enterprise Suite launch (July 2025)</p>
+                <p>Enterprise customers launched with appointment capabilities at Intuit Enterprise Suite</p>
             </div>
         </div>
 
@@ -356,18 +350,18 @@
         <h2>What Made It Notable</h2>
 
         <ul>
-            <li><strong>Org restructuring as part of the design work</strong> — building the right platform required building the right organisation around it. Team structure, prioritisation models, and cross-functional alignment were design problems as much as the product itself was.</li>
-            <li><strong>Platform thinking, not feature thinking</strong> — every decision was evaluated for how it served the full platform — CRM, WFM, appointments, expert marketplace — not just the immediate product surface. That discipline is what made the platform coherent rather than a collection of capabilities.</li>
-            <li><strong>Bridging now and next simultaneously</strong> — the platform had to serve existing customers reliably while being rebuilt around assumptions that were still proving themselves. That tension — operational continuity against architectural ambition — was present in every decision.</li>
+            <li><strong>Designing before patterns existed</strong> — interaction principles for autonomous AI in enterprise had to be created, not borrowed. The industry was still theorising; we were shipping.</li>
+            <li><strong>Coherence across three distinct surfaces</strong> — autonomous operations, conversational interfaces, and scheduling are different UX domains with different users and rhythms. Keeping them coherent while each had its own launch cadence was the real design challenge.</li>
+            <li><strong>Trust as a design constraint, not a feature</strong> — building user trust into the interface itself — through transparency, override paths, and legible AI decisions — was the foundational requirement for any of the automation gains to be realised.</li>
         </ul>
 
         <div class="positioning-quote">
-            "Led design for Intuit's Virtual Expert Platform — reimagining customer and expert experiences for an AI-native, agentic operating model. Drove CRM adoption across all QuickBooks SKUs, launched appointment capabilities to 10K enterprise customers, and contributed to 45% live services revenue growth and ~40% operational cost reduction. Restructured teams and workflows around a low-touch, AI-first platform architecture."
+            "Designed the human-AI collaboration layer for Intuit's Virtual Expert Platform across three workstreams — autonomous operations, natural language conversations, and enterprise appointments. Defined interaction principles for AI-human handoffs before industry patterns existed. Contributed to 45% live services revenue growth and ~40% cost reduction through automation."
         </div>
 
         <div class="footer-bar">
-            <p><strong>Project:</strong> Intuit VEP — Autonomous Operations Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2023–2025</p>
-            <p style="margin-top: 8px;"><strong>Impact:</strong> 120 ITPY connections &nbsp;•&nbsp; +45% live services revenue &nbsp;•&nbsp; ~40% cost reduction &nbsp;•&nbsp; 10K launch customers</p>
+            <p><strong>Project:</strong> Intuit VEP — Autonomous Operations, Conversations & Appointments &nbsp;•&nbsp; <strong>Timeline:</strong> 2023–2025</p>
+            <p style="margin-top: 8px;"><strong>Impact:</strong> +45% live services revenue &nbsp;•&nbsp; ~40% cost reduction &nbsp;•&nbsp; 10K launch customers</p>
             <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
         </div>
 
