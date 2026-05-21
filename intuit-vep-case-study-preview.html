@@ -264,8 +264,8 @@
 
     <div class="container">
 
-        <h1>Intuit VEP — Autonomous Operations, Conversations & Appointments</h1>
-        <p class="subtitle">Designing the human-AI collaboration layer for Intuit's Virtual Expert Platform — autonomous triage and resolution, natural language customer conversations, and enterprise appointment scheduling</p>
+        <h1>Designing AI-Native Expert Operations at Scale</h1>
+        <p class="subtitle">Reimagining Intuit's Virtual Expert Platform as an autonomous, AI-first operation — from expert scheduling and training to customer conversations and enterprise appointments</p>
 
         <div class="metadata">
             <div>
@@ -278,55 +278,69 @@
             </div>
             <div>
                 <div class="meta-label">Role</div>
-                <div class="meta-value">Design Lead, Autonomous Operations · Conversations · Appointments</div>
+                <div class="meta-value">Group Product Design Manager — VEP & Expert Operations</div>
             </div>
             <div>
-                <div class="meta-label">Platform</div>
-                <div class="meta-value">Virtual Expert Platform</div>
+                <div class="meta-label">Platform Scale</div>
+                <div class="meta-value">25M contacts/yr · 50K experts · 750K appointments</div>
             </div>
         </div>
 
         <!-- CONTEXT -->
         <h2>The Context</h2>
 
-        <p>Intuit's Virtual Expert Platform connected small businesses with financial experts — but the experience was largely manual, human-coordinated, and fragmented across touchpoints. I led design for three of VEP's most critical workstreams: <strong>autonomous operations</strong> (AI-driven triage and resolution), <strong>conversations</strong> (natural language interface between customers and expert systems), and <strong>appointments</strong> (enterprise scheduling, launched to 10K customers at Intuit Enterprise Suite).</p>
+        <p>Intuit's Virtual Expert Platform operated at a scale most platforms never reach — 25 million customer contacts per year, 50,000 experts, 535 million live meeting minutes, 95% SLA across every touchpoint. But despite that scale, the platform ran largely on manual coordination: expert schedules built by hand, training disconnected from call performance, customer routing done without system intelligence, and appointment booking fragmented across products.</p>
 
-        <p>This was not a v2 project. The platform needed to be rebuilt around what AI could now do — with no existing industry patterns for how to design human-AI handoffs at this scale.</p>
+        <p>In 2023, the mandate changed. Expert Operations needed to become an AI-native, autonomous platform — not because it was technically possible, but because operating at this scale with manual systems was a ceiling that the business had already hit. I led design across the four workstreams that made that shift real: <strong>Shift Builder</strong>, <strong>Appointments</strong>, <strong>Autonomous Operations</strong>, and the <strong>Conversations</strong> platform underpinning all of them.</p>
 
-        <!-- OPPORTUNITY -->
-        <h2>The Opportunity</h2>
+        <!-- THE FRAMEWORK -->
+        <h2>The Framework: Human-Agent Tandem</h2>
 
-        <p>The core design problem was that AI and humans needed to <em>share</em> the platform — not take turns. Where does AI act autonomously? Where does it escalate? How does that transition feel trustworthy rather than abrupt? Getting that right across three distinct surfaces — operations, conversations, and appointments — was the challenge.</p>
+        <p>Before designing any surface, I needed a model for <em>what</em> was being designed. The existing framing — AI assisting humans — was wrong for what we were building. At this scale, the platform couldn't be structured around humans doing the work with AI helping. It needed to be structured around AI acting, with humans available for what AI can't handle.</p>
 
-        <p>Appointments was the clearest entry point: a concrete, high-frequency task that worked across business sizes. At the July 2025 Intuit Enterprise Suite launch, it went live to 10K enterprise customers — enabling businesses to schedule directly with their customers, end-to-end through the platform.</p>
+        <p>The framework I developed to ground the team was <strong>Human-Agent Tandem</strong>: humans and AI agents as a set of deployable skills, matched in real time against the specific intent, context, and customer need of each interaction. No single human is ever a 100% match for a unique customer situation — there will always be a gap. That gap, if left unaddressed, shows up as quality in the short term and performance in the long term.</p>
 
-        <!-- REALISATION -->
+        <div class="feature-box">
+            <strong>The core insight</strong>
+            <p>AI supplement agents should fill the gap just-in-time and just-enough — stepping in to fill a conversation gap, support the expert mid-call, take over a segment of the interaction, or train the expert on the side while it handles the moment. Over time, as known intents become fully automated, humans stay agile for the unknown unknowns: the novel, unpredictable cases where human judgment is irreplaceable.</p>
+        </div>
+
+        <p>This framework governed interaction principles across every workstream: when AI acts autonomously, when it escalates, how handoffs are signalled, and how trust is built into the interface rather than asserted by it.</p>
+
+        <!-- KEY DECISIONS -->
         <h2>Key Decisions</h2>
 
         <div class="feature-box">
             <strong>Autonomous-first, not assisted-first</strong>
-            <p>The default state of the platform was AI acting — not AI assisting. That required inverting typical UX assumptions: instead of showing the AI helping, the question became how a human steps in when AI can't. Every interface decision across all three workstreams was anchored to that inversion.</p>
-        </div>
-
-        <div class="feature-box">
-            <strong>Human-AI handoffs as a first-class design problem</strong>
-            <p>Seamless handoffs require legibility on both sides: the human needs to know what the AI has done, and the customer needs to trust the transition. I defined the interaction principles governing when AI acts autonomously, when it escalates to human judgment, and how decisions are explained and overridden — before the industry had established patterns for this.</p>
+            <p>The default state of every surface was AI acting — not AI helping. That required inverting standard UX assumptions: instead of designing for an AI that surfaces options, I designed for an AI that makes decisions, with humans stepping in only when the AI can't proceed. That inversion changed everything from information architecture to escalation design to how error states were framed.</p>
         </div>
 
         <div class="feature-box">
             <strong>Trust built into the interface, not assumed from the AI</strong>
-            <p>Users would only accept AI-driven resolution if they trusted what the AI was doing. That trust couldn't be asserted — it had to be designed. Transparency about AI actions, clear override paths, and legible escalation logic were core requirements across all three workstreams, not edge cases.</p>
+            <p>Experts and customers would only accept AI-driven decisions if they understood what the AI had done and could override it clearly. Transparency about AI actions, legible escalation logic, and explicit override paths were core requirements — not edge cases. Designing that legibility at scale, across five surfaces with different users and rhythms, was the foundational design challenge of the platform.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Closed-loop design: performance feeds training feeds performance</strong>
+            <p>The platform needed to learn from itself. I designed the connection between post-call performance data and expert training: Flight Simulator, an AI-driven personalised training system, generated targeted practice scenarios based on each expert's actual call patterns and gaps — not generic content. That loop — act, measure, train, improve — was the structural shift from a static operation to a self-improving one.</p>
         </div>
 
         <!-- THE WORK -->
         <h2>The Work</h2>
 
-        <ul>
-            <li><strong>Autonomous operations</strong> — designed AI-driven triage, resolution, and escalation workflows; replaced manual human-in-the-loop coordination with low-touch agentic models</li>
-            <li><strong>Conversations</strong> — designed the natural language interface layer: how customers interact with expert systems before a human agent is ever involved, including fallback and handoff patterns</li>
-            <li><strong>Appointments</strong> — launched enterprise scheduling to 10K customers at Intuit Enterprise Suite; B2C scheduling integrated natively into the QuickBooks ecosystem</li>
-            <li><strong>Interaction principles</strong> — established the design language for human-AI collaboration on VEP: when AI acts, when it escalates, how decisions surface and can be overridden</li>
-        </ul>
+        <h3>Shift Builder — Redesigning Expert Scheduling</h3>
+        <p>Before Shift Builder, expert managers spent an average of 54 minutes per week building schedules manually — matching 50,000 experts to demand forecasts, availability patterns, and skill requirements by hand. The system couldn't learn from patterns, couldn't adapt to intraday demand shifts, and couldn't scale.</p>
+        <p>Shift Builder replaced that entirely with AI-optimised weekly scheduling: the system ingests historical demand, expert availability and performance data, and outputs schedules in minutes. Managers validate rather than build. The result was an 85% reduction in scheduling time — from 54 minutes to 8 — and 13,500 expert work hours recovered across the platform each week that had previously been spent in scheduling overhead.</p>
+
+        <h3>Appointments — Enterprise Scheduling at Launch</h3>
+        <p>Appointment booking was the clearest 0→1 workstream: a concrete, high-frequency task that required designing an end-to-end scheduling experience from scratch, integrated natively into the QuickBooks ecosystem. The challenge wasn't just scheduling — it was designing for trust: customers needed to be confident they'd reached the right expert, at the right time, with context already established.</p>
+        <p>At the July 2025 Intuit Enterprise Suite launch, Appointments went live to 10,000 enterprise customers. The design measurably shifted behaviour: reschedule-within-5-minutes rate dropped from 28% to 6% (a signal of booking confidence), View-to-Book ratio improved from 28% to 44% for Full Service customers, and Time to Convert decreased from 1 minute 4 seconds to 48 seconds.</p>
+
+        <h3>Autonomous Operations — AI-Driven Triage and Resolution</h3>
+        <p>Autonomous Ops was the hardest workstream: designing interfaces for AI that acts rather than assists, across triage, routing, resolution, and escalation. The deliverables included the AI agent dashboard for operations managers, the real-time routing and matching interface, the escalation UI that surfaces AI reasoning to human reviewers, and the override mechanisms that kept humans accountable without making autonomy fragile. In FY25, VEP reached 120 ITPY (interactions per expert per year) connections — a platform connectivity milestone that required every operations surface to function as a coherent system rather than individual tools.</p>
+
+        <h3>Conversations — Natural Language Platform Layer</h3>
+        <p>The Conversations workstream designed the natural language interface that customers use before a human expert is ever involved: intent capture, context building, smart routing, and handoff from AI to human with full context preserved. The design challenge was preventing both under-escalation (AI trying to resolve what it shouldn't) and over-escalation (unnecessary handoffs that erode trust in the AI). Fallback logic, handoff framing, and context continuity were first-class design requirements — not edge cases to handle later.</p>
 
         <!-- RESULTS -->
         <h2>The Results</h2>
@@ -334,15 +348,27 @@
         <div class="results-grid">
             <div class="result-card">
                 <span class="number">+45%</span>
-                <p>Live services revenue growth — connecting customers with experts at scale through the platform</p>
+                <p>Live services revenue growth — connecting customers with experts at platform scale</p>
             </div>
             <div class="result-card">
                 <span class="number">~40%</span>
-                <p>Cost reduction through automation and elimination of manual coordination</p>
+                <p>Operating cost reduction through automation and removal of manual coordination</p>
             </div>
             <div class="result-card">
-                <span class="number">10K</span>
-                <p>Enterprise customers launched with appointment capabilities at Intuit Enterprise Suite</p>
+                <span class="number">85%</span>
+                <p>Scheduling time reduction via Shift Builder — from 54 minutes to 8 per week</p>
+            </div>
+            <div class="result-card">
+                <span class="number">13,500</span>
+                <p>Expert work hours recovered weekly from scheduling overhead across the platform</p>
+            </div>
+            <div class="result-card">
+                <span class="number">28% → 6%</span>
+                <p>Appointment reschedule rate — a signal of booking confidence at launch</p>
+            </div>
+            <div class="result-card">
+                <span class="number">28% → 44%</span>
+                <p>View-to-Book ratio for Full Service customers through the redesigned booking experience</p>
             </div>
         </div>
 
@@ -350,18 +376,19 @@
         <h2>What Made It Notable</h2>
 
         <ul>
-            <li><strong>Designing before patterns existed</strong> — interaction principles for autonomous AI in enterprise had to be created, not borrowed. The industry was still theorising; we were shipping.</li>
-            <li><strong>Coherence across three distinct surfaces</strong> — autonomous operations, conversational interfaces, and scheduling are different UX domains with different users and rhythms. Keeping them coherent while each had its own launch cadence was the real design challenge.</li>
-            <li><strong>Trust as a design constraint, not a feature</strong> — building user trust into the interface itself — through transparency, override paths, and legible AI decisions — was the foundational requirement for any of the automation gains to be realised.</li>
+            <li><strong>A framework before a feature</strong> — Human-Agent Tandem gave the team a principled model for what human-AI collaboration should actually look like at this scale, before a single screen was designed. That grounding kept five workstreams coherent across different launch cadences and different user types.</li>
+            <li><strong>Designing before patterns existed</strong> — there were no established interaction models for autonomous operations in enterprise at this scale. The principles for when AI acts, when it escalates, how decisions are surfaced and overridden — all of that had to be invented, not borrowed.</li>
+            <li><strong>Closed-loop intelligence</strong> — the platform learned from itself. Connecting post-call performance data to personalised training (Flight Simulator) turned the platform from a static operation into one that improves with use. That design decision had long-term structural value beyond any individual metric.</li>
+            <li><strong>Five distinct surfaces, one coherent system</strong> — scheduling, training, routing, conversations, and appointments are different UX domains with different users, rhythms, and mental models. Making them feel like a single platform — while each had its own launch deadline and stakeholder group — was the real design leadership challenge.</li>
         </ul>
 
         <div class="positioning-quote">
-            "Designed the human-AI collaboration layer for Intuit's Virtual Expert Platform across three workstreams — autonomous operations, natural language conversations, and enterprise appointments. Defined interaction principles for AI-human handoffs before industry patterns existed. Contributed to 45% live services revenue growth and ~40% cost reduction through automation."
+            "Rebuilt Intuit's Virtual Expert Platform as an AI-native operation across five workstreams — scheduling, training, routing, conversations, and appointments. Developed the Human-Agent Tandem framework for human-AI collaboration before industry patterns existed. Contributed to 45% live services revenue growth, ~40% cost reduction, and 85% reduction in expert scheduling time."
         </div>
 
         <div class="footer-bar">
-            <p><strong>Project:</strong> Intuit VEP — Autonomous Operations, Conversations & Appointments &nbsp;•&nbsp; <strong>Timeline:</strong> 2023–2025</p>
-            <p style="margin-top: 8px;"><strong>Impact:</strong> +45% live services revenue &nbsp;•&nbsp; ~40% cost reduction &nbsp;•&nbsp; 10K launch customers</p>
+            <p><strong>Project:</strong> Intuit VEP — Expert Operations Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2023–2025</p>
+            <p style="margin-top: 8px;"><strong>Platform:</strong> 25M contacts/yr · 50K experts · 95% SLA &nbsp;•&nbsp; <strong>Impact:</strong> +45% revenue · ~40% cost reduction · 85% scheduling time saved</p>
             <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
         </div>
 

@@ -220,6 +220,262 @@
             text-decoration: none;
         }
 
+        /* ── Foldout / disclosure ── */
+        .foldout {
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin: 24px 0;
+            overflow: hidden;
+            background: white;
+        }
+        .foldout-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 13px 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            gap: 12px;
+        }
+        .foldout-trigger:hover { background: rgba(181,52,43,0.03); }
+        .foldout-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+        .foldout-hint {
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex: 1;
+            padding-left: 12px;
+            border-left: 1px solid var(--border-light);
+        }
+        .foldout-chevron {
+            font-size: 10px;
+            color: var(--text-secondary);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+        .foldout.open .foldout-chevron { transform: rotate(90deg); }
+        .foldout-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+        .foldout.open .foldout-body {
+            grid-template-rows: 1fr;
+            border-top: 1px solid var(--border-light);
+        }
+        .foldout-body-inner { overflow: hidden; }
+        .foldout-content { padding: 28px 24px; background: #fafaf8; }
+
+        /* ── Flow diagrams ── */
+        .flow { display: flex; flex-direction: column; align-items: center; }
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+        .flow-node {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.4;
+            border: 1px solid;
+        }
+        .flow-node.source  { background:#f5f7fa; border-color:#9aaab8; color:#6b7c93; font-size:11px; }
+        .flow-node.process { background:#fef3e2; border-color:#f4a020; color:#b35c00; }
+        .flow-node.pool    { background:#f0f4ff; border-color:#6b8dd6; color:#3a5ba8; }
+        .flow-node.bot     { background:#e8f4fd; border-color:#4a90d9; color:#1a6fa8; }
+        .flow-node.human   { background:#e8f5e9; border-color:#27ae60; color:#2e7d32; }
+        .flow-node.outcome { background:rgba(181,52,43,0.06); border-color:var(--accent-rust); color:var(--accent-rust); font-weight:600; }
+        .flow-node.neutral { background:white; border-color:var(--border-light); color:var(--text-secondary); }
+        .flow-arrow {
+            display: flex;
+            justify-content: center;
+            color: #9aaab8;
+            font-size: 16px;
+            padding: 2px 0;
+        }
+        .flow-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+            font-style: italic;
+            padding: 2px 0 6px;
+            max-width: 400px;
+        }
+
+        /* ── Design System display ── */
+        .ds-token-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+            margin: 24px 0 32px;
+        }
+        .ds-token-card {
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+            background: white;
+        }
+        .ds-swatch { height: 44px; }
+        .ds-token-info { padding: 8px 10px; }
+        .ds-token-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1px;
+        }
+        .ds-token-hex {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 3px;
+        }
+        .ds-token-role {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.35;
+        }
+
+        /* ── Layout grid diagram ── */
+        .ds-layout-diagram {
+            margin: 28px 0;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .ds-layout-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-ochre);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 8px 12px;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .ds-layout-nav {
+            background: #1e2d3d;
+            color: rgba(255,255,255,0.55);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .ds-layout-nav-logo { color: #f4a020; font-weight: 700; }
+        .ds-layout-nav-item { font-size: 10px; }
+        .ds-layout-nav-item.active { color: #f4a020; }
+        .ds-layout-body {
+            display: flex;
+            height: 160px;
+        }
+        .ds-layout-sidebar {
+            width: 160px;
+            background: #253446;
+            color: rgba(255,255,255,0.45);
+            padding: 12px 0;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .ds-layout-sidebar-item {
+            padding: 7px 16px;
+            font-size: 10px;
+            border-left: 3px solid transparent;
+        }
+        .ds-layout-sidebar-item.active {
+            color: white;
+            background: rgba(244,160,32,0.12);
+            border-left-color: #f4a020;
+        }
+        .ds-layout-main {
+            flex: 1;
+            background: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+        }
+        .ds-layout-metrics {
+            background: white;
+            border-bottom: 1px solid #e0e6ed;
+            padding: 8px 16px;
+            display: flex;
+            gap: 24px;
+            font-size: 10px;
+            color: #9aaab8;
+        }
+        .ds-layout-metric-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1e2d3d;
+            display: block;
+        }
+        .ds-layout-content {
+            flex: 1;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+        .ds-layout-card {
+            background: white;
+            border: 1px solid #e0e6ed;
+            border-radius: 4px;
+            padding: 10px 12px;
+            color: #9aaab8;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .ds-layout-right {
+            width: 180px;
+            background: #f5f7fa;
+            border-left: 1px solid #e0e6ed;
+            padding: 12px;
+            flex-shrink: 0;
+            color: #9aaab8;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .ds-layout-right-section {
+            background: white;
+            border: 1px solid #e0e6ed;
+            border-radius: 4px;
+            padding: 8px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .ds-col-label {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 0;
+            border-bottom: 1px dashed var(--border-light);
+            margin-bottom: 4px;
+        }
+
         /* ══════════════════════════════════════════
            [24]7.ai DESIGN SYSTEM TOKENS
            Source: actual shipped product UI
@@ -940,31 +1196,84 @@
             </div>
             <div>
                 <div class="meta-label">Clients</div>
-                <div class="meta-value">Cisco, Hilton, Target, Sears — Fortune 500</div>
+                <div class="meta-value">Best Buy, Optus, Hilton, Target — Fortune 500</div>
             </div>
         </div>
 
-        <!-- THE CONTEXT -->
-        <h2>The Context</h2>
+        <!-- THE ARCHITECTURE -->
+        <h2>The Architecture: Visitor · Agents · Enterprise</h2>
 
-        <p>[247].ai was building something that didn't yet have a category name. The platform helped Fortune 500 enterprises — Cisco, Hilton, Target, Nike Football — automate customer conversations across voice, digital, and chat, with human agents stepping in where the AI handed off. I joined as Director of Design in 2016 to lead design for the platform and its workforce management layer.</p>
+        <p>[247].ai's platform rested on three nodes. The <strong>visitor</strong> is the end customer — the Best Buy shopper, the Optus subscriber. The <strong>enterprise</strong> is the client: Best Buy, Optus, Hilton, Target. And <strong>agents</strong> — bots and humans both — sit between them. Not "bot or human." Agents, as one category, differentiated by what they can do, not by what they are.</p>
 
-        <p>The platform had grown through acquisitions, which meant I was working across a collection of capable products that had their own design languages and their own teams. My job was to make them into one coherent thing — a Customer Engagement Cloud and Customer Acquisition Cloud with a shared intelligence layer — and to design the experiences that made it work as a whole.</p>
+        <img src="247ai-platform-architecture.png" alt="[247].ai platform architecture — triangle showing Visitor, Agents (bot and human), and Enterprise as the three nodes of the system">
+        <p class="img-caption">The platform architecture: Visitor · Agents (bot and human as one category) · Enterprise. One intelligence layer, one system.</p>
 
-        <p>On the WFM side, the opportunity was clear: contact centre agents are fast, skilled people doing high-stakes work, and most of the tools they used every day were designed for the people who procured them — not the people who lived in them. I wanted to change that.</p>
+        <p>When you don't separate bot and human at the structural level, the intelligence infrastructure has to serve both equally. That's where intent came in.</p>
 
-        <!-- THE PROCESS -->
-        <h2>The Process</h2>
+        <!-- THE INTENT LAYER -->
+        <h2>The Intent Layer: Shared Intelligence for Every Agent</h2>
+
+        <p>A customer's intent exists before they contact anyone. It shows up in a Google search — "how do I return my Best Buy order" — in a website visit, a phone call, a chat, a text. [247].ai captured intent across all of it: the Customer Acquisition Cloud even worked at the search layer, where search bidding was part of the platform. By the time a customer reached an agent, their intent had often already been read and classified.</p>
+
+        <p><strong>Lines of Business weren't manually defined — they were discovered.</strong> The platform ingested each enterprise client's existing contact data: call recordings, chat transcripts, historical interaction logs. An AI system processed this to surface the actual intent patterns already present in the customer base, then grouped them into Lines of Business. Best Buy's patterns emerged from Best Buy's data. Optus's from Optus's. The enterprise didn't need to know upfront what their customers' intents were — the AI found them.</p>
+
+        <p>Once discovered and grouped, each Line of Business carried the responses associated with it — made available to every agent on every channel. Both the bot and the human agent draw from the same pool. When the bot hands off to a human, there's no information loss — because the intelligence was always shared. Same data, same context, different actor.</p>
+
+        <!-- Foldout 1: Intent journey flow -->
+        <div class="foldout">
+            <button class="foldout-trigger" onclick="this.closest('.foldout').classList.toggle('open')">
+                <span class="foldout-label">Flow</span>
+                <span class="foldout-hint">How intent travels from customer signal to agent response</span>
+                <span class="foldout-chevron">▶</span>
+            </button>
+            <div class="foldout-body">
+                <div class="foldout-body-inner">
+                    <div class="foldout-content">
+                        <div class="flow">
+                            <div class="flow-row">
+                                <div class="flow-node source">Search</div>
+                                <div class="flow-node source">Call</div>
+                                <div class="flow-node source">Chat</div>
+                                <div class="flow-node source">Text</div>
+                                <div class="flow-node source">Website</div>
+                            </div>
+                            <div class="flow-label">Customer signals intent — any channel, any modality</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node process" style="min-width:300px">AI captures &amp; classifies intent</div>
+                            </div>
+                            <div class="flow-label">Natural language understanding across voice, text, structured &amp; unstructured data</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node process" style="min-width:300px">Grouped into Line of Business</div>
+                            </div>
+                            <div class="flow-label">Discovered from enterprise contact data — per client (Best Buy / Optus / Hilton / Target)</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node pool" style="min-width:300px">Shared response pool</div>
+                            </div>
+                            <div class="flow-label">Same intelligence available to every agent type on every channel</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row" style="gap:32px">
+                                <div class="flow-node bot">Bot agent (AIVA)</div>
+                                <div class="flow-node human">Human agent</div>
+                            </div>
+                            <div class="flow-label">Same base, different actor — handoff is seamless because there is never a separate copy</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node outcome" style="min-width:300px">Customer resolution — any channel</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <img src="247ai-whiteboard-wfm.jpg" alt="Whiteboard wireframe session mapping the WFM platform architecture and user flows, April 2018">
-        <p class="img-caption">Whiteboard session mapping WFM platform flows and screen architecture — the information architecture that became the agent portal</p>
-
-        <p>I started by spending time with the people the platform was built to serve: agents on the floor, supervisors managing queues in real time, workforce planners building schedules weeks out. Each role had a completely different relationship with time and information. I also benchmarked across the six dominant WFM vendors — Verint, NICE/IEX, Genesys, Aspect, Calabrio, Invision — to understand what the field was doing and where the real design opportunity sat.</p>
+        <p class="img-caption">Early architecture session — mapping how intent flows through the platform across agent types, channels, and enterprise Lines of Business</p>
 
         <img src="247ai-whiteboard-ia.jpg" alt="Information architecture session mapping Cisco product hierarchy across Chat, OPS, and customer service domains">
-        <p class="img-caption">IA session mapping Cisco's product hierarchy — Chat and OPS products, their sub-channels, and how they connected to the customer journey across voice, IVR, and digital</p>
-
-        <p>The IA work shown above was real client work: mapping how Cisco's products — Chat, OPS, Routex, Webex, and IVR — related to each other across the customer journey. That map became the basis for how we designed the connections between them.</p>
+        <p class="img-caption">IA work for Cisco — mapping how Chat, OPS, Routex, Webex, and IVR connected across the customer journey. This map became the basis for designing the connections between them.</p>
 
         <!-- KEY DECISIONS -->
         <h2>Key Decisions</h2>
@@ -985,14 +1294,58 @@
         </div>
 
         <!-- THE WORK — WFM PLATFORM -->
-        <h2>The Work — WFM Platform</h2>
+        <h2>The Work — WFM: Planning for the Whole Agent Pool</h2>
 
-        <p>The WFM platform served three roles with very different needs: agents on the floor who moved fast and needed things to be obvious; supervisors watching queues in real time; and workforce planners thinking weeks ahead. The design work started by mapping how those roles connected — who approved what, who saw what, how information moved between them — before a single screen was drawn.</p>
+        <p>Workforce management started as a human efficiency problem: how many agents, on which shifts, for which channels. But once "agents" includes both bots and humans, the planning question changes. What percentage of volume does the bot resolve? How does that shift intraday demand for human agents? When a bot escalates, what happens to the queue? WFM had to account for the whole operation — forecasting and scheduling across the full agent pool, not just the human half.</p>
+
+        <p>The platform served three human roles with very different relationships to time: agents on the floor who needed things to be immediate and obvious; supervisors watching queues shift in real time; and workforce planners building schedules weeks out. The design work started by mapping how those roles connected — who approved what, who saw what, how information moved between them — before a single screen was drawn.</p>
+
+        <!-- Foldout 2: WFM planning loop -->
+        <div class="foldout">
+            <button class="foldout-trigger" onclick="this.closest('.foldout').classList.toggle('open')">
+                <span class="foldout-label">Flow</span>
+                <span class="foldout-hint">How WFM plans capacity across the full agent pool — bot and human</span>
+                <span class="foldout-chevron">▶</span>
+            </button>
+            <div class="foldout-body">
+                <div class="foldout-body-inner">
+                    <div class="foldout-content">
+                        <div class="flow">
+                            <div class="flow-row" style="gap:12px">
+                                <div class="flow-node neutral">Historical contact volume</div>
+                                <div class="flow-node bot">Bot resolution rate</div>
+                                <div class="flow-node human">Escalation patterns</div>
+                            </div>
+                            <div class="flow-label">Data from the whole operation — not just the human half</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node process" style="min-width:300px">Demand forecast</div>
+                            </div>
+                            <div class="flow-label">Channel mix × time of day × bot resolution rate → predicted human agent need</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node process" style="min-width:300px">Schedule generation</div>
+                            </div>
+                            <div class="flow-label">Shifts, queues, and capacity — right agents for the predicted demand curve</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node neutral" style="min-width:300px">Live operation</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node outcome" style="min-width:300px">Intraday monitoring &amp; real-time adjustment</div>
+                            </div>
+                            <div class="flow-label">Queue, service level, adherence — adjusts as bot resolution rate shifts through the day</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <img src="247ai-wfm-workflow.png" alt="WFM workflow diagram showing scheduling, rostering and long-term availability flows between Agent, Team Lead, Manager, and Workforce Planner roles">
         <p class="img-caption">WFM role and workflow map — showing how forecast, scheduling, rostering, and real-time management connected across Agent, TL, Manager, and Workforce Planner roles. This architecture preceded the screen design.</p>
 
-        <p>The platform shipped to Fortune 500 clients including Nike Football, Cisco, Hilton, and Target — each running contact centre operations at scale. Below is the actual WFM supervisor dashboard as shipped, showing the Nike Football instance: intraday metrics across chat volume, service level, and agent utilisation, with forecast visualisation and a performance scorecard against contractual targets.</p>
+        <p>The platform shipped to Fortune 500 clients including Best Buy, Optus, Hilton, and SiriusXM — each running contact centre operations at scale. Below is the actual WFM supervisor dashboard as shipped, showing one client instance: intraday metrics across chat volume, service level, and agent utilisation, with forecast visualisation and a performance scorecard against contractual targets.</p>
 
         <img src="247ai-wfm-intraday-nike.png" alt="[24]7.ai WFM Intraday Overview for Nike Football — showing live metrics: Chat Waiting 25, Service Level 80%, Utilization 75%, with weekly forecast chart and team performance scorecard">
         <p class="img-caption">Actual shipped UI — [24]7.ai WFM Intraday Overview, Nike Football client. Live metrics: available slots, AHT, service level, utilisation. Forecast chart + performance scorecard against contractual targets (NPS, Sales, Conversion, AHT).</p>
@@ -1221,7 +1574,7 @@
                         <div class="aiva-main">
                             <div class="aiva-chat-topbar">
                                 <div>
-                                    <div class="aiva-customer-name">Ramesh K. — Cisco Enterprise</div>
+                                    <div class="aiva-customer-name">Ramesh K. — Best Buy</div>
                                     <div class="aiva-customer-meta">Account #C-00412 · 3 prior contacts · Premium tier</div>
                                 </div>
                                 <div class="aiva-channel-tabs">
@@ -1302,41 +1655,198 @@
             <p class="mockup-caption">AIVA agent console — intent captured by AI surfaced at handoff, customer history loaded, suggested responses ready. The agent picks up the conversation, not restarts it.</p>
         </div>
 
-        <!-- PLATFORM ARCHITECTURE -->
-        <h2>Platform Architecture — Customer Engagement Cloud</h2>
+        <!-- Foldout 3: Handoff moment -->
+        <div class="foldout">
+            <button class="foldout-trigger" onclick="this.closest('.foldout').classList.toggle('open')">
+                <span class="foldout-label">Flow</span>
+                <span class="foldout-hint">The handoff moment — what happens when AIVA passes to a human agent</span>
+                <span class="foldout-chevron">▶</span>
+            </button>
+            <div class="foldout-body">
+                <div class="foldout-body-inner">
+                    <div class="foldout-content">
+                        <div class="flow">
+                            <div class="flow-row">
+                                <div class="flow-node bot" style="min-width:300px">AIVA handling conversation</div>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node process" style="min-width:300px">Escalation trigger detected</div>
+                            </div>
+                            <div class="flow-label">Complexity threshold · customer request · low confidence · sentiment signal</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node pool" style="min-width:300px">Handoff package assembled</div>
+                            </div>
+                            <div class="flow-label">Intent (from Line of Business) + full conversation history + customer profile</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node human" style="min-width:300px">Agent console loads at handoff</div>
+                            </div>
+                            <div class="flow-label">Intent · history · suggested responses — ready before the agent speaks</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-row">
+                                <div class="flow-node outcome" style="min-width:300px">Customer experiences one conversation</div>
+                            </div>
+                            <div class="flow-label">No repeat, no restart — the agent continues what AIVA began</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <p>The platform was eventually defined and architected as two clouds — a <strong>Customer Engagement Cloud</strong> and a <strong>Customer Acquisition Cloud</strong> — with a shared reporting and insight layer serving both. Getting to that architecture required making the system's parts visible to each other for the first time: NL Tools, Chat Miner, Bot Builder, Prediction Engine, and Unified Admin Console on the intelligence layer; WFM, Reporting, Billing, and Optimisation on the enterprise operations layer; and the Agent Console on the engagement layer.</p>
+        <!-- THE PLATFORM AT SCALE -->
+        <h2>The Platform at Scale</h2>
 
-        <img src="247ai-platform-architecture.png" alt="[24]7.ai platform architecture triangle showing Visitor, Agents, and Enterprise vertices with shared intelligence layer including Prediction Engine, NL Tools, Chat Miner, Model Builder, Bot Builder, and Unified Admin Console">
-        <p class="img-caption">Platform architecture — the three-legged model: Visitor (customer-facing AI), Agents (console, engagement, WFM), and Enterprise (optimisation, billing, reporting). The shared intelligence layer — Prediction Engine, NL Tools, Bot Builder — served all three.</p>
+        <p>By end of 2019, the architecture was operational across 37 enterprise clients — SiriusXM, Dish, Optus, Vodafone, Best Buy, Hilton, Target, Choice Hotels — each configured with Chat, IVR, and AIVA capabilities across their Lines of Business. Any customer, any intent, any channel — served by a human or agent.</p>
+
+        <img src="247ai-client-platform.png" alt="[24]7.ai enterprise client management platform — ALL CLIENTS (37) view showing SiriusXM, Dish, Optus, Vodafone cards with LOB1/LOB2 lines and Chat, IVR, AIVA capabilities">
+        <p class="img-caption">Actual shipped UI — enterprise client management view. 37 clients, each configured with their Lines of Business and channel mix (Chat, IVR, AIVA). One platform serving all of them.</p>
 
         <!-- DESIGN SYSTEM -->
         <h2>The Design System</h2>
 
-        <p>There was no shared visual language across the platform when I joined. Components, colour, motion, and interaction patterns had evolved independently across teams. I built the design system from scratch — defining the colour architecture across eight semantic palettes (Orange, Magenta, Purple, Lilac, Blue, Green, Red, Neutral), interaction tokens, component specifications, and the governance model that ensured teams adopted rather than worked around it.</p>
+        <p>Three surfaces — WFM, AIVA agent console, and customer-facing AI — all deployed inside the same enterprise client. The design system made them feel like one product because they shared the same visual logic: colour tokens, typographic scale, grid structure, and component patterns, all derived from the same architecture and crowd-sourced across product teams so every team had ownership of the language they were using.</p>
 
-        <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour palette — fan of eight colour ramps with the [24]7.ai logo">
-        <p class="img-caption">[24]7.ai design system colour architecture — eight semantic palettes built for a platform that ran voice, digital, and chat interfaces simultaneously. The design system was crowd-sourced across teams and became the operating standard across all product surfaces.</p>
+        <!-- Palette -->
+        <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour palette — fan of eight colour ramps across Orange, Magenta, Purple, Lilac, Blue, Green, Red, Neutral">
+        <p class="img-caption">[24]7.ai colour architecture — eight semantic palettes governing the full product surface: navigation, brand, content, status, data visualisation, and semantic states</p>
+
+        <!-- Token swatches -->
+        <h3>Design Tokens</h3>
+        <div class="ds-token-grid">
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#1e2d3d"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-navy</div>
+                    <div class="ds-token-hex">#1e2d3d</div>
+                    <div class="ds-token-role">Global nav, primary dark surfaces</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#253446"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-sidebar</div>
+                    <div class="ds-token-hex">#253446</div>
+                    <div class="ds-token-role">Left sidebar background</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#f4a020"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-orange</div>
+                    <div class="ds-token-hex">#f4a020</div>
+                    <div class="ds-token-role">Brand — active tabs, CTAs, badges, borders</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#f5f7fa; border-bottom:1px solid #e0e6ed"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-content</div>
+                    <div class="ds-token-hex">#f5f7fa</div>
+                    <div class="ds-token-role">Page / content area background</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#e0e6ed"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-border</div>
+                    <div class="ds-token-hex">#e0e6ed</div>
+                    <div class="ds-token-role">Card borders, dividers, table lines</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#9aaab8"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-label</div>
+                    <div class="ds-token-hex">#9aaab8</div>
+                    <div class="ds-token-role">Metric labels, section headers, helper text</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#27ae60"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-green</div>
+                    <div class="ds-token-hex">#27ae60</div>
+                    <div class="ds-token-role">Positive status, agent messages, approved</div>
+                </div>
+            </div>
+            <div class="ds-token-card">
+                <div class="ds-swatch" style="background:#4a90d9"></div>
+                <div class="ds-token-info">
+                    <div class="ds-token-name">--247-blue</div>
+                    <div class="ds-token-hex">#4a90d9</div>
+                    <div class="ds-token-role">Charts, bot messages, links</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid / layout diagram -->
+        <h3>Layout System</h3>
+        <p>One spatial logic across WFM and AIVA surfaces. Global nav (44px, navy) → sidebar (180px, dark) → main content (white cards on light ground) → optional right context panel. The same grid applied whether the surface was scheduling agents or handling a live customer handoff.</p>
+
+        <div class="ds-layout-diagram">
+            <div class="ds-layout-label">Grid structure — applies to WFM · AIVA Console · Analytics</div>
+            <div class="ds-layout-nav">
+                <span class="ds-layout-nav-logo">[24]7.ai</span>
+                <span class="ds-layout-nav-item">Platform</span>
+                <span class="ds-layout-nav-item active">WFM / AIVA Console</span>
+                <span class="ds-layout-nav-item">Analytics</span>
+            </div>
+            <div class="ds-layout-body">
+                <div class="ds-layout-sidebar">
+                    <div class="ds-col-label" style="color:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.1);padding:0 16px">180px · Sidebar</div>
+                    <div class="ds-layout-sidebar-item active">Active section</div>
+                    <div class="ds-layout-sidebar-item">Section item</div>
+                    <div class="ds-layout-sidebar-item">Section item</div>
+                    <div class="ds-layout-sidebar-item">Section item</div>
+                </div>
+                <div class="ds-layout-main">
+                    <div class="ds-layout-metrics">
+                        <div><span class="ds-layout-metric-val">—</span>KPI 1</div>
+                        <div><span class="ds-layout-metric-val">—</span>KPI 2</div>
+                        <div><span class="ds-layout-metric-val">—</span>KPI 3</div>
+                        <div style="margin-left:auto;color:#e0e6ed">Metrics bar · white · full-width</div>
+                    </div>
+                    <div class="ds-layout-content">
+                        <div class="ds-layout-card">Primary card — data / schedule / conversation</div>
+                        <div class="ds-layout-card">Secondary card</div>
+                    </div>
+                </div>
+                <div class="ds-layout-right">
+                    <div class="ds-col-label">Context panel<br>180px · optional</div>
+                    <div class="ds-layout-right-section">Intent / history / actions</div>
+                    <div class="ds-layout-right-section">Suggested responses</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interface variants -->
+        <h3>Interface Variants Across the System</h3>
+        <p>The same tokens and grid across every surface — WFM scheduling, intraday supervision, AIVA handoff console, enterprise client configuration. A supervisor switching from the schedule view to the agent console sees one product, not two.</p>
+
+        <img src="247ai-screens-overview.png" alt="[24]7.ai composite screens overview showing the full product family — WFM, AIVA console, and analytics surfaces rendered in the unified design system">
+        <p class="img-caption">The full product family in the unified design system — WFM, AIVA console, and platform analytics. One visual language, one spatial logic, across every surface the enterprise and its agents use.</p>
 
         <!-- RESULTS -->
         <h2>The Results</h2>
 
-        <div class="results-grid">
+        <div class="results-grid" style="grid-template-columns: repeat(4, 1fr)">
             <div class="result-card">
                 <span class="number">19%</span>
                 <p>YoY revenue growth — two consecutive years following platform unification</p>
             </div>
             <div class="result-card">
                 <span class="number">16%</span>
-                <p>Cost reduction through standardisation, product consolidation, and reduced operational load</p>
+                <p>Cost reduction through standardisation and platform consolidation</p>
             </div>
             <div class="result-card">
-                <span class="number">Fortune 500</span>
-                <p>Nike Football, Cisco, Hilton, Target — contact centre operations at scale, running on the platform we built</p>
+                <span class="number">37</span>
+                <p>Enterprise clients on the unified platform — SiriusXM, Dish, Optus, Vodafone, Best Buy, Hilton, Target and more</p>
             </div>
             <div class="result-card">
-                <span class="number">One platform</span>
-                <p>Customer Engagement Cloud + Customer Acquisition Cloud — from fragmented acquisitions to a unified self-serve SaaS architecture</p>
+                <span class="number">2 clouds</span>
+                <p>Customer Engagement Cloud + Customer Acquisition Cloud — one shared intelligence layer serving both</p>
             </div>
         </div>
 
@@ -1344,19 +1854,19 @@
         <h2>What Made It Notable</h2>
 
         <ul>
-            <li><strong>First-principles design for a new category</strong> — AI-human handoffs, multimodal engagement, agentic UX: in 2016 these were problems we were solving in production, for real clients, with no established patterns to borrow from. The interaction principles we derived here became the foundation for how the industry eventually approached this work.</li>
-            <li><strong>Designing for the people doing the work</strong> — the WFM agent portal was built around one question: does this work for someone on the floor, mid-shift, with no time to think about it? That discipline — starting with the person with the least time, not the most — shaped every decision in the system.</li>
-            <li><strong>Design system as the connective tissue</strong> — shared components meant shared decisions. The design system gave teams across the organisation a common language, and that common language is what made the platform cohere. Unification happened through design, not through a technical rewrite.</li>
-            <li><strong>The handoff as the centre of the experience</strong> — treating the AI-to-human transition as the most important moment in every interaction changed how the whole console was conceived. That perspective, which now feels obvious, had to be argued for and designed from scratch in 2017.</li>
+            <li><strong>Bot and human as one category of agent</strong> — treating bots and humans as structurally equivalent, differentiated only by capability, was a 2016 architectural decision the industry is still arriving at. Everything downstream — shared intent, unified WFM, one design system — followed from that single choice.</li>
+            <li><strong>Intent discovered, not defined</strong> — Lines of Business were surfaced from actual customer contact data by AI, not written top-down by the enterprise client. That meant the intelligence reflected how customers actually behaved — and made it equally available to every agent type, bot or human, on any channel.</li>
+            <li><strong>WFM for the whole operation</strong> — planning capacity across both bots and humans, accounting for escalation rates and channel mix, is what made the efficiency story real. Not just better scheduling — a genuinely new way of thinking about how a contact centre operates.</li>
+            <li><strong>Design system crowd-sourced, not handed down</strong> — teams had ownership of the language they were using, which is why it actually got adopted. Alongside the system, I ran all org-wide design sprints — the mechanism that brought isolated teams into shared decisions and shared cadence.</li>
         </ul>
 
         <div class="positioning-quote">
-            "Designed the WFM platform and conversational AI interfaces that Cisco, Nike Football, Hilton, and Target used to run contact centre operations at scale — forecast, scheduling, intraday management, and AI-human handoff — built the design system from scratch, and defined the Customer Engagement Cloud architecture. 19% YoY revenue growth across two consecutive years. 16% cost reduction through platform consolidation. Designed human-AI handoff patterns before the industry had a name for them."
+            "At [247].ai I got to work at the foundation of something: designing the intelligence infrastructure that made bots and human agents work as one system, for 37 Fortune 500 enterprises, before the industry had a framework for any of it. Intent layer, WFM, AI-human handoff, design system — one platform, one story."
         </div>
 
         <div class="footer-bar">
             <p><strong>Project:</strong> [247].ai — Customer Engagement Cloud &amp; WFM Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2016–2019</p>
-            <p style="margin-top: 8px;"><strong>Clients:</strong> Nike Football &nbsp;•&nbsp; Cisco &nbsp;•&nbsp; Hilton &nbsp;•&nbsp; Target &nbsp;•&nbsp; <strong>Impact:</strong> 19% YoY revenue &nbsp;•&nbsp; 16% cost reduction</p>
+            <p style="margin-top: 8px;"><strong>37 enterprise clients</strong> incl. Best Buy &nbsp;•&nbsp; Optus &nbsp;•&nbsp; SiriusXM &nbsp;•&nbsp; Hilton &nbsp;•&nbsp; Target &nbsp;•&nbsp; <strong>Impact:</strong> 19% YoY revenue &nbsp;•&nbsp; 16% cost reduction</p>
             <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
         </div>
 
