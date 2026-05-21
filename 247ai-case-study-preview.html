@@ -168,17 +168,6 @@
 
         li strong { color: var(--text-primary); }
 
-        ol {
-            margin-left: 20px;
-            margin-bottom: 16px;
-        }
-
-        ol li {
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -231,29 +220,687 @@
             text-decoration: none;
         }
 
+        /* ══════════════════════════════════════════
+           [24]7.ai DESIGN SYSTEM TOKENS
+           Source: actual shipped product UI
+           Navy #1e2d3d · Orange #f4a020 · White content
+        ══════════════════════════════════════════ */
+
+        /* ── Interface mockup wrapper ── */
+        .mockup-wrapper { margin: 36px 0; }
+
+        .mockup-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-ochre);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+        }
+
+        .browser-chrome {
+            background: #e2e5e9;
+            border-radius: 8px 8px 0 0;
+            padding: 9px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #cdd2d8;
+            border-bottom: none;
+        }
+
+        .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .browser-dot.red   { background: #ff5f57; }
+        .browser-dot.amber { background: #febc2e; }
+        .browser-dot.green { background: #28c840; }
+
+        .browser-url {
+            margin-left: 10px;
+            background: white;
+            border-radius: 3px;
+            padding: 3px 10px;
+            font-size: 11px;
+            color: #666;
+            flex: 1;
+        }
+
+        .mockup-screen {
+            border: 1px solid #cdd2d8;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+            background: #f5f7fa;
+        }
+
+        .mockup-caption {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* ── WFM AGENT PORTAL — [24]7.ai design system ── */
+        .wfm-app {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 13px;
+        }
+
+        /* Global nav bar — dark navy, matches actual product */
+        .wfm-globalbar {
+            background: #1e2d3d;
+            padding: 0 20px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-shrink: 0;
+        }
+
+        .wfm-logo {
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.01em;
+            margin-right: 24px;
+            white-space: nowrap;
+        }
+
+        .wfm-logo span { color: #f4a020; }
+
+        .wfm-globalnav-item {
+            padding: 0 16px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .wfm-globalnav-item.active {
+            color: #f4a020;
+            border-bottom-color: #f4a020;
+        }
+
+        .wfm-globalnav-item:hover { color: rgba(255,255,255,0.8); }
+
+        .wfm-globalnav-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .wfm-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #27ae60;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Body: sidebar + main */
+        .wfm-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .wfm-sidebar {
+            width: 180px;
+            background: #253446;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            padding-top: 8px;
+        }
+
+        .wfm-nav-section {
+            padding: 8px 16px 4px;
+            font-size: 9px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .wfm-nav-item {
+            padding: 9px 16px 9px 18px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            border-left: 3px solid transparent;
+        }
+
+        .wfm-nav-item.active {
+            color: white;
+            background: rgba(244,160,32,0.12);
+            border-left-color: #f4a020;
+        }
+
+        .wfm-nav-icon { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.8; }
+
+        /* Main content */
+        .wfm-main {
+            flex: 1;
+            background: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Intraday metrics bar — exact layout from Nike Football screenshot */
+        .wfm-metrics-bar {
+            background: white;
+            border-bottom: 1px solid #e0e6ed;
+            padding: 0 24px;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .wfm-metrics-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e2d3d;
+            padding: 14px 20px 14px 0;
+            border-right: 1px solid #e0e6ed;
+            margin-right: 0;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .wfm-metric-cell {
+            padding: 10px 20px;
+            border-right: 1px solid #e0e6ed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 80px;
+        }
+
+        .wfm-metric-cell:last-child { border-right: none; margin-left: auto; }
+
+        .wfm-metric-label {
+            font-size: 9px;
+            font-weight: 700;
+            color: #9aaab8;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 3px;
+        }
+
+        .wfm-metric-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e2d3d;
+            line-height: 1;
+        }
+
+        .wfm-metric-value.orange { color: #f4a020; }
+        .wfm-metric-value.green  { color: #27ae60; }
+
+        .wfm-active-dot {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .wfm-active-dot::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #27ae60;
+        }
+
+        /* Content area */
+        .wfm-content {
+            padding: 16px 24px;
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .wfm-section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e2d3d;
+            margin-bottom: 10px;
+        }
+
+        .wfm-card {
+            background: white;
+            border: 1px solid #e0e6ed;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .wfm-card-header {
+            padding: 10px 16px;
+            border-bottom: 1px solid #e0e6ed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wfm-card-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e2d3d;
+        }
+
+        .wfm-week-nav {
+            font-size: 11px;
+            color: #9aaab8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wfm-week-nav strong { color: #1e2d3d; }
+
+        /* Schedule grid */
+        .wfm-schedule-grid {
+            display: grid;
+            grid-template-columns: 54px repeat(7, 1fr);
+        }
+
+        .wfm-grid-head {
+            background: #f9fafb;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .wfm-grid-dayhead {
+            background: #f9fafb;
+            border-bottom: 1px solid #e0e6ed;
+            padding: 7px 4px;
+            text-align: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: #9aaab8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .wfm-grid-dayhead.today { color: #f4a020; }
+
+        .wfm-grid-timelabel {
+            padding: 8px 6px;
+            font-size: 9px;
+            color: #bcc8d4;
+            text-align: right;
+            border-right: 1px solid #e0e6ed;
+            background: #f9fafb;
+        }
+
+        .wfm-grid-row { border-bottom: 1px solid #f2f5f8; }
+        .wfm-grid-row:last-child { border-bottom: none; }
+
+        .wfm-grid-slot { padding: 3px 3px; min-height: 32px; }
+
+        .wfm-shift {
+            border-radius: 2px;
+            padding: 3px 6px;
+            font-size: 9px;
+            font-weight: 600;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .wfm-shift.chat    { background: #e8f4fd; color: #1a6fa8; }
+        .wfm-shift.voice   { background: #e8f5e9; color: #2e7d32; }
+        .wfm-shift.break   { background: #fff8e1; color: #e65100; }
+        .wfm-shift.swap    { background: #fef3e2; color: #b35c00; border: 1px dashed #f4a020; }
+        .wfm-shift.off     { background: transparent; }
+
+        /* Bottom panels */
+        .wfm-panels-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .wfm-panel-inner { padding: 12px 14px; }
+
+        .wfm-panel-title {
+            font-size: 9px;
+            font-weight: 700;
+            color: #9aaab8;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+        }
+
+        /* Adherence bars */
+        .wfm-adh-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 9px;
+        }
+
+        .wfm-adh-label { font-size: 10px; color: #6b7c93; width: 68px; flex-shrink: 0; }
+
+        .wfm-adh-track {
+            flex: 1;
+            height: 5px;
+            background: #edf0f4;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .wfm-adh-fill { height: 100%; border-radius: 3px; }
+        .wfm-adh-fill.g { background: #27ae60; }
+        .wfm-adh-fill.o { background: #f4a020; }
+        .wfm-adh-fill.b { background: #4a90d9; }
+
+        .wfm-adh-pct { font-size: 10px; font-weight: 600; color: #1e2d3d; width: 28px; text-align: right; flex-shrink: 0; }
+
+        /* Swap requests */
+        .wfm-swap-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid #f2f5f8;
+        }
+
+        .wfm-swap-row:last-child { border-bottom: none; }
+        .wfm-swap-info { font-size: 11px; color: #1e2d3d; }
+        .wfm-swap-sub  { font-size: 10px; color: #9aaab8; margin-top: 1px; }
+
+        .wfm-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .wfm-badge.pending  { background: #fef3e2; color: #b35c00; border: 1px solid #f4a020; }
+        .wfm-badge.approved { background: #e8f5e9; color: #2e7d32; }
+
+
+        /* ── AIVA HANDOFF CONSOLE — [24]7.ai design system ── */
+        .aiva-app {
+            display: flex;
+            flex-direction: column;
+            height: 490px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 13px;
+        }
+
+        /* App body: sidebar + chat + context panel */
+        .aiva-app-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Queue sidebar — dark navy, same language as WFM sidebar */
+        .aiva-sidebar {
+            width: 195px;
+            background: #253446;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .aiva-sidebar-header {
+            padding: 10px 14px 8px;
+            font-size: 9px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .aiva-queue-item {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .aiva-queue-item.active {
+            background: rgba(244,160,32,0.1);
+            border-left-color: #f4a020;
+        }
+
+        .aiva-queue-name { font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 500; }
+        .aiva-queue-intent { font-size: 10px; color: rgba(255,255,255,0.38); margin-top: 2px; }
+
+        .aiva-handoff-pill {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 8px;
+            background: rgba(244,160,32,0.2);
+            color: #f4a020;
+            margin-top: 5px;
+        }
+
+        /* Chat area — white content background */
+        .aiva-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        /* Chat top bar — dark navy header, matches WFM global nav */
+        .aiva-chat-topbar {
+            padding: 0 20px;
+            height: 50px;
+            background: #1e2d3d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .aiva-customer-name { font-size: 13px; font-weight: 600; color: white; }
+        .aiva-customer-meta { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+        .aiva-channel-tabs { display: flex; gap: 4px; }
+
+        .aiva-channel-tab {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .aiva-channel-tab.active { background: rgba(244,160,32,0.2); color: #f4a020; }
+
+        /* Messages — light background, coloured bubbles */
+        .aiva-chat-body {
+            flex: 1;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f9fafb;
+            overflow: hidden;
+        }
+
+        .aiva-msg { display: flex; flex-direction: column; gap: 3px; }
+        .aiva-msg.bot   { align-items: flex-start; }
+        .aiva-msg.user  { align-items: flex-end; }
+        .aiva-msg.human { align-items: flex-start; }
+
+        .aiva-msg-sender {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .aiva-msg.bot   .aiva-msg-sender { color: #4a90d9; }
+        .aiva-msg.human .aiva-msg-sender { color: #27ae60; }
+        .aiva-msg.user  .aiva-msg-sender { color: #9aaab8; }
+
+        .aiva-bubble {
+            padding: 9px 13px;
+            border-radius: 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            max-width: 80%;
+        }
+
+        .aiva-msg.bot   .aiva-bubble { background: #e8f4fd; color: #1a6fa8; border-radius: 3px 10px 10px 10px; }
+        .aiva-msg.user  .aiva-bubble { background: #e0e6ed; color: #1e2d3d; border-radius: 10px 3px 10px 10px; }
+        .aiva-msg.human .aiva-bubble { background: #e8f5e9; color: #2e7d32; border-radius: 3px 10px 10px 10px; }
+
+        /* Handoff banner — orange, matching design system */
+        .aiva-handoff-banner {
+            background: #fef3e2;
+            border: 1px solid #f4a020;
+            border-radius: 4px;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .aiva-handoff-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #f4a020;
+            flex-shrink: 0;
+        }
+
+        .aiva-handoff-text { font-size: 11px; color: #b35c00; font-weight: 500; }
+
+        /* Input row */
+        .aiva-input-row {
+            padding: 10px 20px;
+            background: white;
+            border-top: 1px solid #e0e6ed;
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .aiva-input-box {
+            flex: 1;
+            background: #f5f7fa;
+            border: 1px solid #e0e6ed;
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-size: 12px;
+            color: #9aaab8;
+        }
+
+        .aiva-send-btn {
+            background: #f4a020;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Right context panel — light background */
+        .aiva-right-panel {
+            width: 195px;
+            background: #f5f7fa;
+            border-left: 1px solid #e0e6ed;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .aiva-panel-section-title {
+            font-size: 9px;
+            font-weight: 700;
+            color: #9aaab8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .aiva-intent-chip {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #1a6fa8;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 10px;
+            font-weight: 600;
+            margin: 2px 2px 2px 0;
+        }
+
+        .aiva-history-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .aiva-history-label { font-size: 10px; color: #9aaab8; }
+        .aiva-history-value { font-size: 10px; color: #1e2d3d; font-weight: 500; }
+
+        .aiva-suggest-btn {
+            background: white;
+            border: 1px solid #e0e6ed;
+            border-radius: 4px;
+            padding: 6px 10px;
+            font-size: 10px;
+            color: #4a90d9;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 4px;
+        }
+
+        /* ── Shared ── */
         @media (max-width: 768px) {
             .container { padding: 30px 20px; }
             .header-content { padding: 0 20px; }
             h1 { font-size: 24px; }
             h2 { font-size: 18px; }
-            h3 { font-size: 14px; }
             .metadata { grid-template-columns: 1fr; gap: 14px; }
             .results-grid { grid-template-columns: 1fr; }
             .feature-box { padding: 16px 16px 12px; }
             .positioning-quote { padding: 16px 18px; font-size: 14px; }
             .result-card { padding: 16px; }
-        }
-
-        @media (max-width: 480px) {
-            .container { padding: 24px 16px; }
-            .header-content { padding: 0 16px; }
-            h1 { font-size: 21px; }
-            h2 { font-size: 16px; }
-            .meta-label { font-size: 10px; }
-            .meta-value { font-size: 13px; }
-            p { font-size: 14px; }
-            li { font-size: 14px; }
-            .result-card .number { font-size: 17px; }
+            .wfm-app, .aiva-app { height: auto; }
+            .wfm-body, .aiva-app-body { flex-direction: column; }
+            .wfm-sidebar, .aiva-sidebar, .aiva-right-panel { width: 100%; }
+            .wfm-panels-row { grid-template-columns: 1fr; }
         }
 
         .logo-mark {
@@ -275,8 +922,8 @@
 
     <div class="container">
 
-        <h1>[247].ai — Conversational AI Platform</h1>
-        <p class="subtitle">Building the design foundation for a conversational AI platform used by Fortune 500 enterprises to automate customer interactions through natural language — before the field had a name for what we were designing</p>
+        <h1>Designing Conversational AI Before It Was a Category</h1>
+        <p class="subtitle">Building a unified Customer Engagement Cloud at [247].ai — WFM platform, AI-human handoff patterns, and a design system for a product that was half-human, half-machine</p>
 
         <div class="metadata">
             <div>
@@ -289,57 +936,387 @@
             </div>
             <div>
                 <div class="meta-label">Role</div>
-                <div class="meta-value">Director of Design</div>
+                <div class="meta-value">Director of Design — Platform &amp; WFM</div>
             </div>
             <div>
-                <div class="meta-label">Scope</div>
-                <div class="meta-value">Enterprise Platform Unification</div>
+                <div class="meta-label">Clients</div>
+                <div class="meta-value">Cisco, Hilton, Target, Sears — Fortune 500</div>
             </div>
         </div>
 
-        <!-- CHALLENGE -->
-        <h2>The Challenge</h2>
+        <!-- THE CONTEXT -->
+        <h2>The Context</h2>
 
-        <p>[247].ai's conversational AI platform served Fortune 500 enterprises — automating customer interactions across voice, digital, and chat. But the platform had been assembled through acquisitions, and it showed. Products that handled different parts of the customer journey didn't speak to each other. There was no shared design language, no consistent interaction model, and no unified picture of how AI and human agents handed off to each other.</p>
+        <p>[247].ai was building something that didn't yet have a category name. The platform helped Fortune 500 enterprises — Cisco, Hilton, Target, Nike Football — automate customer conversations across voice, digital, and chat, with human agents stepping in where the AI handed off. I joined as Director of Design in 2016 to lead design for the platform and its workforce management layer.</p>
 
-        <p>The result: fragmented customer experiences, siloed product teams, and a platform that couldn't be sold — or operated — as a platform.</p>
+        <p>The platform had grown through acquisitions, which meant I was working across a collection of capable products that had their own design languages and their own teams. My job was to make them into one coherent thing — a Customer Engagement Cloud and Customer Acquisition Cloud with a shared intelligence layer — and to design the experiences that made it work as a whole.</p>
 
-        <!-- OPPORTUNITY -->
-        <h2>The Opportunity</h2>
+        <p>On the WFM side, the opportunity was clear: contact centre agents are fast, skilled people doing high-stakes work, and most of the tools they used every day were designed for the people who procured them — not the people who lived in them. I wanted to change that.</p>
 
-        <p>The field didn't yet have language for what we were building. AI-human handoffs, agent-assisted resolution, multimodal engagement — we were designing these in practice while the industry was still theorising about them. That meant starting from first principles: who does this system actually serve, what does a good handoff feel like, and what does a design system look like when the product it governs is half-human, half-machine?</p>
+        <!-- THE PROCESS -->
+        <h2>The Process</h2>
 
-        <p>I ran follow-the-user studies, mapped how the platform's fragmented pieces were being used versus how they were supposed to connect, and benchmarked across the industry to understand where conversational AI was heading.</p>
+        <img src="247ai-whiteboard-wfm.jpg" alt="Whiteboard wireframe session mapping the WFM platform architecture and user flows, April 2018">
+        <p class="img-caption">Whiteboard session mapping WFM platform flows and screen architecture — the information architecture that became the agent portal</p>
+
+        <p>I started by spending time with the people the platform was built to serve: agents on the floor, supervisors managing queues in real time, workforce planners building schedules weeks out. Each role had a completely different relationship with time and information. I also benchmarked across the six dominant WFM vendors — Verint, NICE/IEX, Genesys, Aspect, Calabrio, Invision — to understand what the field was doing and where the real design opportunity sat.</p>
+
+        <img src="247ai-whiteboard-ia.jpg" alt="Information architecture session mapping Cisco product hierarchy across Chat, OPS, and customer service domains">
+        <p class="img-caption">IA session mapping Cisco's product hierarchy — Chat and OPS products, their sub-channels, and how they connected to the customer journey across voice, IVR, and digital</p>
+
+        <p>The IA work shown above was real client work: mapping how Cisco's products — Chat, OPS, Routex, Webex, and IVR — related to each other across the customer journey. That map became the basis for how we designed the connections between them.</p>
 
         <!-- KEY DECISIONS -->
         <h2>Key Decisions</h2>
 
         <div class="feature-box">
-            <strong>Design system, built from scratch</strong>
-            <p>There was no shared visual or interaction language across the platform. I built one — components, patterns, motion, and governance — across all product surfaces. It became the standard the entire organisation operated on, and the mechanism through which previously isolated teams could finally work as one platform.</p>
+            <strong>WFM designed for agents, not administrators</strong>
+            <p>Agents using this platform worked fast, in noisy environments, moving between tasks all day. I designed the agent portal around what they actually needed during a shift: a clear schedule, an easy way to request swaps, real-time queue status they could act on. Simplicity over configuration — because a tool that gets used is more valuable than a tool that can theoretically do everything.</p>
         </div>
 
         <div class="feature-box">
-            <strong>AI-human handoff patterns, before the industry named them</strong>
-            <p>The most critical design problem was the seam between AI and human agents: when does the bot hand off, what does the agent inherit, and how does the customer experience the transition? I designed those patterns across voice, digital, and chat. What we built here predates what the industry now calls "agentic UX."</p>
+            <strong>The handoff as the most important moment in every interaction</strong>
+            <p>When AIVA — the AI agent — passes a conversation to a human, that transition matters. The human agent needs to know what just happened. The customer needs to feel continuity. I designed that moment carefully across voice, chat, and digital: customer context surfaced at handoff, intent carried across, conversation history visible and ready. In 2016 nobody had worked this out at scale. The patterns we built here are what people now call agentic UX.</p>
         </div>
 
         <div class="feature-box">
-            <strong>Design sprints as the unification mechanism</strong>
-            <p>Fragmentation was partly a visibility problem — teams couldn't see how their products connected to the larger system. I ran all organisation-wide design sprints, surfacing those connections and moving decisions that had been stalled for years. By end of 2019, most systems were standardised and working together.</p>
+            <strong>Design system as the shared language</strong>
+            <p>I built the design system from scratch — components, patterns, motion, governance. The practical value was visual consistency. The deeper value was that shared components created shared decisions: teams that had been working independently started to see how their products connected, and making something together became possible. By end of 2019, the platform was working as one.</p>
         </div>
 
-        <!-- THE WORK -->
-        <h2>The Work</h2>
+        <!-- THE WORK — WFM PLATFORM -->
+        <h2>The Work — WFM Platform</h2>
 
-        <p>The platform was redefined as a <strong>Customer Engagement Cloud</strong> and a <strong>Customer Acquisition Cloud</strong> with a shared reporting and insight layer — giving the product an architecture it had never had.</p>
+        <p>The WFM platform served three roles with very different needs: agents on the floor who moved fast and needed things to be obvious; supervisors watching queues in real time; and workforce planners thinking weeks ahead. The design work started by mapping how those roles connected — who approved what, who saw what, how information moved between them — before a single screen was drawn.</p>
 
-        <ul>
-            <li><strong>Built the design system from scratch</strong> — visual language, interaction patterns, motion, and governance across the entire product portfolio</li>
-            <li><strong>Designed AI-human handoff patterns</strong> — for voice, digital, and chat surfaces; defining what agents inherit at handoff and how customers experience the transition</li>
-            <li><strong>Ran all organisation-wide design sprints</strong> — surfacing cross-product connections, aligning isolated teams, and unblocking stalled decisions</li>
-            <li><strong>Unified acquired products</strong> under a coherent platform architecture — from loose collection of tools to a managed, modular self-serve platform</li>
-        </ul>
+        <img src="247ai-wfm-workflow.png" alt="WFM workflow diagram showing scheduling, rostering and long-term availability flows between Agent, Team Lead, Manager, and Workforce Planner roles">
+        <p class="img-caption">WFM role and workflow map — showing how forecast, scheduling, rostering, and real-time management connected across Agent, TL, Manager, and Workforce Planner roles. This architecture preceded the screen design.</p>
+
+        <p>The platform shipped to Fortune 500 clients including Nike Football, Cisco, Hilton, and Target — each running contact centre operations at scale. Below is the actual WFM supervisor dashboard as shipped, showing the Nike Football instance: intraday metrics across chat volume, service level, and agent utilisation, with forecast visualisation and a performance scorecard against contractual targets.</p>
+
+        <img src="247ai-wfm-intraday-nike.png" alt="[24]7.ai WFM Intraday Overview for Nike Football — showing live metrics: Chat Waiting 25, Service Level 80%, Utilization 75%, with weekly forecast chart and team performance scorecard">
+        <p class="img-caption">Actual shipped UI — [24]7.ai WFM Intraday Overview, Nike Football client. Live metrics: available slots, AHT, service level, utilisation. Forecast chart + performance scorecard against contractual targets (NPS, Sales, Conversion, AHT).</p>
+
+        <img src="247ai-wfm-forecast-queue.png" alt="[24]7.ai WFM Forecast interface showing Queue_14, Week 33, August 2017 — with forecasted agent volumes and scheduling tools">
+        <p class="img-caption">WFM Forecast view — Queue_14, Week 33, August 2017. Forecasted chat volumes, required agent count by day, shrinkage, and the "Update Forecast" workflow. Queue group navigation and calendar selector for planning cycles.</p>
+
+        <div class="mockup-wrapper">
+            <p class="mockup-label">Interface recreation — WFM Agent Portal · Agent-facing schedule view · recreated to illustrate self-serve scheduling design</p>
+            <div class="browser-chrome">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot amber"></div>
+                <div class="browser-dot green"></div>
+                <div class="browser-url">wfm.247.ai / agent / schedule</div>
+            </div>
+            <div class="mockup-screen">
+                <div class="wfm-app">
+                    <!-- Global nav bar — dark navy, [24]7.ai brand -->
+                    <div class="wfm-globalbar">
+                        <div class="wfm-logo">[<span>24</span>]7.ai</div>
+                        <div class="wfm-globalnav-item">Platform</div>
+                        <div class="wfm-globalnav-item active">WFM</div>
+                        <div class="wfm-globalnav-item">AIVA Console</div>
+                        <div class="wfm-globalnav-item">Analytics</div>
+                        <div class="wfm-globalnav-right">
+                            <div class="wfm-avatar">PM</div>
+                        </div>
+                    </div>
+
+                    <!-- Body: sidebar + main -->
+                    <div class="wfm-body">
+                        <!-- Left nav sidebar -->
+                        <div class="wfm-sidebar">
+                            <div class="wfm-nav-section">My Work</div>
+                            <div class="wfm-nav-item active">
+                                <svg class="wfm-nav-icon" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+                                My Schedule
+                            </div>
+                            <div class="wfm-nav-item">
+                                <svg class="wfm-nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11 5H5v2h6V5zm-6 4h4v2H5V9zm8-9H3C1.9 0 1 .9 1 2v14l3-3h10c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2z"/></svg>
+                                Shift Swaps
+                            </div>
+                            <div class="wfm-nav-item">
+                                <svg class="wfm-nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h12v2H2V2zm0 4h8v2H2V6zm0 4h10v2H2v-2z"/></svg>
+                                Time Off
+                            </div>
+                            <div class="wfm-nav-item">
+                                <svg class="wfm-nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5z"/></svg>
+                                Performance
+                            </div>
+                        </div>
+
+                        <!-- Main content area — white background -->
+                        <div class="wfm-main">
+                            <!-- Intraday metrics bar -->
+                            <div class="wfm-metrics-bar">
+                                <div class="wfm-metrics-title">
+                                    <div class="wfm-active-dot">Live · Nike Football</div>
+                                </div>
+                                <div class="wfm-metric-cell">
+                                    <div class="wfm-metric-label">On Queue</div>
+                                    <div class="wfm-metric-value green">12</div>
+                                </div>
+                                <div class="wfm-metric-cell">
+                                    <div class="wfm-metric-label">Waiting</div>
+                                    <div class="wfm-metric-value orange">3</div>
+                                </div>
+                                <div class="wfm-metric-cell">
+                                    <div class="wfm-metric-label">Service Level</div>
+                                    <div class="wfm-metric-value">86%</div>
+                                </div>
+                                <div class="wfm-metric-cell">
+                                    <div class="wfm-metric-label">AHT</div>
+                                    <div class="wfm-metric-value">4:32</div>
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="wfm-content">
+                                <!-- Schedule card -->
+                                <div class="wfm-card">
+                                    <div class="wfm-card-header">
+                                        <div class="wfm-card-title">My Schedule</div>
+                                        <div class="wfm-week-nav">&#8592; <strong>Week of Apr 9–15, 2018</strong> &#8594;</div>
+                                    </div>
+                                    <!-- Flat grid: 8 columns (time label + 7 days) -->
+                                    <div class="wfm-schedule-grid">
+                                        <div class="wfm-grid-timelabel" style="background:#f9fafb;border-bottom:1px solid #e0e6ed;"></div>
+                                        <div class="wfm-grid-dayhead">Mon 9</div>
+                                        <div class="wfm-grid-dayhead today">Tue 10</div>
+                                        <div class="wfm-grid-dayhead">Wed 11</div>
+                                        <div class="wfm-grid-dayhead">Thu 12</div>
+                                        <div class="wfm-grid-dayhead">Fri 13</div>
+                                        <div class="wfm-grid-dayhead" style="opacity:0.5">Sat 14</div>
+                                        <div class="wfm-grid-dayhead" style="opacity:0.5">Sun 15</div>
+                                        <!-- Row 1: morning shift -->
+                                        <div class="wfm-grid-timelabel" style="border-bottom:1px solid #f2f5f8">09:00</div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift voice">Voice</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift voice">Voice</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"></div>
+                                        <!-- Row 2: lunch -->
+                                        <div class="wfm-grid-timelabel" style="border-bottom:1px solid #f2f5f8">12:30</div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift break">Lunch</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift break">Lunch</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift swap">Swap</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift break">Lunch</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"><div class="wfm-shift break">Lunch</div></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"></div>
+                                        <div class="wfm-grid-slot" style="border-bottom:1px solid #f2f5f8"></div>
+                                        <!-- Row 3: afternoon shift -->
+                                        <div class="wfm-grid-timelabel">13:30</div>
+                                        <div class="wfm-grid-slot"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot"><div class="wfm-shift chat">Chat</div></div>
+                                        <div class="wfm-grid-slot"></div>
+                                        <div class="wfm-grid-slot"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom panels: adherence + swaps -->
+                                <div class="wfm-panels-row">
+                                    <div class="wfm-card">
+                                        <div class="wfm-panel-inner">
+                                            <div class="wfm-panel-title">Real-Time Adherence</div>
+                                            <div class="wfm-adh-row">
+                                                <div class="wfm-adh-label">On Queue</div>
+                                                <div class="wfm-adh-track"><div class="wfm-adh-fill g" style="width:87%"></div></div>
+                                                <div class="wfm-adh-pct">87%</div>
+                                            </div>
+                                            <div class="wfm-adh-row">
+                                                <div class="wfm-adh-label">CSAT</div>
+                                                <div class="wfm-adh-track"><div class="wfm-adh-fill b" style="width:92%"></div></div>
+                                                <div class="wfm-adh-pct">92%</div>
+                                            </div>
+                                            <div class="wfm-adh-row">
+                                                <div class="wfm-adh-label">Aux Use</div>
+                                                <div class="wfm-adh-track"><div class="wfm-adh-fill o" style="width:34%"></div></div>
+                                                <div class="wfm-adh-pct">34%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wfm-card">
+                                        <div class="wfm-panel-inner">
+                                            <div class="wfm-panel-title">Swap Requests</div>
+                                            <div class="wfm-swap-row">
+                                                <div>
+                                                    <div class="wfm-swap-info">Wed 11 · Lunch slot</div>
+                                                    <div class="wfm-swap-sub">Requested from Rahul S.</div>
+                                                </div>
+                                                <div class="wfm-badge pending">Pending</div>
+                                            </div>
+                                            <div class="wfm-swap-row">
+                                                <div>
+                                                    <div class="wfm-swap-info">Fri 6 · Full day</div>
+                                                    <div class="wfm-swap-sub">Swapped with Ananya P.</div>
+                                                </div>
+                                                <div class="wfm-badge approved">Approved</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mockup-caption">Agent portal — weekly schedule grid, real-time adherence, and shift swap management. Designed for agents on the floor, not supervisors at desks.</p>
+        </div>
+
+        <!-- INTERFACE RECREATION 2 -->
+        <h2>The Work — AIVA Handoff Console</h2>
+
+        <p>AIVA was [247].ai's conversational AI — handling the first layer of every customer interaction before a human agent took over. The handoff between them is the critical moment: where the platform either feels continuous or falls apart. I designed the agent-facing console that made that moment work.</p>
+
+        <p>When the AI hands off, the agent is ready. Customer intent, conversation history, and suggested first responses are surfaced immediately — so the agent steps into the conversation informed, picks up from where AIVA left off, and the customer experiences it as one interaction, not two.</p>
+
+        <div class="mockup-wrapper">
+            <p class="mockup-label">Interface recreation — AIVA Agent Console · AI-human handoff view · Original shipped 2018, recreated to illustrate handoff design</p>
+            <div class="browser-chrome">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot amber"></div>
+                <div class="browser-dot green"></div>
+                <div class="browser-url">console.247.ai / agent / live-queue</div>
+            </div>
+            <div class="mockup-screen">
+                <div class="aiva-app">
+                    <!-- Global nav bar — same product family as WFM, AIVA Console active -->
+                    <div class="wfm-globalbar">
+                        <div class="wfm-logo">[<span>24</span>]7.ai</div>
+                        <div class="wfm-globalnav-item">Platform</div>
+                        <div class="wfm-globalnav-item">WFM</div>
+                        <div class="wfm-globalnav-item active">AIVA Console</div>
+                        <div class="wfm-globalnav-item">Analytics</div>
+                        <div class="wfm-globalnav-right">
+                            <div class="wfm-avatar">NL</div>
+                        </div>
+                    </div>
+
+                    <!-- App body: sidebar + chat + context panel -->
+                    <div class="aiva-app-body">
+                        <!-- Queue sidebar — dark navy, same as WFM sidebar -->
+                        <div class="aiva-sidebar">
+                            <div class="aiva-sidebar-header">Live Queue</div>
+                            <div class="aiva-queue-item active">
+                                <div class="aiva-queue-name">Ramesh K.</div>
+                                <div class="aiva-queue-intent">Billing dispute — plan upgrade</div>
+                                <div class="aiva-handoff-pill">Handoff from AIVA</div>
+                            </div>
+                            <div class="aiva-queue-item">
+                                <div class="aiva-queue-name">Sonia M.</div>
+                                <div class="aiva-queue-intent">Account locked — reset request</div>
+                            </div>
+                            <div class="aiva-queue-item">
+                                <div class="aiva-queue-name">Deepak R.</div>
+                                <div class="aiva-queue-intent">Router config — enterprise</div>
+                            </div>
+                        </div>
+
+                        <!-- Chat area — white content background -->
+                        <div class="aiva-main">
+                            <div class="aiva-chat-topbar">
+                                <div>
+                                    <div class="aiva-customer-name">Ramesh K. — Cisco Enterprise</div>
+                                    <div class="aiva-customer-meta">Account #C-00412 · 3 prior contacts · Premium tier</div>
+                                </div>
+                                <div class="aiva-channel-tabs">
+                                    <div class="aiva-channel-tab active">Chat</div>
+                                    <div class="aiva-channel-tab">Voice</div>
+                                    <div class="aiva-channel-tab">Email</div>
+                                </div>
+                            </div>
+
+                            <div class="aiva-chat-body">
+                                <div class="aiva-msg bot">
+                                    <div class="aiva-msg-sender">AIVA</div>
+                                    <div class="aiva-bubble">Hi Ramesh, I can see you're enquiring about your plan. You're on Business 200 — are you looking to upgrade to Business 500?</div>
+                                </div>
+                                <div class="aiva-msg user">
+                                    <div class="aiva-msg-sender">Ramesh K.</div>
+                                    <div class="aiva-bubble">Yes but I was charged incorrectly last month and I want that resolved before I upgrade</div>
+                                </div>
+                                <div class="aiva-msg bot">
+                                    <div class="aiva-msg-sender">AIVA</div>
+                                    <div class="aiva-bubble">I can see a billing discrepancy on your October invoice — I'm connecting you with a specialist now.</div>
+                                </div>
+
+                                <!-- Handoff banner — orange, matches design system -->
+                                <div class="aiva-handoff-banner">
+                                    <div class="aiva-handoff-dot"></div>
+                                    <div class="aiva-handoff-text">AIVA handed off — customer intent and full context transferred to you</div>
+                                </div>
+
+                                <div class="aiva-msg human">
+                                    <div class="aiva-msg-sender">You (Agent)</div>
+                                    <div class="aiva-bubble">Hi Ramesh, I've reviewed your October billing and I can see the issue. Let me get that corrected first, then we can look at the upgrade together.</div>
+                                </div>
+                            </div>
+
+                            <div class="aiva-input-row">
+                                <div class="aiva-input-box">Type a message…</div>
+                                <button class="aiva-send-btn">Send</button>
+                            </div>
+                        </div>
+
+                        <!-- Right context panel — light background -->
+                        <div class="aiva-right-panel">
+                            <div>
+                                <div class="aiva-panel-section-title">AIVA Captured Intent</div>
+                                <span class="aiva-intent-chip">Billing dispute</span>
+                                <span class="aiva-intent-chip">Plan upgrade</span>
+                                <span class="aiva-intent-chip">Oct invoice</span>
+                            </div>
+                            <div>
+                                <div class="aiva-panel-section-title">Customer History</div>
+                                <div class="aiva-history-row">
+                                    <div class="aiva-history-label">Plan</div>
+                                    <div class="aiva-history-value">Biz 200</div>
+                                </div>
+                                <div class="aiva-history-row">
+                                    <div class="aiva-history-label">Since</div>
+                                    <div class="aiva-history-value">Jan 2016</div>
+                                </div>
+                                <div class="aiva-history-row">
+                                    <div class="aiva-history-label">CSAT</div>
+                                    <div class="aiva-history-value">4.6 / 5</div>
+                                </div>
+                                <div class="aiva-history-row">
+                                    <div class="aiva-history-label">Contacts</div>
+                                    <div class="aiva-history-value">3 prior</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="aiva-panel-section-title">Suggested Responses</div>
+                                <button class="aiva-suggest-btn">Acknowledge billing issue first</button>
+                                <button class="aiva-suggest-btn">Offer credit + upgrade bundle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mockup-caption">AIVA agent console — intent captured by AI surfaced at handoff, customer history loaded, suggested responses ready. The agent picks up the conversation, not restarts it.</p>
+        </div>
+
+        <!-- PLATFORM ARCHITECTURE -->
+        <h2>Platform Architecture — Customer Engagement Cloud</h2>
+
+        <p>The platform was eventually defined and architected as two clouds — a <strong>Customer Engagement Cloud</strong> and a <strong>Customer Acquisition Cloud</strong> — with a shared reporting and insight layer serving both. Getting to that architecture required making the system's parts visible to each other for the first time: NL Tools, Chat Miner, Bot Builder, Prediction Engine, and Unified Admin Console on the intelligence layer; WFM, Reporting, Billing, and Optimisation on the enterprise operations layer; and the Agent Console on the engagement layer.</p>
+
+        <img src="247ai-platform-architecture.png" alt="[24]7.ai platform architecture triangle showing Visitor, Agents, and Enterprise vertices with shared intelligence layer including Prediction Engine, NL Tools, Chat Miner, Model Builder, Bot Builder, and Unified Admin Console">
+        <p class="img-caption">Platform architecture — the three-legged model: Visitor (customer-facing AI), Agents (console, engagement, WFM), and Enterprise (optimisation, billing, reporting). The shared intelligence layer — Prediction Engine, NL Tools, Bot Builder — served all three.</p>
+
+        <!-- DESIGN SYSTEM -->
+        <h2>The Design System</h2>
+
+        <p>There was no shared visual language across the platform when I joined. Components, colour, motion, and interaction patterns had evolved independently across teams. I built the design system from scratch — defining the colour architecture across eight semantic palettes (Orange, Magenta, Purple, Lilac, Blue, Green, Red, Neutral), interaction tokens, component specifications, and the governance model that ensured teams adopted rather than worked around it.</p>
+
+        <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour palette — fan of eight colour ramps with the [24]7.ai logo">
+        <p class="img-caption">[24]7.ai design system colour architecture — eight semantic palettes built for a platform that ran voice, digital, and chat interfaces simultaneously. The design system was crowd-sourced across teams and became the operating standard across all product surfaces.</p>
 
         <!-- RESULTS -->
         <h2>The Results</h2>
@@ -347,19 +1324,19 @@
         <div class="results-grid">
             <div class="result-card">
                 <span class="number">19%</span>
-                <p>YoY revenue growth across two consecutive years following platform unification</p>
+                <p>YoY revenue growth — two consecutive years following platform unification</p>
             </div>
             <div class="result-card">
-                <span class="number">5%</span>
-                <p>Operational cost reduction through standardisation and consolidation across the platform</p>
+                <span class="number">16%</span>
+                <p>Cost reduction through standardisation, product consolidation, and reduced operational load</p>
             </div>
             <div class="result-card">
                 <span class="number">Fortune 500</span>
-                <p>Enterprise clients automating customer interactions at scale across voice, digital, and chat</p>
+                <p>Nike Football, Cisco, Hilton, Target — contact centre operations at scale, running on the platform we built</p>
             </div>
             <div class="result-card">
                 <span class="number">One platform</span>
-                <p>Disparate acquired products unified under a single design system and coherent product architecture</p>
+                <p>Customer Engagement Cloud + Customer Acquisition Cloud — from fragmented acquisitions to a unified self-serve SaaS architecture</p>
             </div>
         </div>
 
@@ -367,18 +1344,19 @@
         <h2>What Made It Notable</h2>
 
         <ul>
-            <li><strong>Conversational AI before it was a category</strong> — designing NLU-driven interfaces, AI-human handoffs, and multimodal engagement when the industry had no established patterns for them</li>
-            <li><strong>Platform coherence through design</strong> — unification happened through the design system and shared architecture, not through a technical rewrite; design was the mechanism, not the output</li>
-            <li><strong>Built to outlast</strong> — the patterns, governance model, and design system created here became the operating standard across previously isolated teams, and continued beyond my tenure</li>
+            <li><strong>First-principles design for a new category</strong> — AI-human handoffs, multimodal engagement, agentic UX: in 2016 these were problems we were solving in production, for real clients, with no established patterns to borrow from. The interaction principles we derived here became the foundation for how the industry eventually approached this work.</li>
+            <li><strong>Designing for the people doing the work</strong> — the WFM agent portal was built around one question: does this work for someone on the floor, mid-shift, with no time to think about it? That discipline — starting with the person with the least time, not the most — shaped every decision in the system.</li>
+            <li><strong>Design system as the connective tissue</strong> — shared components meant shared decisions. The design system gave teams across the organisation a common language, and that common language is what made the platform cohere. Unification happened through design, not through a technical rewrite.</li>
+            <li><strong>The handoff as the centre of the experience</strong> — treating the AI-to-human transition as the most important moment in every interaction changed how the whole console was conceived. That perspective, which now feels obvious, had to be argued for and designed from scratch in 2017.</li>
         </ul>
 
         <div class="positioning-quote">
-            "Designed the conversational AI platform [247].ai's Fortune 500 clients used to automate customer interactions at scale — across voice, digital, and chat — before the industry had established patterns for AI-human handoffs or agentic interfaces. Built the design system from scratch, defined the platform architecture, and ran all organisation-wide design sprints. 19% YoY revenue growth across two consecutive years."
+            "Designed the WFM platform and conversational AI interfaces that Cisco, Nike Football, Hilton, and Target used to run contact centre operations at scale — forecast, scheduling, intraday management, and AI-human handoff — built the design system from scratch, and defined the Customer Engagement Cloud architecture. 19% YoY revenue growth across two consecutive years. 16% cost reduction through platform consolidation. Designed human-AI handoff patterns before the industry had a name for them."
         </div>
 
         <div class="footer-bar">
-            <p><strong>Project:</strong> [247].ai Conversational AI Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2016–2019</p>
-            <p style="margin-top: 8px;"><strong>Scope:</strong> Enterprise platform unification &nbsp;•&nbsp; Design system &nbsp;•&nbsp; AI-human handoff patterns &nbsp;•&nbsp; Organisation-wide design sprints</p>
+            <p><strong>Project:</strong> [247].ai — Customer Engagement Cloud &amp; WFM Platform &nbsp;•&nbsp; <strong>Timeline:</strong> 2016–2019</p>
+            <p style="margin-top: 8px;"><strong>Clients:</strong> Nike Football &nbsp;•&nbsp; Cisco &nbsp;•&nbsp; Hilton &nbsp;•&nbsp; Target &nbsp;•&nbsp; <strong>Impact:</strong> 19% YoY revenue &nbsp;•&nbsp; 16% cost reduction</p>
             <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
         </div>
 
