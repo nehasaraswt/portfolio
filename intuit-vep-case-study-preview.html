@@ -138,6 +138,44 @@
             font-style: italic;
         }
 
+        .video-block {
+            margin: 28px 0;
+        }
+
+        .video-block video {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+            background: #1a1a18;
+            margin: 0;
+        }
+
+        .video-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-ochre);
+            margin-bottom: 8px;
+        }
+
+        .video-label::before {
+            content: '▶';
+            font-size: 8px;
+        }
+
+        .video-caption {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
         .feature-box {
             background: white;
             border-left: 4px solid var(--accent-ochre);
@@ -193,6 +231,154 @@
         .result-card p {
             font-size: 13px;
             margin-bottom: 0;
+        }
+
+        /* VEP Architecture Diagram */
+        .vep-arch {
+            margin: 40px 0 32px;
+        }
+
+        .arch-diagram-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-ochre);
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .arch-users-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .arch-user {
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.35;
+            padding: 0 4px;
+        }
+
+        .arch-user span {
+            display: block;
+            text-align: center;
+            color: #bbb;
+            font-size: 12px;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+
+        .arch-cols {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .arch-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-top: 3px solid;
+            border-radius: 0 0 4px 4px;
+            padding: 14px 10px 12px;
+            text-align: center;
+        }
+
+        .arch-card.c-scheduling { border-top-color: #7a5a3c; }
+        .arch-card.c-training   { border-top-color: #4a7055; }
+        .arch-card.c-routing    { border-top-color: #b04000; }
+        .arch-card.c-convs      { border-top-color: #3d5a7a; }
+        .arch-card.c-appts      { border-top-color: #a53328; }
+
+        .arch-domain {
+            font-size: 8.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .arch-card.c-scheduling .arch-domain { color: #7a5a3c; }
+        .arch-card.c-training   .arch-domain { color: #4a7055; }
+        .arch-card.c-routing    .arch-domain { color: #b04000; }
+        .arch-card.c-convs      .arch-domain { color: #3d5a7a; }
+        .arch-card.c-appts      .arch-domain { color: #a53328; }
+
+        .arch-tool {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .arch-divider {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 0 0 8px;
+        }
+
+        .arch-metric {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+
+        .arch-rhythm {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #bbb;
+        }
+
+        .arch-bridge {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .arch-bridge-seg {
+            height: 12px;
+            border-left: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .arch-foundation {
+            background: var(--text-primary);
+            border-radius: 0 0 6px 6px;
+            padding: 14px 20px;
+            text-align: center;
+        }
+
+        .arch-foundation-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #f0c878;
+            margin-bottom: 6px;
+        }
+
+        .arch-foundation-meta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .arch-foundation-meta span {
+            font-size: 10.5px;
+            color: rgba(255,255,255,0.55);
+        }
+
+        @media (max-width: 680px) {
+            .arch-cols, .arch-users-row, .arch-bridge { grid-template-columns: 1fr 1fr; }
+            .arch-foundation-meta { gap: 12px; }
         }
 
         .positioning-quote {
@@ -307,6 +493,14 @@
 
         <p>This framework governed interaction principles across every workstream: when AI acts autonomously, when it escalates, how handoffs are signalled, and how trust is built into the interface rather than asserted by it.</p>
 
+        <div class="video-block">
+            <div class="video-label">Concept · FUSION Ops Provocation</div>
+            <video controls preload="none" poster="">
+                <source src="vep-fusion-provocation.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">FUSION Ops provocation (Oct 2025) — a vision for what the autonomous expert operations platform becomes at full maturity: AI agents and human experts as a single deployable capability, matched in real time to every customer intent.</p>
+        </div>
+
         <!-- KEY DECISIONS -->
         <h2>Key Decisions</h2>
 
@@ -332,15 +526,116 @@
         <p>Before Shift Builder, expert managers spent an average of 54 minutes per week building schedules manually — matching 50,000 experts to demand forecasts, availability patterns, and skill requirements by hand. The system couldn't learn from patterns, couldn't adapt to intraday demand shifts, and couldn't scale.</p>
         <p>Shift Builder replaced that entirely with AI-optimised weekly scheduling: the system ingests historical demand, expert availability and performance data, and outputs schedules in minutes. Managers validate rather than build. The result was an 85% reduction in scheduling time — from 54 minutes to 8 — and 13,500 expert work hours recovered across the platform each week that had previously been spent in scheduling overhead.</p>
 
+        <div class="video-block">
+            <div class="video-label">Design Walkthrough · Shift Builder v2</div>
+            <video controls preload="none">
+                <source src="vep-shift-builder.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">Shift Builder v2 design walkthrough — showing how AI-optimised scheduling replaced manual schedule-building for 50,000 experts. Managers review and validate; the system builds.</p>
+        </div>
+
         <h3>Appointments — Enterprise Scheduling at Launch</h3>
         <p>Appointment booking was the clearest 0→1 workstream: a concrete, high-frequency task that required designing an end-to-end scheduling experience from scratch, integrated natively into the QuickBooks ecosystem. The challenge wasn't just scheduling — it was designing for trust: customers needed to be confident they'd reached the right expert, at the right time, with context already established.</p>
         <p>At the July 2025 Intuit Enterprise Suite launch, Appointments went live to 10,000 enterprise customers. The design measurably shifted behaviour: reschedule-within-5-minutes rate dropped from 28% to 6% (a signal of booking confidence), View-to-Book ratio improved from 28% to 44% for Full Service customers, and Time to Convert decreased from 1 minute 4 seconds to 48 seconds.</p>
 
+        <div class="video-block">
+            <div class="video-label">Concept · ConnectNow — New Matching Experience</div>
+            <video controls preload="none">
+                <source src="vep-connectnow-matching.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">ConnectNow — the real-time expert matching experience. Customers see the right expert for their situation, with context already set, before the appointment begins. Confidence built before the first word is spoken.</p>
+        </div>
+
+        <div class="video-block">
+            <div class="video-label">Product Demo · Appointments & CRM</div>
+            <video controls preload="none">
+                <source src="vep-appointments-crm.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">Appointments and CRM demo — the end-to-end scheduling experience for enterprise customers, from booking through expert preparation to post-call follow-up, integrated natively into QuickBooks.</p>
+        </div>
+
         <h3>Autonomous Operations — AI-Driven Triage and Resolution</h3>
         <p>Autonomous Ops was the hardest workstream: designing interfaces for AI that acts rather than assists, across triage, routing, resolution, and escalation. The deliverables included the AI agent dashboard for operations managers, the real-time routing and matching interface, the escalation UI that surfaces AI reasoning to human reviewers, and the override mechanisms that kept humans accountable without making autonomy fragile. In FY25, VEP reached 120 ITPY (interactions per expert per year) connections — a platform connectivity milestone that required every operations surface to function as a coherent system rather than individual tools.</p>
 
+        <div class="video-block">
+            <div class="video-label">Gallery Walk · Autonomous Operations</div>
+            <video controls preload="none">
+                <source src="vep-autonomous-ops.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">VEP Autonomous Ops gallery walk — showing the AI agent dashboard, real-time routing and matching interface, escalation UI with surfaced AI reasoning, and the override controls that keep humans in the loop without making autonomy fragile.</p>
+        </div>
+
         <h3>Conversations — Natural Language Platform Layer</h3>
         <p>The Conversations workstream designed the natural language interface that customers use before a human expert is ever involved: intent capture, context building, smart routing, and handoff from AI to human with full context preserved. The design challenge was preventing both under-escalation (AI trying to resolve what it shouldn't) and over-escalation (unnecessary handoffs that erode trust in the AI). Fallback logic, handoff framing, and context continuity were first-class design requirements — not edge cases to handle later.</p>
+
+        <!-- VEP ARCHITECTURE DIAGRAM -->
+        <div class="vep-arch">
+            <div class="arch-diagram-title">Five Surfaces · One Coherent System</div>
+
+            <div class="arch-users-row">
+                <div class="arch-user"><span>↓</span>Expert Managers</div>
+                <div class="arch-user"><span>↓</span>Experts</div>
+                <div class="arch-user"><span>↓</span>Operations &amp; AI</div>
+                <div class="arch-user"><span>↓</span>Customers</div>
+                <div class="arch-user"><span>↓</span>Customers + Experts</div>
+            </div>
+
+            <div class="arch-cols">
+                <div class="arch-card c-scheduling">
+                    <div class="arch-domain">Scheduling</div>
+                    <div class="arch-tool">Shift Builder</div>
+                    <hr class="arch-divider">
+                    <div class="arch-metric">54 → 8 min</div>
+                    <div class="arch-rhythm">Weekly</div>
+                </div>
+                <div class="arch-card c-training">
+                    <div class="arch-domain">Training</div>
+                    <div class="arch-tool">Flight Simulator</div>
+                    <hr class="arch-divider">
+                    <div class="arch-metric">Personalised</div>
+                    <div class="arch-rhythm">Ongoing</div>
+                </div>
+                <div class="arch-card c-routing">
+                    <div class="arch-domain">Routing</div>
+                    <div class="arch-tool">Autonomous Ops</div>
+                    <hr class="arch-divider">
+                    <div class="arch-metric">120 ITPY</div>
+                    <div class="arch-rhythm">Real-time</div>
+                </div>
+                <div class="arch-card c-convs">
+                    <div class="arch-domain">Conversations</div>
+                    <div class="arch-tool">NLP Platform</div>
+                    <hr class="arch-divider">
+                    <div class="arch-metric">Intent → Handoff</div>
+                    <div class="arch-rhythm">In-call</div>
+                </div>
+                <div class="arch-card c-appts">
+                    <div class="arch-domain">Appointments</div>
+                    <div class="arch-tool">ConnectNow</div>
+                    <hr class="arch-divider">
+                    <div class="arch-metric">28% → 6%</div>
+                    <div class="arch-rhythm">Pre / Post-call</div>
+                </div>
+            </div>
+
+            <div class="arch-bridge">
+                <div class="arch-bridge-seg"></div>
+                <div class="arch-bridge-seg"></div>
+                <div class="arch-bridge-seg"></div>
+                <div class="arch-bridge-seg"></div>
+                <div class="arch-bridge-seg"></div>
+            </div>
+
+            <div class="arch-foundation">
+                <div class="arch-foundation-label">Human-Agent Tandem Framework</div>
+                <div class="arch-foundation-meta">
+                    <span>50K experts</span>
+                    <span>25M contacts / yr</span>
+                    <span>AI acts · humans for unknown unknowns</span>
+                    <span>95% SLA</span>
+                </div>
+            </div>
+        </div>
 
         <!-- RESULTS -->
         <h2>The Results</h2>
