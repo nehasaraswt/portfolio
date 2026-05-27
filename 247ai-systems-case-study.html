@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[247].ai — Earning the System View | Neha Saraswat</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --surface-bone: #fefdfb;
+            --text-primary: #2e2e2b;
+            --text-secondary: #565758;
+            --accent-ochre: #b04000;
+            --accent-rust: #b5342b;
+            --border-light: #eae6df;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--surface-bone);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: var(--accent-rust);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .also-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1px;
+            transition: color 0.15s;
+        }
+
+        .also-link:hover { color: var(--accent-rust); border-bottom-color: var(--accent-rust); }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            padding-bottom: 16px;
+            border-bottom: 4px solid var(--accent-rust);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .thesis-banner {
+            background: #1e2d3d;
+            color: rgba(255,255,255,0.9);
+            padding: 28px 32px;
+            border-radius: 6px;
+            margin: 36px 0;
+            font-size: 16px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .thesis-banner em {
+            color: #f4a020;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin: 28px 0 40px;
+            padding: 20px;
+            background: rgba(181, 52, 43, 0.05);
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            color: var(--accent-rust);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 52px 0 18px;
+            padding-left: 14px;
+            border-left: 4px solid var(--accent-rust);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        p strong { color: var(--text-primary); }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+            display: block;
+        }
+
+        .img-caption {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: -20px;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .feature-box {
+            background: white;
+            border-left: 4px solid var(--accent-ochre);
+            padding: 20px 20px 14px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .feature-box strong {
+            color: var(--accent-ochre);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .feature-box p { margin-bottom: 0; }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        li strong { color: var(--text-primary); }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+
+        .result-card .number {
+            color: var(--accent-rust);
+            font-size: 22px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-card p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .positioning-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(181, 52, 43, 0.05);
+            border-left: 4px solid var(--accent-rust);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-bar {
+            margin-top: 60px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-light);
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bar a {
+            color: var(--accent-ochre);
+            text-decoration: none;
+        }
+
+        /* ── Move counter ── */
+        .move-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .move-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent-rust);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .move-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ── Foldout ── */
+        .foldout {
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin: 24px 0;
+            overflow: hidden;
+            background: white;
+        }
+
+        .foldout-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 13px 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            gap: 12px;
+        }
+
+        .foldout-trigger:hover { background: rgba(181,52,43,0.03); }
+
+        .foldout-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .foldout-hint {
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex: 1;
+            padding-left: 12px;
+            border-left: 1px solid var(--border-light);
+        }
+
+        .foldout-chevron {
+            font-size: 10px;
+            color: var(--text-secondary);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .foldout.open .foldout-chevron { transform: rotate(90deg); }
+
+        .foldout-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+
+        .foldout.open .foldout-body {
+            grid-template-rows: 1fr;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .foldout-body-inner { overflow: hidden; }
+        .foldout-content { padding: 28px 24px; background: #fafaf8; }
+
+        /* ── WFM role flow ── */
+        .wfm-flow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .wfm-role-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 18px 20px;
+        }
+
+        .wfm-role-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .wfm-role-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .wfm-role-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .wfm-role-horizon {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-left: auto;
+            font-style: italic;
+        }
+
+        .wfm-role-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* ── Architecture triangle ── */
+        .arch-triangle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 32px 0;
+            padding: 36px 32px 28px;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+        }
+
+        .arch-triangle-svg {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* ── Timeline steps ── */
+        .timeline {
+            position: relative;
+            margin: 32px 0;
+            padding-left: 28px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border-light);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-rust);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent-rust);
+        }
+
+        .timeline-step-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+
+        .timeline-step h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+        }
+
+        .timeline-step p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* ── System map callout ── */
+        .system-callout {
+            background: #1e2d3d;
+            border-radius: 6px;
+            padding: 28px 32px;
+            margin: 32px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .system-callout-node {
+            text-align: center;
+        }
+
+        .system-callout-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f4a020;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .system-callout-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.55;
+        }
+
+        .system-callout-center {
+            border-left: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            padding: 0 24px;
+        }
+
+        .system-callout-center .system-callout-title {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .system-callout-center .system-callout-desc {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Insight pull ── */
+        .insight-pull {
+            border-top: 2px solid var(--accent-rust);
+            border-bottom: 2px solid var(--accent-rust);
+            padding: 20px 0;
+            margin: 36px 0;
+            text-align: center;
+        }
+
+        .insight-pull p {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ── Iteration diagram ── */
+        .iter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0 28px;
+        }
+
+        .iter-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 14px 16px;
+        }
+
+        .iter-num {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .iter-tree {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ── SaaS module grid ── */
+        .saas-module-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0 32px;
+        }
+
+        .saas-module {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 16px 18px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .saas-module-num {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding-top: 2px;
+            flex-shrink: 0;
+            min-width: 18px;
+        }
+
+        .saas-module-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .saas-module-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+        <a href="247ai-case-study-preview.html" class="also-link">Also see: [247].ai Platform Overview →</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Earning the System View</h1>
+    <p class="subtitle">Three years at [247].ai — WFM, client taxonomy, AI-human handoff, design system, and a self-serve enterprise console — and how the pieces became one platform that 37 enterprises ran themselves</p>
+
+    <div class="thesis-banner">
+        "You can't draw the triangle on day one. You earn it — one piece at a time, until enough of the map is in place that the whole becomes visible."
+        <br><br>
+        <em>This is a case study about that process.</em>
+    </div>
+
+    <div class="metadata">
+        <div>
+            <div class="meta-label">Company</div>
+            <div class="meta-value">[247].ai</div>
+        </div>
+        <div>
+            <div class="meta-label">Timeline</div>
+            <div class="meta-value">2016–2019</div>
+        </div>
+        <div>
+            <div class="meta-label">Role</div>
+            <div class="meta-value">Director of Design — Platform, WFM & AI</div>
+        </div>
+        <div>
+            <div class="meta-label">Scale</div>
+            <div class="meta-value">37 enterprise clients · 3 regions</div>
+        </div>
+        <div>
+            <div class="meta-label">Clients</div>
+            <div class="meta-value">Cisco · Nike Football · Hilton · Target · SiriusXM · Optus</div>
+        </div>
+    </div>
+
+    <!-- ── The situation ── -->
+    <h2>The job nobody had defined</h2>
+
+    <p>I joined [247].ai in 2016 as Director of Design. The actual job was <strong>cartography</strong>.</p>
+
+    <p>The platform was a collection of acquired products that shared a logo. AIVA — the conversational AI. WFM for workforce management. Chat, IVR, ActiveShare for co-browse. Campaign Manager. Search Bidding. The Virtual Customer Console. Model Workbench. Each built by a different team, on a different data model, with a different user in mind.</p>
+
+    <p>Nobody had mapped how they connected, or designed for what happened between them — when AIVA handed off to a human, when a weeks-old forecast had to flex against a live queue. The system existed. The experience didn't.</p>
+
+    <p>Three years there was about building the picture piece by piece until the whole thing became visible.</p>
+
+    <!-- ── Six moves ── -->
+    <h2>Six moves, one picture</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 01</div>
+            <h3>The most ignored user</h3>
+            <p>Started with WFM and the user every vendor had overlooked: the contact centre agent on the floor. Research before screens.</p>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 02</div>
+            <h3>Learning to read a client's world</h3>
+            <p>Mapped enterprise clients' product hierarchies by hand before designing anything — iteration by iteration, on a glass wall.</p>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 03</div>
+            <h3>The handoff gap becomes visible</h3>
+            <p>Only visible once you'd understood both sides. Designing the AIVA-to-human handoff as a briefing system, not a failure state.</p>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 04</div>
+            <h3>The design system as forcing function</h3>
+            <p>Project Heisenberg: 18 months, crowd-sourced, 70+ components. The mechanism that forced teams to see how their products connected.</p>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 05</div>
+            <h3>The system becomes visible</h3>
+            <p>The full-wall system map. All nodes, all connections. The triangle abstraction — Visitor · Agents · Enterprise — earned from the inside out.</p>
+        </div>
+
+        <div class="timeline-step">
+            <div class="timeline-step-label">Move 06</div>
+            <h3>The triangle becomes a product</h3>
+            <p>The whiteboard didn't stay on the whiteboard. 37 enterprise clients configuring and running their AI stacks through one unified SaaS console.</p>
+        </div>
+
+    </div>
+
+    <!-- ── Move 01 ── -->
+    <h2>Move 01 — The most ignored user</h2>
+
+    <div class="move-label">
+        <div class="move-number">1</div>
+        <span class="move-title">WFM — Workforce Management</span>
+    </div>
+
+    <p>Starting point: WFM. <strong>71% of contact centres had no workforce management system at all.</strong> Of those that did, 83% reported problems — poor communication, slow response, tools described as "not fit for purpose."</p>
+
+    <p>Every WFM tool in 2016 had been built for whoever procured it — not the people who used it every day. Agents, supervisors, and planners each needed completely different things from the same software. No vendor had resolved that because most had never spent real time with agents on the floor.</p>
+
+    <div class="feature-box">
+        <strong>Role mapping before any screen</strong>
+        <p>First: a workflow map — how forecast, scheduling, rostering, and real-time management connected across all four roles. Weeks before the first interface was sketched.</p>
+    </div>
+
+    <img src="247ai-wfm-workflow.png" alt="WFM workflow diagram — four roles and their connections">
+    <p class="img-caption">The WFM role flow: Agent (immediate) → Team Lead (intraday) → Manager (weekly) → Workforce Planner (long-range) — with bidirectional dependencies running through the whole cycle. Drawn before a single screen.</p>
+
+    <h3>Four roles, four time horizons — one system</h3>
+
+    <div class="wfm-flow">
+        <div class="wfm-role-card">
+            <div class="wfm-role-header">
+                <div class="wfm-role-dot" style="background: #4a90d9;"></div>
+                <span class="wfm-role-name">Agent</span>
+                <span class="wfm-role-horizon">Present tense</span>
+            </div>
+            <p class="wfm-role-desc">Between calls, under time pressure. Needs schedule, swap request, adherence status. <em>Nothing more.</em> Every extra screen is cognitive tax.</p>
+        </div>
+        <div class="wfm-role-card">
+            <div class="wfm-role-header">
+                <div class="wfm-role-dot" style="background: #f4a020;"></div>
+                <span class="wfm-role-name">Team Lead / Supervisor</span>
+                <span class="wfm-role-horizon">Intraday</span>
+            </div>
+            <p class="wfm-role-desc">Managing spikes, adjusting coverage, watching service levels against contractual targets. Needs live metrics that are <em>immediately actionable</em>.</p>
+        </div>
+        <div class="wfm-role-card">
+            <div class="wfm-role-header">
+                <div class="wfm-role-dot" style="background: #27ae60;"></div>
+                <span class="wfm-role-name">Manager</span>
+                <span class="wfm-role-horizon">Weekly</span>
+            </div>
+            <p class="wfm-role-desc">Building schedules, managing shrinkage, balancing channels. Needs precision — the right headcount forecast, not an approximation.</p>
+        </div>
+        <div class="wfm-role-card">
+            <div class="wfm-role-header">
+                <div class="wfm-role-dot" style="background: var(--accent-rust);"></div>
+                <span class="wfm-role-name">Workforce Planner</span>
+                <span class="wfm-role-horizon">Long-range</span>
+            </div>
+            <p class="wfm-role-desc">Multi-skill requirements, queue-group planning, long-range availability modelling. Needs accuracy at scale across weeks and months.</p>
+        </div>
+    </div>
+
+    <p>The dependencies ran both ways. A planner's forecast accuracy determined how a supervisor handled intraday. A supervisor's routing decisions fed back into the planner's data. An agent's swap request affected rostering, which affected the next forecast. No existing tool had accounted for any of this.</p>
+
+    <h3>Three surfaces, three different designs</h3>
+
+    <p><strong>The agent portal</strong> was built around subtraction. One schedule view, swap requests, adherence status — and nothing else. Things agents had always needed manager approval for — swaps, time off, schedule queries — they could now handle themselves. Less friction for agents, less overhead for managers.</p>
+
+    <img src="247ai-wfm-intraday-nike.png" alt="WFM Intraday Overview — Nike Football client">
+    <p class="img-caption">Shipped UI — WFM Intraday Overview, Nike Football client. Chat Waiting, Service Level 80%, Utilisation 75% — live, against contractual targets. The metric layout came from two months of "what do you actually check first?" interviews with supervisors.</p>
+
+    <img src="247ai-wfm-forecast-queue.png" alt="WFM Forecast — Queue_14, Week 33">
+    <p class="img-caption">WFM Forecast view — Queue_14, Week 33, August 2017. Forecasted volumes, required agent count by day, shrinkage, and the Update Forecast workflow. Shipped to Nike Football, Cisco, Hilton, Target.</p>
+
+    <img src="247ai-wfm-agent-schedule.png" alt="WFM Agent Portal — schedule view">
+    <p class="img-caption">Agent-facing schedule view — three-panel layout built for someone on the floor between calls. Global nav, sidebar navigation, schedule grid, real-time adherence, swap request management. The self-serve principle in practice.</p>
+
+    <div class="foldout" id="f-wfm-whiteboard">
+        <button class="foldout-trigger" onclick="toggle('f-wfm-whiteboard')">
+            <span class="foldout-label">Behind the screens</span>
+            <span class="foldout-hint">The whiteboard that preceded the WFM product — and the note on it</span>
+            <span class="foldout-chevron">▶</span>
+        </button>
+        <div class="foldout-body">
+            <div class="foldout-body-inner">
+                <div class="foldout-content">
+                    <img src="247ai-whiteboard-wfm.jpg" alt="WFM whiteboard — screen flows" style="margin-top: 0;">
+                    <p class="img-caption" style="margin-top: 8px;">WFM screen flows mapped out in a Bangalore conference room — showing the full product architecture from landing page through scheduling, rostering, intraday management and forecast views. The note at the top: <em>"Do Not Erase"</em> — written in Kannada, Hindi, and English. This board stayed up for two months.</p>
+                    <p>"Do Not Erase" is what you write when the system isn't finished and you can't afford to lose the threads. This board stayed up for two months.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-grid">
+        <div class="result-card">
+            <span class="number">83%</span>
+            <p>WFM users with problems in existing systems — the research finding that defined the brief</p>
+        </div>
+        <div class="result-card">
+            <span class="number">16%</span>
+            <p>Cost reduction through self-serve design and reduced management overhead</p>
+        </div>
+        <div class="result-card">
+            <span class="number">3%</span>
+            <p>Reduction in blunt overstaffing through unified human + virtual agent planning</p>
+        </div>
+        <div class="result-card">
+            <span class="number">F500</span>
+            <p>Nike Football, Cisco, Hilton, Target — contact centre operations at scale</p>
+        </div>
+    </div>
+
+    <!-- ── Move 02 ── -->
+    <h2>Move 02 — Learning to read a client's world</h2>
+
+    <div class="move-label">
+        <div class="move-number">2</div>
+        <span class="move-title">Client taxonomy — reading before designing</span>
+    </div>
+
+    <p>Knowing how agents worked was one half. The other half was understanding how each enterprise client organised its own world — before designing anything for them.</p>
+
+    <p>Cisco doesn't have one customer journey. It has Routex customers, Webex customers, Sales, Service, IVR, Voice Chat — each with different intent patterns and resolution paths. No platform design holds until you understand how the client itself is structured.</p>
+
+    <p>Mapped this directly on the glass — three iterations on the same wall, each more accurate than the last.</p>
+
+    <div class="iter-grid">
+        <div class="iter-card">
+            <div class="iter-num">Iteration 1</div>
+            <div class="iter-tree">
+Cisco<br>
+├── Routex<br>
+│   ├── Sales<br>
+│   └── Service<br>
+└── Chat / IVR
+            </div>
+        </div>
+        <div class="iter-card">
+            <div class="iter-num">Iteration 2</div>
+            <div class="iter-tree">
+Cisco<br>
+├── Sales + Service<br>
+│   ├── Chat<br>
+│   └── IVR<br>
+└── Router
+            </div>
+        </div>
+        <div class="iter-card">
+            <div class="iter-num">Iteration 3</div>
+            <div class="iter-tree">
+Cisco<br>
+├── Routers · Switch<br>
+│   Unger · PZ<br>
+├── Chat → Sales<br>
+│   Service<br>
+└── Voice Chat · IVR
+            </div>
+        </div>
+    </div>
+
+    <img src="247ai-whiteboard-ia.jpg" alt="Glass-wall IA session — Cisco product hierarchy">
+    <p class="img-caption">Three iterations of Cisco's product hierarchy on a glass wall — each more accurate, each exposing what the previous version missed. The reflection in the glass is mid-third-iteration.</p>
+
+    <div class="feature-box">
+        <strong>From manual to automated</strong>
+        <p>This taxonomy work became the model for <em>Lines of Business discovery</em> — the platform later ingested each enterprise's contact data and surfaced intent patterns automatically. The AI replicated what had been done by hand. You can only automate what you've first understood yourself.</p>
+    </div>
+
+    <!-- ── Move 03 ── -->
+    <h2>Move 03 — The handoff gap becomes visible</h2>
+
+    <div class="move-label">
+        <div class="move-number">3</div>
+        <span class="move-title">AIVA handoff console — designing the most important moment</span>
+    </div>
+
+    <p>With both sides mapped — the human agent's world and how the AI classified intent — the gap between them became obvious.</p>
+
+    <p>AIVA was one of the first production conversational AI systems at Fortune 500 scale. When it couldn't resolve something, it transferred to a human. Engineering called this an exception flow — AI fails, human takes over. It was actually the most critical moment in the whole interaction. Nobody had designed it.</p>
+
+    <div class="insight-pull">
+        <p>Without a designed handoff, agents asked customers to start over. The handoff console isn't an interface — it's a briefing.</p>
+    </div>
+
+    <p>At transfer, the agent received everything AIVA had built: intent classification, conversation history, customer profile, suggested responses — all ready before they spoke. The customer didn't repeat themselves. The interaction continued.</p>
+
+    <div class="foldout" id="f-handoff">
+        <button class="foldout-trigger" onclick="toggle('f-handoff')">
+            <span class="foldout-label">The handoff package</span>
+            <span class="foldout-hint">What transfers at the moment AIVA escalates to a human agent</span>
+            <span class="foldout-chevron">▶</span>
+        </button>
+        <div class="foldout-body">
+            <div class="foldout-body-inner">
+                <div class="foldout-content">
+                    <ul>
+                        <li><strong>Intent classification</strong> — the Line of Business intent AIVA identified, with confidence score</li>
+                        <li><strong>Full conversation history</strong> — every exchange between AIVA and the customer, timestamped and readable at a glance</li>
+                        <li><strong>Customer profile</strong> — previous interactions, subscription status, prior issue history</li>
+                        <li><strong>Suggested responses</strong> — drawn from the same response pool AIVA uses, surfaced to the agent as starting points — not scripts</li>
+                    </ul>
+                    <p>The agent inherits the intelligence AIVA built — not just the conversation record. A record is a log. Intelligence is what to do next.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>Designed and shipped in 2016. No framework for this existed at the time — it came from two years of mapping both sides closely enough to see what was missing.</p>
+
+    <!-- ── Move 04 ── -->
+    <h2>Move 04 — The design system as forcing function</h2>
+
+    <div class="move-label">
+        <div class="move-number">4</div>
+        <span class="move-title">Project Heisenberg — crowd-sourced, 18 months, 70+ components</span>
+    </div>
+
+    <p>The design system work exposed something harder than visual inconsistency: teams weren't just building things that looked different. They were working from different assumptions — different data models, different names for the same concepts.</p>
+
+    <p><strong>"Agent utilisation"</strong> was <strong>"agent occupancy"</strong> in another team. <strong>"Queue"</strong> and <strong>"Line of Business"</strong> were used four different ways. A team building Chat had no visibility into how their patterns would interact with IVR when a customer moved across channels.</p>
+
+    <div class="feature-box">
+        <strong>Built together, not handed down</strong>
+        <p>A design system imposed from the top gets worked around. One built by the teams using it actually sticks — because building it forces the arguments, and the arguments force teams to understand each other's products.</p>
+    </div>
+
+    <p>The system resolved:</p>
+    <ul>
+        <li><strong>Naming conflicts</strong> — one term per concept, across all surfaces. The taxonomy work done on client IA was now being applied internally.</li>
+        <li><strong>Component duplication</strong> — 70+ components replacing independently evolved patterns across WFM, Chat, IVR, and the AIVA console</li>
+        <li><strong>Colour semantics</strong> — 8 palettes with defined roles: orange for brand/active, green for positive/approved, blue for bot/data, red for alert/status</li>
+        <li><strong>The theming engine (VCC)</strong> — enterprise clients like Nike Football and Cisco could customise their customer-facing widget within the design system's constraints, without breaking it</li>
+    </ul>
+
+    <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour architecture">
+    <p class="img-caption">[24]7.ai colour architecture — eight semantic palettes across navigation, brand, content, status, data visualisation, and semantic states. The palette came first; components followed.</p>
+
+    <p>The design sprints were the adoption mechanism. Every org-wide sprint solved a real product problem and put teams in contact with the design system through actual use, not documentation.</p>
+
+    <p>April 2017 to September 2018 — eighteen months from first component to platform-wide adoption.</p>
+
+    <!-- ── Move 05 ── -->
+    <h2>Move 05 — The system becomes visible</h2>
+
+    <div class="move-label">
+        <div class="move-number">5</div>
+        <span class="move-title">The full-wall map — emergence</span>
+    </div>
+
+    <p>At some point the territory resolves — all the pieces in relation to each other, visible at once. For this platform, it happened on a whiteboard.</p>
+
+    <img src="247ai-system-map.png" alt="Full-wall [24]7.ai product system map">
+    <p class="img-caption">The complete [24]7.ai product ecosystem — every node, every connection. Prediction engine feeding both AIVA and the WFM forecast. NL Tools serving both chat and IVR. The unified admin console holding 37 clients. This diagram isn't planned. It becomes possible.</p>
+
+    <p>The distillation of that map: three vertices, one shared intelligence layer at the centre.</p>
+
+    <div class="system-callout">
+        <div class="system-callout-node">
+            <div class="system-callout-title">Visitor</div>
+            <div class="system-callout-desc">The customer reaching in — across any channel, at any intent stage. Search, web, voice, chat, text.</div>
+        </div>
+        <div class="system-callout-node system-callout-center">
+            <div class="system-callout-title">Shared Intelligence</div>
+            <div class="system-callout-desc">Prediction Engine · NL Tools · Chat Miner · Model Builder · Bot Builder · Unified Admin</div>
+        </div>
+        <div class="system-callout-node">
+            <div class="system-callout-title">Enterprise</div>
+            <div class="system-callout-desc">The client layer: insight, reporting, optimisation, billing, client management.</div>
+        </div>
+    </div>
+
+    <img src="247ai-platform-architecture.png" alt="Platform architecture — Visitor · Agents · Enterprise triangle">
+    <p class="img-caption">Visitor · Agents · Enterprise — with the shared intelligence layer at the centre: Prediction Engine, NL Tools, Chat Miner, Model Builder, Bot Builder, Unified Admin. Three years of work in one shape.</p>
+
+    <p>Bots and humans as one category of agent — differentiated by capability, not by type. That framing, settled in 2016, shaped everything downstream: shared intent, unified WFM, one design system.</p>
+
+    <img src="247ai-screens-overview.png" alt="[24]7.ai platform screens — design system applied">
+    <p class="img-caption">The design system applied across platform surfaces. The same tokens, grid, and component language across WFM scheduling, intraday supervision, the AIVA handoff console, and enterprise client configuration. Visual consistency as evidence of systems alignment.</p>
+
+    <!-- ── Move 06 ── -->
+    <h2>Move 06 — The triangle becomes a product</h2>
+
+    <div class="move-label">
+        <div class="move-number">6</div>
+        <span class="move-title">The [24]7.ai SaaS console — 37 clients, one platform</span>
+    </div>
+
+    <p>The abstract became operational. The triangle — Visitor · Agents · Enterprise — was never meant to stay on a whiteboard. It was the architecture for a product.</p>
+
+    <p>The culmination of three years was the <strong>[24]7.ai unified SaaS console</strong> — one platform through which 37 enterprise clients managed their entire customer engagement stack. Not operated by [24]7.ai teams on the client's behalf. Configured and run by the clients themselves.</p>
+
+    <div class="feature-box">
+        <strong>The self-serve principle, scaled</strong>
+        <p>The same logic that built the agent portal in Move 01 — things that required approval become self-managed — now applied to the entire platform. Configure a new intent. Publish a card. Adjust WFM coverage. Run a journey analysis. Without a professional services call.</p>
+    </div>
+
+    <h3>Seven modules, one console</h3>
+
+    <div class="saas-module-grid">
+        <div class="saas-module">
+            <div class="saas-module-num">01</div>
+            <div>
+                <div class="saas-module-name">Client Provisioning</div>
+                <p class="saas-module-desc">5-step self-serve onboarding: company → vertical → products → add-ons → bot naming → deploy. Nike Football: AIVA Digital, Chat, WFM, and IVR2Chat provisioned in a single flow, zero professional services engagement.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">02</div>
+            <div>
+                <div class="saas-module-name">Operations Dashboard</div>
+                <p class="saas-module-desc">Role-based command centre — Lines of Business, daily tasks, interactions, conversions, savings. Configurable per client and per role. Different views for an account admin and a workforce planner at the same company.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">03</div>
+            <div>
+                <div class="saas-module-name">WFM</div>
+                <p class="saas-module-desc">The workforce management work from Move 01, now in clients' hands. Nike Football: 184 agents across 24 teams. DISH: 500 agents across 82 teams. Intraday, forecast, scheduling — live against contractual SLAs.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">04</div>
+            <div>
+                <div class="saas-module-name">Intents</div>
+                <p class="saas-module-desc">Full intent library — multi-channel (Text / Voice / Text+Voice), multilingual, importable. Dataset views with topic modelling showing how customer intents cluster in semantic space. Move 02's hand-drawn taxonomy, automated at scale.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">05</div>
+            <div>
+                <div class="saas-module-name">Contents</div>
+                <p class="saas-module-desc">Card and form builder — payment flows, account views, custom interactions. Published simultaneously across AIVA, Chat, and Active Share from a single content library. One source of truth for what the bot and the agent both say.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">06</div>
+            <div>
+                <div class="saas-module-name">Journey Explorer</div>
+                <p class="saas-module-desc">Query-based analytics: Pattern A/B, hypothesis testing, defined vs dominant paths. Customer journey view: Order → Call → Activation → Bill. The data surface that made the platform's intelligence visible to the enterprise.</p>
+            </div>
+        </div>
+        <div class="saas-module">
+            <div class="saas-module-num">07</div>
+            <div>
+                <div class="saas-module-name">DCC — Digital Customisation</div>
+                <p class="saas-module-desc">The theming engine from Move 04, in clients' hands. Nike Football customising their chat widget and payment card — within the design system's constraints, without breaking it. Desktop, tablet, mobile preview built in.</p>
+            </div>
+        </div>
+    </div>
+
+    <h3>From hand-drawn to machine-learned</h3>
+
+    <p>The Intents module is where Move 02 became a platform capability. The client product hierarchies mapped iteration by iteration on a glass wall — each enterprise's Lines of Business, intent clusters, resolution paths — the platform now surfaced automatically from contact data.</p>
+
+    <p>The intertopic distance map showed clients how their customer intents grouped in semantic space. DISH's intents: <em>Pay Bill</em> dominant, clustering with <em>Service Interrupt</em> and <em>Auto Pay</em>. Further out: <em>Cancel HBO</em>, <em>Log Account</em>, <em>New Remote</em>. The pattern that a workforce planner once inferred from call logs was now a map a client could interrogate themselves.</p>
+
+    <p>You can only automate what you've first understood yourself. By the time this shipped, the understanding was already there.</p>
+
+    <div class="results-grid">
+        <div class="result-card">
+            <span class="number">37</span>
+            <p>Enterprise clients self-operating on the unified platform — SiriusXM, Dish, Nike Football, Cisco, Hilton, Target, Best Buy, Optus, Vodafone</p>
+        </div>
+        <div class="result-card">
+            <span class="number">19%</span>
+            <p>YoY revenue growth — two consecutive years following platform unification</p>
+        </div>
+        <div class="result-card">
+            <span class="number">16%</span>
+            <p>Cost reduction through standardisation and platform consolidation</p>
+        </div>
+        <div class="result-card">
+            <span class="number">3</span>
+            <p>Regions — Americas, EMEA, APAC — one platform, one experience architecture</p>
+        </div>
+        <div class="result-card">
+            <span class="number">70+</span>
+            <p>Design system components unified across all seven platform modules</p>
+        </div>
+        <div class="result-card">
+            <span class="number">2016</span>
+            <p>AI-human handoff patterns first shipped — predating the industry conversation about agentic UX by years</p>
+        </div>
+    </div>
+
+    <!-- ── What this kind of work requires ── -->
+    <h2>What systems work actually requires</h2>
+
+    <p>The system view is easy to present in hindsight. The process that makes it possible is harder to show.</p>
+
+    <p>Each piece had to be understood deeply before the connections became visible. WFM showed how agents think under pressure — that shaped the handoff console. Client taxonomy showed how enterprises organise complexity — that became Lines of Business. The design system surfaced how teams had been naming things differently — that led to crowd-sourced governance. Each piece was both the job and the learning.</p>
+
+    <p>The glass-wall Cisco photo — three iterations on the same surface — is what that process looks like. Not a framework applied to a problem. A territory understood by hand.</p>
+
+    <p>The system map is what becomes visible after enough of that work. And the map becomes a product once you understand it well enough to hand it to someone else.</p>
+
+    <div class="positioning-quote">
+        "At [247].ai I got to work at the foundation of something — designing the infrastructure that made bots and human agents work as one system, for 37 Fortune 500 enterprises, before there was a name for any of it. The diagram on the whiteboard became the console those 37 clients ran their operations from. That's what earning the system view actually means."
+    </div>
+
+    <div class="footer-bar">
+        <p>[247].ai · 2016–2019 · Director of Design — Platform, WFM & AI</p>
+        <p style="margin-top: 6px;">37 enterprise clients · Best Buy · Cisco · Hilton · Nike Football · SiriusXM · Optus · Vodafone · Target</p>
+        <p style="margin-top: 6px;">19% YoY revenue growth · 16% cost reduction · Customer Engagement Cloud + Customer Acquisition Cloud</p>
+        <p style="margin-top: 14px;"><a href="PORTFOLIO.html">← Portfolio</a> &nbsp;·&nbsp; <a href="247ai-case-study-preview.html">Platform overview →</a></p>
+    </div>
+
+</div>
+
+<script>
+    function toggle(id) {
+        const el = document.getElementById(id);
+        el.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>
