@@ -217,7 +217,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 120px var(--container-margin);
+            padding: 120px var(--container-margin) 60px;
             min-height: 60vh;
             background-color: var(--surface-bone);
         }
@@ -240,6 +240,66 @@
             line-height: var(--lh-body);
             margin-bottom: var(--space-xl);
             color: var(--text-secondary);
+        }
+
+        .hero-metrics {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-label);
+            letter-spacing: 0.06em;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 2;
+        }
+
+        .hero-metrics .metric-sep {
+            color: var(--accent-ochre);
+            margin: 0 6px;
+            opacity: 0.6;
+        }
+
+        .hero-metrics .metric-highlight {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Metrics strip — full-width band below hero */
+        /* Metrics marquee strip */
+        .metrics-strip {
+            background: #242420;
+            border-top: 3px solid var(--accent-ochre);
+            overflow: hidden;
+            position: relative;
+        }
+        .metrics-marquee {
+            display: flex;
+            width: max-content;
+            animation: metrics-scroll 60s linear infinite;
+        }
+        .metrics-marquee:hover {
+            animation-play-state: paused;
+        }
+        .metrics-marquee-track {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            white-space: nowrap;
+            font-family: var(--ff-mono);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: rgba(247, 244, 238, 0.6);
+        }
+        .metrics-marquee-track .metric-sep {
+            color: var(--accent-ochre);
+            margin: 0 22px;
+            opacity: 0.75;
+        }
+        .metrics-marquee-track .metric-highlight {
+            color: #f7f4ee;
+            font-weight: 600;
+        }
+        @keyframes metrics-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* Buttons */
@@ -468,7 +528,27 @@
             flex: 0 0 260px;
             position: relative;
             width: 260px;
-            height: 260px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-scroll-cta {
+            display: block;
+            margin-top: 18px;
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-decoration: none;
+            opacity: 0.75;
+            transition: color 0.2s, opacity 0.2s;
+        }
+        .hero-scroll-cta:hover {
+            color: var(--accent-ochre);
+            opacity: 1;
         }
 
         .hero-image-halo {
@@ -541,7 +621,6 @@
             .hero-image {
                 flex: 0 0 180px;
                 width: 180px;
-                height: 180px;
             }
 
             .hero-image img {
@@ -551,10 +630,6 @@
 
             .hero-image-halo {
                 background-size: cover;
-            }
-
-            .hero-text .btn {
-                display: inline-block;
             }
         }
 
@@ -587,7 +662,6 @@
             .hero-image {
                 flex: 0 0 140px;
                 width: 140px;
-                height: 140px;
             }
 
             .hero-image img {
@@ -655,17 +729,71 @@
                 <p class="description">
                     Strategic leader specializing in product transformation, enterprise systems, and organizational impact. I build cross-functional practices that integrate product strategy, design, and go-to-market to influence business outcomes.
                 </p>
-                <a href="#work" class="btn btn--primary">View Work</a>
             </div>
             <div class="hero-image">
                 <div class="hero-image-halo"></div>
                 <img src="portfolio-content/assets/hero-images/Neha-headshot.jpg" alt="Neha Saraswat">
+                <a href="#work" class="hero-scroll-cta">View Work ↓</a>
             </div>
         </div>
     </section>
 
+    <!-- Metrics marquee strip -->
+    <div class="metrics-strip">
+        <div class="metrics-marquee">
+            <div class="metrics-marquee-track">
+                <span class="metric-highlight">20+ years</span>
+                <span class="metric-sep">·</span>
+                Intuit
+                <span class="metric-sep">·</span>
+                Walmart
+                <span class="metric-sep">·</span>
+                [24]7.ai
+                <span class="metric-sep">·</span>
+                NID Ahmedabad
+                <span class="metric-sep">·</span>
+                <span class="metric-highlight">0–2M user base</span>&nbsp;products
+                <span class="metric-sep">·</span>
+                <span class="metric-highlight">over $5B</span>&nbsp;in impact
+                <span class="metric-sep">·</span>
+                3 continents
+                <span class="metric-sep">·</span>
+                product strategy
+                <span class="metric-sep">·</span>
+                design leadership
+                <span class="metric-sep">·</span>
+                go-to-market
+                <span class="metric-sep">·</span>
+            </div>
+            <div class="metrics-marquee-track" aria-hidden="true">
+                <span class="metric-highlight">20+ years</span>
+                <span class="metric-sep">·</span>
+                Intuit
+                <span class="metric-sep">·</span>
+                Walmart
+                <span class="metric-sep">·</span>
+                [24]7.ai
+                <span class="metric-sep">·</span>
+                NID Ahmedabad
+                <span class="metric-sep">·</span>
+                <span class="metric-highlight">0–2M user base</span>&nbsp;products
+                <span class="metric-sep">·</span>
+                <span class="metric-highlight">over $5B</span>&nbsp;in impact
+                <span class="metric-sep">·</span>
+                3 continents
+                <span class="metric-sep">·</span>
+                product strategy
+                <span class="metric-sep">·</span>
+                design leadership
+                <span class="metric-sep">·</span>
+                go-to-market
+                <span class="metric-sep">·</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Featured Work -->
-    <section id="work" class="section--light">
+    <section id="work" class="section--light" style="padding-top: 40px;">
         <div class="container">
             <h2>Featured Work</h2>
 
