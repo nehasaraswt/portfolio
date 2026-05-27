@@ -404,11 +404,6 @@
             border-radius: 6px;
         }
 
-        .arch-triangle-svg {
-            width: 100%;
-            max-width: 480px;
-        }
-
         /* ── Timeline steps ── */
         .timeline {
             position: relative;
@@ -647,11 +642,9 @@
 
     <p>I joined [247].ai in 2016 as Director of Design. The actual job was <strong>cartography</strong>.</p>
 
-    <p>The platform was a collection of acquired products that shared a logo. AIVA — the conversational AI. WFM for workforce management. Chat, IVR, ActiveShare for co-browse. Campaign Manager. Search Bidding. The Virtual Customer Console. Model Workbench. Each built by a different team, on a different data model, with a different user in mind.</p>
+    <p>The platform was a collection of acquired products sharing a logo: AIVA for conversational AI, WFM for workforce management, Chat and IVR for channel handling, ActiveShare for co-browse, Campaign Manager, Search Bidding, Model Workbench. Each built by a different team, on a different data model, for a different user.</p>
 
-    <p>Nobody had mapped how they connected, or designed for what happened between them — when AIVA handed off to a human, when a weeks-old forecast had to flex against a live queue. The system existed. The experience didn't.</p>
-
-    <p>Three years there was about building the picture piece by piece until the whole thing became visible.</p>
+    <p>Nobody had mapped how they connected — or designed for what happened between them. When AIVA handed off to a human. When a weeks-old forecast had to flex against a live queue. The system existed. The experience didn't.</p>
 
     <!-- ── Six moves ── -->
     <h2>Six moves, one picture</h2>
@@ -661,31 +654,31 @@
         <div class="timeline-step">
             <div class="timeline-step-label">Move 01</div>
             <h3>The most ignored user</h3>
-            <p>Started with WFM and the user every vendor had overlooked: the contact centre agent on the floor. Research before screens.</p>
+            <p>Started with WFM and the user every vendor had overlooked: the contact centre agent on the floor.</p>
         </div>
 
         <div class="timeline-step">
             <div class="timeline-step-label">Move 02</div>
             <h3>Learning to read a client's world</h3>
-            <p>Mapped enterprise clients' product hierarchies by hand before designing anything — iteration by iteration, on a glass wall.</p>
+            <p>Mapped each enterprise client's product hierarchy by hand — iteration by iteration on a glass wall — before designing anything for them.</p>
         </div>
 
         <div class="timeline-step">
             <div class="timeline-step-label">Move 03</div>
             <h3>The handoff gap becomes visible</h3>
-            <p>Only visible once you'd understood both sides. Designing the AIVA-to-human handoff as a briefing system, not a failure state.</p>
+            <p>Only visible once you'd understood both sides. Redesigned the AIVA-to-human transfer as a briefing system, not a failure state.</p>
         </div>
 
         <div class="timeline-step">
             <div class="timeline-step-label">Move 04</div>
             <h3>The design system as forcing function</h3>
-            <p>Project Heisenberg: 18 months, crowd-sourced, 70+ components. The mechanism that forced teams to see how their products connected.</p>
+            <p>Project Heisenberg: 18 months, crowd-sourced, 70+ components — and the mechanism that made teams see how their products connected.</p>
         </div>
 
         <div class="timeline-step">
             <div class="timeline-step-label">Move 05</div>
             <h3>The system becomes visible</h3>
-            <p>The full-wall system map. All nodes, all connections. The triangle abstraction — Visitor · Agents · Enterprise — earned from the inside out.</p>
+            <p>The full-wall map. All nodes, all connections. The triangle — Visitor · Agents · Enterprise — earned from the inside out.</p>
         </div>
 
         <div class="timeline-step">
@@ -704,17 +697,17 @@
         <span class="move-title">WFM — Workforce Management</span>
     </div>
 
-    <p>Starting point: WFM. <strong>71% of contact centres had no workforce management system at all.</strong> Of those that did, 83% reported problems — poor communication, slow response, tools described as "not fit for purpose."</p>
+    <p><strong>71% of contact centres had no workforce management system at all.</strong> Of those that did, 83% reported significant problems — tools described as "not fit for purpose," poor communication between roles, no shared view of what was happening on the floor.</p>
 
-    <p>Every WFM tool in 2016 had been built for whoever procured it — not the people who used it every day. Agents, supervisors, and planners each needed completely different things from the same software. No vendor had resolved that because most had never spent real time with agents on the floor.</p>
+    <p>Every WFM tool had been built for whoever procured it, not the people who used it daily. Agents, supervisors, managers, and planners each needed completely different things from the same software. No vendor had resolved this because most had never spent time with agents between calls.</p>
 
     <div class="feature-box">
         <strong>Role mapping before any screen</strong>
-        <p>First: a workflow map — how forecast, scheduling, rostering, and real-time management connected across all four roles. Weeks before the first interface was sketched.</p>
+        <p>First: a full workflow map — how forecast, scheduling, rostering, and real-time management connected across all four roles. Weeks before the first interface was sketched.</p>
     </div>
 
     <img src="247ai-wfm-workflow.png" alt="WFM workflow diagram — four roles and their connections">
-    <p class="img-caption">The WFM role flow: Agent (immediate) → Team Lead (intraday) → Manager (weekly) → Workforce Planner (long-range) — with bidirectional dependencies running through the whole cycle. Drawn before a single screen.</p>
+    <p class="img-caption">The WFM role flow drawn before a single screen: Agent (present tense) → Team Lead (intraday) → Manager (weekly) → Workforce Planner (long-range), with bidirectional dependencies running through every layer.</p>
 
     <h3>Four roles, four time horizons — one system</h3>
 
@@ -725,7 +718,7 @@
                 <span class="wfm-role-name">Agent</span>
                 <span class="wfm-role-horizon">Present tense</span>
             </div>
-            <p class="wfm-role-desc">Between calls, under time pressure. Needs schedule, swap request, adherence status. <em>Nothing more.</em> Every extra screen is cognitive tax.</p>
+            <p class="wfm-role-desc">Between calls, under time pressure. Needs schedule, swap request, adherence status. Every extra screen is cognitive tax.</p>
         </div>
         <div class="wfm-role-card">
             <div class="wfm-role-header">
@@ -733,7 +726,7 @@
                 <span class="wfm-role-name">Team Lead / Supervisor</span>
                 <span class="wfm-role-horizon">Intraday</span>
             </div>
-            <p class="wfm-role-desc">Managing spikes, adjusting coverage, watching service levels against contractual targets. Needs live metrics that are <em>immediately actionable</em>.</p>
+            <p class="wfm-role-desc">Managing spikes, adjusting coverage, watching service levels against contractual targets. Needs live metrics that are immediately actionable.</p>
         </div>
         <div class="wfm-role-card">
             <div class="wfm-role-header">
@@ -753,20 +746,15 @@
         </div>
     </div>
 
-    <p>The dependencies ran both ways. A planner's forecast accuracy determined how a supervisor handled intraday. A supervisor's routing decisions fed back into the planner's data. An agent's swap request affected rostering, which affected the next forecast. No existing tool had accounted for any of this.</p>
-
     <h3>Three surfaces, three different designs</h3>
 
-    <p><strong>The agent portal</strong> was built around subtraction. One schedule view, swap requests, adherence status — and nothing else. Things agents had always needed manager approval for — swaps, time off, schedule queries — they could now handle themselves. Less friction for agents, less overhead for managers.</p>
+    <p>The <strong>agent portal</strong> was built around subtraction. One schedule view, swap requests, adherence status — nothing else. Things that had always needed manager approval — swaps, time off, schedule queries — agents could now handle themselves. Less friction for agents, less overhead for managers.</p>
 
     <img src="247ai-wfm-intraday-nike.png" alt="WFM Intraday Overview — Nike Football client">
-    <p class="img-caption">Shipped UI — WFM Intraday Overview, Nike Football client. Chat Waiting, Service Level 80%, Utilisation 75% — live, against contractual targets. The metric layout came from two months of "what do you actually check first?" interviews with supervisors.</p>
+    <p class="img-caption">Shipped UI — WFM Intraday, Nike Football. Chat Waiting, Service Level 80%, Utilisation 75%, live against SLA targets. The metric layout came directly from "what do you actually check first?" interviews with supervisors.</p>
 
     <img src="247ai-wfm-forecast-queue.png" alt="WFM Forecast — Queue_14, Week 33">
-    <p class="img-caption">WFM Forecast view — Queue_14, Week 33, August 2017. Forecasted volumes, required agent count by day, shrinkage, and the Update Forecast workflow. Shipped to Nike Football, Cisco, Hilton, Target.</p>
-
-    <img src="247ai-wfm-agent-schedule.png" alt="WFM Agent Portal — schedule view">
-    <p class="img-caption">Agent-facing schedule view — three-panel layout built for someone on the floor between calls. Global nav, sidebar navigation, schedule grid, real-time adherence, swap request management. The self-serve principle in practice.</p>
+    <p class="img-caption">WFM Forecast — Queue_14, Week 33, August 2017. Forecasted volumes, required agent count, shrinkage, and Update Forecast workflow. Shipped to Nike Football, Cisco, Hilton, Target.</p>
 
     <div class="foldout" id="f-wfm-whiteboard">
         <button class="foldout-trigger" onclick="toggle('f-wfm-whiteboard')">
@@ -778,8 +766,7 @@
             <div class="foldout-body-inner">
                 <div class="foldout-content">
                     <img src="247ai-whiteboard-wfm.jpg" alt="WFM whiteboard — screen flows" style="margin-top: 0;">
-                    <p class="img-caption" style="margin-top: 8px;">WFM screen flows mapped out in a Bangalore conference room — showing the full product architecture from landing page through scheduling, rostering, intraday management and forecast views. The note at the top: <em>"Do Not Erase"</em> — written in Kannada, Hindi, and English. This board stayed up for two months.</p>
-                    <p>"Do Not Erase" is what you write when the system isn't finished and you can't afford to lose the threads. This board stayed up for two months.</p>
+                    <p class="img-caption" style="margin-top: 8px;">Full WFM product architecture mapped in a Bangalore conference room — landing page through scheduling, rostering, intraday, and forecast views. The note at top reads "Do Not Erase" in Kannada, Hindi, and English. This board stayed up for two months.</p>
                 </div>
             </div>
         </div>
@@ -788,7 +775,7 @@
     <div class="results-grid">
         <div class="result-card">
             <span class="number">83%</span>
-            <p>WFM users with problems in existing systems — the research finding that defined the brief</p>
+            <p>WFM users with significant problems in existing tools — the research finding that set the brief</p>
         </div>
         <div class="result-card">
             <span class="number">16%</span>
@@ -800,7 +787,7 @@
         </div>
         <div class="result-card">
             <span class="number">F500</span>
-            <p>Nike Football, Cisco, Hilton, Target — contact centre operations at scale</p>
+            <p>Nike Football · Cisco · Hilton · Target — contact centre operations at scale</p>
         </div>
     </div>
 
@@ -812,11 +799,9 @@
         <span class="move-title">Client taxonomy — reading before designing</span>
     </div>
 
-    <p>Knowing how agents worked was one half. The other half was understanding how each enterprise client organised its own world — before designing anything for them.</p>
+    <p>Knowing how agents worked was one half. The other half: understanding how each enterprise client organised its own world before designing anything for them.</p>
 
-    <p>Cisco doesn't have one customer journey. It has Routex customers, Webex customers, Sales, Service, IVR, Voice Chat — each with different intent patterns and resolution paths. No platform design holds until you understand how the client itself is structured.</p>
-
-    <p>Mapped this directly on the glass — three iterations on the same wall, each more accurate than the last.</p>
+    <p>Cisco doesn't have one customer journey. It has Routex customers, Webex customers, Sales, Service, IVR, Voice Chat — each with different intent patterns and resolution paths. No platform design holds until you understand how the client itself is structured. So I mapped it directly on the glass, three iterations on the same wall, each more accurate than the last.</p>
 
     <div class="iter-grid">
         <div class="iter-card">
@@ -853,11 +838,11 @@ Cisco<br>
     </div>
 
     <img src="247ai-whiteboard-ia.jpg" alt="Glass-wall IA session — Cisco product hierarchy">
-    <p class="img-caption">Three iterations of Cisco's product hierarchy on a glass wall — each more accurate, each exposing what the previous version missed. The reflection in the glass is mid-third-iteration.</p>
+    <p class="img-caption">Three iterations of Cisco's product hierarchy on a glass wall. The reflection in the glass is mid-third iteration. Each pass exposed what the previous version missed.</p>
 
     <div class="feature-box">
-        <strong>From manual to automated</strong>
-        <p>This taxonomy work became the model for <em>Lines of Business discovery</em> — the platform later ingested each enterprise's contact data and surfaced intent patterns automatically. The AI replicated what had been done by hand. You can only automate what you've first understood yourself.</p>
+        <strong>From manual to machine-learned</strong>
+        <p>This taxonomy work became the model for <em>Lines of Business discovery</em> — the platform later ingested each enterprise's contact data and surfaced intent patterns automatically. You can only automate what you've first understood by hand.</p>
     </div>
 
     <!-- ── Move 03 ── -->
@@ -868,7 +853,7 @@ Cisco<br>
         <span class="move-title">AIVA handoff console — designing the most important moment</span>
     </div>
 
-    <p>With both sides mapped — the human agent's world and how the AI classified intent — the gap between them became obvious.</p>
+    <p>With both sides mapped — the human agent's world and how AIVA classified intent — the gap between them became obvious.</p>
 
     <p>AIVA was one of the first production conversational AI systems at Fortune 500 scale. When it couldn't resolve something, it transferred to a human. Engineering called this an exception flow — AI fails, human takes over. It was actually the most critical moment in the whole interaction. Nobody had designed it.</p>
 
@@ -876,7 +861,7 @@ Cisco<br>
         <p>Without a designed handoff, agents asked customers to start over. The handoff console isn't an interface — it's a briefing.</p>
     </div>
 
-    <p>At transfer, the agent received everything AIVA had built: intent classification, conversation history, customer profile, suggested responses — all ready before they spoke. The customer didn't repeat themselves. The interaction continued.</p>
+    <p>At transfer, the agent received everything AIVA had built: intent classification, conversation history, customer profile, suggested responses — all ready before they spoke the first word. The customer didn't repeat themselves. The interaction continued, not restarted.</p>
 
     <div class="foldout" id="f-handoff">
         <button class="foldout-trigger" onclick="toggle('f-handoff')">
@@ -889,9 +874,9 @@ Cisco<br>
                 <div class="foldout-content">
                     <ul>
                         <li><strong>Intent classification</strong> — the Line of Business intent AIVA identified, with confidence score</li>
-                        <li><strong>Full conversation history</strong> — every exchange between AIVA and the customer, timestamped and readable at a glance</li>
+                        <li><strong>Full conversation history</strong> — every exchange, timestamped and readable at a glance</li>
                         <li><strong>Customer profile</strong> — previous interactions, subscription status, prior issue history</li>
-                        <li><strong>Suggested responses</strong> — drawn from the same response pool AIVA uses, surfaced to the agent as starting points — not scripts</li>
+                        <li><strong>Suggested responses</strong> — drawn from the same pool AIVA uses, surfaced as starting points — not scripts</li>
                     </ul>
                     <p>The agent inherits the intelligence AIVA built — not just the conversation record. A record is a log. Intelligence is what to do next.</p>
                 </div>
@@ -899,7 +884,7 @@ Cisco<br>
         </div>
     </div>
 
-    <p>Designed and shipped in 2016. No framework for this existed at the time — it came from two years of mapping both sides closely enough to see what was missing.</p>
+    <p>Designed and shipped in 2016. No industry vocabulary existed for this yet — "agentic UX," "AI handoff patterns." It came from two years of mapping both sides closely enough to see what was missing between them.</p>
 
     <!-- ── Move 04 ── -->
     <h2>Move 04 — The design system as forcing function</h2>
@@ -911,7 +896,7 @@ Cisco<br>
 
     <p>The design system work exposed something harder than visual inconsistency: teams weren't just building things that looked different. They were working from different assumptions — different data models, different names for the same concepts.</p>
 
-    <p><strong>"Agent utilisation"</strong> was <strong>"agent occupancy"</strong> in another team. <strong>"Queue"</strong> and <strong>"Line of Business"</strong> were used four different ways. A team building Chat had no visibility into how their patterns would interact with IVR when a customer moved across channels.</p>
+    <p><strong>"Agent utilisation"</strong> was <strong>"agent occupancy"</strong> in another team. <strong>"Queue"</strong> and <strong>"Line of Business"</strong> were used four different ways. Chat had no visibility into how their patterns would interact with IVR when a customer moved channels.</p>
 
     <div class="feature-box">
         <strong>Built together, not handed down</strong>
@@ -920,18 +905,16 @@ Cisco<br>
 
     <p>The system resolved:</p>
     <ul>
-        <li><strong>Naming conflicts</strong> — one term per concept, across all surfaces. The taxonomy work done on client IA was now being applied internally.</li>
+        <li><strong>Naming conflicts</strong> — one term per concept, across all surfaces. The same discipline applied to client IA in Move 02, now applied internally.</li>
         <li><strong>Component duplication</strong> — 70+ components replacing independently evolved patterns across WFM, Chat, IVR, and the AIVA console</li>
-        <li><strong>Colour semantics</strong> — 8 palettes with defined roles: orange for brand/active, green for positive/approved, blue for bot/data, red for alert/status</li>
-        <li><strong>The theming engine (VCC)</strong> — enterprise clients like Nike Football and Cisco could customise their customer-facing widget within the design system's constraints, without breaking it</li>
+        <li><strong>Colour semantics</strong> — 8 palettes with defined roles: orange for brand/active, green for approved, blue for bot/data, red for alert</li>
+        <li><strong>Theming (VCC)</strong> — enterprise clients could customise their customer-facing widget within the system's constraints, without breaking it</li>
     </ul>
 
     <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour architecture">
-    <p class="img-caption">[24]7.ai colour architecture — eight semantic palettes across navigation, brand, content, status, data visualisation, and semantic states. The palette came first; components followed.</p>
+    <p class="img-caption">[24]7.ai colour architecture — eight semantic palettes across navigation, brand, status, data visualisation, and semantic states. The palette came first; components followed.</p>
 
-    <p>The design sprints were the adoption mechanism. Every org-wide sprint solved a real product problem and put teams in contact with the design system through actual use, not documentation.</p>
-
-    <p>April 2017 to September 2018 — eighteen months from first component to platform-wide adoption.</p>
+    <p>The design sprints were the adoption mechanism. Every org-wide sprint solved a real product problem and put teams in contact with the system through actual use, not documentation. April 2017 to September 2018 — eighteen months from first component to platform-wide adoption.</p>
 
     <!-- ── Move 05 ── -->
     <h2>Move 05 — The system becomes visible</h2>
@@ -941,12 +924,12 @@ Cisco<br>
         <span class="move-title">The full-wall map — emergence</span>
     </div>
 
-    <p>At some point the territory resolves — all the pieces in relation to each other, visible at once. For this platform, it happened on a whiteboard.</p>
+    <p>At some point the territory resolves — all pieces in relation to each other, visible at once. For this platform, it happened on a whiteboard.</p>
 
     <img src="247ai-system-map.png" alt="Full-wall [24]7.ai product system map">
-    <p class="img-caption">The complete [24]7.ai product ecosystem — every node, every connection. Prediction engine feeding both AIVA and the WFM forecast. NL Tools serving both chat and IVR. The unified admin console holding 37 clients. This diagram isn't planned. It becomes possible.</p>
+    <p class="img-caption">The complete [24]7.ai product ecosystem — every node, every connection. Prediction engine feeding both AIVA and the WFM forecast. NL Tools serving chat and IVR. The unified admin console holding 37 clients. This diagram isn't planned. It becomes possible.</p>
 
-    <p>The distillation of that map: three vertices, one shared intelligence layer at the centre.</p>
+    <p>The distillation: three vertices, one shared intelligence layer at the centre.</p>
 
     <div class="system-callout">
         <div class="system-callout-node">
@@ -964,12 +947,12 @@ Cisco<br>
     </div>
 
     <img src="247ai-platform-architecture.png" alt="Platform architecture — Visitor · Agents · Enterprise triangle">
-    <p class="img-caption">Visitor · Agents · Enterprise — with the shared intelligence layer at the centre: Prediction Engine, NL Tools, Chat Miner, Model Builder, Bot Builder, Unified Admin. Three years of work in one shape.</p>
+    <p class="img-caption">Visitor · Agents · Enterprise — with shared intelligence at the centre. Three years of work in one shape.</p>
 
-    <p>Bots and humans as one category of agent — differentiated by capability, not by type. That framing, settled in 2016, shaped everything downstream: shared intent, unified WFM, one design system.</p>
+    <p>Bots and humans as one category of agent — differentiated by capability, not type. That framing shaped everything downstream: shared intent, unified WFM, one design system.</p>
 
     <img src="247ai-screens-overview.png" alt="[24]7.ai platform screens — design system applied">
-    <p class="img-caption">The design system applied across platform surfaces. The same tokens, grid, and component language across WFM scheduling, intraday supervision, the AIVA handoff console, and enterprise client configuration. Visual consistency as evidence of systems alignment.</p>
+    <p class="img-caption">The design system applied across platform surfaces — WFM scheduling, intraday supervision, AIVA handoff console, enterprise configuration. Visual consistency as evidence of systems alignment.</p>
 
     <!-- ── Move 06 ── -->
     <h2>Move 06 — The triangle becomes a product</h2>
@@ -981,11 +964,14 @@ Cisco<br>
 
     <p>The abstract became operational. The triangle — Visitor · Agents · Enterprise — was never meant to stay on a whiteboard. It was the architecture for a product.</p>
 
-    <p>The culmination of three years was the <strong>[24]7.ai unified SaaS console</strong> — one platform through which 37 enterprise clients managed their entire customer engagement stack. Not operated by [24]7.ai teams on the client's behalf. Configured and run by the clients themselves.</p>
+    <img src="247ai-whiteboard-saas-console.jpg" alt="Whiteboard wireframe — SaaS console architecture">
+    <p class="img-caption">The earliest whiteboard sketch of the console structure: 247.ai public site → product.247.com login → multi-client dashboard (Optus, others) → client-specific views (reports, agents, performance, schedule). The triangle became a flow. The flow became a product.</p>
+
+    <p>The culmination was the <strong>[24]7.ai unified SaaS console</strong> — one platform through which 37 enterprise clients managed their entire customer engagement stack. Not operated by [24]7.ai on the client's behalf. Configured and run by the clients themselves.</p>
 
     <div class="feature-box">
         <strong>The self-serve principle, scaled</strong>
-        <p>The same logic that built the agent portal in Move 01 — things that required approval become self-managed — now applied to the entire platform. Configure a new intent. Publish a card. Adjust WFM coverage. Run a journey analysis. Without a professional services call.</p>
+        <p>The same logic that built the agent portal in Move 01 — things that required approval become self-managed — now applied to the entire enterprise layer. Configure a new intent. Publish a card. Adjust WFM coverage. Run a journey analysis. Without a professional services call.</p>
     </div>
 
     <h3>Seven modules, one console</h3>
@@ -995,42 +981,42 @@ Cisco<br>
             <div class="saas-module-num">01</div>
             <div>
                 <div class="saas-module-name">Client Provisioning</div>
-                <p class="saas-module-desc">5-step self-serve onboarding: company → vertical → products → add-ons → bot naming → deploy. Nike Football: AIVA Digital, Chat, WFM, and IVR2Chat provisioned in a single flow, zero professional services engagement.</p>
+                <p class="saas-module-desc">5-step self-serve onboarding: company → vertical → products → add-ons → bot naming → deploy. Nike Football: AIVA Digital, Chat, WFM, and IVR2Chat provisioned in a single flow, zero professional services.</p>
             </div>
         </div>
         <div class="saas-module">
             <div class="saas-module-num">02</div>
             <div>
                 <div class="saas-module-name">Operations Dashboard</div>
-                <p class="saas-module-desc">Role-based command centre — Lines of Business, daily tasks, interactions, conversions, savings. Configurable per client and per role. Different views for an account admin and a workforce planner at the same company.</p>
+                <p class="saas-module-desc">Role-based command centre — Lines of Business, interactions, conversions, savings. Different views for an account admin and a workforce planner at the same company.</p>
             </div>
         </div>
         <div class="saas-module">
             <div class="saas-module-num">03</div>
             <div>
                 <div class="saas-module-name">WFM</div>
-                <p class="saas-module-desc">The workforce management work from Move 01, now in clients' hands. Nike Football: 184 agents across 24 teams. DISH: 500 agents across 82 teams. Intraday, forecast, scheduling — live against contractual SLAs.</p>
+                <p class="saas-module-desc">The workforce management work from Move 01, in clients' hands. Nike Football: 184 agents, 24 teams. DISH: 500 agents, 82 teams. Intraday, forecast, scheduling — live against contractual SLAs.</p>
             </div>
         </div>
         <div class="saas-module">
             <div class="saas-module-num">04</div>
             <div>
                 <div class="saas-module-name">Intents</div>
-                <p class="saas-module-desc">Full intent library — multi-channel (Text / Voice / Text+Voice), multilingual, importable. Dataset views with topic modelling showing how customer intents cluster in semantic space. Move 02's hand-drawn taxonomy, automated at scale.</p>
+                <p class="saas-module-desc">Full intent library — multi-channel, multilingual, importable — with dataset views showing how customer intents cluster in semantic space. Move 02's hand-drawn taxonomy, automated at scale.</p>
             </div>
         </div>
         <div class="saas-module">
             <div class="saas-module-num">05</div>
             <div>
                 <div class="saas-module-name">Contents</div>
-                <p class="saas-module-desc">Card and form builder — payment flows, account views, custom interactions. Published simultaneously across AIVA, Chat, and Active Share from a single content library. One source of truth for what the bot and the agent both say.</p>
+                <p class="saas-module-desc">Card and form builder — payment flows, account views, custom interactions — published simultaneously across AIVA, Chat, and ActiveShare. One source of truth for what the bot and the agent both say.</p>
             </div>
         </div>
         <div class="saas-module">
             <div class="saas-module-num">06</div>
             <div>
                 <div class="saas-module-name">Journey Explorer</div>
-                <p class="saas-module-desc">Query-based analytics: Pattern A/B, hypothesis testing, defined vs dominant paths. Customer journey view: Order → Call → Activation → Bill. The data surface that made the platform's intelligence visible to the enterprise.</p>
+                <p class="saas-module-desc">Query-based analytics: Pattern A/B, hypothesis testing, defined vs dominant paths, customer journey view (Order → Call → Activation → Bill). The data surface that made the platform's intelligence visible to the enterprise.</p>
             </div>
         </div>
         <div class="saas-module">
@@ -1042,13 +1028,10 @@ Cisco<br>
         </div>
     </div>
 
-    <h3>From hand-drawn to machine-learned</h3>
+    <img src="247ai-central-insights.png" alt="[24]7 CENTRAL Insights — Chat Utilization analytics dashboard">
+    <p class="img-caption">[24]7 CENTRAL Insights — shipped analytics UI showing Chat Utilization for a client. Operator Utilization, Login Time, Engage Time, Average Concurrent Chats, Agent Unavailability — the dashboard that turned contact centre data into operational intelligence clients could act on themselves.</p>
 
-    <p>The Intents module is where Move 02 became a platform capability. The client product hierarchies mapped iteration by iteration on a glass wall — each enterprise's Lines of Business, intent clusters, resolution paths — the platform now surfaced automatically from contact data.</p>
-
-    <p>The intertopic distance map showed clients how their customer intents grouped in semantic space. DISH's intents: <em>Pay Bill</em> dominant, clustering with <em>Service Interrupt</em> and <em>Auto Pay</em>. Further out: <em>Cancel HBO</em>, <em>Log Account</em>, <em>New Remote</em>. The pattern that a workforce planner once inferred from call logs was now a map a client could interrogate themselves.</p>
-
-    <p>You can only automate what you've first understood yourself. By the time this shipped, the understanding was already there.</p>
+    <p>The Intents module is where Move 02 became a platform capability. DISH's intents: <em>Pay Bill</em> dominant, clustering with <em>Service Interrupt</em> and <em>Auto Pay</em>. Further out: <em>Cancel HBO</em>, <em>New Remote</em>, <em>Log Account</em>. The pattern a workforce planner once inferred from call logs was now a map a client could interrogate themselves.</p>
 
     <div class="results-grid">
         <div class="result-card">
@@ -1073,20 +1056,16 @@ Cisco<br>
         </div>
         <div class="result-card">
             <span class="number">2016</span>
-            <p>AI-human handoff patterns first shipped — predating the industry conversation about agentic UX by years</p>
+            <p>AI-human handoff patterns first shipped — predating the industry conversation by years</p>
         </div>
     </div>
 
     <!-- ── What this kind of work requires ── -->
-    <h2>What systems work actually requires</h2>
+    <h2>What this kind of work requires</h2>
 
-    <p>The system view is easy to present in hindsight. The process that makes it possible is harder to show.</p>
+    <p>Each piece had to be understood deeply before the connections became visible. WFM showed how agents think under pressure — that shaped the handoff console. Client taxonomy showed how enterprises organise complexity — that became Lines of Business. The design system surfaced how teams had been naming things differently — that forced crowd-sourced governance. Each move was both the job and the learning.</p>
 
-    <p>Each piece had to be understood deeply before the connections became visible. WFM showed how agents think under pressure — that shaped the handoff console. Client taxonomy showed how enterprises organise complexity — that became Lines of Business. The design system surfaced how teams had been naming things differently — that led to crowd-sourced governance. Each piece was both the job and the learning.</p>
-
-    <p>The glass-wall Cisco photo — three iterations on the same surface — is what that process looks like. Not a framework applied to a problem. A territory understood by hand.</p>
-
-    <p>The system map is what becomes visible after enough of that work. And the map becomes a product once you understand it well enough to hand it to someone else.</p>
+    <p>The glass-wall Cisco photo — three iterations on the same surface — is what that process looks like in practice. Not a framework applied to a problem. A territory understood by hand. The map becomes a product once you understand it well enough to hand it to someone else.</p>
 
     <div class="positioning-quote">
         "At [247].ai I got to work at the foundation of something — designing the infrastructure that made bots and human agents work as one system, for 37 Fortune 500 enterprises, before there was a name for any of it. The diagram on the whiteboard became the console those 37 clients ran their operations from. That's what earning the system view actually means."
