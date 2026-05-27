@@ -549,6 +549,59 @@
             line-height: 1.8;
         }
 
+        /* ── Intent pattern grid ── */
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .pattern-card {
+            background: var(--surface-bone);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 14px 16px;
+        }
+
+        .pattern-pct {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-rust);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pattern-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .pattern-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .domain-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr 1fr;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 12px;
+        }
+
+        .domain-row:last-child { border-bottom: none; }
+
+        .domain-name { font-weight: 600; color: var(--text-primary); }
+        .domain-pct { color: var(--text-secondary); }
+        .domain-pct span { font-weight: 600; color: var(--text-primary); }
+
         /* ── SaaS module grid ── */
         .saas-module-grid {
             display: grid;
@@ -845,6 +898,73 @@ Cisco<br>
         <p>This taxonomy work became the model for <em>Lines of Business discovery</em> — the platform later ingested each enterprise's contact data and surfaced intent patterns automatically. You can only automate what you've first understood by hand.</p>
     </div>
 
+    <div class="foldout" id="f-taxonomy">
+        <button class="foldout-trigger" onclick="toggle('f-taxonomy')">
+            <span class="foldout-label">The methodology at scale</span>
+            <span class="foldout-hint">DISH · 500 chats · 39-page intent taxonomy · December 2018</span>
+            <span class="foldout-chevron">▶</span>
+        </button>
+        <div class="foldout-body">
+            <div class="foldout-body-inner">
+                <div class="foldout-content">
+                    <p>The same instinct — read the client's world before designing — was later formalised as a research methodology. I set the brief and led the project direction; Yatin Sathawane's team (researchers Pooja Kumari and Yash Mehta) read 500 DISH chat transcripts and built a 39-page intent taxonomy. This is what that produced.</p>
+
+                    <p><strong>Six intent types defined:</strong> GI (General Informational, FAQ-based) · PI (Personal Informational, requires account verification) · IU (Informational Update) · MU (Monetary Update) · MT (Monetary Transactional) · N (Navigational)</p>
+
+                    <p><strong>Five domains mapped for DISH</strong> — with intent distribution across each:</p>
+
+                    <div style="margin: 14px 0 20px;">
+                        <div class="domain-row" style="font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent-rust);">
+                            <div>Domain</div><div>Informational</div><div>Navigational</div><div>Transactional</div>
+                        </div>
+                        <div class="domain-row"><div class="domain-name">Channel</div><div class="domain-pct"><span>63%</span></div><div class="domain-pct"><span>13%</span></div><div class="domain-pct"><span>10%</span></div></div>
+                        <div class="domain-row"><div class="domain-name">Billing</div><div class="domain-pct"><span>78%</span></div><div class="domain-pct"><span>2%</span></div><div class="domain-pct"><span>7%</span></div></div>
+                        <div class="domain-row"><div class="domain-name">Account</div><div class="domain-pct"><span>76%</span></div><div class="domain-pct"><span>12%</span></div><div class="domain-pct"><span>7%</span></div></div>
+                        <div class="domain-row"><div class="domain-name">Video on Demand</div><div class="domain-pct"><span>54%</span></div><div class="domain-pct"><span>31%</span></div><div class="domain-pct"><span>14%</span></div></div>
+                        <div class="domain-row"><div class="domain-name">Subscription</div><div class="domain-pct"><span>70%</span></div><div class="domain-pct"><span>0%</span></div><div class="domain-pct"><span>17%</span></div></div>
+                    </div>
+
+                    <p><strong>Six behavioural patterns found across all domains:</strong></p>
+
+                    <div class="pattern-grid">
+                        <div class="pattern-card">
+                            <span class="pattern-pct">27%</span>
+                            <div class="pattern-name">Straight Forward</div>
+                            <p class="pattern-desc">Simple, non-complicated. Mostly Personal Informational. Mostly gets resolved.</p>
+                        </div>
+                        <div class="pattern-card">
+                            <span class="pattern-pct">12%</span>
+                            <div class="pattern-name">Anxious</div>
+                            <p class="pattern-desc">Sensitive interaction. Monetary update dominant. High effort on both sides.</p>
+                        </div>
+                        <div class="pattern-card">
+                            <span class="pattern-pct">11%</span>
+                            <div class="pattern-name">Urgency</div>
+                            <p class="pattern-desc">High disambiguation needed. Multiple touchpoints. Frustration and irritation.</p>
+                        </div>
+                        <div class="pattern-card">
+                            <span class="pattern-pct">9%</span>
+                            <div class="pattern-name">Crisis</div>
+                            <p class="pattern-desc">Financial hardship. Billing-dominant. Fearful, insecure, long chat.</p>
+                        </div>
+                        <div class="pattern-card">
+                            <span class="pattern-pct">6%</span>
+                            <div class="pattern-name">Know How</div>
+                            <p class="pattern-desc">Pure FAQ. No CRM access needed. Very short. Always resolved.</p>
+                        </div>
+                        <div class="pattern-card">
+                            <span class="pattern-pct">3%</span>
+                            <div class="pattern-name">Distrust</div>
+                            <p class="pattern-desc">Business policy constraints. Anger and helplessness. Both agent and customer stuck.</p>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 16px;">The future scope slide in the document: <em>"use these intent ontologies, along with agent and customer personas, to come up with AI behaviours... design conversations for intuitive, frictionless experience by learning from actual human interactions."</em> That brief became the Intents module in Move 06.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ── Move 03 ── -->
     <h2>Move 03 — The handoff gap becomes visible</h2>
 
@@ -1031,7 +1151,7 @@ Cisco<br>
     <img src="247ai-central-insights.png" alt="[24]7 CENTRAL Insights — Chat Utilization analytics dashboard">
     <p class="img-caption">[24]7 CENTRAL Insights — shipped analytics UI showing Chat Utilization for a client. Operator Utilization, Login Time, Engage Time, Average Concurrent Chats, Agent Unavailability — the dashboard that turned contact centre data into operational intelligence clients could act on themselves.</p>
 
-    <p>The Intents module is where Move 02 became a platform capability. DISH's intents: <em>Pay Bill</em> dominant, clustering with <em>Service Interrupt</em> and <em>Auto Pay</em>. Further out: <em>Cancel HBO</em>, <em>New Remote</em>, <em>Log Account</em>. The pattern a workforce planner once inferred from call logs was now a map a client could interrogate themselves.</p>
+    <p>The Intents module is where Move 02 became a platform capability. The intent taxonomy research done for DISH — 500 chats, six intent types, five domains — became the model the platform automated. DISH's intents surfaced as a map: <em>Pay Bill</em> dominant, clustering with <em>Service Interrupt</em> and <em>Auto Pay</em>. Further out: <em>Cancel HBO</em>, <em>New Remote</em>, <em>Log Account</em>. The pattern a researcher once built by hand from chat transcripts was now something a client could interrogate in real time, themselves.</p>
 
     <div class="results-grid">
         <div class="result-card">
