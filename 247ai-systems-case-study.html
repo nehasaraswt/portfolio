@@ -693,11 +693,13 @@
     <!-- ── The situation ── -->
     <h2>The job nobody had defined</h2>
 
-    <p>I joined [247].ai in 2016 as Director of Design. The actual job was <strong>cartography</strong>.</p>
+    <p>I joined [247].ai in 2016 hired for a specific product: <strong>Insights</strong>, the company's data platform. Team of one. The actual job, I discovered through 40+ interviews across the organisation and outside it, was much larger.</p>
 
-    <p>The platform was a collection of acquired products sharing a logo: AIVA for conversational AI, WFM for workforce management, Chat and IVR for channel handling, ActiveShare for co-browse, Campaign Manager, Search Bidding, Model Workbench. Each built by a different team, on a different data model, for a different user.</p>
+    <p>The platform was a collection of acquired products sharing a logo. AIVA for conversational AI, WFM for workforce management, Chat and IVR for channel handling, ActiveShare for co-browse, Campaign Manager, Search Bidding, Model Workbench. Each built by a different team, on a different data model, for a different user. The numbers told the story: <strong>15 products, 50 distinct UIs, 15 user types</strong>, 10,000 agents running contact centre operations, 800 people building the technology.</p>
 
-    <p>Nobody had mapped how they connected — or designed for what happened between them. When AIVA handed off to a human. When a weeks-old forecast had to flex against a live queue. The system existed. The experience didn't.</p>
+    <p>Most users were downloading reports and analysing in Excel. They were spending hours getting to information they needed to do simple tasks — and the decisions that couldn't wait were made on gut feel. My first concept pitch at [247].ai was against making any more dashboards: <strong>serve the data at consumption</strong>, in context, where the person needs it to act. It took a quarter to get traction. But it set the frame for everything that followed — you can't design information systems without first understanding the system.</p>
+
+    <p>Nobody had mapped how the products connected — or designed for what happened between them. When AIVA handed off to a human. When a weeks-old forecast had to flex against a live queue. The system existed. The experience didn't. Three years there was a process of building that picture, piece by piece, until the whole thing became visible — and then turning it into a product.</p>
 
     <!-- ── Six moves ── -->
     <h2>Six moves, one picture</h2>
@@ -753,6 +755,8 @@
     <p><strong>71% of contact centres had no workforce management system at all.</strong> Of those that did, 83% reported significant problems — tools described as "not fit for purpose," poor communication between roles, no shared view of what was happening on the floor.</p>
 
     <p>Every WFM tool had been built for whoever procured it, not the people who used it daily. Agents, supervisors, managers, and planners each needed completely different things from the same software. No vendor had resolved this because most had never spent time with agents between calls.</p>
+
+    <p>WFM didn't start as a separate initiative. The research team had presented their study on contact centre workforce — roles, aspirations, and day-to-day struggles. I joined that force. The Workforce Optimisation effort began as an internal tool, an extension of Insights, built to support near real-time forecasting and scheduling for the contact centre. It was the first product at [247].ai to run using design sprints — a method I'd proposed months earlier and had to fight to get approved.</p>
 
     <div class="feature-box">
         <strong>Role mapping before any screen</strong>
@@ -1036,6 +1040,27 @@ Cisco<br>
 
     <p>The design sprints were the adoption mechanism. Every org-wide sprint solved a real product problem and put teams in contact with the system through actual use, not documentation. April 2017 to September 2018 — eighteen months from first component to platform-wide adoption.</p>
 
+    <div class="foldout" id="f-ds-origin">
+        <button class="foldout-trigger" onclick="toggle('f-ds-origin')">
+            <span class="foldout-label">How it actually started</span>
+            <span class="foldout-hint">No funding, no approval — how the design system got built anyway</span>
+            <span class="foldout-chevron">▶</span>
+        </button>
+        <div class="foldout-body">
+            <div class="foldout-body-inner">
+                <div class="foldout-content">
+                    <p>The standardisation work didn't start with a budget. The proposal was rejected — no funding, no approval. So the designers did it in the four hours per week the organisation allocated to team-building activities.</p>
+
+                    <p>Designers from my team and all other teams met twice a week, one hour each session, for three months. Two hours more on their own making assets. In three months, we had a bare-bones standardisation framework and three products ready to adapt to it.</p>
+
+                    <p>That was presented to leadership in September 2017. Adoption approval earned. By December 2017, a dedicated UI dev team was working alongside us to build component libraries.</p>
+
+                    <p>The first design sprint at [247].ai had a similar arc. I proposed running one in July 2016 — the proposal was rejected. By November 2016 I had a positive nod from the CDO. That sprint, for the WFM product, ran without me as either facilitator or participant. I found out the outcome five days later. It was the beginning of a new way of working for [247].ai. Eventually design sprints became the standard practice for annual product planning and half-yearly look-ahead across the product organisation — with me facilitating all of them.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ── Move 05 ── -->
     <h2>Move 05 — The system becomes visible</h2>
 
@@ -1083,6 +1108,8 @@ Cisco<br>
     </div>
 
     <p>The abstract became operational. The triangle — Visitor · Agents · Enterprise — was never meant to stay on a whiteboard. It was the architecture for a product.</p>
+
+    <p>Getting there required solving a problem that had been building for three years: <strong>every product in the system used a different authentication system</strong>. They'd been built at different times or acquired separately — each with its own login, its own user management, its own policies. I aligned with a team called Central that was working to fix this. They were underfunded and needed design input to strengthen their pitch. It took 1.5 years of working within constraints — but by the time the console shipped, there was one authentication system (OKTA) for all of [247].ai's products. One login. One way to set up and configure everything across the platform.</p>
 
     <img src="247ai-whiteboard-saas-console.jpg" alt="Whiteboard wireframe — SaaS console architecture">
     <p class="img-caption">The earliest whiteboard sketch of the console structure: 247.ai public site → product.247.com login → multi-client dashboard (Optus, others) → client-specific views (reports, agents, performance, schedule). The triangle became a flow. The flow became a product.</p>
@@ -1185,7 +1212,9 @@ Cisco<br>
 
     <p>Each piece had to be understood deeply before the connections became visible. WFM showed how agents think under pressure — that shaped the handoff console. Client taxonomy showed how enterprises organise complexity — that became Lines of Business. The design system surfaced how teams had been naming things differently — that forced crowd-sourced governance. Each move was both the job and the learning.</p>
 
-    <p>The glass-wall Cisco photo — three iterations on the same surface — is what that process looks like in practice. Not a framework applied to a problem. A territory understood by hand. The map becomes a product once you understand it well enough to hand it to someone else.</p>
+    <p>The macro arc: [247].ai moved from a service-centric product organisation to a SaaS platform in three years. That doesn't happen through a single product decision. It happens when enough people across the org start seeing the system the same way — and when the design work makes that shared view operational. The glass-wall Cisco photo — three iterations on the same surface — is what that process looks like at the individual level. The 37-client console is what it looks like at scale.</p>
+
+    <p>The map becomes a product once you understand it well enough to hand it to someone else.</p>
 
     <div class="positioning-quote">
         "At [247].ai I got to work at the foundation of something — designing the infrastructure that made bots and human agents work as one system, for 37 Fortune 500 enterprises, before there was a name for any of it. The diagram on the whiteboard became the console those 37 clients ran their operations from. That's what earning the system view actually means."
