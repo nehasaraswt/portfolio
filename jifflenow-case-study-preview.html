@@ -65,7 +65,8 @@ p em { font-style: italic; }
 .vendor-chip { background: var(--bone); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--mid); }
 
 .model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
-.model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); overflow: hidden; }
+.model-card .persona-photo { display: block; width: calc(100% + 40px); margin: -20px -20px 14px; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 20%; }
 .model-card .m-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 6px; }
 .model-card .m-time { font-size: 11px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
 .model-card .m-need { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
@@ -234,18 +235,21 @@ figure svg { width: 100%; height: auto; display: block; }
 
         <div class="model-grid">
             <div class="model-card">
+                <img class="persona-photo" src="jifflenow-persona-alex.jpg" alt="Alex — Territory Account Manager persona photo">
                 <div class="m-role">Alex</div>
                 <div class="m-time">Territory Account Manager · 30s–40s</div>
                 <div class="m-need">Speed and repeatability</div>
                 <div class="m-desc">Needs simple repeat flows — book ten meetings quickly, track progress against quarterly goals. Lives in the product daily.</div>
             </div>
             <div class="model-card">
+                <img class="persona-photo" src="jifflenow-persona-phillip.jpg" alt="Phillip — CEO persona photo">
                 <div class="m-role">Phillip</div>
                 <div class="m-time">CEO · 40s–50s</div>
                 <div class="m-need">Concierge, not a form</div>
                 <div class="m-desc">Expects a focused, high-judgment experience that feels like a personal assisted service — not a configuration screen.</div>
             </div>
             <div class="model-card">
+                <img class="persona-photo" src="jifflenow-persona-milinda.jpg" alt="Milinda — Meeting Manager persona photo">
                 <div class="m-role">Milinda</div>
                 <div class="m-time">Meeting Manager · 30s–50s</div>
                 <div class="m-need">Visibility and automation</div>
@@ -371,6 +375,13 @@ figure svg { width: 100%; height: auto; display: block; }
         </svg>
         </figure>
         <p class="img-caption">Mobile priority analysis — three high-priority actions (Book Meeting, Update Calendar, Block Calendar) earned the phone; configuration was deprioritised to the desktop. Same visual positioning and principles across surfaces, so the experience stayed coherent.</p>
+
+        <p>The mobile concept wireframes followed straight from that analysis — a dashboard built around the few things a user needs on the move, with <strong>Book Meeting</strong> anchored as the persistent primary action.</p>
+
+        <figure style="text-align:center; background:#fafafa;">
+            <img src="jifflenow-mobile-dashboard.jpg" alt="Jifflenow mobile dashboard wireframe — USERTYPE dashboard with Meeting Trends (Meetings, Users, Rooms, Offsite), Your Top Attendees, Meeting Reviews, and a persistent Meetings / Book Meeting action bar." style="width:300px;max-width:100%;border:1px solid var(--border);border-radius:14px;display:inline-block;margin:0;">
+        </figure>
+        <p class="img-caption">Mobile dashboard — one of the Axure concept wireframes. Meeting trends, top attendees, and reviews at a glance, with Book Meeting fixed to the bottom bar. The phone surface carries the same hierarchy as the desktop, stripped to what matters in motion.</p>
 
         <hr class="section-divider">
 
