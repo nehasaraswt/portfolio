@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jifflenow — Building a Design Practice from Scratch · Neha Saraswat</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bone: #fefdfb;
+    --text: #2e2e2b;
+    --mid: #565758;
+    --ochre: #b04000;
+    --rust: #b5342b;
+    --border: #eae6df;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bone); color: var(--text); line-height: 1.75; }
+
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 920px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 64px 60px; }
+
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); margin-bottom: 12px; }
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+.subtitle { font-size: 16px; color: var(--mid); line-height: 1.65; margin-bottom: 36px; max-width: 740px; }
+
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 0 0 52px; padding: 22px; background: rgba(181,52,43,0.05); border-radius: 6px; border-left: 4px solid var(--rust); }
+.meta-label { color: var(--rust); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.meta-value { color: var(--text); font-size: 13.5px; font-weight: 500; line-height: 1.4; }
+
+h2 { font-family: Georgia, serif; font-size: 26px; font-weight: 700; margin: 68px 0 20px; padding-left: 18px; border-left: 4px solid var(--rust); line-height: 1.25; }
+h3 { font-size: 11px; font-weight: 700; color: var(--ochre); text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 14px; }
+
+p { margin-bottom: 18px; color: var(--mid); font-size: 15.5px; line-height: 1.8; }
+p strong { color: var(--text); }
+p em { font-style: italic; }
+.opening { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+.opening::first-letter { font-family: Georgia, serif; font-size: 3.2em; font-weight: 700; float: left; line-height: 0.75; padding-right: 8px; padding-top: 6px; color: var(--rust); }
+
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+.stat-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; text-align: center; }
+.stat-box .stat-num { font-family: Georgia, serif; font-size: 30px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.stat-box .stat-label { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+.decision-inset { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin: 28px 0; border-left: 4px solid var(--ochre); }
+.decision-inset .di-label { color: var(--ochre); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: block; }
+.decision-inset .di-headline { font-family: Georgia, serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.35; }
+.di-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.di-row:last-child { border-bottom: none; padding-bottom: 0; }
+.di-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mid); }
+.di-tag.no { color: #ccc; }
+.di-tag.yes { color: var(--ochre); }
+.di-content { font-size: 14px; color: var(--mid); line-height: 1.65; }
+.di-content strong { color: var(--text); }
+.di-rationale { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--mid); line-height: 1.7; font-style: italic; }
+.di-rationale strong { color: var(--text); font-style: normal; }
+
+.comp-bench { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin: 20px 0; }
+.bench-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 12px; display: block; }
+.vendor-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.vendor-chip { background: var(--bone); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--mid); }
+
+.model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.model-card .m-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 6px; }
+.model-card .m-time { font-size: 11px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.model-card .m-need { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.model-card .m-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+.principle-box { background: rgba(176,64,0,0.05); border-left: 4px solid var(--ochre); padding: 20px 24px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.principle-box .p-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 8px; display: block; }
+.principle-box p { margin-bottom: 0; }
+
+.ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.ai-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
+.ai-card .ai-num { font-family: Georgia, serif; font-size: 28px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 8px; line-height: 1; }
+.ai-card .ai-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+.ai-card .ai-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+.img-caption { font-size: 12px; color: #999; margin-bottom: 36px; font-style: italic; padding-left: 2px; line-height: 1.5; }
+.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 8px; align-items: start; }
+.img-pair img { margin: 0; width: 100%; border: 1px solid var(--border); border-radius: 6px; display: block; }
+.img-pair .img-caption { margin-bottom: 0; }
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 28px 0; }
+.result-card { background: white; padding: 22px; border-radius: 6px; border: 1px solid var(--border); border-top: 3px solid var(--ochre); }
+.result-card .r-head { font-family: Georgia, serif; color: var(--text); font-size: 16px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13px; margin-bottom: 0; color: var(--mid); line-height: 1.6; }
+
+.reflect-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin: 24px 0; border-left: 4px solid #9a9590; }
+.reflect-box .rf-num { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: #9a9590; }
+.reflect-box .rf-head { font-weight: 700; color: var(--text); font-size: 15px; margin-bottom: 8px; }
+.reflect-box p { font-size: 14px; margin-bottom: 0; }
+
+.closing-quote { font-style: italic; color: var(--mid); margin: 52px 0 40px; padding: 26px 30px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--rust); font-size: 16px; line-height: 1.85; font-family: Georgia, serif; }
+
+.footer-bar { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); color: #aaa; font-size: 12px; text-align: center; line-height: 2.2; }
+.footer-bar a { color: var(--ochre); text-decoration: none; }
+
+figure { margin: 28px 0 8px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fefdfb; padding: 28px; }
+figure svg { width: 100%; height: auto; display: block; }
+
+@media (max-width: 768px) {
+    .container { padding: 32px 20px; }
+    .header-content { padding: 0 20px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .stat-row { grid-template-columns: 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+    .ai-grid { grid-template-columns: 1fr; }
+    .di-row { grid-template-columns: 1fr; gap: 4px; }
+    .img-pair { grid-template-columns: 1fr; }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="hero-label">Enterprise SaaS · UX Leadership · 2014–2016</div>
+        <h1>Building a Design Practice —<br>and Redesigning a Product —<br>from Scratch</h1>
+        <p class="subtitle">I joined Jifflenow as its first dedicated designer. There were no design processes, no shared visual language, no structured approach to UX. By the time the flagship redesign shipped, design had become central to how the product was built and how the company decided what to build.</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Role</div><div class="meta-value">Lead UX Designer · Product Strategy</div></div>
+            <div><div class="meta-label">Timeline</div><div class="meta-value">April 2014 – 2016</div></div>
+            <div><div class="meta-label">Product</div><div class="meta-value">Enterprise meeting management + Salesforce CRM</div></div>
+            <div><div class="meta-label">Scope</div><div class="meta-value">Design practice · full product redesign · platform vision</div></div>
+        </div>
+
+        <!-- ── OVERVIEW ── -->
+        <h2>The mandate nobody had written down</h2>
+
+        <p class="opening">Jifflenow was an enterprise SaaS platform that helped companies coordinate executive meetings and customer engagements at large events — integrated with Salesforce CRM and calendar systems. When I joined as Lead UX Designer in April 2014, design was not yet a discipline at the company. No processes, no shared visual language, no structured approach to the experience. The real assignment, underneath the job title, was to establish that design deserved a seat at the table at all.</p>
+
+        <p>Over the two years that followed, I built that practice from the ground up, led a full product overhaul codenamed <strong>Bluesky</strong>, and defined a platform vision that reached well beyond the immediate product scope. This is how that happened — and, just as importantly, what I'd do differently.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── CONTEXT & PROBLEM ── -->
+        <h2>Three users, one product, no coherence</h2>
+
+        <p>Jifflenow sat at the intersection of two complex enterprise workflows: event-based meeting management and CRM. Its users ranged from territory account managers booking back-to-back meetings at trade shows, to CEOs expecting a concierge-like experience, to meeting coordinators running logistics for entire sales teams. The platform had to serve all three — and serve them well.</p>
+
+        <p>The problem was that the product had grown organically around technical requirements, not user needs. The information architecture was dense, interaction patterns were inconsistent, and there was no coherent visual identity. Enterprise buyers were getting more sophisticated about UX and competitors were raising the bar. Jifflenow needed a complete rethink — not a visual refresh, but a foundational reconceptualization of how the product worked.</p>
+
+        <div class="principle-box">
+            <span class="p-label">The real challenge</span>
+            <p>It wasn't redesigning a product. It was proving that design should shape <em>what</em> gets built and <em>why</em> — not just polish what engineering had already decided.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── MY ROLE ── -->
+        <h2>My role</h2>
+
+        <p>I was the sole designer on the Product Strategy team — a three-person group with Arun and Ramesh, reporting to Hari Shetty. In practice, my scope ran well past execution. I set the design direction, made major product decisions, and actively evangelised design thinking across the organisation. I presented concepts and product flows to the full company and to the CEO, Shekhar. I mentored the team, clarified product logic with PMs and engineers, and built the artifacts and processes that gave design institutional weight.</p>
+
+        <p>I treated communication as a core design skill. Design decisions that aren't understood don't get built correctly. So I wrote documentation, scripted demos, and presented work in a way that made the <em>reasoning</em> visible — not just the output. Before touching a single screen, I invested in understanding the competitive landscape, the users, and the underlying information model. That foundation made the redesign tractable: by the time I was designing flows, the hardest questions already had answers.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── DOMINO ── -->
+        <h2>Domino — finding the visual space we could own</h2>
+
+        <p>Before designing a single Bluesky screen, I built a full design-direction deck I called <strong>Domino</strong>. I mapped eight enterprise products on a two-axis matrix — Minimal vs. Complex, Future-savvy vs. Traditional — to see the visual territory Jifflenow could credibly claim.</p>
+
+        <figure>
+        <svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">DOMINO — ASPIRATIONAL VISUAL POSITIONING</text>
+            <!-- target quadrant: TOP-LEFT = Minimal + Future-savvy -->
+            <rect x="80" y="55" width="310" height="190" fill="rgba(176,64,0,0.05)"/>
+            <text x="235" y="76" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(176,64,0,0.55)" letter-spacing="0.06em">THE SPACE WE COULD OWN</text>
+            <!-- axes (cross at 390,245) -->
+            <line x1="80" y1="245" x2="700" y2="245" stroke="#d4cec8" stroke-width="1.5"/>
+            <line x1="390" y1="55" x2="390" y2="430" stroke="#d4cec8" stroke-width="1.5"/>
+            <!-- axis labels: Minimal top / Complex bottom, Future-savvy left / Traditional right -->
+            <text x="390" y="48" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600">▲ MINIMAL</text>
+            <text x="390" y="446" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600">▼ COMPLEX</text>
+            <text x="88" y="240" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600">◀ FUTURE-SAVVY</text>
+            <text x="692" y="240" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600">TRADITIONAL ▶</text>
+            <!-- competitor dots (gray) — placed per the real matrix -->
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#5a5550" font-weight="600">
+                <circle cx="312" cy="118" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="324" y="122">Squareup</text>
+                <circle cx="368" cy="146" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="380" y="150">Box</text>
+                <circle cx="284" cy="182" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="296" y="186">Jobvite</text>
+                <circle cx="418" cy="236" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="430" y="232">Xero</text>
+                <circle cx="520" cy="248" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="532" y="252">Campaign Monitor</text>
+                <circle cx="472" cy="300" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="484" y="304">Desk</text>
+                <circle cx="566" cy="302" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="578" y="306">Harvest</text>
+                <circle cx="514" cy="332" r="6" fill="#d9d5cf" stroke="#c5c0b9"/><text x="526" y="336">Free Agent</text>
+            </g>
+            <!-- Jifflenow aspiration marker — top-left, near Squareup/Box -->
+            <circle cx="212" cy="120" r="26" fill="#b04000"/>
+            <text x="212" y="117" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="white">Jifflenow</text>
+            <text x="212" y="130" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">aspiration</text>
+            <!-- footnote -->
+            <text x="80" y="462" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#aaa">Minimal + future-savvy — the corner held by Squareup and Box, and uncontested by enterprise-meeting tools.</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Domino aspirational positioning — eight SaaS products plotted on Minimal–Complex (vertical) × Future-savvy–Traditional (horizontal). The desired place for Jifflenow was the minimal, future-savvy corner near Squareup and Box. Recreated from the original Domino deck.</p>
+
+        <p>From there I defined two candidate style directions — <strong>Lino</strong> and <strong>Mono</strong> — and six core visual principles, plus the enterprise B2B trends shaping the moment: flat design, washed palettes, mobile-first UX, micro-interactions, and the shift to cards and tiles. Domino gave the team a shared language and a point of view it could defend in a room.</p>
+
+        <div class="ai-grid">
+            <div class="ai-card"><div class="ai-title">Brand Aware</div><div class="ai-desc">The visual system had to carry Jifflenow's identity, not borrow a generic enterprise template.</div></div>
+            <div class="ai-card"><div class="ai-title">Visual Harmony</div><div class="ai-desc">Consistent rhythm and proportion across every surface — the antidote to the old organic sprawl.</div></div>
+            <div class="ai-card"><div class="ai-title">Air &amp; Light</div><div class="ai-desc">Generous whitespace as a feature, not wasted space — clarity for dense enterprise data.</div></div>
+            <div class="ai-card"><div class="ai-title">Contrast for Focus</div><div class="ai-desc">Hierarchy through contrast, directing attention to the one thing that matters now.</div></div>
+            <div class="ai-card"><div class="ai-title">Color for Attention</div><div class="ai-desc">Colour reserved for signal — status, action, alerts — never decoration.</div></div>
+            <div class="ai-card"><div class="ai-title">Visual Feedback</div><div class="ai-desc">Every state and action visibly acknowledged, so the system always felt responsive.</div></div>
+        </div>
+
+        <img src="jifflenow-dashboard-analytics.jpg" alt="Bluesky Company-Level Analytics dashboard — Overview/Users/Calendar tabs, event-at-a-glance cards, meetings-scheduled timeline, room usage charts, and a resources panel." style="max-width:100%;border:1px solid var(--border);border-radius:6px;display:block;margin:28px 0 8px;">
+        <p class="img-caption">The principles in practice — the Company-Level Analytics dashboard. Air and light, contrast for focus, colour reserved for signal, cards and tiles. The visual language Domino defined, shipped.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── PERSONAS ── -->
+        <h2>Three personas that kept us honest</h2>
+
+        <p>I defined three personas that grounded every design decision across the project. They weren't decoration — they were a decision filter.</p>
+
+        <div class="model-grid">
+            <div class="model-card">
+                <div class="m-role">Alex</div>
+                <div class="m-time">Territory Account Manager · 30s–40s</div>
+                <div class="m-need">Speed and repeatability</div>
+                <div class="m-desc">Needs simple repeat flows — book ten meetings quickly, track progress against quarterly goals. Lives in the product daily.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">Phillip</div>
+                <div class="m-time">CEO · 40s–50s</div>
+                <div class="m-need">Concierge, not a form</div>
+                <div class="m-desc">Expects a focused, high-judgment experience that feels like a personal assisted service — not a configuration screen.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">Milinda</div>
+                <div class="m-time">Meeting Manager · 30s–50s</div>
+                <div class="m-need">Visibility and automation</div>
+                <div class="m-desc">Makes everything run behind the scenes. Needs clear oversight of the whole operation and automation she can trust.</div>
+            </div>
+        </div>
+
+        <div class="principle-box">
+            <span class="p-label">The persona principle</span>
+            <p>Any concept had to hold up against <strong>at least two of the three personas.</strong> That rule kept us from designing for the centre of the Venn diagram while ignoring the edges — the failure mode of products that try to please everyone and serve no one.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── IA: TIME AS PRIMARY ENTITY ── -->
+        <h2>The reframe: time is the primary entity</h2>
+
+        <p>The most conceptually significant work I did at Jifflenow was reframing the product's information architecture around one governing idea. A meeting is not a record in a database — it is a <strong>claim on time</strong>, enriched by people, purpose, and place.</p>
+
+        <figure>
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">THE MEETING TRANSACTION</text>
+            <!-- equation row -->
+            <g font-family="-apple-system,system-ui,sans-serif">
+                <rect x="40"  y="50" width="120" height="48" rx="6" fill="#f2ede8" stroke="#e2ddd7"/>
+                <text x="100" y="79" text-anchor="middle" font-size="14" font-weight="600" fill="#6a6560">People</text>
+                <text x="178" y="80" text-anchor="middle" font-size="20" fill="#c0b8b0">+</text>
+                <rect x="196" y="50" width="120" height="48" rx="6" fill="#f2ede8" stroke="#e2ddd7"/>
+                <text x="256" y="79" text-anchor="middle" font-size="14" font-weight="600" fill="#6a6560">Purpose</text>
+                <text x="334" y="80" text-anchor="middle" font-size="20" fill="#c0b8b0">+</text>
+                <rect x="352" y="50" width="120" height="48" rx="6" fill="#f2ede8" stroke="#e2ddd7"/>
+                <text x="412" y="79" text-anchor="middle" font-size="14" font-weight="600" fill="#6a6560">Place</text>
+                <text x="490" y="80" text-anchor="middle" font-size="20" fill="#c0b8b0">+</text>
+                <!-- TIME emphasised -->
+                <rect x="508" y="50" width="120" height="48" rx="6" fill="#b04000"/>
+                <text x="568" y="75" text-anchor="middle" font-size="14" font-weight="700" fill="white">Time</text>
+                <text x="568" y="90" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.75)">primary entity</text>
+                <text x="650" y="80" text-anchor="middle" font-size="20" fill="#b04000" font-weight="700">=</text>
+            </g>
+            <!-- result -->
+            <rect x="40" y="118" width="680" height="40" rx="6" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.25)"/>
+            <text x="380" y="143" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="700" fill="#7a2e00">A meeting transaction — documents attach to the time entity, not a separate module</text>
+            <!-- nesting -->
+            <text x="380" y="194" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#aaa" font-weight="700" letter-spacing="0.06em">AND IT NESTS CLEANLY</text>
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="11" font-weight="600">
+                <rect x="48"  y="210" width="140" height="44" rx="6" fill="white" stroke="#d8d0c5"/>
+                <text x="118" y="231" text-anchor="middle" fill="#3a3a36">Meeting</text>
+                <text x="118" y="245" text-anchor="middle" font-size="8.5" fill="#aaa" font-weight="400">a claim on time</text>
+                <text x="205" y="237" text-anchor="middle" font-size="16" fill="#c0b8b0">→</text>
+                <rect x="222" y="210" width="140" height="44" rx="6" fill="white" stroke="#d8d0c5"/>
+                <text x="292" y="231" text-anchor="middle" fill="#3a3a36">Schedule</text>
+                <text x="292" y="245" text-anchor="middle" font-size="8.5" fill="#aaa" font-weight="400">group of meetings</text>
+                <text x="379" y="237" text-anchor="middle" font-size="16" fill="#c0b8b0">→</text>
+                <rect x="396" y="210" width="140" height="44" rx="6" fill="white" stroke="#d8d0c5"/>
+                <text x="466" y="231" text-anchor="middle" fill="#3a3a36">Calendar</text>
+                <text x="466" y="245" text-anchor="middle" font-size="8.5" fill="#aaa" font-weight="400">set of schedules</text>
+                <text x="553" y="237" text-anchor="middle" font-size="16" fill="#b04000">→</text>
+                <rect x="570" y="210" width="150" height="44" rx="6" fill="#b04000"/>
+                <text x="645" y="231" text-anchor="middle" fill="white">Jifflenow instance</text>
+                <text x="645" y="245" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.7)" font-weight="400">a calendar, in essence</text>
+            </g>
+        </svg>
+        </figure>
+        <p class="img-caption">The information model — People + Purpose + Place + Time = a meeting transaction, with time as the spine. Meetings nest into schedules, schedules into a calendar, and a calendar <em>is</em> a Jifflenow instance. Documents attach to time, not to a separate module.</p>
+
+        <p>This model simplified the IA considerably. Fewer information levels meant faster navigation. Entities could be surfaced as a single filterable, groupable set rather than siloed sections. And the conceptual clarity made the product far easier to explain to engineers and PMs — which cut rework significantly. A clean mental model isn't an aesthetic preference; it's an engineering efficiency.</p>
+
+        <img src="jifflenow-book-meeting.jpg" alt="Bluesky Book-a-Meeting flow — a time grid for selecting meeting slots, a meeting-type and room picker, an attendee panel (internal/external), and a meeting-in-making summary bar." style="max-width:100%;border:1px solid var(--border);border-radius:6px;display:block;margin:28px 0 8px;">
+        <p class="img-caption">The model, shipped — the Book-a-Meeting flow. Time is the canvas: pick the slot first, then layer people, purpose, and place onto it. The meeting-in-making bar assembles the transaction as you go.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── BLUESKY ── -->
+        <h2>Bluesky — the redesign, shipped in a quarter</h2>
+
+        <p>Bluesky was the codename for the complete UX overhaul. I owned the entire design surface: information architecture, interaction patterns, every user flow, and the visual language. By the end of Q3 2014 — within a single quarter of joining — I had finalised the visual style, narrowed and researched the audiences, locked the IA, defined the interaction patterns, designed all flows, and validated the primary end-user interactions with real users. On schedule.</p>
+
+        <p>It wasn't a cosmetic exercise. It meant rethinking how the product organised information, how users moved between tasks, and how the visual system communicated hierarchy and state. Every decision connected back to the three personas and the time-based IA model I'd built in parallel — which is exactly why the execution went fast. The hard thinking was already done.</p>
+
+        <div class="img-pair">
+            <div>
+                <img src="jifflenow-event-dashboard.jpg" alt="Bluesky event dashboard — alerts &amp; notifications, a meetings panel with enterprise client logos (NetApp, Brother, BP), a 'Book a Meeting Now' call to action, and peak analytics donut charts." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">Event dashboard — alerts, live meetings (real enterprise clients), and peak analytics in one glance. The account manager's home.</p>
+            </div>
+            <div>
+                <img src="jifflenow-login.jpg" alt="Bluesky login — a clean 'Select Company' entry screen on the dark branded surface." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">Entry — company-aware login, the concierge tone Phillip expected, set from the first screen.</p>
+            </div>
+        </div>
+
+        <div class="img-pair">
+            <div>
+                <img src="jifflenow-users.jpg" alt="Bluesky user management — a card grid of users with role and status, an 'Add a user' tile, and contextual actions like Activate and Reinvite on empty/pending states." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">User management — cards and tiles, with empty and pending states prompting the next action. Task-aware by design.</p>
+            </div>
+            <div>
+                <img src="jifflenow-availability.jpg" alt="Bluesky settings — default availability for users, rooms, and meetings, set with day-by-day time-range sliders." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">Settings · Availability — Milinda's control surface: default availability for users, rooms, and meetings, on a time canvas.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── MOBILE ── -->
+        <h2>Mobile as a first-class context</h2>
+
+        <p>I built a separate mobile strategy that treated mobile as its own context, not a shrunk-down desktop. A task-priority analysis sorted what actually belonged on a phone — quick, in-the-moment actions — from what belonged in a focused desktop session.</p>
+
+        <figure>
+        <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">MOBILE TASK PRIORITY</text>
+            <!-- high priority -->
+            <text x="40" y="58" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.05em">ON THE PHONE — HIGH PRIORITY</text>
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="600">
+                <rect x="40"  y="68" width="220" height="46" rx="6" fill="#b04000"/><text x="150" y="96" text-anchor="middle" fill="white">Book Meeting</text>
+                <rect x="272" y="68" width="220" height="46" rx="6" fill="#b04000"/><text x="382" y="96" text-anchor="middle" fill="white">Update Calendar</text>
+                <rect x="504" y="68" width="216" height="46" rx="6" fill="#b04000"/><text x="612" y="96" text-anchor="middle" fill="white">Block Calendar</text>
+            </g>
+            <!-- deprioritised -->
+            <text x="40" y="150" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#aaa" letter-spacing="0.05em">LEFT FOR THE DESKTOP</text>
+            <rect x="40" y="160" width="680" height="34" rx="6" fill="#f2ede8" stroke="#e2ddd7"/>
+            <text x="380" y="182" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="12" fill="#888">Configuration &amp; setup — better suited to a focused desktop session</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Mobile priority analysis — three high-priority actions (Book Meeting, Update Calendar, Block Calendar) earned the phone; configuration was deprioritised to the desktop. Same visual positioning and principles across surfaces, so the experience stayed coherent.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── SALESFORCE ── -->
+        <h2>Salesforce integration — two offerings, by design</h2>
+
+        <p>The Salesforce integration was a significant sales enabler, so I designed two distinct offering options to give the sales team flexibility in customer conversations — a lighter API path and a deeper embedded one.</p>
+
+        <figure>
+        <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg">
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">SALESFORCE INTEGRATION — TWO OPTIONS</text>
+            <!-- Option A -->
+            <rect x="32" y="40" width="340" height="190" rx="6" fill="#f2ede8" stroke="#e2ddd7"/>
+            <text x="56" y="68" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="700" fill="#6a6560">Option A — API Integration</text>
+            <text x="56" y="84" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#aaa" letter-spacing="0.04em">LIGHTER · FASTER TO ADOPT</text>
+            <line x1="56" y1="96" x2="348" y2="96" stroke="#e2ddd7"/>
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="#7a7470">
+                <text x="56" y="120">↳ SFDC accounts, opportunities &amp; contacts</text>
+                <text x="68" y="137">populate the Jifflenow request form</text>
+                <text x="56" y="162">↳ Meeting details sync back to SFDC</text>
+                <text x="68" y="179">as open activities</text>
+            </g>
+            <text x="56" y="212" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-style="italic">Jifflenow stays the system of work</text>
+            <!-- Option B -->
+            <rect x="388" y="40" width="340" height="190" rx="6" fill="#b04000"/>
+            <text x="412" y="68" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="700" fill="white">Option B — Embedded in SFDC</text>
+            <text x="412" y="84" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.6)" letter-spacing="0.04em">DEEPER · iFRAME INSIDE SALESFORCE</text>
+            <line x1="412" y1="96" x2="704" y2="96" stroke="rgba(255,255,255,0.2)"/>
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="11.5" fill="rgba(255,255,255,0.88)">
+                <text x="412" y="118">↳ Launches inside Salesforce as an iFrame</text>
+                <text x="412" y="138">↳ Forms pre-filled from account / opportunity</text>
+                <text x="412" y="158">↳ New contacts sync back to SFDC</text>
+                <text x="412" y="178">↳ Meetings viewable &amp; editable in SFDC</text>
+            </g>
+            <text x="412" y="212" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="rgba(255,255,255,0.7)" font-style="italic">My recommendation: pair with SSO</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Two Salesforce offerings — Option A (API sync) and Option B (Jifflenow embedded inside Salesforce as an iFrame, with SSO recommended). I also scripted and documented a demo, translating the design into a narrative the sales team could use in customer conversations.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── PLATFORM VISION ── -->
+        <h2>Parallel Worlds — the platform the model could become</h2>
+
+        <p>The IA model had an implication I wanted the company to see clearly: the same <em>time-slot-plus-entities</em> architecture could power far more than meeting management. I built a platform-positioning deck — <strong>Parallel Worlds</strong> — that made the case explicitly. Not as a distraction from the immediate work, but as a strategic frame that helped the team make better near-term architectural choices.</p>
+
+        <figure>
+        <svg viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg">
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">PARALLEL WORLDS — ONE MODEL, MANY DOMAINS</text>
+            <!-- hub -->
+            <circle cx="380" cy="150" r="62" fill="#b04000"/>
+            <text x="380" y="142" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="12" font-weight="700" fill="white">Time +</text>
+            <text x="380" y="158" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="12" font-weight="700" fill="white">Entities</text>
+            <text x="380" y="174" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,0.7)">the core model</text>
+            <!-- spokes -->
+            <g stroke="#d4cec8" stroke-width="1.5">
+                <line x1="318" y1="150" x2="170" y2="70"/>
+                <line x1="318" y1="150" x2="160" y2="150"/>
+                <line x1="318" y1="150" x2="170" y2="230"/>
+                <line x1="442" y1="150" x2="590" y2="90"/>
+                <line x1="442" y1="150" x2="600" y2="150"/>
+                <line x1="442" y1="150" x2="590" y2="210"/>
+            </g>
+            <g font-family="-apple-system,system-ui,sans-serif" font-size="11.5" font-weight="600" fill="#5a5550">
+                <rect x="30"  y="52" width="140" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="100" y="74" text-anchor="middle">Sales meetings</text>
+                <rect x="20"  y="132" width="140" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="90" y="154" text-anchor="middle">Project scheduling</text>
+                <rect x="30"  y="212" width="140" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="100" y="234" text-anchor="middle">Social events</text>
+                <rect x="590" y="72" width="150" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="665" y="94" text-anchor="middle">Marketing campaigns</text>
+                <rect x="600" y="132" width="140" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="670" y="154" text-anchor="middle">Recruitment</text>
+                <rect x="590" y="192" width="150" height="36" rx="18" fill="rgba(176,64,0,0.07)" stroke="rgba(176,64,0,0.18)"/><text x="665" y="214" text-anchor="middle">Event management</text>
+            </g>
+        </svg>
+        </figure>
+        <p class="img-caption">Parallel Worlds — the same time-plus-entities model could run sales meetings, project scheduling, social events, marketing campaigns, recruitment, and event management. Articulating the platform potential made the near-term architecture choices sharper.</p>
+
+        <p><strong>Executive Briefing Center (EBC).</strong> In parallel with Bluesky, I led the UX for Jifflenow's EBC product — a separate offering for executive-level customer briefings. It shared the Bluesky visual language but served a distinct use case and audience, with its own flows and interaction model.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── IMPACT ── -->
+        <h2>Impact</h2>
+
+        <p>The most durable impact was institutional. I built the design practice from nothing — processes, artifacts, principles, and a shared language the team could keep using after a decision was made. I changed how the company thought about design: not a service that polished finished products, but a discipline that shaped what got built and why.</p>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="r-head">Bluesky, in one quarter</span>
+                <p>Full redesign — IA, interaction patterns, all flows, visual language, and validated user interactions — delivered within a single quarter of joining, on schedule.</p>
+            </div>
+            <div class="result-card">
+                <span class="r-head">Design got a seat</span>
+                <p>Design moved from absent to central: presented to the full company and the CEO, and embedded in how product decisions were made.</p>
+            </div>
+            <div class="result-card">
+                <span class="r-head">A sales-ready story</span>
+                <p>The Salesforce integration design — two offerings plus a scripted demo — gave the sales team a demo-ready narrative for a high-value feature.</p>
+            </div>
+            <div class="result-card">
+                <span class="r-head">A platform frame</span>
+                <p>The Parallel Worlds vision seeded a longer-term conversation about Jifflenow's architectural ambitions, beyond meeting management.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── WHAT I'D DO DIFFERENTLY ── -->
+        <h2>What I'd do differently</h2>
+
+        <div class="reflect-box">
+            <div class="rf-head"><span class="rf-num">1.</span>&nbsp; A formal customer feedback loop, earlier.</div>
+            <p>I validated the primary end-user interactions, but I was also carrying major product decisions in parallel. Ongoing qualitative research woven into the design cycle — not just flow-level validation — would have made those decisions better-evidenced and easier to defend.</p>
+        </div>
+        <div class="reflect-box">
+            <div class="rf-head"><span class="rf-num">2.</span>&nbsp; A living design rationale, not a Q4 deliverable.</div>
+            <p>The decisions were sound, but the reasoning lived largely in my head and in presentations. Documenting rationale as I went — rather than treating comprehensive docs as a later milestone — would have sped onboarding and reduced the dependency on my direct involvement to resolve ambiguity.</p>
+        </div>
+
+        <div class="closing-quote">
+            I came in to design screens and left having built a discipline. The screens shipped on schedule — but the thing that lasted was a way of thinking the company didn't have before I arrived: that design decides what gets built, not just how it looks.
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── ARTIFACTS ── -->
+        <h2>Artifacts</h2>
+        <p>Source materials behind this case study — available on request:</p>
+        <div class="comp-bench">
+            <span class="bench-label">Decks, wireframes &amp; documentation</span>
+            <div class="vendor-list">
+                <span class="vendor-chip">Domino design direction deck (v1.2)</span>
+                <span class="vendor-chip">UXD Strategy decks (v0 · v1.0)</span>
+                <span class="vendor-chip">Personas deck + benchmark reference</span>
+                <span class="vendor-chip">Mobile UX strategy deck</span>
+                <span class="vendor-chip">Parallel Worlds platform deck</span>
+                <span class="vendor-chip">9 Axure iterations — My Meetings flow</span>
+                <span class="vendor-chip">Salesforce integration doc + demo script</span>
+                <span class="vendor-chip">REST API guide (v1.5)</span>
+                <span class="vendor-chip">PSD screen mocks — My Meetings</span>
+            </div>
+        </div>
+
+        <div class="footer-bar">
+            © 2026 Neha Saraswat · Product · Design · GTM<br>
+            <a href="PORTFOLIO.html">← Back to Portfolio</a>
+        </div>
+
+    </div>
+</body>
+</html>

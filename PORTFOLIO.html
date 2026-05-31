@@ -872,6 +872,19 @@
                 </div>
             </div>
 
+            <div class="divider"></div>
+
+            <!-- Row 4: Jifflenow -->
+            <div class="grid grid--2" style="margin-top: var(--space-xl);">
+                <div class="card">
+                    <div class="card-image" style="background: url('jifflenow-dashboard-analytics.jpg') center top/cover no-repeat;"></div>
+                    <span class="label-caps">Enterprise SaaS • 2014–2016 &nbsp;·&nbsp; <span style="color: #4a7055; font-weight: 700;">Open</span></span>
+                    <h3>Jifflenow — A Design Practice from Scratch</h3>
+                    <p>Joined as the first dedicated designer and built the design practice from nothing — processes, visual language, and principles — while leading Bluesky, a full product redesign shipped in a single quarter. Reframed the information architecture around time as the primary entity and defined a platform vision beyond meeting management.</p>
+                    <a href="jifflenow-case-study-preview.html">View Case Study →</a>
+                </div>
+            </div>
+
 
         </div>
     </section>
@@ -1022,7 +1035,7 @@
         // Intercept all case study links
         let pendingUrl = null;
 
-        document.querySelectorAll('a[href*="-case-study-preview.html"]:not([href*="walmart-assortment"])').forEach(link => {
+        document.querySelectorAll('a[href*="-case-study-preview.html"]:not([href*="walmart-assortment"]):not([href*="jifflenow"])').forEach(link => {
             link.addEventListener('click', (e) => {
                 if (!sessionStorage.getItem('portfolio_unlocked')) {
                     e.preventDefault();
