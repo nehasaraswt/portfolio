@@ -3,665 +3,1169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickBooks FP&A Case Study - Neha Saraswat</title>
+    <title>QuickBooks FP&A — Building a 0→1 Financial Planning Product · Neha Saraswat</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --surface-bone: #fefdfb;
-            --text-primary: #2e2e2b;
-            --text-secondary: #565758;
-            --accent-ochre: #b04000;
-            --accent-ochre-light: #ff6830;
-            --accent-rust: #b5342b;
-            --accent-rust-light: #cd5545;
-            --accent-rust-deep: #7d2220;
-            --border-light: #eae6df;
-
-            --ff-display: 'Georgia', serif;
-            --ff-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-            --ff-mono: 'Monaco', monospace;
-        }
-
-        body {
-            background: var(--surface-bone);
-            color: var(--text-primary);
-            font-family: var(--ff-body);
-            line-height: 1.6;
-            font-size: 16px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 40px;
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--surface-bone);
-            border-bottom: 1px solid var(--border-light);
-            padding: 24px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav .container {
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav h1 {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            color: var(--accent-ochre);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: left;
-            margin-bottom: 80px;
-        }
-
-        .case-study-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-
-        .case-study-title::before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 40px;
-            background: var(--accent-rust);
-        }
-
-        h1 {
-            font-family: var(--ff-display);
-            font-size: 48px;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .meta {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-
-        .intro-text {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 800px;
-        }
-
-        /* Metadata Box */
-        .metadata {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .metadata-item {
-            flex: 1;
-        }
-
-        .metadata-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .metadata-value {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 80px;
-        }
-
-        h2 {
-            font-family: var(--ff-display);
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 40px;
-            border-left: 4px solid var(--accent-rust);
-            padding-left: 20px;
-        }
-
-        h3 {
-            font-family: var(--ff-display);
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 1.3;
-            margin-bottom: 24px;
-            margin-top: 40px;
-        }
-
-        h3:first-child {
-            margin-top: 0;
-        }
-
-        p {
-            margin-bottom: 24px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        ul, ol {
-            margin-left: 24px;
-            margin-bottom: 24px;
-            color: var(--text-secondary);
-        }
-
-        li {
-            margin-bottom: 12px;
-            line-height: 1.8;
-        }
-
-        strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        em {
-            font-style: italic;
-            color: var(--accent-rust);
-        }
-
-        /* Images */
-        img {
-            width: 100%;
-            height: auto;
-            margin: 40px 0;
-            border: 1px solid var(--border-light);
-            display: block;
-        }
-
-        .image-caption {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: -32px;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        /* Feature Boxes */
-        .feature-box {
-            background: white;
-            border: 1px solid var(--border-light);
-            padding: 32px;
-            margin-bottom: 32px;
-            border-left: 4px solid var(--accent-ochre);
-        }
-
-        .feature-box h4 {
-            margin-top: 0;
-            color: var(--accent-ochre);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .feature-box p {
-            margin-bottom: 12px;
-            font-size: 15px;
-        }
-
-        .feature-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .feature-box ul {
-            margin-bottom: 0;
-        }
-
-        .feature-box li {
-            margin-bottom: 8px;
-        }
-
-        /* Decision Boxes */
-        .decision {
-            background: white;
-            border: 1px solid var(--border-light);
-            padding: 32px;
-            margin-bottom: 24px;
-            border-left: 4px solid var(--accent-rust);
-        }
-
-        .decision h4 {
-            margin-top: 0;
-            color: var(--accent-rust);
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        /* Results Section */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin: 40px 0;
-        }
-
-        .result-item {
-            background: white;
-            border: 1px solid var(--border-light);
-            padding: 32px;
-        }
-
-        .result-item h4 {
-            color: var(--accent-ochre);
-            margin-bottom: 16px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .result-item p {
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .result-item p:last-child {
-            margin-bottom: 0;
-        }
-
-        .result-item ul {
-            margin-left: 20px;
-            margin-bottom: 0;
-        }
-
-        .result-item li {
-            font-size: 14px;
-        }
-
-        /* Divider */
-        hr {
-            border: none;
-            border-top: 1px solid var(--border-light);
-            margin: 60px 0;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-light);
-            padding-top: 40px;
-            margin-top: 80px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* Video */
-        video {
-            width: 100%;
-            height: auto;
-            margin: 40px 0;
-            border: 1px solid var(--border-light);
-            display: block;
-            background: #000;
-        }
-
-        .video-caption {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: -32px;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-            }
-
-            nav .container {
-                padding: 0 20px;
-                flex-direction: row;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            h3 {
-                font-size: 18px;
-            }
-
-            .metadata {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .feature-box,
-            .decision {
-                padding: 20px;
-            }
-
-            .result-item {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 24px 16px;
-            }
-
-            nav .container {
-                padding: 0 16px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-
-            h2 {
-                font-size: 17px;
-            }
-
-            h3 {
-                font-size: 16px;
-            }
-
-            p {
-                font-size: 14px;
-            }
-
-            li {
-                font-size: 14px;
-            }
-
-            .meta {
-                font-size: 12px;
-            }
-
-            .feature-box,
-            .decision {
-                padding: 16px;
-            }
-
-            .result-item {
-                padding: 16px;
-            }
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bone: #fefdfb;
+    --text: #2e2e2b;
+    --mid: #565758;
+    --ochre: #b04000;
+    --rust: #b5342b;
+    --border: #eae6df;
+    --qb-green: #2ca01c;
+    --qb-teal: #0077c5;
+    --qb-bg: #f4f6f8;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bone); color: var(--text); line-height: 1.75; }
+
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 920px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 64px 60px; }
+
+/* Hero */
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); margin-bottom: 12px; }
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+.subtitle { font-size: 16px; color: var(--mid); line-height: 1.65; margin-bottom: 36px; max-width: 740px; }
+
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 0 0 52px; padding: 22px; background: rgba(181,52,43,0.05); border-radius: 6px; border-left: 4px solid var(--rust); }
+.meta-label { color: var(--rust); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.meta-value { color: var(--text); font-size: 13.5px; font-weight: 500; line-height: 1.4; }
+
+/* Headings */
+h2 { font-family: Georgia, serif; font-size: 26px; font-weight: 700; margin: 68px 0 20px; padding-left: 18px; border-left: 4px solid var(--rust); line-height: 1.25; }
+h3 { font-size: 11px; font-weight: 700; color: var(--ochre); text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 14px; }
+
+/* Prose */
+p { margin-bottom: 18px; color: var(--mid); font-size: 15.5px; line-height: 1.8; }
+p strong { color: var(--text); }
+p em { font-style: italic; }
+.opening { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+.opening::first-letter { font-family: Georgia, serif; font-size: 3.2em; font-weight: 700; float: left; line-height: 0.75; padding-right: 8px; padding-top: 6px; color: var(--rust); }
+
+/* Stats row */
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+.stat-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; text-align: center; }
+.stat-box .stat-num { font-family: Georgia, serif; font-size: 30px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.stat-box .stat-label { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+/* Problem cards */
+.problems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.problem-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.problem-card .prob-stat { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.problem-card .prob-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.problem-card .prob-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+/* Decision inset */
+.decision-inset { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin: 28px 0; border-left: 4px solid var(--ochre); }
+.decision-inset .di-label { color: var(--ochre); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: block; }
+.decision-inset .di-headline { font-family: Georgia, serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.35; }
+.di-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.di-row:last-child { border-bottom: none; padding-bottom: 0; }
+.di-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mid); }
+.di-tag.no { color: #ccc; text-decoration: line-through; }
+.di-tag.yes { color: var(--ochre); }
+.di-content { font-size: 14px; color: var(--mid); line-height: 1.65; }
+.di-content strong { color: var(--text); }
+.di-rationale { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13.5px; color: var(--mid); line-height: 1.7; font-style: italic; }
+.di-rationale strong { color: var(--text); font-style: normal; }
+
+/* Vendor list / competitive bench */
+.comp-bench { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin: 20px 0; }
+.bench-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 12px; display: block; }
+.vendor-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.vendor-chip { background: var(--bone); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--mid); }
+
+/* Mental models */
+.model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.model-card .m-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 6px; }
+.model-card .m-time { font-size: 11px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.model-card .m-need { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.model-card .m-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+/* Principle box */
+.principle-box { background: rgba(176,64,0,0.05); border-left: 4px solid var(--ochre); padding: 20px 24px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.principle-box .p-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 8px; display: block; }
+.principle-box p { margin-bottom: 0; }
+
+/* AI principles grid */
+.ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.ai-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
+.ai-card .ai-num { font-family: Georgia, serif; font-size: 28px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 8px; line-height: 1; }
+.ai-card .ai-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+.ai-card .ai-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+/* Sprint inset / timeline */
+.sprint-inset { background: #1a2332; border-radius: 6px; padding: 24px 28px; margin: 28px 0; }
+.sprint-inset .si-label { color: #f4a020; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; display: block; }
+.sprint-event { display: grid; grid-template-columns: 100px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.sprint-event:last-child { border-bottom: none; }
+.sprint-date { color: #f4a020; font-size: 13px; font-weight: 700; }
+.sprint-desc { color: #e0e6ed; font-size: 13.5px; line-height: 1.55; }
+
+/* Images */
+img { max-width: 100%; height: auto; margin: 28px 0 8px; border-radius: 6px; border: 1px solid var(--border); display: block; }
+.img-caption { font-size: 12px; color: #999; margin-bottom: 36px; font-style: italic; padding-left: 2px; line-height: 1.5; }
+.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.img-pair img { margin: 0; }
+
+/* Video */
+video { max-width: 100%; height: auto; margin: 28px 0 8px; border-radius: 6px; border: 1px solid var(--border); display: block; background: #000; }
+
+/* Section divider */
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+/* Results */
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 28px 0; }
+.result-card { background: white; padding: 22px; border-radius: 6px; border: 1px solid var(--border); }
+.result-card .number { font-family: Georgia, serif; color: var(--rust); font-size: 24px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13px; margin-bottom: 0; color: var(--mid); line-height: 1.5; }
+
+/* Closing quote */
+.closing-quote { font-style: italic; color: var(--mid); margin: 52px 0 40px; padding: 26px 30px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--rust); font-size: 16px; line-height: 1.85; font-family: Georgia, serif; }
+
+/* Footer */
+.footer-bar { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); color: #aaa; font-size: 12px; text-align: center; line-height: 2.2; }
+.footer-bar a { color: var(--ochre); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .container { padding: 32px 20px; }
+    .header-content { padding: 0 20px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+    .ai-grid { grid-template-columns: 1fr; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .img-pair { grid-template-columns: 1fr; }
+    .di-row { grid-template-columns: 1fr; gap: 4px; }
+    .sprint-event { grid-template-columns: 1fr; gap: 4px; }
+}
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="PORTFOLIO.html" style="font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em;">NS</a>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
         </div>
-    </nav>
+    </div>
 
     <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="case-study-title">
-                <h1>Building a 0→1 Financial Planning Product</h1>
+
+        <div class="hero-label">Financial Planning &amp; Analysis · QuickBooks · 2021–2024</div>
+        <h1>Building a 0→1 Financial<br>Planning Product</h1>
+        <p class="subtitle">I came in as Head of Design for QuickBooks Desktop — and found a gap neither Desktop nor Online had addressed. This is how a migration mandate turned into a new product category, a customer repositioning, and the early architecture of Intuit Enterprise Suite.</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Starting point</div><div class="meta-value">Head of Design · QuickBooks Desktop</div></div>
+            <div><div class="meta-label">Built for</div><div class="meta-value">QuickBooks Online · Desktop overlap</div></div>
+            <div><div class="meta-label">Timeline</div><div class="meta-value">2021–2024</div></div>
+            <div><div class="meta-label">Role</div><div class="meta-value">Group Product Design Manager</div></div>
+            <div><div class="meta-label">Reach</div><div class="meta-value">1.5M customers</div></div>
+        </div>
+
+        <!-- ── THE PROBLEM ── -->
+        <h2>The problem nobody had named yet</h2>
+
+        <p class="opening">My primary role at Intuit was Head of Design for QuickBooks Desktop — the on-premises product that had been the financial backbone for millions of businesses for decades. Alongside that, my mandate included helping migrate those users to QuickBooks Online, the cloud version. As I worked across both products, I started noticing something the migration roadmap hadn't fully addressed: the customer base wasn't uniform, and it was changing shape.</p>
+
+        <p>Small businesses were polarising. Some simplified into solo operators and side businesses; others added staff and complexity, edging toward miniature corporations. Both ends were underserved — neither had an integrated way to plan ahead. And QuickBooks Desktop's most mature customers, with real financial complexity, had no planning tool even in the product they were already paying for.</p>
+
+        <div class="sprint-inset" style="margin: 20px 0 24px; padding: 18px 24px;">
+            <span class="si-label" style="margin-bottom: 8px;">MIGRATION SCALE</span>
+            <p style="color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.6; margin: 0;">Between FY21–FY23, <strong style="color:#f4a020;">850K QuickBooks Desktop customers</strong> migrated to Online — 28% of all QBO acquisitions. Feature parity sat at 45% by early FY23. The most financially complex customers were most at risk of churning, and the ecosystem had no answer for them.</p>
+        </div>
+
+        <p>The name I kept reaching for in early research was <em>strategic avoidance.</em> Owners know they should forecast and build scenarios. They defer because starting costs too much time and thought — and no tool in the ecosystem made starting easy. The result is financial knowledge debt: the business runs on gut feel until a crisis exposes the gap.</p>
+
+        <div class="stat-row">
+            <div class="stat-box">
+                <span class="stat-num">85%</span>
+                <div class="stat-label">of target customers running financial planning on spreadsheets — outside QuickBooks entirely</div>
             </div>
-            <p class="meta">QuickBooks Online • 2021–2023 (Launch) | 2021–2024 (Role Duration)</p>
-
-            <p class="intro-text">
-                QuickBooks is the financial backbone for tens of millions of SMBs. When I joined in 2021, it had no integrated planning or forecasting capability for mid-market customers — a gap that mattered at scale. Within my first six months at Intuit, I was called to lead FP&A in addition to heading design for QuickBooks Desktop. My mandate: design and lead a 0→1 financial planning product, from first concept through general availability.
-            </p>
-
-            <div class="metadata">
-                <div class="metadata-item">
-                    <span class="metadata-label">Role</span>
-                    <div class="metadata-value">Group Product Design Manager</div>
-                </div>
-                <div class="metadata-item">
-                    <span class="metadata-label">FP&A Core Team</span>
-                    <div class="metadata-value">Senior Designer · Content Designer · Researcher</div>
-                </div>
-                <div class="metadata-item">
-                    <span class="metadata-label">Reach</span>
-                    <div class="metadata-value">1.5M customers</div>
-                </div>
+            <div class="stat-box">
+                <span class="stat-num">13%</span>
+                <div class="stat-label">could identify business issues early enough to act on them before they compounded</div>
             </div>
-
-        </section>
-
-        <!-- The Challenge -->
-        <section>
-            <h2>The Challenge</h2>
-            <p>
-                Mid-market SMBs lacked integrated tools for forward-looking financial planning. <strong>85% of our target customers were running their entire financial planning on spreadsheets</strong> — outside QuickBooks entirely. Only 13% could identify business issues in time to act on them, and 80% said they moved too slowly to correct course. Annual budgets were taking 2–3 months to produce. The product gap wasn't marginal. It was structural.
-            </p>
-            <p>
-                Key customer pain points:
-            </p>
-            <ul>
-                <li><em>What will my cash flow look like next quarter?</em> → Requires manual Excel modeling</li>
-                <li><em>How should I adjust inventory based on demand forecasts?</em> → No integrated planning tool</li>
-                <li><em>Which business scenarios are most profitable?</em> → Requires expensive third-party tools</li>
-            </ul>
-
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-planning-vs-reporting.png" alt="Planning vs Reporting Strategy">
-            <p class="image-caption">Strategic positioning: Planning-first product vs traditional reporting</p>
-        </section>
-
-        <!-- The Approach -->
-        <section>
-            <h2>The Approach</h2>
-
-            <h3>Phase 1: Discovery + Team Building (Months 1-4)</h3>
-            <p>
-                Rather than jump into design, I started with <strong>strategic discovery</strong>. But critically, I did this while <strong>simultaneously building a design team in India</strong>—a move that was unconventional but strategic.
-            </p>
-
-            <div class="feature-box">
-                <h4>Discovery Work</h4>
-                <ul>
-                    <li>Interviewed 40+ mid-market finance teams to understand planning workflows</li>
-                    <li>Mapped competitive landscape (Adaptive Insights, Anaplan, Prophix)</li>
-                    <li>Workshopped with Intuit leadership on product strategy and success criteria</li>
-                </ul>
+            <div class="stat-box">
+                <span class="stat-num">2–3 mo</span>
+                <div class="stat-label">average time to produce an annual budget — a cycle too slow for the businesses who needed it most</div>
             </div>
+        </div>
 
-            <div class="feature-box">
-                <h4>The FP&A Team</h4>
-                <p style="font-size: 15px; margin-bottom: 12px;">The core team was deliberately tight — a senior designer, a senior content designer, and an associate researcher working closely with me. Small enough for speed and coherence; senior enough to move without hand-holding.</p>
-                <p style="font-size: 15px; margin-bottom: 0;">In parallel, I was building and leading Intuit India's design community — seeding other product teams, establishing design as a career path, and growing what became a 50+ designer organisation across Intuit India. That broader work ran alongside FP&A but was a separate undertaking.</p>
+        <p>These came from two streams of discovery in the first months: my own conversations with mid-market owners and controllers, and the formal Foundational Study the QBDT research team ran — 9 depth interviews and a 73-person survey. The gap was clear before any design began.</p>
+
+        <!-- SVG: Planning vs Reporting -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:0;">
+        <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="240" fill="#fefdfb"/>
+            <!-- Header -->
+            <text x="380" y="24" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.1em">THE POSITIONING DECISION — JUNE 2022</text>
+            <!-- Left: Reporting -->
+            <rect x="32" y="36" width="308" height="188" rx="5" fill="#f2ede8" stroke="#e2ddd7" stroke-width="1"/>
+            <text x="186" y="60" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="700" fill="#6a6560">Reporting</text>
+            <text x="186" y="76" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#aaa" letter-spacing="0.05em">BACKWARD-LOOKING · DESCRIBES THE PAST</text>
+            <line x1="60" y1="86" x2="312" y2="86" stroke="#e2ddd7" stroke-width="1"/>
+            <text x="52" y="106" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#7a7470">↳  Historical P&amp;L statements</text>
+            <text x="52" y="124" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#7a7470">↳  Tax &amp; compliance reporting</text>
+            <text x="52" y="142" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#7a7470">↳  Period-end close data</text>
+            <text x="52" y="160" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="#7a7470">↳  Already in QB — every competitor</text>
+            <rect x="52" y="176" width="268" height="36" rx="4" fill="#e8e3dc"/>
+            <text x="186" y="193" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#6a6560">Structured around data</text>
+            <text x="186" y="207" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#aaa">Answers "what happened?"</text>
+            <!-- Arrow -->
+            <line x1="358" y1="130" x2="402" y2="130" stroke="#b04000" stroke-width="2.5"/>
+            <polygon points="402,124 414,130 402,136" fill="#b04000"/>
+            <text x="386" y="122" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000" font-weight="700">NOT</text>
+            <text x="386" y="147" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">THIS →</text>
+            <!-- Right: Planning -->
+            <rect x="420" y="36" width="308" height="188" rx="5" fill="#b04000"/>
+            <text x="574" y="60" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="13" font-weight="700" fill="white">Planning</text>
+            <text x="574" y="76" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.55)" letter-spacing="0.05em">FORWARD-LOOKING · ENABLES DECISIONS</text>
+            <line x1="440" y1="86" x2="708" y2="86" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <text x="440" y="106" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">↳  Cashflow forecasting &amp; scenarios</text>
+            <text x="440" y="124" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">↳  Budget vs. actuals comparison</text>
+            <text x="440" y="142" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">↳  AI-surfaced trends &amp; anomalies</text>
+            <text x="440" y="160" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.85)">↳  Uncontested in QB ecosystem</text>
+            <rect x="440" y="176" width="268" height="36" rx="4" fill="rgba(255,255,255,0.12)"/>
+            <text x="574" y="193" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="white" font-weight="600">Structured around decisions</text>
+            <text x="574" y="207" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.55)">Answers "what's coming next?"</text>
+        </svg>
+        </figure>
+        <p class="img-caption">The core positioning decision: extending reporting vs building planning-first. The distinction sounds simple; it determined every product decision that followed. Reporting describes what happened. Planning answers what's coming. No existing QuickBooks feature crossed that line.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── THE MARKET ── -->
+        <h2>Understanding who we were building for</h2>
+
+        <p>The customer base wasn't a single profile. FY22 made the polarisation structural: inflationary pressure and supply chain disruption drove degrowth in the 2–50 employee middle, while solopreneurs expanded with the gig economy and mid-market companies that had survived the pandemic emerged more complex than before. The QB customer base was going hourglass — and the design opportunity sat at the upper end.</p>
+
+        <p>Mid-market businesses — $1M–$50M revenue, real financial complexity, no CFO infrastructure — were the target. Many were already QuickBooks Desktop customers. Mature, stable, loyal to on-premises software. A financial planning tool would serve them on either platform. That insight shaped the repositioning.</p>
+
+        <!-- SEGMENT MAP — inline SVG with FY22 trend indicators -->
+        <figure style="margin: 28px 0 8px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fefdfb; padding: 28px 28px 20px;">
+            <svg viewBox="0 0 760 278" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                <!--
+                  Block layout — 4 segments, 4px gaps, bottom-aligned at y=228
+                  Side Jobs:    x=0,   w=64,  h=72   → top y=156, center x=32
+                  Solopreneurs: x=68,  w=128, h=132  → top y=96,  center x=132
+                  Small Biz:    x=200, w=220, h=196  → top y=32,  center x=310
+                  Mid-Market:   x=424, w=336, h=228  → top y=0,   center x=592
+                  Total: 64+4+128+4+220+4+336 = 760 ✓
+                  FY22 trend row: y=248–270
+                -->
+
+                <!-- Side Jobs -->
+                <rect x="0"   y="156" width="64"  height="72"  fill="#e8e3da"/>
+                <text x="32"  y="194" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#6a6560">Side Jobs</text>
+                <text x="32"  y="208" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#aaa">&amp; Side Gigs</text>
+
+                <!-- Solopreneurs -->
+                <rect x="68"  y="96"  width="128" height="132" fill="#d9d1c4"/>
+                <text x="132" y="150" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="11" font-weight="600" fill="#3a3a36">Solopreneurs</text>
+                <text x="132" y="165" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">1-person businesses</text>
+                <!-- FY22 growth badge inside block -->
+                <rect x="88" y="180" width="88" height="18" rx="9" fill="rgba(39,174,96,0.18)"/>
+                <text x="132" y="193" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" font-weight="700" fill="#1a7d42">↑ FY22 growth</text>
+
+                <!-- Small Business Employers -->
+                <rect x="200" y="32"  width="220" height="196" fill="#c5bcb0"/>
+                <text x="310" y="115" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#2e2e2b">Small Business</text>
+                <text x="310" y="133" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" font-weight="600" fill="#2e2e2b">Employers</text>
+                <text x="310" y="151" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#6a6560">2–50 employees</text>
+                <!-- FY22 degrowth badge inside block -->
+                <rect x="240" y="165" width="140" height="18" rx="9" fill="rgba(185,28,28,0.12)"/>
+                <text x="310" y="178" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" font-weight="700" fill="#9b1c1c">↓ FY22 degrowth</text>
+                <text x="310" y="210" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#7a7470" font-style="italic">inflation · supply chain · labour</text>
+
+                <!-- Mid-Market -->
+                <rect x="424" y="0"   width="336" height="228" fill="#b04000"/>
+                <rect x="424" y="0"   width="336" height="1"   fill="rgba(255,255,255,0.2)"/>
+                <!-- FP&A pill -->
+                <rect x="464" y="16" width="256" height="22" rx="11" fill="rgba(255,255,255,0.13)"/>
+                <text x="592" y="31" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)" letter-spacing="0.08em" font-weight="600">FP&amp;A OPPORTUNITY ZONE</text>
+                <!-- Headline -->
+                <text x="592" y="88" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="28" font-weight="700" fill="white" letter-spacing="-0.01em">Mid-Market</text>
+                <!-- Descriptors -->
+                <text x="592" y="118" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">$1M – $50M revenue</text>
+                <text x="592" y="137" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">No dedicated CFO infrastructure</text>
+                <text x="592" y="156" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">Planning done in spreadsheets</text>
+                <!-- FY22 growth badge inside -->
+                <rect x="506" y="170" width="172" height="18" rx="9" fill="rgba(255,255,255,0.18)"/>
+                <text x="592" y="183" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.95)">↑ FY22 growth · expanding</text>
+                <!-- Divider + stat -->
+                <line x1="504" y1="202" x2="680" y2="202" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="592" y="218" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.4)" font-style="italic">85% running forecasts in Excel</text>
+
+                <!-- Axis baseline -->
+                <line x1="0" y1="232" x2="760" y2="232" stroke="#eae6df" stroke-width="1"/>
+
+                <!-- Axis labels -->
+                <text x="32"  y="244" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#c0bbb5">Germination</text>
+                <text x="132" y="244" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#c0bbb5">Convincing</text>
+                <text x="310" y="244" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#c0bbb5">Finding Footing → Steady State</text>
+                <text x="592" y="244" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#c0bbb5">Expanding → Expanding MM</text>
+
+                <!-- FY22 trend label -->
+                <text x="4" y="265" font-family="-apple-system,system-ui,sans-serif" font-size="9" font-weight="700" fill="#aaa" letter-spacing="0.07em">FY22</text>
+                <!-- Trend connectors — dashed lines from bottom of axis to trend row -->
+                <line x1="32"  y1="246" x2="32"  y2="256" stroke="#eae6df" stroke-width="1"/>
+                <line x1="132" y1="246" x2="132" y2="256" stroke="#eae6df" stroke-width="1"/>
+                <line x1="310" y1="246" x2="310" y2="256" stroke="#eae6df" stroke-width="1"/>
+                <line x1="592" y1="246" x2="592" y2="256" stroke="#eae6df" stroke-width="1"/>
+                <!-- Trend pills -->
+                <rect x="8"   y="257" width="48" height="16" rx="8" fill="#f5f3ef"/>
+                <text x="32"  y="269" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#888">→ stable</text>
+                <rect x="82"  y="257" width="100" height="16" rx="8" fill="rgba(39,174,96,0.12)"/>
+                <text x="132" y="269" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#1a7d42" font-weight="700">↑ gig economy surge</text>
+                <rect x="236" y="257" width="148" height="16" rx="8" fill="rgba(185,28,28,0.10)"/>
+                <text x="310" y="269" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#9b1c1c" font-weight="700">↓ middle market squeezed</text>
+                <rect x="494" y="257" width="196" height="16" rx="8" fill="rgba(176,64,0,0.12)"/>
+                <text x="592" y="269" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#7a2e00" font-weight="700">↑ survivors scaling up · FP&amp;A pull</text>
+            </svg>
+        </figure>
+        <p class="img-caption">Segment map — QB customer universe with FY22 trend signals. The shrinking middle clarified the opportunity: not the stressed small business, but the expanding mid-market where complexity outgrows intuition.</p>
+
+        <p>The business-stage model added a temporal layer — and revealed a critical repositioning mid-project. We started by targeting businesses at the <strong>Finding Footing</strong> stage: 2–5 year old companies just establishing financial processes, hungry for cashflow visibility. Early research validated the pain. But as we went deeper, we realised the product's natural home was further along the maturity curve.</p>
+
+        <p>We repositioned toward <strong>Steady State and Expansion</strong> businesses — 5–10+ years old, established, genuinely complex. They had sharper planning needs and would pay for tools that met them. And they were exactly the mature businesses already running QuickBooks Desktop, so the tool could serve them on either platform. The repositioning didn't narrow the market; it deepened it.</p>
+
+        <!-- BUSINESS STAGES — inline SVG -->
+        <figure style="margin: 28px 0 8px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fefdfb; padding: 32px 28px 28px;">
+            <svg viewBox="0 0 760 124" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                <!--
+                  7 stages · 100px spacing · 80px margins
+                  x: 80, 180, 280, 380, 480, 580, 680
+                -->
+
+                <!-- Rail -->
+                <line x1="80" y1="22" x2="680" y2="22" stroke="#e8e3da" stroke-width="2"/>
+
+                <!-- Initial target zone (Finding Footing = stage 3 at x=280) — dashed outline -->
+                <rect x="246" y="10" width="68" height="24" rx="12" fill="none" stroke="#b8b0a4" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+                <!-- Repositioned zone (Steady State + Expansion = stages 4+5) — filled -->
+                <rect x="346" y="10" width="168" height="24" rx="12" fill="rgba(176,64,0,0.09)"/>
+
+                <!-- Dots -->
+                <circle cx="80"  cy="22" r="6" fill="#fefdfb" stroke="#d0cbc4" stroke-width="2"/>
+                <circle cx="180" cy="22" r="6" fill="#fefdfb" stroke="#c8c0b4" stroke-width="2"/>
+                <circle cx="280" cy="22" r="7" fill="#fefdfb" stroke="#9a9590" stroke-width="2"/>
+                <circle cx="380" cy="22" r="9" fill="#b04000"/>
+                <circle cx="380" cy="22" r="4" fill="rgba(255,255,255,0.28)"/>
+                <circle cx="480" cy="22" r="9" fill="#b04000"/>
+                <circle cx="480" cy="22" r="4" fill="rgba(255,255,255,0.28)"/>
+                <circle cx="580" cy="22" r="6" fill="#b5342b"/>
+                <circle cx="680" cy="22" r="6" fill="#fefdfb" stroke="#c8c0b4" stroke-width="2"/>
+
+                <!-- Stage labels -->
+                <text x="80"  y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#565758">Germination</text>
+                <text x="80"  y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#bbb">Idea taking shape</text>
+
+                <text x="180" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#565758">Convincing</text>
+                <text x="180" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#bbb">First customers</text>
+
+                <text x="280" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#565758">Finding Footing</text>
+                <text x="280" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#9a9590">2–5 yr businesses</text>
+
+                <text x="380" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#b04000">Steady State</text>
+                <text x="380" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#b07040">5–10 yr businesses</text>
+
+                <text x="480" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#b04000">Expansion</text>
+                <text x="480" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#b07040">10+ yr businesses</text>
+
+                <text x="580" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#b5342b">Slipping</text>
+                <text x="580" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#b05040">Diagnose margin</text>
+
+                <text x="680" y="44" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#565758">End Game</text>
+                <text x="680" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9"    fill="#bbb">Exit planning</text>
+
+                <!-- Initial target bracket (dashed, stage 3) -->
+                <line x1="248" y1="80" x2="312" y2="80" stroke="#9a9590" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <line x1="248" y1="74" x2="248" y2="80" stroke="#9a9590" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <line x1="312" y1="74" x2="312" y2="80" stroke="#9a9590" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <text x="280" y="93" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#9a9590" letter-spacing="0.05em">INITIAL TARGET</text>
+
+                <!-- Arrow showing repositioning -->
+                <line x1="318" y1="86" x2="338" y2="86" stroke="#c0b8b0" stroke-width="1" marker-end="url(#arr)"/>
+
+                <!-- Repositioned target bracket (solid, stages 4+5) -->
+                <line x1="346" y1="80" x2="514" y2="80" stroke="#b04000" stroke-width="1.5"/>
+                <line x1="346" y1="74" x2="346" y2="80" stroke="#b04000" stroke-width="1.5"/>
+                <line x1="514" y1="74" x2="514" y2="80" stroke="#b04000" stroke-width="1.5"/>
+                <text x="430" y="93" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#b04000" font-weight="600" letter-spacing="0.06em">REPOSITIONED TARGET · QB DESKTOP OVERLAP</text>
+
+                <!-- Arrow def -->
+                <defs>
+                    <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                        <path d="M0,0 L6,3 L0,6 Z" fill="#c0b8b0"/>
+                    </marker>
+                </defs>
+            </svg>
+        </figure>
+        <p class="img-caption">Seven business stages — initial target (dashed, Finding Footing) vs repositioned target (solid, Steady State + Expansion). The repositioned zone maps directly to mature QB Desktop customers, opening that base without requiring platform migration.</p>
+
+        <!-- OPPORTUNITY MAP — recreated from July 2022 Foundational Study, Slide 37 -->
+        <figure style="margin: 28px 0 8px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fefdfb; padding: 28px 28px 20px;">
+            <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rust); margin-bottom: 16px;">From the July 2022 Foundational Study — Slide 37 · "Where our opportunity lies"</div>
+            <svg viewBox="0 0 580 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:580px;height:auto;display:block;margin:0 auto;">
+                <!-- Axes -->
+                <line x1="60" y1="240" x2="560" y2="240" stroke="#d4cec8" stroke-width="1.5"/>
+                <line x1="60" y1="240" x2="60"  y2="20"  stroke="#d4cec8" stroke-width="1.5"/>
+                <!-- Axis labels -->
+                <text x="310" y="262" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#aaa" font-weight="600" letter-spacing="0.05em">PURCHASING POWER →</text>
+                <text x="18" y="130" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#aaa" font-weight="600" letter-spacing="0.05em" transform="rotate(-90,18,130)">INTEREST →</text>
+
+                <!-- Grid lines (subtle) -->
+                <line x1="60" y1="130" x2="560" y2="130" stroke="#eae6df" stroke-width="1" stroke-dasharray="4 4"/>
+                <line x1="310" y1="20"  x2="310" y2="240" stroke="#eae6df" stroke-width="1" stroke-dasharray="4 4"/>
+
+                <!-- Stage bubbles — plotted on interest × purchasing power -->
+                <!-- Germination: low interest, low purchasing power -->
+                <circle cx="100" cy="210" r="22" fill="#ede8e0" stroke="#d4cec8" stroke-width="1.5"/>
+                <text x="100" y="205" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#6a6560" font-weight="600">Germination</text>
+                <text x="100" y="218" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#aaa">/ Convincing</text>
+
+                <!-- Finding Footing: medium interest, medium purchasing power -->
+                <circle cx="220" cy="160" r="26" fill="#d9d0c3" stroke="#c8bfb3" stroke-width="1.5"/>
+                <text x="220" y="155" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#3a3a36" font-weight="600">Finding</text>
+                <text x="220" y="168" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#3a3a36" font-weight="600">Footing</text>
+
+                <!-- Slipping: very high interest, declining purchasing power -->
+                <circle cx="160" cy="55" r="28" fill="#f0ebe4" stroke="#c8b8a8" stroke-width="1.5"/>
+                <text x="160" y="50" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b5342b" font-weight="700">Slipping</text>
+                <text x="160" y="64" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#b5342b">high urgency</text>
+
+                <!-- Expansion + Steady State: high interest, HIGH purchasing power — THE TARGET -->
+                <circle cx="440" cy="60" r="48" fill="#b04000"/>
+                <circle cx="440" cy="60" r="46" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                <text x="440" y="48" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="white" font-weight="700">Expansion +</text>
+                <text x="440" y="65" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="13" fill="white" font-weight="700">Steady State</text>
+                <text x="440" y="82" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">★ FP&amp;A target</text>
+
+                <!-- End Game: lower interest, fading purchasing power -->
+                <circle cx="490" cy="205" r="20" fill="#c8bfb3" stroke="#b8b0a4" stroke-width="1.5"/>
+                <text x="490" y="200" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#3a3a36" font-weight="600">End</text>
+                <text x="490" y="213" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#3a3a36" font-weight="600">Game</text>
+            </svg>
+        </figure>
+        <p class="img-caption">Opportunity map — recreated from July 2022 Foundational Study, Slide 37. Expansion + Steady State businesses had the highest interest and purchasing power of any segment. This is the repositioning documented and dated.</p>
+
+        <!-- Research quotes -->
+        <div class="principle-box" style="margin: 28px 0;">
+            <span class="p-label">From the July 2022 Foundational Research · 9 user interviews · QBDT team</span>
+            <p style="margin-bottom: 0;">"I need someone to hold my hand through the whole thing until I get what I want, and then I start owning it." That quote from July 2022 research shaped the Forecast Builder's step-by-step model. A second participant gave the gap its clearest form: "I'd love a budget performance report in QBO as there is on Desktop — I have to recreate it in spreadsheets every month." And a Pro Advisor provided the product definition we used throughout: "Budget is like a vision board for the business. Forecast is how you arrive at the budget, and track progress toward it."</p>
+        </div>
+
+        <h3>The competitive landscape</h3>
+        <p>The planning software market had tools — but none of them served this segment well. Anaplan and Adaptive Insights required dedicated implementation teams and multi-month deployments. Prophix sat closer to enterprise. Spreadsheets filled the gap by default, not by preference. The design opportunity was to deliver planning capability that felt native to QuickBooks rather than imported from an enterprise ERP ecosystem.</p>
+
+        <div class="comp-bench">
+            <span class="bench-label">Planning tools the mid-market was stitching together before FP&amp;A</span>
+            <div class="vendor-list">
+                <span class="vendor-chip">Microsoft Excel</span>
+                <span class="vendor-chip">Adaptive Insights</span>
+                <span class="vendor-chip">Anaplan</span>
+                <span class="vendor-chip">Prophix</span>
+                <span class="vendor-chip">Vena</span>
+                <span class="vendor-chip">LivePlan</span>
+                <span class="vendor-chip">Float</span>
+                <span class="vendor-chip">Fathom</span>
             </div>
+        </div>
 
-            <h3>Phase 2: Strategic Positioning (Months 2-4)</h3>
-            <p>
-                Three pivotal design decisions shaped the entire product:
-            </p>
+        <!-- SVG: Competitive Positioning scatter -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="400" fill="#fefdfb"/>
+            <!-- Title -->
+            <text x="380" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">MARKET POSITIONING — PLANNING TOOLS</text>
+            <!-- Plot area: x 80–700, y 40–340 -->
+            <!-- Quadrant backgrounds -->
+            <rect x="80" y="40"  width="310" height="150" fill="rgba(176,64,0,0.04)" rx="0"/><!-- top-left: accessible + simple = TARGET -->
+            <rect x="80" y="40"  width="310" height="150" fill="none" stroke="rgba(176,64,0,0.08)" stroke-width="1" rx="0"/>
+            <!-- Quadrant label — uncontested zone -->
+            <text x="235" y="62" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(176,64,0,0.5)" font-weight="700" letter-spacing="0.07em">UNCONTESTED ZONE</text>
+            <!-- Axes -->
+            <line x1="80" y1="340" x2="700" y2="340" stroke="#d4cec8" stroke-width="1.5"/>
+            <line x1="80" y1="340" x2="80"  y2="40"  stroke="#d4cec8" stroke-width="1.5"/>
+            <!-- Axis arrows -->
+            <polygon points="700,336 710,340 700,344" fill="#d4cec8"/>
+            <polygon points="76,40 80,30 84,40" fill="#d4cec8"/>
+            <!-- Axis labels -->
+            <text x="390" y="368" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600" letter-spacing="0.04em">IMPLEMENTATION COMPLEXITY →</text>
+            <text x="22" y="190" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" fill="#888" font-weight="600" letter-spacing="0.04em" transform="rotate(-90,22,190)">SMB ACCESSIBILITY →</text>
+            <!-- Low/High markers -->
+            <text x="90"  y="356" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">Low</text>
+            <text x="680" y="356" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">High</text>
+            <text x="84"  y="348" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">Low</text>
+            <text x="84"   y="52" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">High</text>
+            <!-- Grid lines (dashed) -->
+            <line x1="80" y1="190" x2="700" y2="190" stroke="#eae6df" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="390" y1="40"  x2="390" y2="340" stroke="#eae6df" stroke-width="1" stroke-dasharray="5 5"/>
+            <!-- Competitors (gray dots) -->
+            <!-- Anaplan: high complexity, low accessibility → x≈630, y≈300 -->
+            <circle cx="630" cy="300" r="16" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="630" y="305" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550" font-weight="600">Anaplan</text>
+            <!-- Adaptive Insights: high complexity, medium-low → x≈580, y≈275 -->
+            <circle cx="568" cy="278" r="20" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="568" y="275" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550" font-weight="600">Adaptive</text>
+            <text x="568" y="286" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550">Insights</text>
+            <!-- Prophix: medium complexity, medium → x≈460, y≈240 -->
+            <circle cx="455" cy="242" r="16" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="455" y="247" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550" font-weight="600">Prophix</text>
+            <!-- Vena: medium-high complexity, medium → x≈500, y≈230 -->
+            <circle cx="505" cy="218" r="13" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="505" y="223" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550">Vena</text>
+            <!-- LivePlan: medium complexity, medium-high → x≈310, y≈190 -->
+            <circle cx="310" cy="195" r="13" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="310" y="200" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550">LivePlan</text>
+            <!-- Float: low-medium complexity, medium-high → x≈240, y≈175 -->
+            <circle cx="235" cy="178" r="13" fill="#d9d5cf" stroke="#c5c0b9" stroke-width="1.5"/>
+            <text x="235" y="183" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#5a5550">Float</text>
+            <!-- Excel: low complexity, high accessibility but NOT a planning tool → x≈165, y≈82 (top-left, gray) -->
+            <circle cx="162" cy="82" r="16" fill="#e8e3da" stroke="#c5c0b9" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="162" y="78" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">Excel</text>
+            <text x="162" y="90" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#bbb">(not planning)</text>
+            <!-- QB FP&A: low complexity, high accessibility → ochre, larger, top-left -->
+            <circle cx="132" cy="112" r="28" fill="#b04000"/>
+            <text x="132" y="107" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="white">QB FP&amp;A</text>
+            <text x="132" y="120" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.75)">target zone</text>
+            <!-- Arrow from QB FP&A label -->
+            <line x1="165" y1="100" x2="200" y2="78" stroke="#b04000" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <rect x="198" y="60" width="164" height="24" rx="4" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.25)" stroke-width="1"/>
+            <text x="280" y="76" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#b04000" font-weight="600">Uncontested position — 2022</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Market positioning — planning tools on implementation complexity vs SMB accessibility. The top-left quadrant was uncontested. Excel held it accidentally. That was the gap.</p>
 
-            <div class="decision">
-                <h4>Decision 1: Planning over Reporting</h4>
-                <p><strong>Not:</strong> Extend QuickBooks with more advanced financial reports</p>
-                <p><strong>Instead:</strong> Go beyond reporting toward forward-looking financial planning — starting with cashflow projection</p>
-                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
-                    <strong>My thinking:</strong> Businesses of all sizes and stages were struggling with the same thing — knowing what their cash position would look like weeks or months ahead. Reporting told them what had happened. Cashflow projection told them what was coming. That forward-looking predictability was the gap no existing QuickBooks feature addressed, and it was the right place to start.
-                </p>
+        <hr class="section-divider">
+
+        <!-- ── THREE DECISIONS ── -->
+        <h2>Three decisions that shaped the product</h2>
+
+        <p>The research pointed toward a set of forks in the road. Each one had a comfortable path and a harder one. The product that shipped reflects the harder calls — made early, argued for internally, and held through the pressure of "can we just extend what we have?"</p>
+
+        <div class="decision-inset">
+            <span class="di-label">Decision 1</span>
+            <div class="di-headline">Planning over reporting — a product about the future, not the past</div>
+            <div class="di-row">
+                <div class="di-tag no">Not this</div>
+                <div class="di-content">Extend QuickBooks with more advanced financial reports — richer charts, more drill-down, better exports. The incrementally safer path inside an existing product.</div>
             </div>
-
-            <div class="decision">
-                <h4>Decision 2: Simplify Complexity Through Design</h4>
-                <p><strong>Not:</strong> Require finance experts to build models</p>
-                <p><strong>Instead:</strong> Embed AI to democratize planning through intuitive interfaces</p>
-                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
-                    <strong>My execution:</strong> I designed the Forecast Builder interface, Scenario Comparison experience, and Insights Dashboard — each tested with real customers and iterated 20+ times based on feedback. The AI capabilities went deep: payment consolidation, transaction summaries, and prediction of future money flow — surfaces that transformed raw financial data into decisions a business owner could actually act on.
-                </p>
+            <div class="di-row">
+                <div class="di-tag yes">Instead</div>
+                <div class="di-content"><strong>Build forward-looking financial planning capability from scratch.</strong> Start with cashflow projection — the single forward-looking question every business owner has, regardless of stage or size. Then build toward scenario modeling, budget comparison, and predictive insights.</div>
             </div>
+            <div class="di-rationale"><strong>Why this mattered:</strong> Reporting was already well-covered — by QuickBooks and by every competitor. The defensible opportunity was planning: helping owners understand what was coming, not just what had happened. Every design decision downstream flowed from this positioning. If you start with planning, the experience is structured around decisions; if you start with reporting, it's structured around data.</div>
+        </div>
 
-            <div class="decision">
-                <h4>Decision 3: New SKU Strategy</h4>
-                <p><strong>Not:</strong> Build another feature within QB Online</p>
-                <p><strong>Instead:</strong> Position as a new, premium SKU within the Intuit ecosystem</p>
-                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-light);">
-                    <strong>Impact:</strong> This decision rippled across the entire organization. It influenced product roadmaps, sales strategy, and enterprise tier positioning, contributing to the <strong>Intuit Enterprise Suite</strong>.
-                </p>
+        <div class="decision-inset">
+            <span class="di-label">Decision 2</span>
+            <div class="di-headline">AI from the start — not bolted on after launch</div>
+            <div class="di-row">
+                <div class="di-tag no">Not this</div>
+                <div class="di-content">Launch with traditional planning tools — template-based forecasting, manual input, static scenarios — and add AI in a future iteration once the product was established.</div>
             </div>
+            <div class="di-row">
+                <div class="di-tag yes">Instead</div>
+                <div class="di-content"><strong>Build AI into the core product architecture from day one.</strong> Predictive cashflow from transaction history. Payment consolidation. Intelligent scenario seeding. AI-surfaced anomalies and trend signals in the insights layer.</div>
+            </div>
+            <div class="di-rationale"><strong>Why this mattered:</strong> The target customer had no finance team to build models by hand. AI wasn't a feature — it was the precondition for the product being usable at all. Building it in from day one meant the components, trust signals, and interaction patterns were deliberate, not retrofitted. We were the first Intuit product team to build specifically for AI-driven experiences — ahead of the organisation's broader AI investment.</div>
+        </div>
 
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-segment-map.png" alt="Customer segment map: Side Jobs, Solopreneurs, Small Business Employers, Mid-Market">
-            <p class="image-caption">Segment map: from germination through expansion — where FP&A tools become essential and where mid-market begins</p>
+        <div class="decision-inset">
+            <span class="di-label">Decision 3</span>
+            <div class="di-headline">New SKU — not another feature in the QB menu</div>
+            <div class="di-row">
+                <div class="di-tag no">Not this</div>
+                <div class="di-content">Bundle FP&A into QuickBooks Online Advanced — another nav item in an existing tier, available only to Online subscribers, invisible to Desktop customers.</div>
+            </div>
+            <div class="di-row">
+                <div class="di-tag yes">Instead</div>
+                <div class="di-content"><strong>Position as a standalone add-on</strong> — separately priced, accessible across QB Online and QB Desktop, available to any customer at any maturity stage who needed planning capability.</div>
+            </div>
+            <div class="di-rationale"><strong>Why this mattered:</strong> The add-on solved two problems at once. It democratised access — any customer, at any maturity stage, could reach FP&A without upgrading tiers — and it opened the Desktop base, letting mature on-premises customers adopt planning without migrating platforms. That combination of mid-market gravity and cross-platform reach became the template for the Intuit Enterprise Suite — not from a strategy memo, but from watching who showed up.</div>
+        </div>
 
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-business-stages.png" alt="Business stages: Germination, Convincing, Finding Footing, Steady State, Expansion, Slipping, End Game">
-            <p class="image-caption">Business stages framework: the seven stages of a business's life — each with distinct planning needs that shaped how we designed the product</p>
-        </section>
+        <hr class="section-divider">
 
-        <!-- Phase 3: Design System -->
-        <section>
-            <h3>Phase 3: AI-Native Component Design</h3>
-            <p>
-                FP&A didn't build Intuit's foundational design system — but we were the first product to ride the AI bus. For both generative conversational AI and emerging agentic systems, we were the first team at Intuit to create components specifically designed for AI-driven experiences.
-            </p>
-            <p>
-                This wasn't just about visual consistency. We were working through questions that had no established answers yet: How should an AI prediction be presented so users trust it but don't over-rely on it? How do you surface an AI recommendation in a way that's explainable without being overwhelming? How do you design components that could extend gracefully as AI capabilities evolved — so the system wouldn't need to be rebuilt every time the model improved?
-            </p>
-            <p>
-                The three design challenges we worked through: <strong>acceptability</strong> (would users trust and act on AI outputs?), <strong>explainability</strong> (could they understand why the AI said what it said?), and <strong>extendability</strong> (would these components hold up as agentic AI moved from suggestion to action?). The answers shaped components that became reference points for other Intuit teams moving into AI product work.
-            </p>
+        <!-- ── HOW IT GOT BUILT ── -->
+        <h2>How it got built</h2>
 
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-design-system.png" alt="Information architecture for integrated planning — one of the first artefacts created for the FP&A initiative">
-            <p class="image-caption">Information architecture for integrated planning — one of the first artefacts created, mapping how planning data, reporting, and forecasting would connect across the product</p>
-        </section>
+        <p>The FP&A mandate arrived in the first six months of my role — alongside heading design for QuickBooks Desktop and seeding what would become Intuit India's design community. The FP&A core team was deliberately small: a senior designer, a senior content designer, an associate researcher, and me. Small enough for speed; senior enough for coherence.</p>
 
-        <hr>
+        <div class="sprint-inset">
+            <span class="si-label">Documented timeline — dated source artifacts</span>
+            <div class="sprint-event">
+                <div class="sprint-date">2021</div>
+                <div class="sprint-desc"><strong>Cashflow Hub — QBDT Innovation Week concept.</strong> The QBDT design team (Sukruth, Nipun, Ashok, Sumit, Shreya) explored a Cashflow Hub concept during Intuit Innovation Week — an early proof-of-concept establishing that cashflow visibility and forward-looking financial tools were a critical unmet need for Desktop customers. This work was the seed. The mandate to build FP&A came shortly after.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">Jun 2022</div>
+                <div class="sprint-desc"><strong>Ideation Workshop — "Budgeting and Planning"</strong>. First formal exploration of P&amp;B for QB customers. Designed 4 planning scenarios: Existential, Standard, Scenario-driven, Team-level. Defined first customer profiles — Existential Elle (&lt;3yr business) and Standard Susan (3yr+). Run by the QBDT design team: Shreya Ratakonda, Sujay Kalgaonkar.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">Jul 2022</div>
+                <div class="sprint-desc"><strong>Foundational Study published — 9 user interviews + survey (n=73)</strong>. Research by Angel Treesa Roni, XD Researcher, QBDT. Key finding documented in Slide 37: "Where our opportunity lies — Convincing / Expansion + steady state." Slide 51: <em>"P&amp;B-mature businesses = Those in expansion + steady phases."</em> This is the repositioning insight, dated and documented.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">Aug 2022</div>
+                <div class="sprint-desc"><strong>Concept Review — vision and FY23 roadmap presented to stakeholders.</strong> 85% on spreadsheets documented. Vision: "Be the best in-class budgeting and planning tool for businesses and consumers." FY23 roadmap included Budgets phase and Forecasting phase. Investment case made and approved.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2022–23</div>
+                <div class="sprint-desc">Core product design: Forecast Builder, Scenario Comparison, Insights Dashboard. Vision video roadshow across geographies to build alignment. First AI components shipped — predictive cashflow, transaction summaries. 60%+ beta-to-paid conversion. AI component patterns become reference for other Intuit teams.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2023–24</div>
+                <div class="sprint-desc">GA. 12% year-1 penetration. Add-on SKU approach validated. Product positioned as FP&amp;A within Intuit Enterprise Suite. 1.5M customers by 2024. Goals feature and full IES integration shipped. AI forecasting becomes a named IES feature.</div>
+            </div>
+        </div>
+        <p style="font-size:13px; color:#999; font-style:italic; margin-top:-8px;">What the product became after GA — the multi-agent platform — is covered in its own section below.</p>
 
-        <!-- The Hands-On Design Work -->
-        <section>
-            <h2>The Product Work</h2>
+        <!-- SVG: Information Architecture / System Map -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="300" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">SYSTEM ARCHITECTURE — FP&amp;A INFORMATION MODEL</text>
 
-            <video controls preload="metadata">
-                <source src="portfolio-content/assets/quickbooks%20video/XFCER_2023_1.mp4" type="video/mp4">
-            </video>
-            <p class="video-caption">Vision video created at the close of the research phase — not a product demo but a provocation. We used this to generate curiosity, secure stakeholder buy-in, and bring investment to the initiative. A roadshow of sorts: conducted across the month to build alignment across teams and geographies, globally.</p>
+            <!-- Layer 1: QB Data Foundation (bottom) -->
+            <rect x="20" y="228" width="720" height="56" rx="6" fill="#ede8e0" stroke="#d8d0c5" stroke-width="1"/>
+            <text x="40" y="249" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#888" letter-spacing="0.08em">LAYER 1 — QB DATA FOUNDATION</text>
+            <rect x="36"  y="256" width="142" height="20" rx="3" fill="#d8d0c5"/>
+            <text x="107" y="270" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#5a5550" font-weight="600">Transactions</text>
+            <rect x="188" y="256" width="142" height="20" rx="3" fill="#d8d0c5"/>
+            <text x="259" y="270" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#5a5550" font-weight="600">P&amp;L History</text>
+            <rect x="340" y="256" width="142" height="20" rx="3" fill="#d8d0c5"/>
+            <text x="411" y="270" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#5a5550" font-weight="600">Balance Sheet</text>
+            <rect x="492" y="256" width="142" height="20" rx="3" fill="#d8d0c5"/>
+            <text x="563" y="270" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#5a5550" font-weight="600">Categories &amp; Tags</text>
+            <rect x="644" y="256" width="80" height="20" rx="3" fill="#d8d0c5"/>
+            <text x="684" y="270" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#5a5550">+ more</text>
 
-            <h3>Forecast Builder</h3>
-            <p>
-                <strong>Problem:</strong> Non-experts need to build financial forecasts without being intimidated.
-            </p>
-            <p>
-                <strong>Approach:</strong> Guided experience (step-by-step wizard), familiar mental models (templates based on common scenarios), transparency (show underlying assumptions), and AI as assistant (suggestions, not mandates).
-            </p>
-            <p>
-                <strong>What testing taught us:</strong> We designed every day, tested every week, and released every sprint. Users wanted to see <em>why</em> the AI recommended something; complex terminology scared people away; confidence levels were critical for trust.
-            </p>
+            <!-- Arrows up from layer 1 -->
+            <line x1="184" y1="228" x2="184" y2="206" stroke="#c8c0b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="380" y1="228" x2="380" y2="206" stroke="#c8c0b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="576" y1="228" x2="576" y2="206" stroke="#c8c0b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="184,206 181,213 187,213" fill="#c8c0b8"/>
+            <polygon points="380,206 377,213 383,213" fill="#c8c0b8"/>
+            <polygon points="576,206 573,213 579,213" fill="#c8c0b8"/>
 
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/solution/solution-forecast-builder.png" alt="Forecast Builder — 2026 interface">
-            <p class="image-caption">Forecast Builder — 2026 interface</p>
+            <!-- Layer 2: FP&A Platform (middle) -->
+            <rect x="20" y="148" width="720" height="56" rx="6" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.3)" stroke-width="1.5"/>
+            <text x="40" y="169" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="rgba(176,64,0,0.7)" letter-spacing="0.08em">LAYER 2 — FP&amp;A PLATFORM</text>
+            <rect x="36"  y="176" width="152" height="20" rx="3" fill="rgba(176,64,0,0.15)"/>
+            <text x="112" y="190" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00" font-weight="600">AI Forecasting Engine</text>
+            <rect x="198" y="176" width="152" height="20" rx="3" fill="rgba(176,64,0,0.15)"/>
+            <text x="274" y="190" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00" font-weight="600">Scenario Logic</text>
+            <rect x="360" y="176" width="152" height="20" rx="3" fill="rgba(176,64,0,0.15)"/>
+            <text x="436" y="190" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00" font-weight="600">Anomaly Detection</text>
+            <rect x="522" y="176" width="152" height="20" rx="3" fill="rgba(176,64,0,0.15)"/>
+            <text x="598" y="190" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00" font-weight="600">Confidence Modelling</text>
 
-            <h3>Scenario Comparison & Insights Dashboard</h3>
-            <p>
-                <strong>Problem:</strong> Business owners needed to weigh financial decisions without needing a finance degree to interpret the data.
-            </p>
-            <p>
-                <strong>Approach:</strong> Side-by-side scenario comparison to make the impact of "what-if" decisions tangible — key metrics surfaced, drill-down available. For the Insights Dashboard, AI surfaced the most important signals automatically: anomaly detection, trend forecasting, actionable next steps.
-            </p>
-            <p>
-                <strong>Design philosophy:</strong> Make intelligence visible without overwhelming the user.
-            </p>
+            <!-- Arrows up from layer 2 -->
+            <line x1="184" y1="148" x2="184" y2="126" stroke="rgba(176,64,0,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="380" y1="148" x2="380" y2="126" stroke="rgba(176,64,0,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line x1="576" y1="148" x2="576" y2="126" stroke="rgba(176,64,0,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="184,126 181,133 187,133" fill="rgba(176,64,0,0.45)"/>
+            <polygon points="380,126 377,133 383,133" fill="rgba(176,64,0,0.45)"/>
+            <polygon points="576,126 573,133 579,133" fill="rgba(176,64,0,0.45)"/>
 
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/solution/solution-insights-dashboard.png" alt="Insights Dashboard — 2026 interface">
-            <p class="image-caption">Insights Dashboard — 2026 interface</p>
+            <!-- Layer 3: Planning Surfaces (top) -->
+            <rect x="20" y="68" width="720" height="56" rx="6" fill="#b04000"/>
+            <text x="40" y="89" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,0.6)" letter-spacing="0.08em">LAYER 3 — PLANNING SURFACES</text>
+            <rect x="36"  y="96" width="196" height="20" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <text x="134" y="110" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="white" font-weight="600">Forecast Builder</text>
+            <rect x="242" y="96" width="196" height="20" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <text x="340" y="110" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="white" font-weight="600">Scenario Comparison</text>
+            <rect x="448" y="96" width="196" height="20" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <text x="546" y="110" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="white" font-weight="600">Insights Dashboard</text>
 
-        </section>
+            <!-- Flow label -->
+            <text x="760" y="200" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#ccc" font-style="italic">data flows upward →</text>
+        </svg>
+        </figure>
+        <p class="img-caption">System architecture — three layers: QB's existing transaction data feeds the FP&A platform (AI forecasting, scenario logic, anomaly detection), which surfaces through the planning interfaces. This diagram preceded all screen design.</p>
 
-        <hr>
+        <hr class="section-divider">
 
-        <!-- The Results -->
-        <section>
-            <h2>The Results</h2>
+        <!-- ── PRODUCT WORK ── -->
+        <h2>The product work</h2>
 
-            <h3>Product Impact</h3>
-            <p>We went GA within 6 months of inception — through learning and failing fast. Speed was as much a design decision as any interface choice.</p>
-            <ul>
-                <li><strong>Year-1 adoption:</strong> 12% penetration of QuickBooks ecosystem (~600K–700K customers activated)</li>
-                <li><strong>Current state (2024):</strong> ~1.5M mid-market customers actively use FP&A features (30% of QB Online's base)</li>
-                <li><strong>60%+ trial-to-paid conversion</strong> among engaged beta customers</li>
-                <li><strong>NPS score: 52</strong> (strong for an enterprise product)</li>
-            </ul>
+        <p>The vision video was made at the close of the research phase — not a product demo, a provocation. We used it as a roadshow, presenting across teams and geographies to build alignment and secure the investment needed to execute.</p>
 
-            <h3>Business Impact</h3>
-            <ul>
-                <li>Contributed to <strong>SKU evolution</strong> within Intuit—opened new pricing tiers and enterprise positioning</li>
-                <li>Part of the <strong>Intuit Enterprise Suite</strong> strategy</li>
-                <li>Established <strong>AI as a core differentiator</strong> for Intuit</li>
-                <li>Significant growth in high-margin subscription revenue</li>
-            </ul>
+        <video controls preload="metadata">
+            <source src="portfolio-content/assets/quickbooks%20video/XFCER_2023_1.mp4" type="video/mp4">
+        </video>
+        <p class="img-caption">Vision video — built to create organisational alignment before design began. Not a demo of shipped features; a statement of intent.</p>
 
-        </section>
+        <h3>Forecast Builder</h3>
+        <p>The core challenge: make financial forecasting feel like filling in a form, not building a spreadsheet model. The Forecast Builder was designed as a guided experience — each step reducing intimidation by narrowing the decision space.</p>
 
-        <hr>
+        <p>Design iteration was continuous. We designed daily, tested weekly, shipped every sprint. The interaction model went through 20+ substantive revisions before it held. Three insights from testing drove the biggest changes: users needed to see <em>why</em> the AI recommended something, not just what it recommended; terminology mattered more than we expected ("trend-based" landed where "exponential smoothing" frightened people away); and confidence ranges on forecasts were non-negotiable — a single number implies false precision.</p>
 
-        <!-- The Legacy -->
-        <section>
-            <h2>The Legacy</h2>
+        <!-- QB product screenshots: early design + shipped -->
+        <div class="img-pair" style="margin:28px 0 8px;">
+            <div>
+                <img src="qb-evolution-scenario-detail.jpg" alt="QuickBooks Scenario Planner — early design 2022. Rolling forecast 2022–2027, quarterly cashflow table, Create Scenario drawer with Wages and Sales input factors." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">Early design — scenario planning interface, 2022. The first iteration of the Forecast Builder: scenario creation with editable assumption drivers.</p>
+            </div>
+            <div>
+                <img src="qb-shipped-forecasting.jpg" alt="QuickBooks Financial Planning — shipped product. Forecasting made easy. AI-based forecasts within +/- 20% of actuals. Net income FY24 projected $863,252." style="margin:0;">
+                <p class="img-caption" style="margin-bottom:0;">Shipped — QuickBooks Financial Planning in IES (2023–24). "AI-based forecasts within ±20% of actuals." The forecasting surface that launched.</p>
+            </div>
+        </div>
 
-            <p>
-                Three years after launch, the Financial Planning & Analysis product is a <strong>self-sustaining business</strong> with a dedicated product and engineering team, expanding feature set, and continued AI evolution.
-            </p>
-            <p>
-                The product itself continued evolving: agentic workflows, expanded SKUs, deeper enterprise positioning. The patterns established here — in AI component design, information architecture, and structured user testing — became reference points across Intuit as other teams moved into AI product work.
-            </p>
-            <p style="margin-top: 40px; font-style: italic;">
-                Starting something from nothing inside a mature ecosystem — and watching it hold its shape long after you've moved on — is a different kind of satisfaction than shipping a feature. That's what this was.
-            </p>
-        </section>
+        <h3>Scenario Comparison and Insights Dashboard</h3>
+        <p>Scenario Comparison solved a specific problem: owners were making "what-if" decisions by intuition because the math was too slow. Side-by-side scenarios showed downstream impact on cash, margin, and revenue at once, with drill-down to source. The Insights Dashboard used AI differently — as a synthesis layer. Finance teams spend most of their time gathering data; the dashboard surfaced the signals that matter automatically — anomalies, trends, recommendations. Intelligence as compression, not spectacle.</p>
 
-        <hr>
+        <!-- QB product screenshot: IES Goals — AI insights layer -->
+        <img src="qb-insights-goals.jpg" alt="Intuit Enterprise Suite — Financial Planning: Goals page. AI-suggested goals: Set total income for FY25 to $20,000 (20% increase), Set net profit margin to 15%. Goal cards showing Net Profit Margin NOT ACHIEVED 10.45%, Aarens Painting Job IN PROGRESS 13.56%, Total Income $5,000/$10K.">
+        <p class="img-caption">Intuit Enterprise Suite — Financial Planning · Goals (2023–24). AI-surfaced goal recommendations, actuals tracking against target, and proactive "Take action" signals. This is the insights layer shipped as part of IES: intelligence surfaced automatically, not buried in reports.</p>
 
-        <section>
-            <img src="portfolio-content/case-studies/quickbooks-financial-planning/images/process/process-competitive-positioning.png" alt="Market differentiation: FP&A vs traditional competitors">
-            <p class="image-caption">Market differentiation: QuickBooks FP&A vs traditional competitors</p>
-        </section>
+        <hr class="section-divider">
 
-        <!-- Footer -->
-        <footer>
-            <p>
-                © 2026 Neha Saraswat • Product • Design • GTM<br>
-                <a href="PORTFOLIO.html" style="color: var(--accent-ochre); text-decoration: none;">← Back to Portfolio</a>
-            </p>
-        </footer>
+        <!-- ── AI DESIGN PRINCIPLES ── -->
+        <h2>Building the first AI components at Intuit</h2>
+
+        <p>We were the first Intuit product team to design specifically for AI-driven interactions. For a product where customers don't have finance expertise, AI wasn't a differentiator — it was a precondition for usability. Three design challenges structured the component work:</p>
+
+        <div class="ai-grid">
+            <div class="ai-card">
+                <span class="ai-num">01</span>
+                <div class="ai-title">Acceptability</div>
+                <div class="ai-desc">Would users trust and act on AI outputs? Financial recommendations carry higher stakes than product suggestions — the component needed to communicate confidence levels, not just outputs. Showing the range of a forecast (not just the midpoint) and the assumptions behind it were fundamental to acceptability.</div>
+            </div>
+            <div class="ai-card">
+                <span class="ai-num">02</span>
+                <div class="ai-title">Explainability</div>
+                <div class="ai-desc">Could users understand why the AI said what it said? The answer couldn't be a footnote or a modal. It had to be embedded in the primary interface without adding cognitive load. Every AI recommendation in the product was designed with a one-touch explanation path — not a documentation link, a contextual one-liner that made the reasoning scannable.</div>
+            </div>
+            <div class="ai-card">
+                <span class="ai-num">03</span>
+                <div class="ai-title">Extendability</div>
+                <div class="ai-desc">Would these components hold up as AI capabilities evolved — from suggestion to action, from prediction to agent? The system was designed for extensibility: components that worked for "AI suggests X" also needed to work for "AI did X on your behalf." Building this in from the start prevented the rebuild that would have been required otherwise. These patterns became reference points for other Intuit teams moving into agentic product work.</div>
+            </div>
+        </div>
+
+        <div class="principle-box">
+            <span class="p-label">The trust design principle — surfaces, not signals</span>
+            <p>The temptation in AI products is to bolt trust on through disclaimers and confidence scores. Testing showed the opposite: trust comes from the experience itself — the AI explaining itself without being asked, behaving predictably when inputs change, surfacing something genuinely useful. Trust is earned through surface design, not disclaimer copy.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── THE TEAM ── -->
+        <h2>The team — and what it was not</h2>
+
+        <p>The FP&A core team was four people: a senior designer, a senior content designer, an associate researcher, and me. That was deliberate. Small teams move faster, communicate more efficiently, and produce more coherent products.</p>
+
+        <p>In parallel, I was heading design for QuickBooks Desktop and QuickBooks Online, and founding what became Intuit India's design community — 50+ designers seeded across product teams. That community grew alongside FP&A but was a separate initiative. The FP&A team was four people. The India community is the organisational story. They're distinct.</p>
+
+        <!-- SVG: Team Structure -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="240" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">TEAM STRUCTURE — THREE CONCENTRIC CONTEXTS</text>
+
+            <!-- Outer ring: India Community (dashed, faint) -->
+            <ellipse cx="380" cy="130" rx="340" ry="98" fill="rgba(200,193,185,0.08)" stroke="#d4cec8" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="686" y="88" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#aaa" font-weight="600" letter-spacing="0.05em">INTUIT INDIA COMMUNITY</text>
+            <text x="686" y="101" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">50+ designers</text>
+            <text x="686" y="114" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">parallel programme</text>
+
+            <!-- Middle ring: Cross-functional -->
+            <ellipse cx="380" cy="130" rx="220" ry="68" fill="rgba(168,92,61,0.06)" stroke="#A85C3D" stroke-width="1.5" stroke-dasharray="none"/>
+            <text x="560" y="107" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#A85C3D" font-weight="600" letter-spacing="0.05em">CROSS-FUNCTIONAL</text>
+            <text x="560" y="120" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#A85C3D">Engineering · Product</text>
+            <text x="560" y="133" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#A85C3D">Analytics · Sales · Legal</text>
+            <text x="560" y="146" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#c8a090">structural alignment</text>
+
+            <!-- Inner ring: FP&A Core -->
+            <ellipse cx="380" cy="130" rx="100" ry="46" fill="#b04000"/>
+            <text x="380" y="116" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="white">FP&amp;A Core</text>
+            <text x="380" y="131" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Neha · Sr. Designer</text>
+            <text x="380" y="144" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Content · Researcher</text>
+            <text x="380" y="158" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.5)">4 people · small by design</text>
+
+            <!-- Left labels -->
+            <text x="60" y="107" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#aaa" font-weight="600" letter-spacing="0.05em">PRODUCT SHIPPED</text>
+            <text x="60" y="120" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">from core + cross-</text>
+            <text x="60" y="133" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">functional partners</text>
+
+            <!-- Scale note at bottom -->
+            <text x="380" y="225" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#888" font-style="italic">The 14- and 24-person numbers in some descriptions refer to the outer ring — not the FP&amp;A team</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Team model — FP&A core (four people, centre) within the broader cross-functional team and Intuit India community. The FP&A product shipped from the core plus cross-functional partners.</p>
+
+        <div class="model-grid">
+            <div class="model-card">
+                <div class="m-role">FP&amp;A Core</div>
+                <div class="m-time">Neha · Sr. Designer · Content Designer · Researcher</div>
+                <div class="m-need">Coherence through smallness</div>
+                <div class="m-desc">The FP&A team was four people by design. Speed, shared context, and direct feedback loops. Every decision could be made in the room. This team designed, tested, and shipped the core product.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">Cross-Functional</div>
+                <div class="m-time">Engineering · Product · Analytics · Sales · Legal</div>
+                <div class="m-need">Structural alignment, not design direction</div>
+                <div class="m-desc">Engineering and product partners handled implementation and prioritisation. Sales and legal were engaged on the SKU strategy decisions. The cross-functional team was large; the design team was deliberately not.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">India Community</div>
+                <div class="m-time">50+ designers across Intuit India product teams</div>
+                <div class="m-need">Parallel org-building, not FP&amp;A headcount</div>
+                <div class="m-desc">The India design community was a separate initiative — seeding design capability across Intuit India's product teams. It ran concurrently with FP&A. The community's scale (50+) is distinct from the FP&A team's scale (4).</div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── RESULTS ── -->
+        <h2>The results</h2>
+
+        <p>We went to general availability within the first year. What shipped was usable, trustworthy, and pointed clearly in the right direction.</p>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">12%</span>
+                <p>Year-1 penetration of the QuickBooks ecosystem — roughly 600K–700K customers activated in the first year of GA</p>
+            </div>
+            <div class="result-card">
+                <span class="number">1.5M</span>
+                <p>Mid-market customers actively using FP&A features by 2024 — approximately 30% of QB Online's small business customer base</p>
+            </div>
+            <div class="result-card">
+                <span class="number">60%+</span>
+                <p>Trial-to-paid conversion among engaged beta customers — the clearest signal of product-market fit we had going into GA</p>
+            </div>
+            <div class="result-card">
+                <span class="number">NPS 52</span>
+                <p>Net Promoter Score — strong for an enterprise-tier product in a category where users had resigned themselves to spreadsheets</p>
+            </div>
+        </div>
+
+        <!-- SVG: Adoption Trajectory -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="240" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">ADOPTION TRAJECTORY — BETA TO 1.5M</text>
+            <!-- Chart area: x 80–700, y 34–180 -->
+            <line x1="80" y1="180" x2="700" y2="180" stroke="#eae6df" stroke-width="1.5"/>
+            <line x1="80" y1="180" x2="80"  y2="34"  stroke="#eae6df" stroke-width="1.5"/>
+            <!-- Y-axis labels -->
+            <text x="74" y="183" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">0</text>
+            <text x="74" y="148" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">500K</text>
+            <text x="74" y="113" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">1.0M</text>
+            <text x="74" y="78" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">1.5M</text>
+            <!-- Grid lines -->
+            <line x1="80" y1="148" x2="700" y2="148" stroke="#eae6df" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="80" y1="113" x2="700" y2="113" stroke="#eae6df" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="80" y1="78"  x2="700" y2="78"  stroke="#eae6df" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Bars: 4 phases -->
+            <!-- Beta: ~100K → bar height 9px, top y=171 -->
+            <rect x="110" y="171" width="100" height="9"   rx="3" fill="#d4cec8"/>
+            <text x="160" y="166" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#888">Beta ~100K</text>
+            <!-- Year 1: ~650K → bar height 58px, top y=122 -->
+            <rect x="250" y="122" width="120" height="58"  rx="3" fill="#b04000" opacity="0.6"/>
+            <text x="310" y="116" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000">12% · ~650K</text>
+            <text x="310" y="128" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#b04000">Year 1 GA</text>
+            <!-- Year 2: ~1.2M → bar height 107px, top y=73 -->
+            <rect x="400" y="73"  width="120" height="107" rx="3" fill="#b04000" opacity="0.8"/>
+            <text x="460" y="67" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000">1.2M</text>
+            <!-- Year 3: 1.5M → bar height 146px, top y=34, full ochre -->
+            <rect x="550" y="34"  width="120" height="146" rx="3" fill="#b04000"/>
+            <text x="610" y="28" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#b04000">1.5M</text>
+            <!-- X labels -->
+            <text x="160" y="195" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#888">Beta 2022</text>
+            <text x="310" y="195" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#888">GA Year 1</text>
+            <text x="460" y="195" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#888">Year 2</text>
+            <text x="610" y="195" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="600" fill="#b04000">2024</text>
+            <!-- Beta conversion callout -->
+            <rect x="90" y="200" width="224" height="32" rx="4" fill="rgba(176,64,0,0.06)" stroke="rgba(176,64,0,0.15)" stroke-width="1"/>
+            <text x="202" y="214" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00" font-weight="600">60%+ beta → paid conversion</text>
+            <text x="202" y="227" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">product-market fit signal before full GA</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Adoption — 12% year-1 penetration, 1.5M active customers by 2024. Beta-to-paid conversion of 60%+ confirmed product-market fit before full GA commitment.</p>
+
+        <div class="img-pair">
+            <div>
+                <!-- SVG: Customer Metrics -->
+                <figure style="margin:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:0;">
+                <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                    <rect width="360" height="180" fill="#fefdfb"/>
+                    <text x="180" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#b04000" letter-spacing="0.08em">CUSTOMER METRICS</text>
+                    <!-- Three metric blocks -->
+                    <rect x="12"  y="32" width="100" height="132" rx="5" fill="#b04000"/>
+                    <text x="62"  y="72" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="28" font-weight="700" fill="white">1.5M</text>
+                    <text x="62"  y="94" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">active customers</text>
+                    <text x="62"  y="108" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.5)">by 2024</text>
+                    <text x="62"  y="148" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">~30% of QB Online SMB</text>
+
+                    <rect x="128" y="32" width="100" height="132" rx="5" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.2)" stroke-width="1"/>
+                    <text x="178" y="72" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="28" font-weight="700" fill="#b04000">NPS</text>
+                    <text x="178" y="96" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="32" font-weight="700" fill="#b04000">52</text>
+                    <text x="178" y="118" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#888">strong for enterprise</text>
+                    <text x="178" y="132" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#aaa">product tier</text>
+
+                    <rect x="244" y="32" width="104" height="132" rx="5" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.2)" stroke-width="1"/>
+                    <text x="296" y="68" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="28" font-weight="700" fill="#b04000">60%</text>
+                    <text x="296" y="88" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">+</text>
+                    <text x="296" y="108" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">beta → paid</text>
+                    <text x="296" y="122" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#aaa">conversion rate</text>
+                    <text x="296" y="148" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#bbb">highest PMF signal</text>
+                </svg>
+                </figure>
+                <p class="img-caption">1.5M users · NPS 52 · 60%+ beta conversion — each independently meaningful, together describing a product customers found, used, and kept.</p>
+            </div>
+            <div>
+                <!-- SVG: Business Impact (SKU Evolution) -->
+                <figure style="margin:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:0;">
+                <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+                    <rect width="360" height="180" fill="#fefdfb"/>
+                    <text x="180" y="20" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#b04000" letter-spacing="0.08em">BUSINESS IMPACT — SKU EVOLUTION</text>
+                    <!-- Flow: 3 boxes with arrows -->
+                    <rect x="10"  y="36" width="96" height="112" rx="5" fill="#ede8e0" stroke="#d4cec8" stroke-width="1"/>
+                    <text x="58"  y="64" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888" font-weight="700" letter-spacing="0.05em">EXISTING</text>
+                    <text x="58"  y="84" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#3a3a36">QB Online</text>
+                    <text x="58"  y="100" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">Bookkeeping</text>
+                    <text x="58"  y="114" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">Tax · Payroll</text>
+                    <text x="58"  y="130" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#bbb">existing SKU</text>
+                    <!-- Arrow 1 -->
+                    <line x1="110" y1="92" x2="124" y2="92" stroke="#b04000" stroke-width="2"/>
+                    <polygon points="124,88 134,92 124,96" fill="#b04000"/>
+                    <text x="122" y="82" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#b04000">+</text>
+                    <!-- FP&A add-on -->
+                    <rect x="134" y="36" width="96" height="112" rx="5" fill="rgba(176,64,0,0.1)" stroke="rgba(176,64,0,0.35)" stroke-width="1.5"/>
+                    <text x="182" y="64" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000" font-weight="700" letter-spacing="0.05em">NEW</text>
+                    <text x="182" y="84" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#7a2e00">FP&amp;A</text>
+                    <text x="182" y="100" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">Forecasting</text>
+                    <text x="182" y="114" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">Scenarios · AI</text>
+                    <text x="182" y="130" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">add-on SKU</text>
+                    <!-- Arrow 2 -->
+                    <line x1="234" y1="92" x2="248" y2="92" stroke="#b04000" stroke-width="2"/>
+                    <polygon points="248,88 258,92 248,96" fill="#b04000"/>
+                    <text x="246" y="82" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8" fill="#b04000">→</text>
+                    <!-- IES -->
+                    <rect x="258" y="36" width="92" height="112" rx="5" fill="#b04000"/>
+                    <text x="304" y="60" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" font-weight="700" letter-spacing="0.04em">BECOMES</text>
+                    <text x="304" y="78" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="white">Intuit</text>
+                    <text x="304" y="92" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="white">Enterprise</text>
+                    <text x="304" y="106" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="white">Suite</text>
+                    <text x="304" y="124" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.55)">FP&amp;A as anchor</text>
+                    <text x="304" y="138" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.55)">mid-market tier</text>
+                    <!-- Note -->
+                    <text x="180" y="165" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="8.5" fill="#aaa" font-style="italic">Design influenced the business model, not just the interface</text>
+                </svg>
+                </figure>
+                <p class="img-caption">SKU evolution — FP&A add-on becoming the anchor for Intuit Enterprise Suite. Design influenced the business model.</p>
+            </div>
+        </div>
+
+        <!-- SVG: Operational Impact — AI component propagation -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="200" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">OPERATIONAL IMPACT — AI COMPONENT PROPAGATION</text>
+            <!-- Hub: FP&A -->
+            <circle cx="134" cy="110" r="44" fill="#b04000"/>
+            <text x="134" y="105" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="white">FP&amp;A</text>
+            <text x="134" y="120" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">origin team</text>
+            <!-- Spokes to other Intuit products -->
+            <line x1="178" y1="90"  x2="242" y2="62"  stroke="#d4cec8" stroke-width="1.5"/>
+            <line x1="178" y1="110" x2="248" y2="110" stroke="#d4cec8" stroke-width="1.5"/>
+            <line x1="178" y1="130" x2="242" y2="158" stroke="#d4cec8" stroke-width="1.5"/>
+            <!-- Product nodes -->
+            <rect x="244" y="42"  width="148" height="40" rx="20" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.2)" stroke-width="1"/>
+            <text x="318" y="57" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#7a2e00">Acceptability patterns</text>
+            <text x="318" y="71" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">trust &amp; confidence UI</text>
+
+            <rect x="250" y="90"  width="148" height="40" rx="20" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.2)" stroke-width="1"/>
+            <text x="324" y="105" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#7a2e00">Explainability patterns</text>
+            <text x="324" y="119" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">inline AI reasoning</text>
+
+            <rect x="244" y="138" width="148" height="40" rx="20" fill="rgba(176,64,0,0.08)" stroke="rgba(176,64,0,0.2)" stroke-width="1"/>
+            <text x="318" y="153" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#7a2e00">Extendability patterns</text>
+            <text x="318" y="167" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000">agent-ready components</text>
+
+            <!-- Arrow to broader adoption -->
+            <line x1="400" y1="110" x2="454" y2="110" stroke="#b04000" stroke-width="2" stroke-dasharray="5 4"/>
+            <polygon points="454,105 464,110 454,115" fill="#b04000"/>
+            <!-- Adoption cloud -->
+            <rect x="464" y="58" width="270" height="104" rx="8" fill="rgba(176,64,0,0.04)" stroke="rgba(176,64,0,0.15)" stroke-width="1"/>
+            <text x="599" y="82" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#3a3a36">Adopted across Intuit</text>
+            <text x="599" y="100" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#888">QuickBooks · TurboTax · Credit Karma</text>
+            <text x="599" y="116" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" fill="#888">Mailchimp · Intuit Enterprise Suite</text>
+            <text x="599" y="134" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#aaa" font-style="italic">FP&amp;A patterns as reference work for AI experiences</text>
+            <text x="599" y="152" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#bbb">2022 → first · 2023–25 → organisation-wide</text>
+        </svg>
+        </figure>
+        <p class="img-caption">AI component patterns — Acceptability, Explainability, Extendability — propagated from FP&A across the Intuit portfolio from 2022 onward.</p>
+
+        <!-- SVG: Team Growth -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="180" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">DESIGN CAPACITY — TWO PARALLEL STORIES</text>
+            <!-- Divider line -->
+            <line x1="40" y1="100" x2="720" y2="100" stroke="#eae6df" stroke-width="1"/>
+            <!-- FP&A bar: starts 2021, ends 2024, height 32, above line (y 64-100) -->
+            <rect x="56"  y="66"  width="540" height="32" rx="4" fill="#b04000" opacity="0.9"/>
+            <text x="72"  y="86" font-family="-apple-system,system-ui,sans-serif" font-size="10.5" font-weight="700" fill="white">FP&amp;A Core Team  ·  4 people  ·  2021–2024</text>
+            <text x="592" y="86" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.65)">lean by design</text>
+            <!-- India Community bar: grows 2021 to 2024+, thicker bar (height 32), below line (y 100-134) -->
+            <rect x="56"  y="102" width="200" height="32" rx="0" fill="#d4cec8"/>
+            <rect x="256" y="102" width="200" height="32" rx="0" fill="#c8c0b4"/>
+            <rect x="456" y="102" width="264" height="32" rx="0" fill="#b04000" opacity="0.25"/>
+            <!-- Growing label inside bar -->
+            <text x="72"  y="122" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a7470">India Design Community → growing</text>
+            <text x="460" y="122" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#7a2e00">50+ designers</text>
+            <text x="692" y="122" text-anchor="end" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#aaa">ongoing</text>
+            <!-- Year markers -->
+            <text x="56"  y="148" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#bbb">2021</text>
+            <text x="256" y="148" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#bbb">2022</text>
+            <text x="456" y="148" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#bbb">2023</text>
+            <text x="656" y="148" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#bbb">2024+</text>
+            <!-- Legend -->
+            <rect x="56" y="160" width="10" height="10" rx="2" fill="#b04000"/>
+            <text x="72" y="170" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">FP&amp;A core (4 people)</text>
+            <rect x="200" y="160" width="10" height="10" rx="2" fill="#d4cec8"/>
+            <text x="216" y="170" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#888">India community (growing to 50+)</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Two parallel tracks: FP&A core (4 people, 2021–2024) and India design community (growing to 50+). Distinct stories that ran concurrently.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── PRODUCT EVOLUTION ── -->
+        <h2>What the product became</h2>
+
+        <p>The original FP&A product launched with cashflow projection, Forecast Builder, and an AI insights layer. What the team built on top of that foundation is the clearest validation of the architecture decisions made at the start. These are the actual Figma files from the team — Shreya Ratakonda's and the broader P&B group — showing how the product evolved across four phases over three years.</p>
+
+        <div class="sprint-inset">
+            <span class="si-label">Design evolution — four phases, three years</span>
+            <div class="sprint-event">
+                <div class="sprint-date">2022</div>
+                <div class="sprint-desc">Scenario Planning and Forecast Builder ship. The core interaction model: a quarterly cashflow table, rolling forecast, and a "Create scenario" drawer where users toggle factors (wages, sales) and see downstream impact. The foundation.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2023</div>
+                <div class="sprint-desc">FP&A integrates into the Intuit Enterprise Suite. A Goals feature launches — AI recommends financial goals from past actuals ("Set net profit margin to 15% for FY25"). The product expands from planning tool to financial operating system across Accounting, Expenses, Sales, Payroll, Projects.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2023–24</div>
+                <div class="sprint-desc">The Finance Agent is specified. BI-Agents architecture work defines the role: "analyze financial data, automatically create forecasts, highlight anomalies to help controllers stay on top of their financial management." The agent's scope is drawn — what it does and, critically, what it doesn't do yet.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2024–25</div>
+                <div class="sprint-desc">Multi-agent financial operations platform ships. Finance Agent, Bookkeeping Agent, Project Management Agent, Sales Agent, and Payroll Agent run in parallel. Board meetings are prepped automatically. Profitability scenarios are generated and refined through natural language. 246 tasks completed.</div>
+            </div>
+        </div>
+
+        <h3>Phase 1 — Scenario planning: the original design</h3>
+        <p>The Scenario Comparison experience shipped as a structured table interface. Rolling forecast 2022–2027, broken by quarter. Money in, money out, assets, liabilities, equity — all editable. The "Create scenario" drawer on the right let users toggle factor assumptions (wages starting September, sales starting November) and see impact propagate through the full model. Simple, transparent, non-intimidating. This was the product I designed.</p>
+
+        <img src="qb-evolution-scenario-detail.jpg" alt="Scenario 1 — Rolling forecast 2022–2027, quarterly cashflow table showing Money in/out/Assets/Liabilities/Equity, Create scenario drawer with Wages and Sales factors">
+        <p class="img-caption">Scenario Planning — the original design (~2022). Rolling forecast 2022–2027 shown quarterly. Right panel: "Create scenario" drawer where users toggle factors — Wages and Salaries (starting September 2022), Sales (starting November 2022) — and see downstream impact in the table. "Show visualisations" toggle. The transparency principle: show the assumptions, let users override them.</p>
+
+        <h3>Phase 2 — Goals and Enterprise Suite integration</h3>
+        <p>By 2023, FP&A had expanded into the full Intuit Enterprise Suite — Accounting, Expenses, Sales, Payroll, Projects, Inventory. The new Goals feature closed the loop: AI read your actuals and recommended specific targets for the year ahead — "Set total income for FY25 to $20,000, a 20% increase" — which the user could edit, accept, or dismiss. Goal cards then tracked progress against each target in real time.</p>
+
+        <img src="qb-evolution-goals.jpg" alt="Intuit Enterprise Suite — Goals page. AI-recommended goals: Set total income for FY25 to $20,000 (20% increase), Set net profit margin for FY25 to 15%. Goal cards: Net Profit Margin NOT ACHIEVED 10.45%, Aarens Painting Job IN PROGRESS 13.56%, Total Income IN PROGRESS $5,000/$10K">
+        <p class="img-caption">Goals — the FP&A capability expanded into the Intuit Enterprise Suite (~2023). AI recommends financial targets from past actuals. Goal cards track real-time progress vs target across Net Profit Margin, Project Profit, and Total Income. Left nav: Financial planning expands to Overview, Goals, Scenario planning, Forecasts, Budgets, Cashflow — FP&A has become a full suite within a platform.</p>
+
+        <h3>Phase 3 — The Finance Agent: proactive intelligence and board meeting prep</h3>
+        <p>The home experience inverted. Instead of a dashboard the user navigates, an Agent Feed the Finance Agent populates. "Organizational alignment is below target," "raw material from one entity is 25% cheaper than the others," "4% growth opportunity detected" — surfaced before the user asks. The board meeting workflow — the highest-stakes financial task a CFO faces — became a single agent task: slide deck created, talking points built, financial overview report generated. "You're all set."</p>
+
+        <img src="qb-evolution-cfo-feed.jpg" alt="Finance Agent feed — proactive insights: organizational alignment, raw material cost signal, profitability projection 1.5%, 4% growth opportunity, vendor forecast renewals needed for FY25">
+        <p class="img-caption">Finance Agent feed — proactive, not reactive. Five categories surfaced automatically: alignment issues, entity-level cost signals, profitability projections, growth opportunities, and forecast-ready alerts. The user receives a briefing; they don't run a report to find one.</p>
+
+        <img src="qb-evolution-agent-home.jpg" alt="QB Agent home — Good morning Jason. Finance Agent: quarterly board meeting prepped, slide deck created, talking points created, report generated. Agent status: 5 agents active, 6.8% profitability increase, 12.5% revenue growth, 246 tasks completed">
+        <p class="img-caption">"Good morning, Jason" — the Finance Agent has completed the quarterly board meeting preparation: slide deck, talking points, financial overview report. Agent status: 5 active agents running in parallel, 6.8% profitability increase, 12.5% revenue growth, 246 tasks completed this period. This is the home screen of a financial operations platform, not a planning tool.</p>
+
+        <h3>Phase 4 — Conversational scenarios: the interaction model closes the loop</h3>
+        <p>The Scenario Comparison experience, originally a table the user built manually, became a conversational loop. The Finance Agent generates profitability scenarios from actual business data, proposes strategies ranked by impact, and responds to natural language — "I like this scenario, but only apply it to residential projects" — by modifying the forecast in real time and decomposing the strategy into executable sub-tasks it then tracks.</p>
+
+        <div class="img-pair">
+            <div>
+                <img src="qb-evolution-profitability.jpg" alt="Finance Agent — Profitability Scenarios: $3,283,000 +20%. Strategic vendor consolidation, Supply Chain Efficiency, Real Estate Development Procurement. Profit margin 20%, Expenses 13%.">
+                <p class="img-caption">Finance Agent — profitability scenario: $3.28M net profit, +20%. Three optimisation strategies generated and ranked by impact (high / medium / low). Profit margin and expenses tracked against projection. The user sees the agent's reasoning before accepting.</p>
+            </div>
+            <div>
+                <img src="qb-evolution-dialogue.jpg" alt="Conversational loop — user: 'I like this scenario but only for residential projects'. Agent responds: Modifying scenarios, Running forecast">
+                <p class="img-caption">Natural language refinement — user accepts direction but constrains scope ("only residential projects"). Agent modifies scenario and reruns forecast in real time. The interaction model the original AI component work was designed to support.</p>
+            </div>
+        </div>
+
+        <img src="qb-evolution-agent-tasks.jpg" alt="Finance Agent task decomposition — Develop residential supply chain optimization strategy, Break down equipment leasing expenses, Evaluate vendor performance metrics">
+        <p class="img-caption">Agent task decomposition — after approval, the Finance Agent breaks the strategy into sub-tasks and tracks its own work. The 2022 AI design principles, expressed at the agentic layer.</p>
+
+        <div class="principle-box">
+            <span class="p-label">Why the original architecture held across four phases</span>
+            <p>The 2022 AI component work proved prescient across every phase. The Goals cards, the Agent Feed, the conversational loop, the task decomposition — none required rebuilding the foundation. They extended it. That is what designing for extendability buys: decisions made in 2022 that a team can build on in 2025 without starting over.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── THE LEGACY ── -->
+        <h2>The legacy</h2>
+
+        <p>Three years on, QuickBooks FP&A is a self-sustaining product — its own team, an expanding feature set, continued AI evolution. The SKU strategy proved durable too: the Intuit Enterprise Suite, which grew partly out of this positioning work, took Intuit meaningfully beyond its core SMB segment.</p>
+
+        <p>The most specific legacy is the AI component work. In 2022 we were answering questions the industry is still working through — how to present a prediction users trust without over-relying on it, how to make a recommendation explainable without cluttering the interface, how to build components that extend from suggestion to action. The answers were hard-won, because they came from real users making real financial decisions.</p>
+
+        <img src="qb-shipped-forecasting.jpg" alt="QuickBooks Financial Planning — shipped product. Forecasting made easy. AI-based forecasts within +/- 20% of income and expense actuals. Forecast made for you Jan 2024–Dec 2025. Net income for FY24 projected $863,252. Harrison Hardware demo.">
+        <p class="img-caption">The shipped product — QuickBooks Financial Planning, as it appears in the Intuit Enterprise Suite. "Forecasting made easy: based on your historical data, AI-based forecasts have been within +/- 20% of your income and expense actuals." Forecast made for you, Jan 2024–Dec 2025, net income projected $863,252. This screen is from the IES V7 sales deck (2024), used to demonstrate FP&A to enterprise customers. The product that started as a QBDT design initiative in June 2022.</p>
+
+        <div class="closing-quote">
+            Starting something from nothing inside a mature ecosystem — and watching it hold its shape long after you've moved on — is a different kind of satisfaction than shipping a feature. You know the product decisions were right not because they looked good in a presentation, but because they're still standing.
+        </div>
+
+        <!-- SVG: Team Feedback / Validation Quotes -->
+        <figure style="margin:28px 0 8px; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:#fefdfb; padding:28px 28px 20px;">
+        <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <rect width="760" height="200" fill="#fefdfb"/>
+            <text x="380" y="18" text-anchor="middle" font-family="-apple-system,system-ui,sans-serif" font-size="10" font-weight="700" fill="#b04000" letter-spacing="0.08em">VALIDATION — WHAT THE WORK PRODUCED</text>
+            <!-- Quote 1: customer voice (left) -->
+            <rect x="16" y="30" width="352" height="154" rx="6" fill="white" stroke="#eae6df" stroke-width="1"/>
+            <!-- Large open quote mark -->
+            <text x="32" y="64" font-family="-apple-system,system-ui,sans-serif" font-size="36" fill="rgba(176,64,0,0.15)">"</text>
+            <text x="52" y="76" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">I need someone to hold my hand</text>
+            <text x="52" y="93" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">through the whole thing until I</text>
+            <text x="52" y="110" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">get what I want, and then I start</text>
+            <text x="52" y="127" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">owning it.</text>
+            <line x1="32" y1="142" x2="352" y2="142" stroke="#eae6df" stroke-width="1"/>
+            <text x="32" y="158" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#888">Research participant · July 2022 Foundational Study</text>
+            <text x="32" y="171" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000" font-style="italic">Shaped the Forecast Builder's guided step model</text>
+            <!-- Quote 2: product leadership / metrics voice (right) -->
+            <rect x="392" y="30" width="352" height="154" rx="6" fill="white" stroke="#eae6df" stroke-width="1"/>
+            <text x="408" y="64" font-family="-apple-system,system-ui,sans-serif" font-size="36" fill="rgba(176,64,0,0.15)">"</text>
+            <text x="428" y="76" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">Budget is like a vision board for</text>
+            <text x="428" y="93" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">the business. Forecast is how</text>
+            <text x="428" y="110" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">you arrive at the budget, and</text>
+            <text x="428" y="127" font-family="-apple-system,system-ui,sans-serif" font-size="12.5" fill="#2e2e2b" font-style="italic">track your progress.</text>
+            <line x1="408" y1="142" x2="728" y2="142" stroke="#eae6df" stroke-width="1"/>
+            <text x="408" y="158" font-family="-apple-system,system-ui,sans-serif" font-size="9.5" fill="#888">Marjorie · QuickBooks Pro Advisor · June 2022 Workshop</text>
+            <text x="408" y="171" font-family="-apple-system,system-ui,sans-serif" font-size="9" fill="#b04000" font-style="italic">Became the orienting product definition throughout</text>
+        </svg>
+        </figure>
+        <p class="img-caption">Two quotes that shaped the product — one defined the interaction model, one defined the product itself. Both from the June–July 2022 research artefacts.</p>
+
+        <div class="footer-bar">
+            © 2026 Neha Saraswat · Product · Design · GTM<br>
+            <a href="PORTFOLIO.html">← Back to Portfolio</a>
+        </div>
+
     </div>
 </body>
 </html>
