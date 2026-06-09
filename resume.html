@@ -251,17 +251,26 @@
         }
 
         /* ── PRINT ── */
+        @page {
+            size: letter;
+            margin: 12mm 16mm;
+        }
         @media print {
-            body { background: white; font-size: 11.5px; }
-            .page { padding: 24px 36px 30px; max-width: 100%; }
-            .name { font-size: 26px; }
-            .summary { font-size: 12px; margin-bottom: 18px; }
-            .role ul li { font-size: 11.5px; margin-bottom: 3px; }
-            .metric-number { font-size: 13px; }
-            .two-col { grid-template-columns: 1fr 200px; gap: 0 30px; }
-            .role { margin-bottom: 14px; }
-            .role-divider { margin: 12px 0; }
-            .section { margin-bottom: 18px; }
+            body { background: white; font-size: 10.5px; }
+            .page { padding: 10px 16px 14px; max-width: 100%; }
+            .name { font-size: 24px; }
+            .title-tag { font-size: 11px; }
+            .summary { font-size: 10.5px; margin-bottom: 14px; }
+            .role ul li { font-size: 10.5px; margin-bottom: 2px; }
+            .role-title { font-size: 11.5px; }
+            .metric-number { font-size: 12px; }
+            .metric-label { font-size: 9px; }
+            .two-col { grid-template-columns: 1fr 190px; gap: 0 24px; }
+            .role { margin-bottom: 10px; }
+            .role-divider { margin: 8px 0; }
+            .section { margin-bottom: 14px; }
+            .section-title { font-size: 9px; margin-bottom: 6px; }
+            .metrics { gap: 8px; margin-top: 6px; }
         }
 
         @media (max-width: 640px) {
@@ -305,7 +314,7 @@
                 <!-- INTUIT VEP -->
                 <div class="role">
                     <div class="role-header">
-                        <div class="role-title">Head of Design — Virtual Expert Platform</div>
+                        <div class="role-title">Head of Design, Autonomous Operations — Virtual Expert Platform</div>
                         <div class="role-period">2023 – 2025</div>
                     </div>
                     <div class="role-company">Intuit</div>
