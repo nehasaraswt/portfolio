@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Generator — NS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bone: #fefdfb;
+            --white: #ffffff;
+            --text: #2e2e2b;
+            --muted: #565758;
+            --rust: #b5342b;
+            --ochre: #b04000;
+            --border: #eae6df;
+            --surface: #f7f5f1;
+            --navy: #1e2d3d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bone);
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.55;
+            min-height: 100vh;
+        }
+
+        /* ── Top bar ── */
+        .topbar {
+            background: var(--navy);
+            padding: 10px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-brand {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .topbar-brand span { color: rgba(255,255,255,0.9); }
+
+        .topbar-back {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .topbar-back:hover { color: rgba(255,255,255,0.8); }
+
+        /* ── Layout ── */
+        .shell {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 48px 80px;
+        }
+
+        /* ── Panels ── */
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        /* ── API key screen ── */
+        .setup-card {
+            max-width: 480px;
+            margin: 60px auto;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 36px 40px;
+        }
+
+        .setup-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 16px;
+        }
+
+        .setup-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .setup-card p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .field-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        input[type="password"], input[type="text"], textarea, select {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 10px 12px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        input[type="password"]:focus, input[type="text"]:focus,
+        textarea:focus, select:focus {
+            border-color: var(--rust);
+        }
+
+        textarea {
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: white;
+        }
+
+        .btn-primary:hover { background: #263a4f; }
+
+        .btn-rust {
+            background: var(--rust);
+            color: white;
+        }
+
+        .btn-rust:hover { opacity: 0.88; }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover { border-color: var(--rust); color: var(--rust); }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 11.5px;
+        }
+
+        .btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        /* ── Input screen ── */
+        .input-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .input-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .input-header .sub {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-row .field-label {
+            margin-bottom: 6px;
+        }
+
+        .char-hint {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .tone-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .tone-opt {
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: var(--white);
+        }
+
+        .tone-opt:hover, .tone-opt.selected {
+            border-color: var(--rust);
+            background: rgba(181,52,43,0.04);
+        }
+
+        .tone-opt .tone-name {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tone-opt .tone-desc {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .generate-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Loading ── */
+        .loading-screen {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border);
+            border-top-color: var(--rust);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-label {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .loading-step {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 6px;
+            min-height: 16px;
+        }
+
+        /* ── Output screen ── */
+        .output-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .output-title {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .output-title strong {
+            color: var(--text);
+            font-size: 16px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* ── Tabs ── */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 28px;
+            gap: 0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.15s;
+        }
+
+        .tab:hover { color: var(--rust); }
+
+        .tab.active {
+            color: var(--rust);
+            border-bottom-color: var(--rust);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* ── Insight strip ── */
+        .insight-strip {
+            background: rgba(181,52,43,0.05);
+            border-left: 3px solid var(--rust);
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .insight-strip p {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .insight-strip strong {
+            color: var(--text);
+        }
+
+        /* ─────────────────────────────────────────
+           RESUME STYLES (matches resume.html exactly)
+        ───────────────────────────────────────── */
+        .resume-frame {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        #resume-output {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 56px 60px;
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: var(--text);
+        }
+
+        .r-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 40px;
+            padding-bottom: 18px;
+            border-bottom: 3px solid var(--rust);
+            margin-bottom: 22px;
+        }
+
+        .r-name {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .r-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-top: 6px;
+        }
+
+        .r-contact {
+            text-align: right;
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .r-contact a { color: var(--ochre); text-decoration: none; }
+
+        .r-summary {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 26px;
+        }
+
+        .r-summary strong { color: var(--text); }
+
+        .r-two-col {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 0 40px;
+        }
+
+        .r-section { margin-bottom: 24px; }
+
+        .r-section-title {
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--rust);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+            margin-bottom: 16px;
+        }
+
+        .r-role { margin-bottom: 18px; }
+
+        .r-role-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 1px;
+        }
+
+        .r-role-title {
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .r-role-period {
+            font-size: 11.5px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .r-role-company {
+            font-size: 12px;
+            color: var(--ochre);
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .r-role ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .r-role ul li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 4px;
+            font-size: 12.5px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .r-role ul li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--border);
+        }
+
+        .r-role ul li strong { color: var(--text); }
+
+        .r-metrics {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 8px 0 4px;
+        }
+
+        .r-metric { display: flex; flex-direction: column; gap: 1px; }
+
+        .r-metric-num {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--rust);
+            line-height: 1;
+        }
+
+        .r-metric-lbl {
+            font-size: 10.5px;
+            color: var(--muted);
+            line-height: 1.3;
+            max-width: 110px;
+        }
+
+        .r-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 16px 0;
+        }
+
+        .r-skill-group { margin-bottom: 14px; }
+
+        .r-skill-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .r-skill-items {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .r-edu-entry { margin-bottom: 10px; }
+
+        .r-edu-degree {
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .r-edu-school {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .r-edu-note {
+            font-size: 11px;
+            color: #888;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .r-community {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ── Cover letter ── */
+        .cover-frame {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        #cover-output {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 56px 64px 60px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .cl-header {
+            border-bottom: 3px solid var(--rust);
+            padding-bottom: 16px;
+            margin-bottom: 36px;
+        }
+
+        .cl-name {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .cl-tag {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-top: 4px;
+        }
+
+        .cl-contact {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 10px;
+            line-height: 1.8;
+        }
+
+        .cl-date {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .cl-body p {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .cl-body p strong { color: var(--text); }
+
+        .cl-sign {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .cl-sign strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 20px;
+        }
+
+        /* ── Error ── */
+        .error-box {
+            background: rgba(181,52,43,0.07);
+            border: 1px solid rgba(181,52,43,0.25);
+            border-radius: 5px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: var(--rust);
+            line-height: 1.5;
+        }
+
+        /* ── Key indicator ── */
+        .key-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: all 0.15s;
+        }
+
+        .key-status:hover { border-color: var(--rust); color: var(--rust); }
+
+        .key-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+
+        .key-dot.set { background: #3a9e68; }
+
+        @media print {
+            .topbar, .output-header, .tabs, .output-actions,
+            .insight-strip, .generate-bar, .btn { display: none !important; }
+            body { background: white; }
+            .shell { padding: 0; max-width: 100%; }
+            #resume-output { padding: 10px 16px; font-size: 10.5px; }
+            .r-name { font-size: 24px; }
+            .r-two-col { grid-template-columns: 1fr 190px; gap: 0 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-brand">NS &nbsp;·&nbsp; <span>Application Generator</span></div>
+    <div style="display:flex;align-items:center;gap:14px;">
+        <div class="key-status" onclick="showPanel('api-panel')" id="key-indicator">
+            <div class="key-dot" id="key-dot"></div>
+            <span id="key-label">API key not set</span>
+        </div>
+        <a href="PORTFOLIO.html" class="topbar-back">← Portfolio</a>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 1: API key setup
+════════════════════════════════════════ -->
+<div class="shell panel" id="api-panel">
+    <div class="setup-card">
+        <div class="setup-label">One-time setup</div>
+        <h2>Anthropic API key</h2>
+        <p>Your key is stored only in this browser — never sent anywhere except Anthropic's API. Paste it once and it's remembered.</p>
+
+        <div class="form-row">
+            <label class="field-label" for="api-key-input">API key</label>
+            <input type="password" id="api-key-input" placeholder="sk-ant-api03-…" autocomplete="off">
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:4px;">
+            <button class="btn btn-primary" onclick="saveApiKey()">Save key →</button>
+            <button class="btn btn-ghost" onclick="showPanel('input-panel')">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 2: Job description input
+════════════════════════════════════════ -->
+<div class="shell panel" id="input-panel">
+
+    <div class="input-header">
+        <div>
+            <h1>New application</h1>
+            <div class="sub">Paste the job description and generate a tailored resume + cover letter</div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <label class="field-label" for="company-input">Company</label>
+        <input type="text" id="company-input" placeholder="e.g. Salesforce">
+    </div>
+
+    <div class="form-row">
+        <label class="field-label" for="role-input">Role title</label>
+        <input type="text" id="role-input" placeholder="e.g. VP of Product Design">
+    </div>
+
+    <div class="form-row">
+        <label class="field-label" for="jd-input">Job description</label>
+        <textarea id="jd-input" rows="14" placeholder="Paste the full job description here — including responsibilities, requirements, and any context about the team or company…"></textarea>
+        <div class="char-hint" id="char-hint">0 characters</div>
+    </div>
+
+    <div class="form-row">
+        <label class="field-label">Tone</label>
+        <div class="tone-grid">
+            <div class="tone-opt selected" data-tone="strategic" onclick="selectTone(this)">
+                <div class="tone-name">Strategic</div>
+                <div class="tone-desc">Systems thinking, transformation, business impact</div>
+            </div>
+            <div class="tone-opt" data-tone="builder" onclick="selectTone(this)">
+                <div class="tone-name">Builder</div>
+                <div class="tone-desc">0→1 momentum, craft, shipping under constraint</div>
+            </div>
+            <div class="tone-opt" data-tone="executive" onclick="selectTone(this)">
+                <div class="tone-name">Executive</div>
+                <div class="tone-desc">Org leadership, P&L framing, cross-functional alignment</div>
+            </div>
+            <div class="tone-opt" data-tone="consultant" onclick="selectTone(this)">
+                <div class="tone-name">Consultant</div>
+                <div class="tone-desc">Advisory, frameworks, diagnostic thinking</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="generate-bar">
+        <button class="btn btn-rust" onclick="generate()" id="gen-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 1L8.5 5.5H13L9.25 8.25L10.75 12.75L7 10L3.25 12.75L4.75 8.25L1 5.5H5.5L7 1Z" fill="currentColor"/>
+            </svg>
+            Generate resume + cover letter
+        </button>
+        <div id="no-key-warning" style="font-size:12px;color:var(--rust);display:none;">
+            → <span style="cursor:pointer;text-decoration:underline;" onclick="showPanel('api-panel')">Set your API key first</span>
+        </div>
+    </div>
+
+    <div id="gen-error"></div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 3: Loading
+════════════════════════════════════════ -->
+<div class="shell panel" id="loading-panel">
+    <div class="loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-label">Generating your application…</div>
+        <div class="loading-step" id="loading-step">Reading job description</div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PANEL 4: Output
+════════════════════════════════════════ -->
+<div class="shell panel" id="output-panel">
+
+    <div class="output-header">
+        <div class="output-title">
+            <strong id="output-title">Resume + Cover Letter</strong>
+            <span id="output-subtitle"></span>
+        </div>
+        <div class="output-actions">
+            <button class="btn btn-ghost btn-sm" onclick="showPanel('input-panel')">← New application</button>
+            <button class="btn btn-ghost btn-sm" onclick="window.print()">Print / PDF</button>
+        </div>
+    </div>
+
+    <div id="insight-area"></div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('resume')">Resume</div>
+        <div class="tab" onclick="switchTab('cover')">Cover Letter</div>
+    </div>
+
+    <div class="tab-panel active" id="tab-resume">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+            <button class="btn btn-ghost btn-sm" onclick="copyOutput('resume')">Copy text</button>
+        </div>
+        <div class="resume-frame">
+            <div id="resume-output"></div>
+        </div>
+    </div>
+
+    <div class="tab-panel" id="tab-cover">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+            <button class="btn btn-ghost btn-sm" onclick="copyOutput('cover')">Copy text</button>
+        </div>
+        <div class="cover-frame">
+            <div id="cover-output"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+/* ══════════════════════════════════
+   NEHA'S COMPLETE PROFILE
+   (used as context for every generation)
+════════════════════════════════════ */
+const PROFILE = `
+NEHA SARASWAT — Complete Professional Profile
+Contact: neha.biti@gmail.com · +91 96111 27722 · Bengaluru, India
+LinkedIn: linkedin.com/in/nehasaraswat · nehasaraswat.in
+
+HEADLINE
+Design executive and builder with 20+ years across fintech, enterprise commerce, conversational AI, and emerging ventures. Works at the intersection of product strategy, design, and go-to-market — leading 0→1 launches, platform transformations, and organisation-building across the US and India. Has designed AI-native products before the category had a name and consistently taken roles where the design problem and the business problem are the same thing.
+
+EXPERIENCE
+
+1. Head of Design, Autonomous Operations — Virtual Expert Platform | Intuit | 2023–2025
+   - Led design for Intuit's AI-native platform connecting customers to experts, reimagined around agentic, low-touch operating model
+   - Led inception, pilot, and GA of CRM across all QuickBooks SKUs
+   - Launched appointment capabilities to 10K enterprise customers at Intuit Enterprise Suite (July 2025)
+   - Restructured teams and workflows around AI-first architecture; replaced array of third-party tools with unified end-to-end platform
+   - Developed Human-Agent Tandem framework for human-AI collaboration
+   METRICS: +45% live services revenue · ~40% cost reduction · 120 ITPY connections FY25 · 85% reduction in expert scheduling time
+
+2. Group Product Design Manager — QB FP&A (0→1) + Head of Design, QuickBooks Desktop | Intuit | 2021–2024
+   - Built QuickBooks Financial Planning & Analysis from inception through GA — first integrated planning product in the QB ecosystem, launching within 6 months
+   - First at Intuit to design AI-native components for generative and agentic systems — acceptability, explainability, extendability before the patterns existed
+   - Created the segment map and business-stage framework that shaped product strategy; proposed SKU changes directly contributing to Intuit Enterprise Suite
+   - Concurrently led QB Desktop (flagship, ~$2.9B revenue) — repositioned as premium offering; drove ~120K customer migration to QB Online
+   METRICS: 1.5M customers by year 3 · 12% year-one penetration · 60%+ beta conversion
+
+3. Design Manager III — Walmart.com & Assortment Platform | Walmart | 2020–2021
+   - Walmart.com: Owned search, personalisation, PDP, help, and post-sale surfaces across web and three mobile apps during 3× COVID traffic surge
+   - Contributed to Walmart+ onboarding (now 11M+ members)
+   - Assortment & Merchandising (0→1): Built platform replacing spreadsheet-driven processes — integrated demand, supply, pricing, and logistics data into streamlined buyer tools; reduced decision cycles from 5 weeks to ~1.5 weeks
+   - Led 22-person distributed team (US + India) through COVID crisis
+   METRICS: $5B+ merchant efficiency (FY21) · $6–8B additional savings · 0.03% quarterly funnel lifts
+
+4. Director of Design — Studio Leader | Incedo | 2019–2020
+   - Led multi-client design studio — multi-vendor delivery, quality governance, and UX standardisation across platforms
+
+5. Director of Design — Conversational AI Platform | [247].ai | 2016–2019
+   - Unified fragmented acquired products into a coherent Customer Engagement Cloud and Customer Acquisition Cloud
+   - Built design system ground-up as shared language across isolated product teams (Project Heisenberg — 18 months, 70+ components)
+   - Ran all organisation-wide design sprints; developed digital twin for enterprise migration planning
+   - Predated mainstream AI product discourse — designed for AI-human handoffs, agent-assisted operations, multimodal customer engagement
+   - Mapped client taxonomy and intent hierarchies manually → became template for Lines of Business AI discovery
+   - 37 enterprise clients: Cisco, Nike Football, Hilton, Target, SiriusXM, Optus, Vodafone, Best Buy, Choice Hotels, Dish
+   METRICS: 19% YoY revenue growth (2 consecutive years) · 5% cost savings via platform unification · 3 global regions
+
+6. Head of Design, India Operations (concurrent with above roles) | Intuit · Walmart · [247].ai | 2016–2024
+   - Grew India design teams from 17 to 62 designers across three organisations
+   - At Intuit: built 50+ designer community; convened and led #D4 — Intuit India's design conference, 5 editions, NPS 80+
+   - Built talent pipelines, mentorship structures, and culture that outlasted each tenure
+   - Several mentees moved into leadership and founded independent studios
+
+7. Earlier Career | Jifflenow · Lumium Innovation (Norwest VP) · Tech Mahindra · Fuego Furniture · Sri Design | 2005–2016
+   - Led 0→1 design for Jifflenow (Meeting Automation Platform); built UX team at Lumium
+   - Designed enterprise products at Tech Mahindra for Philippines, UK, NZ, and Malaysia
+   - Won best paper award (CAUE 08 / IndiaHCI) on quantification of user experience
+
+CURRENT VENTURE: Micorza (2025–present)
+   - Founder building an AI-native experience intelligence platform for physical-world businesses
+   - Head of Product role: defined 3-layer architecture, 8 intelligence modules, function-routing data model
+   - Built full prototype (React 19, Vite, Framer Motion) — all screens functional
+
+SKILLS & FOCUS AREAS
+Product: 0→1 product development · AI-native & agentic design · Platform strategy · SKU & go-to-market · Product-market fit
+Design: Systems thinking · Design systems · Design sprints · AI component design · Information architecture · Industrial design
+Leadership: Org design & restructuring · Enterprise transformation · Cross-geography teams · Design capability building · Mentorship
+Domains: Fintech & SMB tools · Enterprise commerce · Conversational AI · CRM & expert platforms · Workforce management
+Methods: Generative research · Follow-the-user studies · Rapid prototyping · Vision storytelling · Futurecasting
+
+EDUCATION
+M.Des — Product Design | National Institute of Design, Ahmedabad
+  Thesis: Bus Design for KSRTC, Bangalore
+
+B.Arch — Architecture | NIT Raipur (Ravishankar Shukla University)
+  Best thesis of the year — "Designing with archetype: city center at Indore"
+
+COMMUNITY & RECOGNITION
+- Spoke at CAUE, UXIndia, DesignUp, UXDX, Future Trends (Miami), LTUX
+- Innovation Catalyst Trailblazer (Intuit) — trained 40 catalysts/year
+- Convener, Intuit India Design Internship — ~20% of total hires over 4 years
+- Faculty and mentor across design programs
+
+LEADERSHIP PHILOSOPHY
+Product, design, and GTM are inseparable. The best work integrates all three to create products that are both well-designed and well-positioned. Believes in building structures and practices that outlast individual contributors. Takes design seriously as a business lever, not an execution function.
+`;
+
+/* ══════════════════════════════════
+   STATE
+════════════════════════════════════ */
+let selectedTone = 'strategic';
+let lastOutput = null;
+
+/* ══════════════════════════════════
+   INIT
+════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+    updateKeyStatus();
+
+    const hasKey = !!localStorage.getItem('ns_api_key');
+    showPanel(hasKey ? 'input-panel' : 'api-panel');
+
+    const jdInput = document.getElementById('jd-input');
+    jdInput.addEventListener('input', () => {
+        document.getElementById('char-hint').textContent =
+            `${jdInput.value.length.toLocaleString()} characters`;
+    });
+});
+
+/* ══════════════════════════════════
+   API KEY
+════════════════════════════════════ */
+function saveApiKey() {
+    const key = document.getElementById('api-key-input').value.trim();
+    if (!key.startsWith('sk-ant-')) {
+        alert('That doesn\'t look like an Anthropic API key (should start with sk-ant-)');
+        return;
+    }
+    localStorage.setItem('ns_api_key', key);
+    updateKeyStatus();
+    showPanel('input-panel');
+}
+
+function updateKeyStatus() {
+    const hasKey = !!localStorage.getItem('ns_api_key');
+    document.getElementById('key-dot').className = 'key-dot' + (hasKey ? ' set' : '');
+    document.getElementById('key-label').textContent = hasKey ? 'API key set' : 'API key not set';
+}
+
+/* ══════════════════════════════════
+   TONE
+════════════════════════════════════ */
+function selectTone(el) {
+    document.querySelectorAll('.tone-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedTone = el.dataset.tone;
+}
+
+/* ══════════════════════════════════
+   PANELS / TABS
+════════════════════════════════════ */
+function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+        t.classList.toggle('active', (name === 'resume' && i === 0) || (name === 'cover' && i === 1));
+    });
+    document.querySelectorAll('.tab-panel').forEach((p, i) => {
+        p.classList.toggle('active', (name === 'resume' && i === 0) || (name === 'cover' && i === 1));
+    });
+}
+
+/* ══════════════════════════════════
+   COPY
+════════════════════════════════════ */
+function copyOutput(which) {
+    const el = which === 'resume'
+        ? document.getElementById('resume-output')
+        : document.getElementById('cover-output');
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const btns = document.querySelectorAll('.btn-ghost.btn-sm');
+        btns.forEach(b => { if (b.textContent.includes('Copy')) b.textContent = '✓ Copied'; });
+        setTimeout(() => btns.forEach(b => {
+            if (b.textContent.includes('Copied')) b.textContent = 'Copy text';
+        }), 2000);
+    });
+}
+
+/* ══════════════════════════════════
+   GENERATE
+════════════════════════════════════ */
+async function generate() {
+    const apiKey = localStorage.getItem('ns_api_key');
+    if (!apiKey) {
+        document.getElementById('no-key-warning').style.display = 'block';
+        return;
+    }
+
+    const jd = document.getElementById('jd-input').value.trim();
+    const company = document.getElementById('company-input').value.trim() || 'the company';
+    const role = document.getElementById('role-input').value.trim() || 'the role';
+
+    if (jd.length < 80) {
+        document.getElementById('gen-error').innerHTML =
+            '<div class="error-box">Please paste a more complete job description (at least a few sentences).</div>';
+        return;
+    }
+
+    document.getElementById('gen-error').innerHTML = '';
+    showPanel('loading-panel');
+
+    const steps = [
+        'Reading job description…',
+        'Matching experience to requirements…',
+        'Tailoring resume bullets…',
+        'Writing cover letter…',
+        'Finishing up…',
+    ];
+    let si = 0;
+    const stepEl = document.getElementById('loading-step');
+    const stepInterval = setInterval(() => {
+        si = (si + 1) % steps.length;
+        stepEl.textContent = steps[si];
+    }, 1800);
+
+    const toneDescriptions = {
+        strategic: 'Emphasise systems thinking, transformation leadership, and business impact. Use confident, measured language.',
+        builder: 'Emphasise 0→1 momentum, craft, speed, and shipping under real constraints. Use direct, energetic language.',
+        executive: 'Emphasise org leadership, P&L thinking, cross-functional alignment, and scale. Use authoritative, boardroom-appropriate language.',
+        consultant: 'Emphasise diagnostic thinking, frameworks, advisory capability, and pattern recognition. Use precise, structured language.',
+    };
+
+    const systemPrompt = `You are a professional application writer for Neha Saraswat. Your job is to tailor her resume and write her cover letter for a specific role.
+
+Here is Neha's complete professional profile:
+
+${PROFILE}
+
+INSTRUCTIONS:
+- Be truthful — only use what is in the profile. Do not invent experiences or metrics.
+- Tailor bullet points to highlight what is most relevant to this specific job. You can reorder, trim, and re-emphasis bullets, but not fabricate.
+- Tone: ${toneDescriptions[selectedTone]}
+- Write in first person for the cover letter, third person implied for resume.
+- The cover letter should be warm and direct — 3–4 paragraphs, no fluff. It should feel like a letter from a specific person, not a template.
+- For the resume: keep all roles present but prioritise the most relevant 2–3 with fuller bullets. Earlier roles can be condensed to 1–2 lines.
+- Always include the Micorza venture if the role is product/design/startup related.
+- Return ONLY valid JSON, no markdown fences, no commentary.`;
+
+    const userPrompt = `Target company: ${company}
+Target role: ${role}
+
+JOB DESCRIPTION:
+${jd}
+
+Generate a tailored resume and cover letter. Return a single JSON object with this exact structure:
+
+{
+  "insight": "2–3 sentences on why this role fits Neha and what angle to lead with",
+  "resume": {
+    "tagline": "tailored tagline for this role (e.g. Product · Design · GTM)",
+    "summary": "tailored 2-sentence summary for this role",
+    "roles": [
+      {
+        "title": "exact title from profile",
+        "company": "company name",
+        "period": "date range",
+        "bullets": ["bullet 1", "bullet 2", "bullet 3"],
+        "metrics": [{"number": "45%", "label": "Revenue growth"}]
+      }
+    ],
+    "skills_emphasis": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"]
+  },
+  "cover_letter": {
+    "paragraphs": ["Para 1", "Para 2", "Para 3", "Para 4"]
+  }
+}
+
+Include all roles from the profile in the roles array, but tailor the bullets. Earlier/less relevant roles can have fewer bullets (1–2).`;
+
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey,
+                'anthropic-version': '2023-06-01',
+                'anthropic-dangerous-direct-browser-access': 'true',
+            },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 4096,
+                system: systemPrompt,
+                messages: [{ role: 'user', content: userPrompt }],
+            }),
+        });
+
+        clearInterval(stepInterval);
+
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error?.message || `API error ${res.status}`);
+        }
+
+        const data = await res.json();
+        const raw = data.content[0].text.trim();
+
+        let parsed;
+        try {
+            // Strip markdown fences if model added them anyway
+            const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+            parsed = JSON.parse(cleaned);
+        } catch (e) {
+            throw new Error('Could not parse the response. Try generating again.');
+        }
+
+        lastOutput = parsed;
+        renderOutput(parsed, company, role);
+
+    } catch (err) {
+        clearInterval(stepInterval);
+        showPanel('input-panel');
+        document.getElementById('gen-error').innerHTML =
+            `<div class="error-box"><strong>Generation failed:</strong> ${err.message}</div>`;
+    }
+}
+
+/* ══════════════════════════════════
+   RENDER
+════════════════════════════════════ */
+function renderOutput(data, company, role) {
+    // ── Output header
+    document.getElementById('output-title').textContent = `${role} · ${company}`;
+    document.getElementById('output-subtitle').textContent = `Generated ${new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}`;
+
+    // ── Insight strip
+    document.getElementById('insight-area').innerHTML = data.insight
+        ? `<div class="insight-strip"><p><strong>Why this fits:</strong> ${data.insight}</p></div>`
+        : '';
+
+    // ── Resume
+    const r = data.resume;
+    const today = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+    const rolesHTML = (r.roles || []).map(role => {
+        const bullets = (role.bullets || []).map(b => `<li>${b}</li>`).join('');
+        const metrics = (role.metrics || []).map(m =>
+            `<div class="r-metric"><span class="r-metric-num">${m.number}</span><span class="r-metric-lbl">${m.label}</span></div>`
+        ).join('');
+        return `
+        <div class="r-role">
+            <div class="r-role-header">
+                <div class="r-role-title">${role.title}</div>
+                <div class="r-role-period">${role.period}</div>
+            </div>
+            <div class="r-role-company">${role.company}</div>
+            <ul>${bullets}</ul>
+            ${metrics ? `<div class="r-metrics">${metrics}</div>` : ''}
+        </div>
+        <hr class="r-divider">`;
+    }).join('');
+
+    const skillsHTML = (r.skills_emphasis || []).map(s => s).join(' · ');
+
+    document.getElementById('resume-output').innerHTML = `
+    <div class="r-header">
+        <div>
+            <div class="r-name">Neha Saraswat</div>
+            <div class="r-tag">${r.tagline || 'Product · Design · GTM'}</div>
+        </div>
+        <div class="r-contact">
+            Bengaluru, India &nbsp;·&nbsp; +91 96111 27722<br>
+            <a href="mailto:neha.biti@gmail.com">neha.biti@gmail.com</a><br>
+            <a href="https://linkedin.com/in/nehasaraswat">linkedin.com/in/nehasaraswat</a><br>
+            <a href="https://nehasaraswat.in">nehasaraswat.in</a>
+        </div>
+    </div>
+
+    <p class="r-summary">${r.summary || ''}</p>
+
+    <div class="r-two-col">
+        <div>
+            <div class="r-section">
+                <div class="r-section-title">Experience</div>
+                ${rolesHTML}
+            </div>
+        </div>
+        <div>
+            <div class="r-section">
+                <div class="r-section-title">Areas of Focus</div>
+                <div class="r-skill-group">
+                    <div class="r-skill-items">${skillsHTML}</div>
+                </div>
+                <div class="r-skill-group" style="margin-top:14px;">
+                    <div class="r-skill-title">Product</div>
+                    <div class="r-skill-items">0→1 product development<br>AI-native & agentic design<br>Platform strategy<br>SKU & go-to-market</div>
+                </div>
+                <div class="r-skill-group">
+                    <div class="r-skill-title">Leadership</div>
+                    <div class="r-skill-items">Org design & restructuring<br>Enterprise transformation<br>Cross-geography teams<br>Design capability building</div>
+                </div>
+                <div class="r-skill-group">
+                    <div class="r-skill-title">Methods</div>
+                    <div class="r-skill-items">Generative research<br>Follow-the-user studies<br>Rapid prototyping<br>Vision storytelling</div>
+                </div>
+            </div>
+            <div class="r-section">
+                <div class="r-section-title">Education</div>
+                <div class="r-edu-entry">
+                    <div class="r-edu-degree">M.Des — Product Design</div>
+                    <div class="r-edu-school">National Institute of Design, Ahmedabad</div>
+                </div>
+                <div class="r-edu-entry">
+                    <div class="r-edu-degree">B.Arch — Architecture</div>
+                    <div class="r-edu-school">NIT Raipur</div>
+                </div>
+            </div>
+            <div class="r-section">
+                <div class="r-section-title">Community</div>
+                <div class="r-community">
+                    Spoke at CAUE, UXIndia, DesignUp, UXDX, Future Trends (Miami), LTUX<br><br>
+                    Innovation Catalyst Trailblazer (Intuit)<br><br>
+                    Convener, #D4 — Intuit India Design Conference, 5 editions, NPS 80+
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    // ── Cover letter
+    const cl = data.cover_letter;
+    const paragraphs = (cl.paragraphs || []).map(p => `<p>${p}</p>`).join('');
+
+    document.getElementById('cover-output').innerHTML = `
+    <div class="cl-header">
+        <div class="cl-name">Neha Saraswat</div>
+        <div class="cl-tag">Product · Design · GTM</div>
+        <div class="cl-contact">
+            neha.biti@gmail.com &nbsp;·&nbsp; +91 96111 27722<br>
+            linkedin.com/in/nehasaraswat &nbsp;·&nbsp; nehasaraswat.in
+        </div>
+    </div>
+    <div class="cl-date">${today}</div>
+    <div class="cl-body">
+        ${paragraphs}
+        <div class="cl-sign">
+            Warm regards,
+            <strong>Neha Saraswat</strong>
+        </div>
+    </div>`;
+
+    showPanel('output-panel');
+    switchTab('resume');
+}
+</script>
+</body>
+</html>

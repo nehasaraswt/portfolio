@@ -66,7 +66,7 @@ p em { font-style: italic; }
 
 .model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
 .model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); overflow: hidden; }
-.model-card .persona-photo { display: block; width: calc(100% + 40px); margin: -20px -20px 14px; aspect-ratio: 3 / 2; object-fit: cover; object-position: center 20%; }
+.model-card .persona-photo { display: block; width: calc(100% + 40px); margin: -20px -20px 14px; aspect-ratio: 5 / 3; object-fit: cover; object-position: center 20%; }
 .model-card .m-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 6px; }
 .model-card .m-time { font-size: 11px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
 .model-card .m-need { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
@@ -106,13 +106,15 @@ p em { font-style: italic; }
 figure { margin: 28px 0 8px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fefdfb; padding: 28px; }
 figure svg { width: 100%; height: auto; display: block; }
 
+@media (max-width: 600px) {
+    .model-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 768px) {
     .container { padding: 32px 20px; }
     .header-content { padding: 0 20px; }
     h1 { font-size: 28px; }
     h2 { font-size: 20px; }
     .stat-row { grid-template-columns: 1fr; }
-    .model-grid { grid-template-columns: 1fr; }
     .ai-grid { grid-template-columns: 1fr; }
     .di-row { grid-template-columns: 1fr; gap: 4px; }
     .img-pair { grid-template-columns: 1fr; }
@@ -174,6 +176,20 @@ figure svg { width: 100%; height: auto; display: block; }
 
         <!-- ── DOMINO ── -->
         <h2>Domino — finding the visual space we could own</h2>
+
+        <div class="decision-inset">
+            <span class="di-label">Decision</span>
+            <div class="di-headline">Research foundations before screens</div>
+            <div class="di-row">
+                <span class="di-tag yes">I chose</span>
+                <span class="di-content"><strong>A 4–6 week research sprint first</strong> — competitive audit, aspirational benchmark, and full persona work — before designing a single screen. The deliverable was the Domino deck: a shared vocabulary and a product point of view the whole team could reason from.</span>
+            </div>
+            <div class="di-row">
+                <span class="di-tag no">Not</span>
+                <span class="di-content">Jump straight to wireframes and let the brief take shape through iteration. As the only designer in the company, that path would have produced screens nobody could agree on — because nobody had agreed on what the product was trying to be.</span>
+            </div>
+            <div class="di-rationale"><strong>Why it mattered:</strong> I was also carrying major product decisions in parallel. Without a stable frame — who the users were, where the product sat competitively, what visual language it wanted to speak — every screen would have been relitigated from first principles in every review. Front-loading the alignment made the execution fast.</div>
+        </div>
 
         <p>Before designing a single Bluesky screen, I built a full design-direction deck I called <strong>Domino</strong>. I mapped eight enterprise products on a two-axis matrix — Minimal vs. Complex, Future-savvy vs. Traditional — to see the visual territory Jifflenow could credibly claim.</p>
 
@@ -315,6 +331,20 @@ figure svg { width: 100%; height: auto; display: block; }
         </figure>
         <p class="img-caption">The information model — People + Purpose + Place + Time = a meeting transaction, with time as the spine. Meetings nest into schedules, schedules into a calendar, and a calendar <em>is</em> a Jifflenow instance. Documents attach to time, not to a separate module.</p>
 
+        <div class="decision-inset">
+            <span class="di-label">Decision</span>
+            <div class="di-headline">Time as primary entity, not meetings as records</div>
+            <div class="di-row">
+                <span class="di-tag yes">I chose</span>
+                <span class="di-content"><strong>Restructure the IA around time</strong> as the governing entity — with people, purpose, and place as attributes that attach to a time claim. A meeting is not a record in a database; it is a claim on time.</span>
+            </div>
+            <div class="di-row">
+                <span class="di-tag no">Not</span>
+                <span class="di-content">Keep the existing model where meetings were database records with a time field. In that model, scheduling felt like filling a form. Context lived in separate modules. Documents attached to the wrong entity.</span>
+            </div>
+            <div class="di-rationale"><strong>Why it cascaded:</strong> Fewer information levels meant faster navigation. Entities could be surfaced as a single filterable set rather than siloed sections. The clean mental model cut engineering rework — when the conceptual frame is right, debates about where things live tend to resolve themselves. It also made the product describable: Meeting → Schedule → Calendar → Jifflenow instance. Everyone on the team could hold that hierarchy in their head.</div>
+        </div>
+
         <p>This model simplified the IA considerably. Fewer information levels meant faster navigation. Entities could be surfaced as a single filterable, groupable set rather than siloed sections. And the conceptual clarity made the product far easier to explain to engineers and PMs — which cut rework significantly. A clean mental model isn't an aesthetic preference; it's an engineering efficiency.</p>
 
         <img src="jifflenow-book-meeting.jpg" alt="Bluesky Book-a-Meeting flow — a time grid for selecting meeting slots, a meeting-type and room picker, an attendee panel (internal/external), and a meeting-in-making summary bar." style="max-width:100%;border:1px solid var(--border);border-radius:6px;display:block;margin:28px 0 8px;">
@@ -421,6 +451,20 @@ figure svg { width: 100%; height: auto; display: block; }
         </figure>
         <p class="img-caption">Two Salesforce offerings — Option A (API sync) and Option B (Jifflenow embedded inside Salesforce as an iFrame, with SSO recommended). I also scripted and documented a demo, translating the design into a narrative the sales team could use in customer conversations.</p>
 
+        <div class="decision-inset">
+            <span class="di-label">Decision</span>
+            <div class="di-headline">Two integration depths, not one</div>
+            <div class="di-row">
+                <span class="di-tag yes">I chose</span>
+                <span class="di-content"><strong>Design two distinct offerings</strong> — a lighter API path (data syncs between systems) and a deeper embedded path (Jifflenow launches as an iFrame inside Salesforce) — so the sales team had a "start light" pitch and a "go deep" pitch for the same conversation.</span>
+            </div>
+            <div class="di-row">
+                <span class="di-tag no">Not</span>
+                <span class="di-content">A single integration approach that would have been too light for reps who lived entirely in Salesforce, or too heavy to adopt for accounts that needed to trial Jifflenow first before committing to a deep embed.</span>
+            </div>
+            <div class="di-rationale"><strong>Why it mattered:</strong> Enterprise buying conversations are about fit at a given moment in the relationship, not features in the abstract. A sales team needs both stories — not because the product can't decide what it is, but because different buyers are at different stages of trust. I also scripted the demo, so the design translated directly into a narrative the sales team could own.</div>
+        </div>
+
         <hr class="section-divider">
 
         <!-- ── PLATFORM VISION ── -->
@@ -480,8 +524,8 @@ figure svg { width: 100%; height: auto; display: block; }
                 <p>The Salesforce integration design — two offerings plus a scripted demo — gave the sales team a demo-ready narrative for a high-value feature.</p>
             </div>
             <div class="result-card">
-                <span class="r-head">A platform frame</span>
-                <p>The Parallel Worlds vision seeded a longer-term conversation about Jifflenow's architectural ambitions, beyond meeting management.</p>
+                <span class="r-head">A platform frame, validated</span>
+                <p>The Parallel Worlds time-based model expanded directly into four products: Jifflenow for Events, Sales, Briefing Centers, and Staff Scheduling — all on the same IA scaffold. By 2016 the company was targeting 500 enterprise accounts and a 10–15× valuation step-up on a recurring revenue model built around it.</p>
             </div>
         </div>
 

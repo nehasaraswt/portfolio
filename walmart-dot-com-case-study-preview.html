@@ -3,28 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walmart.com Commerce Journey Optimization — Case Study</title>
+    <title>Walmart.com — Search, Help & Post-Sale at Enterprise Scale</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bone: #fcf9f2;
+            --ink: #1c1c18;
+            --mid: #444748;
+            --soft: #6a6a62;
+            --rust: #A85C3D;
+            --rust-deep: #7A3E28;
+            --rust-light: #D8956B;
+            --ochre: #904d00;
+            --border: #e8e2d8;
+            --white: #ffffff;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #fefdfb;
-            color: #2e2e2b;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bone);
+            color: var(--ink);
             line-height: 1.6;
         }
 
         .header {
             position: sticky;
             top: 0;
-            background: white;
-            border-bottom: 1px solid #eae6df;
+            background: var(--bone);
+            border-bottom: 1px solid var(--border);
             padding: 12px 0;
             z-index: 100;
         }
 
         .header-content {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
             padding: 0 60px;
             display: flex;
@@ -33,7 +48,7 @@
         }
 
         .back-link {
-            color: #b5342b;
+            color: var(--rust);
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
@@ -41,182 +56,297 @@
 
         .back-link:hover { text-decoration: underline; }
 
+        .logo-mark {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
         .container {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 60px;
+            padding: 60px 60px 80px;
+        }
+
+        /* ── HERO ── */
+        .case-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 14px;
         }
 
         h1 {
-            font-size: 36px;
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 38px;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            padding-bottom: 16px;
-            border-bottom: 4px solid #b5342b;
+            line-height: 1.15;
+            color: var(--ink);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
-        .subtitle {
+        .opening {
             font-size: 16px;
-            color: #565758;
-            margin-bottom: 30px;
+            color: var(--mid);
+            line-height: 1.65;
+            margin-bottom: 32px;
+            max-width: 680px;
         }
 
+        /* ── META ── */
         .metadata {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(181, 52, 43, 0.05);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 32px 0;
+            border: 1px solid var(--border);
             border-radius: 6px;
+            overflow: hidden;
+            background: var(--white);
         }
 
         .meta-item {
-            font-size: 12px;
+            padding: 16px 20px;
+            border-right: 1px solid var(--border);
         }
 
+        .meta-item:last-child { border-right: none; }
+
         .meta-label {
-            color: #b5342b;
-            font-weight: 600;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--rust);
             margin-bottom: 4px;
         }
 
         .meta-value {
-            color: #2e2e2b;
-            font-size: 14px;
+            font-size: 13px;
+            color: var(--ink);
+            font-weight: 500;
+            line-height: 1.35;
         }
 
+        /* ── SECTIONS ── */
         h2 {
-            font-size: 24px;
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 26px;
             font-weight: 700;
-            margin: 40px 0 20px 0;
-            padding-left: 16px;
-            border-left: 4px solid #b5342b;
+            color: var(--ink);
+            margin: 52px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--rust);
         }
 
         h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin: 25px 0 12px 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: 0.01em;
+            margin: 28px 0 10px;
         }
 
         p {
+            font-size: 14px;
+            color: var(--mid);
             margin-bottom: 16px;
-            color: #333;
+            line-height: 1.7;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 30px 0;
-            border-radius: 6px;
-            border: 1px solid #eae6df;
-        }
-
-        .feature-box {
-            background: white;
-            border-left: 4px solid #b04000;
-            padding: 16px;
-            margin: 20px 0;
+        /* ── OWNERSHIP CALLOUT ── */
+        .ownership-strip {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--ochre);
             border-radius: 4px;
+            padding: 18px 22px;
+            margin: 24px 0;
         }
 
-        .feature-box strong {
-            color: #b04000;
-        }
-
-        .decision-box {
-            background: rgba(168, 92, 61, 0.08);
-            border-left: 4px solid #b5342b;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        .decision-box strong {
-            color: #b5342b;
-        }
-
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: 16px;
-        }
-
-        li {
+        .ownership-strip .strip-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ochre);
             margin-bottom: 8px;
         }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+        .ownership-surfaces {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
         }
 
-        .result-card {
-            background: white;
-            padding: 20px;
+        .surface-chip {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink);
+            background: var(--bone);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* ── DECISION BOX ── */
+        .decision {
+            background: var(--white);
+            border: 1px solid var(--border);
             border-radius: 6px;
-            border: 1px solid #eae6df;
+            padding: 24px 28px;
+            margin: 20px 0;
         }
 
-        .result-card strong {
-            color: #b5342b;
-            font-size: 18px;
+        .decision-number {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 6px;
+        }
+
+        .decision-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 12px;
+            font-family: 'Newsreader', Georgia, serif;
+        }
+
+        .decision p {
+            margin-bottom: 10px;
+        }
+
+        .decision p:last-child { margin-bottom: 0; }
+
+        /* ── IMAGES & VIDEO ── */
+        img {
+            width: 100%;
+            height: auto;
+            margin: 28px 0;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: block;
         }
 
         video {
             width: 100%;
             height: auto;
-            margin: 30px 0;
+            margin: 28px 0;
             border-radius: 6px;
-            border: 1px solid #eae6df;
+            border: 1px solid var(--border);
             display: block;
             background: #000;
         }
 
-        .video-caption {
-            font-size: 12px;
-            color: #888;
+        .media-caption {
+            font-size: 11px;
+            color: var(--soft);
             text-align: center;
-            margin-top: -22px;
+            margin-top: -20px;
             margin-bottom: 28px;
             font-style: italic;
         }
 
-        @media (max-width: 768px) {
-            .container { padding: 30px 20px; }
-            .header-content { padding: 0 20px; }
-            h1 { font-size: 24px; }
-            h2 { font-size: 18px; }
-            h3 { font-size: 14px; }
-            .metadata { grid-template-columns: 1fr; gap: 14px; }
-            .results-grid { grid-template-columns: 1fr; }
-            .feature-box { padding: 16px 16px 12px; }
-            .positioning-quote { padding: 16px 18px; font-size: 14px; }
-            .result-card { padding: 16px; }
+        /* ── SCALE CALLOUT ── */
+        .scale-note {
+            background: #fff8f0;
+            border: 1px solid #f0d8c0;
+            border-radius: 6px;
+            padding: 16px 22px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: var(--mid);
+            line-height: 1.6;
         }
 
-        @media (max-width: 480px) {
-            .container { padding: 24px 16px; }
-            .header-content { padding: 0 16px; }
-            h1 { font-size: 21px; }
-            h2 { font-size: 16px; }
-            .meta-label { font-size: 10px; }
-            .meta-value { font-size: 13px; }
-            p { font-size: 14px; }
-            li { font-size: 14px; }
-            .result-card .number { font-size: 17px; }
+        .scale-note strong { color: var(--ochre); }
+
+        /* ── RESULTS ── */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
         }
 
-        .logo-mark {
-            font-family: Georgia, serif;
-            font-size: 22px;
+        .result-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .result-number {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 28px;
             font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.02em;
+            color: var(--rust);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .result-label {
+            font-size: 12px;
+            color: var(--mid);
+            line-height: 1.45;
+        }
+
+        /* ── NOTABLE ── */
+        .notable-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .notable-list li {
+            font-size: 14px;
+            color: var(--mid);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .notable-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--rust-light);
+        }
+
+        .notable-list li:last-child { border-bottom: none; }
+
+        .notable-list li strong { color: var(--ink); }
+
+        /* ── FOOTER ── */
+        .footer {
+            margin-top: 70px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 11.5px;
+            color: var(--soft);
+            line-height: 1.8;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .container { padding: 30px 24px 60px; }
+            .header-content { padding: 0 24px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+            .metadata { grid-template-columns: 1fr 1fr; }
+            .meta-item { border-bottom: 1px solid var(--border); }
+            .results-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -224,16 +354,16 @@
     <div class="header">
         <div class="header-content">
             <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to portfolio</a>
         </div>
     </div>
 
     <div class="container">
-        <h1>Walmart.com: Commerce Journey Optimization & Unified Support Experience</h1>
-        <p class="subtitle">Leading experience strategy for Walmart.com's e-commerce funnel during pandemic acceleration</p>
 
-        <p style="font-style: italic; color: #565758; margin-bottom: 28px; padding: 20px; background: rgba(181, 52, 43, 0.05); border-left: 4px solid #b5342b;">
-            "Led key sections of Walmart.com's commerce funnel across discovery, conversion, support, and post-sale engagement, helping unify fragmented customer journeys during a period of accelerated digital growth."
-        </p>
+        <div class="case-label">Case Study · Walmart · 2020–2021</div>
+        <h1>Walmart.com — Search, Help, and Post-Sale Design at Enterprise Scale</h1>
+
+        <p class="opening">COVID tripled Walmart.com's digital traffic in a matter of weeks. The infrastructure held. The experience didn't always. I owned five surfaces — search, personalisation, PDP, help, and post-sale — across web and three mobile apps, and had one year to make them coherent.</p>
 
         <div class="metadata">
             <div class="meta-item">
@@ -241,104 +371,129 @@
                 <div class="meta-value">Walmart</div>
             </div>
             <div class="meta-item">
-                <div class="meta-label">Timeline</div>
-                <div class="meta-value">2020–2021</div>
-            </div>
-            <div class="meta-item">
                 <div class="meta-label">Role</div>
                 <div class="meta-value">Design Manager III</div>
             </div>
             <div class="meta-item">
                 <div class="meta-label">Team</div>
-                <div class="meta-value">One of 4 design leaders; 20–30 people (US + India)</div>
+                <div class="meta-value">One of 3 design leaders; 20–30 people, US + India</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">2020 – 2021</div>
             </div>
         </div>
 
-        <h2>The Challenge</h2>
+        <!-- CONTEXT -->
+        <h2>The Situation</h2>
 
-        <p>Walmart's digital commerce journey was distributed across multiple product and platform teams, creating fragmented customer experiences across discovery, decision-making, support, and post-sale engagement. I was part of a four-leader design team — the commerce funnels were sliced thin, and each leader held influence over a specific section. During COVID-driven ecommerce acceleration, with 3× traffic surges, Walmart needed faster optimization of critical funnel touchpoints while supporting a massive influx of new digital shoppers.</p>
+        <p>Walmart.com had scale no one else could match — the largest physical retail footprint in the world as an inventory advantage for digital. But the commerce experience was designed like a catalogue. Discovery, help, and post-sale were three separate worlds with no connective tissue between them.</p>
 
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/process/process-org-reorganization.png" alt="Walmart organizational transformation from silos to journey-based structure">
+        <p>The design organisation was structured by funnel slice: three design leaders, each owning a section. I owned the mid-to-lower funnel — search, personalisation, the bottom half of the product detail page, help flows, and what happened after a customer placed an order. The challenge wasn't just making my section better. It was making the handoffs invisible.</p>
 
-        <h2>Key Decisions</h2>
-
-        <div class="feature-box">
-            <strong>1. Owned Commerce Touchpoints End-to-End Across the Funnel</strong>
-            <p style="margin-top: 8px;">I designed and led experience strategy across search, typeahead, search results, personalization, PDP bottom-fold, bundles, help flows, and post-sale surfaces. My focus was on interconnected funnel systems — not isolated features — so each touchpoint reinforced the next rather than operating independently.</p>
-            <p style="margin-top: 10px;">The GenAI search experience combined deep personalisation with natural language to meet the expectations of our youngest, tech-forward shoppers. I built a geo-aware store mapping feature to connect digital discovery to physical availability. I re-engineered bundles and offers to function as a core part of the customer journey rather than promotional afterthoughts. And I leveraged the Blue App consolidation to ride the Walmart+ wave — embedding membership value directly into the shopping experience.</p>
+        <div class="ownership-strip">
+            <div class="strip-label">Surfaces I owned</div>
+            <div class="ownership-surfaces">
+                <span class="surface-chip">Search</span>
+                <span class="surface-chip">Personalisation</span>
+                <span class="surface-chip">PDP (bottom-fold)</span>
+                <span class="surface-chip">Help flows</span>
+                <span class="surface-chip">Post-sale & returns</span>
+                <span class="surface-chip">Web + 3 mobile apps</span>
+            </div>
         </div>
 
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/solution/solution-search-experience.png" alt="Optimized search and browse experience with recommendations">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/process/process-org-reorganization.png" alt="Walmart design organisation structure — three funnel leaders with cross-team coordination">
 
-        <video controls preload="metadata">
-            <source src="portfolio-content/assets/walmart%20videos/genai_search_experience%20(1080p)%20(1).mp4" type="video/mp4">
-        </video>
-        <p class="video-caption">Gen AI-powered search experience: surfacing relevant results, personalised recommendations, and contextual substitutions</p>
+        <!-- DECISIONS -->
+        <h2>Three Decisions</h2>
 
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/hero/Screenshot 2026-05-06 at 10.44.06 PM.png" alt="Walmart.com product interface">
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/hero/Screenshot 2026-05-06 at 10.44.35 PM.png" alt="Walmart.com product detail page">
-
-        <div class="feature-box">
-            <strong>2. Transformed Customer Support Into Part of the Shopping Experience</strong>
-            <p style="margin-top: 8px;">I redesigned support from a reactive service layer into a contextual, integrated layer within the commerce journey. This meant creating a unified contact experience across web, mobile, chat, phone, and social—and embedding help directly into the shopping flow so customers never had to leave to get assistance.</p>
+        <div class="decision">
+            <div class="decision-number">Decision 1</div>
+            <div class="decision-title">Treat help as a commerce surface, not a service detour</div>
+            <p>The conventional design assumption was that customers who needed help had already left the shopping journey — the task was to get them back. I disagreed. The moment someone looks for help is still a moment inside the journey, and if you handle it well, they don't leave.</p>
+            <p>I redesigned the help flow from a separate service destination into a contextual layer embedded in the commerce experience — answers surfaced in context, not behind a contact form. This meant unifying contact across web, mobile, chat, phone, and social into a single coherent model rather than five separate escalation paths.</p>
+            <p>The design decision was about information architecture: help signals are product and order signals. A customer asking "where is my order?" is still a customer. The support UI needed to know that.</p>
         </div>
 
-        <img src="walmart-chat.webp" alt="Walmart unified chat and support experience">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/process/process-help-framework.png" alt="Unified help framework — contextual support embedded across the commerce journey">
+        <p class="media-caption">The help framework: unified contact model across channels, embedded in the shopping flow</p>
+
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/hero/Screenshot 2026-05-06 at 10.44.06 PM.png" alt="Walmart.com help experience">
+
+        <div class="decision">
+            <div class="decision-number">Decision 2</div>
+            <div class="decision-title">Connect search, PDP, and substitutions into one decision surface</div>
+            <p>Search results, the product detail page, and out-of-stock handling were designed by different teams and felt like it. A customer's journey from "search for pasta" to "add to cart" crossed three disconnected surfaces, each with different interaction logic.</p>
+            <p>My scope covered the seam between search results and the PDP bottom-fold — the decision-making zone where customers choose, compare, and commit. I focused on making personalisation useful at this moment (not just decorative), and on making the out-of-stock experience a continuation rather than a dead end.</p>
+            <p>Smart substitutions — proactively offering alternatives when items were unavailable — came from this thinking. The experience below shows the principle: keep the customer in the shopping flow by giving them a decision, not a failure message.</p>
+        </div>
 
         <video controls preload="metadata">
             <source src="portfolio-content/assets/walmart%20videos/smart_substitutions%20(1080p)%20(1).mp4" type="video/mp4">
         </video>
-        <p class="video-caption">Smart substitutions: proactively offering alternatives when items are out of stock — keeping customers in the shopping flow rather than losing them at checkout</p>
+        <p class="media-caption">Smart substitutions — work designed during 2020–2021, demoed in this later product walkthrough</p>
 
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/process/process-help-framework.png" alt="Unified help framework across channels">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/solution/solution-search-experience.png" alt="Search and browse experience with personalisation">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/solution/solution-smart-substitutions.png" alt="Smart substitutions UI">
 
-        <div class="feature-box">
-            <strong>3. Coordinated Funnel Improvements Across Distributed Teams</strong>
-            <p style="margin-top: 8px;">Each of the four design leaders owned a slice of the funnel. Making the whole thing coherent required ongoing alignment across product, engineering, and peer design leaders across geographies — not just designing well within your section, but understanding how your decisions affected the sections either side of you.</p>
-            <p style="margin-top: 10px;">I also proposed Shop with Friends — a social commerce concept designed to merge virtual try-ons with social validation. During a period of physical isolation, people still wanted to shop with others. This was the answer: collaborative, real-time decision-making inside the digital journey.</p>
+        <div class="decision">
+            <div class="decision-number">Decision 3</div>
+            <div class="decision-title">Make the funnel handoffs invisible across three design leaders</div>
+            <p>With three design leaders each owning a slice of the funnel, the easiest failure mode was to optimise within your section and ignore what happened at the edges. I made a deliberate choice to treat the handoffs as my problem — not theirs — which meant understanding the decisions being made upstream and downstream of my surfaces and designing for continuity.</p>
+            <p>In practice this was cross-team design alignment: shared principles for how we communicated out-of-stock, how personalisation signals propagated from search to PDP, how post-sale entry points were surfaced in the order confirmation flow rather than buried in account settings. It wasn't glamorous, but at this scale, incoherence across funnel sections costs real conversion.</p>
+            <p>I also proposed a social commerce concept — collaborative, real-time shopping for a period when people couldn't shop together in person. The concept was developed and handed off; the thinking contributed to how Walmart approached the social layer of the commerce experience.</p>
         </div>
 
         <video controls preload="metadata">
             <source src="portfolio-content/assets/walmart%20videos/shop_with_friends%20(1080p)%20(1).mp4" type="video/mp4">
         </video>
-        <p class="video-caption">Shop with Friends — the social commerce concept in motion</p>
+        <p class="media-caption">Shop with Friends — a social commerce concept proposed during this tenure; this demo shows the experience as it evolved post-handoff</p>
 
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/hero/Screenshot 2026-05-06 at 10.44.35 PM.png" alt="Walmart.com commerce surfaces">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/hero/Screenshot 2026-05-06 at 10.44.48 PM.png" alt="Walmart.com post-sale experience">
+
+        <!-- RESULTS -->
         <h2>The Results</h2>
+
+        <div class="scale-note">
+            <strong>A note on scale:</strong> At Walmart.com's GMV, a 0.03% quarterly funnel lift translates to tens of millions of dollars in additional revenue. Small percentages at enterprise scale are not small outcomes — they're the language of the business. These lifts were observed across multiple quarters, which means they held under the 3× traffic surge, not just during a single test.
+        </div>
 
         <div class="results-grid">
             <div class="result-card">
-                <strong>0.03%</strong>
-                <p style="font-size: 14px; margin-top: 8px;">Quarterly funnel lifts delivered across core commerce journeys — observed across multiple quarters</p>
+                <div class="result-number">0.03%</div>
+                <div class="result-label">Quarterly funnel lifts across core commerce journeys — observed across multiple quarters, not a single test</div>
             </div>
             <div class="result-card">
-                <strong>Unified Experience</strong>
-                <p style="font-size: 14px; margin-top: 8px;">Support and engagement unified across web, app, chat, phone, and social — embedded into the shopping flow</p>
+                <div class="result-number">11M+</div>
+                <div class="result-label">Walmart+ members — contributed to onboarding design for Walmart's membership programme, launched September 2020</div>
             </div>
             <div class="result-card">
-                <strong>Walmart+ Launch</strong>
-                <p style="font-size: 14px; margin-top: 8px;">Contributed to Walmart+ onboarding design (launched Sept 2020, now 11M+ members)</p>
-            </div>
-            <div class="result-card">
-                <strong>3× Scale</strong>
-                <p style="font-size: 14px; margin-top: 8px;">Sustained design quality through 3× pandemic-driven traffic surge across the entire commerce funnel</p>
+                <div class="result-number">3×</div>
+                <div class="result-label">Traffic surge sustained — no experience regression across web and three mobile apps during peak pandemic demand</div>
             </div>
         </div>
 
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/results/results-metrics.png" alt="Customer metrics and funnel improvements">
-        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/results/results-team.png" alt="Team organization and outcomes">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/results/results-metrics.png" alt="Commerce funnel metrics and impact">
+        <img src="portfolio-content/case-studies/walmart-platform-transformation/images/results/results-team.png" alt="Team structure and cross-functional collaboration">
 
+        <!-- NOTABLE -->
         <h2>What Made It Notable</h2>
 
-        <ul style="margin-left: 20px;">
-            <li><strong>Operated at enterprise ecommerce scale</strong> — Optimising experiences for billions of transactions while maintaining craft and specificity in every design decision.</li>
-            <li><strong>Proposed and shipped concepts before the category existed</strong> — Shop with Friends and geo-aware store mapping were ahead of where commerce design was heading. The platform was the right moment to push those ideas through.</li>
+        <ul class="notable-list">
+            <li><strong>Ownership scope:</strong> Five surfaces simultaneously across four platforms (web + three mobile apps) is an unusually broad remit. The constraint forced explicit prioritisation of cross-surface coherence over in-surface refinement.</li>
+            <li><strong>Help as commerce:</strong> Treating the help surface as part of the shopping journey — not a separate service destination — was a design position that ran against how the org thought about support. Making it stick required writing the information architecture rationale, not just designing the screens.</li>
+            <li><strong>Distributed team coherence:</strong> 20–30 people across India and the US, during a period of fully remote collaboration, on a product experiencing 3× normal load. The team shipped without regressing existing experiences — which is harder than it sounds.</li>
+            <li><strong>Operated during a once-in-a-generation traffic event:</strong> Every decision made in 2020–2021 was made under load. There was no quiet period to refactor or revisit. Design decisions had to be right-enough the first time.</li>
         </ul>
 
-        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #eae6df; color: #565758; font-size: 12px;">
-            <p><strong>Project:</strong> Walmart.com — Commerce Journey Optimization & Unified Support Experience</p>
-            <p><strong>Timeline:</strong> 2020–2021 | <strong>Team Led:</strong> One of 4 design leaders; 20–30 people (US + India)</p>
-            <p><strong>Impact:</strong> 0.03% quarterly funnel improvements • 11M Walmart+ users • Unified customer support • Pandemic-scale operations</p>
+        <div class="footer">
+            <p><strong>Project:</strong> Walmart.com — Search, Help, and Post-Sale Design at Enterprise Scale</p>
+            <p><strong>Timeline:</strong> 2020–2021 &nbsp;·&nbsp; <strong>Role:</strong> Design Manager III, one of 3 design leaders &nbsp;·&nbsp; <strong>Team:</strong> 20–30, US + India</p>
+            <p><strong>Surfaces owned:</strong> Search · Personalisation · PDP (bottom-fold) · Help flows · Post-sale &nbsp;·&nbsp; Web + 3 mobile apps</p>
         </div>
+
     </div>
 </body>
 </html>
