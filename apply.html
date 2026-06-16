@@ -814,12 +814,26 @@
 
         @media print {
             .topbar, .output-header, .tabs, .output-actions,
-            .insight-strip, .generate-bar, .btn { display: none !important; }
+            .insight-strip, .generate-bar, .btn,
+            .refine-strip, #tab-cover { display: none !important; }
             body { background: white; }
             .shell { padding: 0; max-width: 100%; }
             #resume-output { padding: 10px 16px; font-size: 10.5px; }
             .r-name { font-size: 24px; }
             .r-two-col { grid-template-columns: 1fr 190px; gap: 0 24px; }
+            .claude-credit { display: block !important; }
+        }
+
+        /* ── Claude credit (print only) ── */
+        .claude-credit {
+            display: none;
+            margin-top: 24px;
+            padding-top: 12px;
+            border-top: 1px solid #eae6df;
+            font-size: 9px;
+            color: #999;
+            text-align: right;
+            letter-spacing: 0.04em;
         }
     </style>
 </head>
@@ -991,6 +1005,7 @@
         </div>
         <div class="resume-frame">
             <div id="resume-output"></div>
+            <div class="claude-credit">Tailored with Claude · claude.ai &nbsp;·&nbsp; nehasaraswat.in</div>
         </div>
     </div>
 
