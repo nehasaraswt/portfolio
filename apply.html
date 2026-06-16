@@ -478,22 +478,70 @@
 
         /* ── Insight strip ── */
         .insight-strip {
-            background: rgba(181,52,43,0.05);
-            border-left: 3px solid var(--rust);
-            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px 20px;
             margin-bottom: 24px;
-            border-radius: 0 4px 4px 0;
         }
 
-        .insight-strip p {
-            font-size: 12.5px;
+        .insight-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .insight-block { }
+
+        .insight-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             color: var(--muted);
-            margin: 0;
+            margin-bottom: 4px;
+        }
+
+        .insight-block:first-child .insight-label { color: var(--ochre); }
+
+        .insight-text {
+            font-size: 12.5px;
+            color: var(--text);
             line-height: 1.5;
         }
 
-        .insight-strip strong {
-            color: var(--text);
+        .insight-block--gaps .insight-text { color: var(--muted); }
+
+        .insight-block--tone {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 8px 12px;
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        .insight-block--tone .insight-text {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* ── Relevance score badge (screen only) ── */
+        .r-score {
+            font-size: 9px;
+            letter-spacing: 0.05em;
+            margin-left: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .r-score--3 { color: var(--ochre); }
+        .r-score--2 { color: var(--muted); }
+        .r-score--1 { color: var(--text-tertiary, #ccc); }
+
+        @media print {
+            .r-score { display: none; }
         }
 
         /* ─────────────────────────────────────────
@@ -1250,20 +1298,44 @@ async function generate() {
         consultant: 'Emphasise diagnostic thinking, frameworks, advisory capability, and pattern recognition. Use precise, structured language.',
     };
 
-    const systemPrompt = `You are a professional application writer for Neha Saraswat. Your job is to tailor her resume and write her cover letter for a specific role.
+    const systemPrompt = `You are a professional application writer for Neha Saraswat. Your job is to tailor her resume and write her cover letter with genuine editorial judgment — not surface-level keyword matching.
 
 Here is Neha's complete professional profile:
 
 ${PROFILE}
 
-INSTRUCTIONS:
-- Be truthful — only use what is in the profile. Do not invent experiences or metrics.
-- Tailor bullet points to highlight what is most relevant to this specific job. You can reorder, trim, and re-emphasis bullets, but not fabricate.
-- Tone: ${toneDescriptions[selectedTone]}
-- Write in first person for the cover letter, third person implied for resume.
-- The cover letter should be warm and direct — 3–4 paragraphs, no fluff. It should feel like a letter from a specific person, not a template.
-- For the resume: keep all roles present but prioritise the most relevant 2–3 with fuller bullets. Earlier roles can be condensed to 1–2 lines.
-- Always include the Micorza venture if the role is product/design/startup related.
+WORK THROUGH THESE STEPS IN ORDER:
+
+STEP 1 — Read the JD carefully and identify:
+a) The 2–3 capabilities the role is actually hiring for (not just listed requirements — what problem are they solving by hiring this person?)
+b) The register the JD is written in: casual/startup, formal/enterprise, technical/IC, strategic/leadership
+c) What threads in Neha's profile do NOT map to this role (things to suppress or condense)
+
+STEP 2 — Score each role 1–3 for relevance to THIS specific JD:
+  3 = core match — directly addresses what they're hiring for → 4–5 bullets
+  2 = supporting signal — adds credibility or complementary context → 2–3 bullets
+  1 = background only — include but condense to a single line
+Relevance is about fit to this JD, not recency. An older role can score higher than a recent one.
+
+STEP 3 — Rewrite bullets to angle, not just select.
+Don't copy bullets from the profile — rewrite them to foreground the aspect most relevant to this role. Stay strictly truthful (no invented metrics, no fabricated experience) but angle the emphasis. Example: "Rebuilt scheduling workflow" becomes "Redesigned expert-scheduling model to cut time-to-service by 85%" if the JD is about operational efficiency.
+
+STEP 4 — Suppress what the JD doesn't signal.
+If a thread doesn't appear in the JD (org-building for an IC role, India operations for a US-only company, brand work for a pure product role), don't expand it. Use a score-1 condensed line and move on.
+
+STEP 5 — Tone.
+First read the JD's own register and match it. Then apply this modifier: ${toneDescriptions[selectedTone]}
+If the two conflict, the JD's register takes precedence — the preset is a tiebreaker, not an override.
+
+COVER LETTER — each paragraph has a specific job:
+P1 — Hook: specific to this company and this moment. Reference something real and particular about why this company or role right now. Not "I am excited to apply."
+P2 — Strongest match: the one experience that maps most directly to what they're hiring for. One role, one thread, concrete outcome.
+P3 — Complementary angle: what Neha brings that P2 doesn't cover — the cross-domain thing, the systems view, the product+GTM combination. This is what makes her different from someone who only has P2.
+P4 — Direct close: one sentence on what she'd want to do in the first 90 days, or what conversation she wants to start. No "I look forward to hearing from you."
+
+HARD CONSTRAINTS:
+- Be truthful — only use what is in the profile. Do not invent metrics or experience.
+- Write cover letter in first person.
 - Return ONLY valid JSON, no markdown fences, no commentary.`;
 
     const userPrompt = `Target company: ${company}
@@ -1275,27 +1347,32 @@ ${jd}
 Generate a tailored resume and cover letter. Return a single JSON object with this exact structure:
 
 {
-  "insight": "2–3 sentences on why this role fits Neha and what angle to lead with",
+  "insight": {
+    "angle": "1–2 sentences: why this role fits and what to lead with",
+    "gaps": "1 sentence: what the JD asks for that is not well represented in the profile — be honest. If strong fit, write 'None identified.'",
+    "tone_read": "short phrase describing the register inferred from the JD, e.g. 'Enterprise-formal, VP-level' or 'Startup-casual, builder-oriented'"
+  },
   "resume": {
     "tagline": "tailored tagline for this role (e.g. Product · Design · GTM)",
-    "summary": "tailored 2-sentence summary for this role",
+    "summary": "tailored 2–3 sentence summary for this role",
     "roles": [
       {
         "title": "exact title from profile",
         "company": "company name",
         "period": "date range",
-        "bullets": ["bullet 1", "bullet 2", "bullet 3"],
+        "relevance_score": 3,
+        "bullets": ["bullet 1", "bullet 2"],
         "metrics": [{"number": "45%", "label": "Revenue growth"}]
       }
     ],
     "skills_emphasis": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"]
   },
   "cover_letter": {
-    "paragraphs": ["Para 1", "Para 2", "Para 3", "Para 4"]
+    "paragraphs": ["P1 hook", "P2 strongest match", "P3 complementary angle", "P4 direct close"]
   }
 }
 
-Include all roles from the profile in the roles array, but tailor the bullets. Earlier/less relevant roles can have fewer bullets (1–2).`;
+Include ALL roles from the profile in the roles array. Score each 1–3 for relevance. Bullet count follows the score: 4–5 for score 3, 2–3 for score 2, 1 condensed line for score 1.`;
 
     try {
         const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -1353,9 +1430,32 @@ function renderOutput(data, company, role) {
     document.getElementById('output-subtitle').textContent = `Generated ${new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'})}`;
 
     // ── Insight strip
-    document.getElementById('insight-area').innerHTML = data.insight
-        ? `<div class="insight-strip"><p><strong>Why this fits:</strong> ${data.insight}</p></div>`
-        : '';
+    const ins = data.insight;
+    if (ins) {
+        const isObj = typeof ins === 'object';
+        const angle = isObj ? ins.angle : ins;
+        const gaps  = isObj ? ins.gaps  : null;
+        const tone  = isObj ? ins.tone_read : null;
+        document.getElementById('insight-area').innerHTML = `
+        <div class="insight-strip">
+            <div class="insight-row">
+                <div class="insight-block">
+                    <div class="insight-label">Angle</div>
+                    <div class="insight-text">${angle}</div>
+                </div>
+                ${gaps ? `<div class="insight-block insight-block--gaps">
+                    <div class="insight-label">Gaps to watch</div>
+                    <div class="insight-text">${gaps}</div>
+                </div>` : ''}
+                ${tone ? `<div class="insight-block insight-block--tone">
+                    <div class="insight-label">JD register</div>
+                    <div class="insight-text">${tone}</div>
+                </div>` : ''}
+            </div>
+        </div>`;
+    } else {
+        document.getElementById('insight-area').innerHTML = '';
+    }
 
     // ── Resume
     const r = data.resume;
@@ -1366,10 +1466,12 @@ function renderOutput(data, company, role) {
         const metrics = (role.metrics || []).map(m =>
             `<div class="r-metric"><span class="r-metric-num">${m.number}</span><span class="r-metric-lbl">${m.label}</span></div>`
         ).join('');
+        const score = role.relevance_score;
+        const scoreBadge = score ? `<span class="r-score r-score--${score}" title="Relevance score">${'▪'.repeat(score)}${'▫'.repeat(3 - score)}</span>` : '';
         return `
         <div class="r-role">
             <div class="r-role-header">
-                <div class="r-role-title">${role.title}</div>
+                <div class="r-role-title">${role.title} ${scoreBadge}</div>
                 <div class="r-role-period">${role.period}</div>
             </div>
             <div class="r-role-company">${role.company}</div>
