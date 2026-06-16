@@ -261,19 +261,69 @@
             border-top: 1px solid var(--border);
         }
 
-        /* ── LinkedIn context toggle ── */
-        .linkedin-toggle {
-            display: inline-flex;
+        /* ── LinkedIn context collapsible ── */
+        .linkedin-collapsible {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        .linkedin-header {
+            display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 11px 16px;
             cursor: pointer;
+            user-select: none;
+            background: var(--white);
+            transition: background 0.15s;
+        }
+        .linkedin-header:hover { background: var(--surface); }
+        .linkedin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .linkedin-header-left .li-icon {
+            width: 16px;
+            height: 16px;
+            background: #0a66c2;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .linkedin-header-left .li-icon svg { display: block; }
+        .linkedin-header-hint {
             font-size: 12px;
             color: var(--muted);
-            padding: 6px 0;
-            user-select: none;
+            font-weight: 400;
         }
-        .linkedin-toggle:hover { color: var(--ochre); }
-        .linkedin-toggle-label { transition: color 0.15s; }
-        .linkedin-expand textarea {
+        .linkedin-chevron {
+            font-size: 11px;
+            color: var(--muted);
+            transition: transform 0.25s ease;
+        }
+        .linkedin-collapsible.open .linkedin-chevron { transform: rotate(180deg); }
+        .linkedin-body-wrap {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.28s ease;
+            border-top: 0px solid var(--border);
+        }
+        .linkedin-collapsible.open .linkedin-body-wrap {
+            grid-template-rows: 1fr;
+            border-top-width: 1px;
+        }
+        .linkedin-body-inner { overflow: hidden; }
+        .linkedin-body {
+            padding: 14px 16px;
+        }
+        .linkedin-body textarea {
             width: 100%;
             font-size: 13px;
             padding: 10px 12px;
@@ -284,8 +334,14 @@
             resize: vertical;
             font-family: inherit;
             line-height: 1.5;
+            display: block;
         }
-        .linkedin-expand textarea:focus { outline: none; border-color: var(--ochre); }
+        .linkedin-body textarea:focus { outline: none; border-color: #0a66c2; }
+        .linkedin-body-hint {
+            margin-top: 7px;
+            font-size: 12px;
+            color: var(--muted);
+        }
 
         /* ── Refine strip ── */
         .refine-strip {
@@ -852,11 +908,30 @@
     </div>
 
     <div class="form-row">
-        <div class="linkedin-toggle" onclick="toggleLinkedIn(this)">
-            <span class="linkedin-toggle-label">+ Add LinkedIn context <span style="font-weight:400;opacity:0.6;">(About section, recommendations — optional)</span></span>
-        </div>
-        <div class="linkedin-expand" id="linkedin-expand" style="display:none;">
-            <textarea id="linkedin-input" rows="5" placeholder="Paste your LinkedIn About paragraph, a recommendation, or any phrasing you want echoed in the cover letter…" style="margin-top:8px;"></textarea>
+        <div class="linkedin-collapsible" id="linkedin-collapsible">
+            <div class="linkedin-header" onclick="toggleLinkedIn()">
+                <div class="linkedin-header-left">
+                    <div class="li-icon">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 3.5H1.5C2.05228 3.5 2.5 3.94772 2.5 4.5V8.5C2.5 9.05228 2.05228 9.5 1.5 9.5C0.947715 9.5 0.5 9.05228 0.5 8.5V4.5C0.5 3.94772 0.947715 3.5 1.5 3.5Z" fill="white"/>
+                            <circle cx="1.5" cy="1.5" r="1" fill="white"/>
+                            <path d="M4.5 4.5C4.5 3.94772 4.94772 3.5 5.5 3.5C6.32843 3.5 7 4.17157 7 5V8.5C7 9.05228 6.55228 9.5 6 9.5C5.44772 9.5 5 9.05228 5 8.5V5C5 4.72386 4.77614 4.5 4.5 4.5Z" fill="white"/>
+                            <path d="M7.5 5V8.5C7.5 9.05228 7.94772 9.5 8.5 9.5C9.05228 9.5 9.5 9.05228 9.5 8.5V4.75C9.5 4.05964 8.94036 3.5 8.25 3.5H7.5V5Z" fill="white"/>
+                        </svg>
+                    </div>
+                    LinkedIn context
+                    <span class="linkedin-header-hint">About section, recommendations — optional</span>
+                </div>
+                <span class="linkedin-chevron">▼</span>
+            </div>
+            <div class="linkedin-body-wrap">
+                <div class="linkedin-body-inner">
+                    <div class="linkedin-body">
+                        <textarea id="linkedin-input" rows="5" placeholder="Paste your LinkedIn About paragraph, a recommendation, or any phrasing you want echoed in the cover letter…"></textarea>
+                        <div class="linkedin-body-hint">This is added to the prompt as extra context — it won't override your resume, only inform tone and phrasing.</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1384,14 +1459,8 @@ function renderOutput(data, company, role) {
 /* ══════════════════════════════════
    LINKEDIN TOGGLE
 ════════════════════════════════════ */
-function toggleLinkedIn(el) {
-    const expand = document.getElementById('linkedin-expand');
-    const label = el.querySelector('.linkedin-toggle-label');
-    const isOpen = expand.style.display !== 'none';
-    expand.style.display = isOpen ? 'none' : 'block';
-    label.textContent = isOpen
-        ? '+ Add LinkedIn context (About section, recommendations — optional)'
-        : '− LinkedIn context added';
+function toggleLinkedIn() {
+    document.getElementById('linkedin-collapsible').classList.toggle('open');
 }
 
 /* ══════════════════════════════════
