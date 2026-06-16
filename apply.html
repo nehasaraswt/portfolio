@@ -261,6 +261,81 @@
             border-top: 1px solid var(--border);
         }
 
+        /* ── LinkedIn context toggle ── */
+        .linkedin-toggle {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--muted);
+            padding: 6px 0;
+            user-select: none;
+        }
+        .linkedin-toggle:hover { color: var(--ochre); }
+        .linkedin-toggle-label { transition: color 0.15s; }
+        .linkedin-expand textarea {
+            width: 100%;
+            font-size: 13px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bone);
+            color: var(--text);
+            resize: vertical;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+        .linkedin-expand textarea:focus { outline: none; border-color: var(--ochre); }
+
+        /* ── Refine strip ── */
+        .refine-strip {
+            margin-top: 36px;
+            padding: 20px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+        .refine-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 10px;
+        }
+        .refine-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .refine-row textarea {
+            flex: 1;
+            font-size: 13px;
+            padding: 9px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--white);
+            color: var(--text);
+            resize: none;
+            font-family: inherit;
+            line-height: 1.5;
+        }
+        .refine-row textarea:focus { outline: none; border-color: var(--ochre); }
+        .btn-navy {
+            padding: 9px 16px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: opacity 0.15s;
+        }
+        .btn-navy:hover { opacity: 0.85; }
+        .btn-navy:disabled { opacity: 0.4; cursor: default; }
+
         /* ── Loading ── */
         .loading-screen {
             text-align: center;
@@ -776,6 +851,15 @@
         </div>
     </div>
 
+    <div class="form-row">
+        <div class="linkedin-toggle" onclick="toggleLinkedIn(this)">
+            <span class="linkedin-toggle-label">+ Add LinkedIn context <span style="font-weight:400;opacity:0.6;">(About section, recommendations — optional)</span></span>
+        </div>
+        <div class="linkedin-expand" id="linkedin-expand" style="display:none;">
+            <textarea id="linkedin-input" rows="5" placeholder="Paste your LinkedIn About paragraph, a recommendation, or any phrasing you want echoed in the cover letter…" style="margin-top:8px;"></textarea>
+        </div>
+    </div>
+
     <div class="generate-bar">
         <button class="btn btn-rust" onclick="generate()" id="gen-btn">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -844,6 +928,15 @@
         </div>
     </div>
 
+    <!-- Refine strip -->
+    <div class="refine-strip" id="refine-strip">
+        <div class="refine-label">Something off? Tell Claude what to fix.</div>
+        <div class="refine-row">
+            <textarea id="refine-input" rows="2" placeholder="e.g. "Don't call me a founder — I was Head of Product & GTM at Micorza" or "Make the cover letter opener less formal"…"></textarea>
+            <button class="btn btn-navy" onclick="refine()" id="refine-btn">Refine →</button>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -907,9 +1000,10 @@ EXPERIENCE
    - Won best paper award (CAUE 08 / IndiaHCI) on quantification of user experience
 
 CURRENT VENTURE: Micorza (2025–present)
-   - Founder building an AI-native experience intelligence platform for physical-world businesses
-   - Head of Product role: defined 3-layer architecture, 8 intelligence modules, function-routing data model
-   - Built full prototype (React 19, Vite, Framer Motion) — all screens functional
+   - Head of Product & GTM — building an AI-native experience intelligence platform for physical-world businesses (skin clinics, D2C brands, retail)
+   - Defined product architecture: 3-layer intelligence model, 8 modules, function-routing data model (Company → Function → Goal → Study → Insights → Tasks)
+   - Own the full product brief: strategy, design, positioning, and go-to-market
+   - Built full prototype (React 19, Vite, Framer Motion) — all screens functional. NOT the founding engineer; product and GTM is the role.
 
 SKILLS & FOCUS AREAS
 Product: 0→1 product development · AI-native & agentic design · Platform strategy · SKU & go-to-market · Product-market fit
@@ -1057,6 +1151,8 @@ async function generate() {
         stepEl.textContent = steps[si];
     }, 1800);
 
+    const linkedInContext = document.getElementById('linkedin-input').value.trim();
+
     const toneDescriptions = {
         strategic: 'Emphasise systems thinking, transformation leadership, and business impact. Use confident, measured language.',
         builder: 'Emphasise 0→1 momentum, craft, speed, and shipping under real constraints. Use direct, energetic language.',
@@ -1082,7 +1178,7 @@ INSTRUCTIONS:
 
     const userPrompt = `Target company: ${company}
 Target role: ${role}
-
+${linkedInContext ? `\nADDITIONAL CONTEXT (LinkedIn About / recommendations — use to inform tone and cover letter voice):\n${linkedInContext}\n` : ''}
 JOB DESCRIPTION:
 ${jd}
 
@@ -1283,6 +1379,84 @@ function renderOutput(data, company, role) {
 
     showPanel('output-panel');
     switchTab('resume');
+}
+
+/* ══════════════════════════════════
+   LINKEDIN TOGGLE
+════════════════════════════════════ */
+function toggleLinkedIn(el) {
+    const expand = document.getElementById('linkedin-expand');
+    const label = el.querySelector('.linkedin-toggle-label');
+    const isOpen = expand.style.display !== 'none';
+    expand.style.display = isOpen ? 'none' : 'block';
+    label.textContent = isOpen
+        ? '+ Add LinkedIn context (About section, recommendations — optional)'
+        : '− LinkedIn context added';
+}
+
+/* ══════════════════════════════════
+   REFINE
+════════════════════════════════════ */
+async function refine() {
+    if (!lastOutput) return;
+    const apiKey = localStorage.getItem('ns_api_key');
+    if (!apiKey) return;
+
+    const feedback = document.getElementById('refine-input').value.trim();
+    if (!feedback) return;
+
+    const btn = document.getElementById('refine-btn');
+    btn.disabled = true;
+    btn.textContent = 'Refining…';
+
+    const currentOutput = JSON.stringify(lastOutput, null, 2);
+    const company = document.getElementById('output-title').textContent.split('→')[1]?.trim() || '';
+
+    const systemPrompt = `You are helping Neha Saraswat refine a generated resume and cover letter. Apply the user's feedback precisely and return the corrected JSON. Do not change anything not mentioned in the feedback. Return ONLY valid JSON, no commentary.
+
+Original profile:
+${PROFILE}`;
+
+    const userPrompt = `Current output:
+${currentOutput}
+
+Feedback to apply:
+${feedback}
+
+Return the corrected JSON in the same structure. Only change what the feedback asks for.`;
+
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey,
+                'anthropic-version': '2023-06-01',
+                'anthropic-dangerous-direct-browser-access': 'true',
+            },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 4096,
+                system: systemPrompt,
+                messages: [{ role: 'user', content: userPrompt }],
+            }),
+        });
+
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+        const raw = data.content[0].text.trim();
+        const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+        const parsed = JSON.parse(cleaned);
+
+        lastOutput = parsed;
+        renderOutput(parsed, company, '');
+        document.getElementById('refine-input').value = '';
+    } catch (err) {
+        alert('Refinement failed: ' + err.message);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Refine →';
+    }
 }
 </script>
 </body>
