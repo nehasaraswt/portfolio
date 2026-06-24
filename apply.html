@@ -863,12 +863,15 @@
         @media print {
             .topbar, .output-header, .tabs, .output-actions,
             .insight-strip, .generate-bar, .btn,
-            .refine-strip, #tab-cover { display: none !important; }
+            .refine-strip { display: none !important; }
             body { background: white; }
             .shell { padding: 0; max-width: 100%; }
             #resume-output { padding: 10px 16px; font-size: 10.5px; }
             .r-name { font-size: 24px; }
             .r-two-col { grid-template-columns: 1fr 190px; gap: 0 24px; }
+            .cover-frame { border: none !important; box-shadow: none !important; }
+            #cover-output { padding: 10px 16px; }
+            .cl-name { font-size: 24px; }
         }
     </style>
 </head>
@@ -1023,7 +1026,7 @@
         </div>
         <div class="output-actions">
             <button class="btn btn-ghost btn-sm" onclick="showPanel('input-panel')">← New application</button>
-            <button class="btn btn-ghost btn-sm" onclick="window.print()">Print / PDF</button>
+            <button class="btn btn-ghost btn-sm" onclick="printCurrentTab()">Print / PDF</button>
         </div>
     </div>
 
@@ -1074,7 +1077,7 @@ Contact: neha.biti@gmail.com · +91 96111 27722 · Bengaluru, India
 LinkedIn: linkedin.com/in/nehasaraswat · nehasaraswat.in
 
 HEADLINE
-Design executive and builder with 20+ years across fintech, enterprise commerce, conversational AI, and emerging ventures. Works at the intersection of product strategy, design, and go-to-market — leading 0→1 launches, platform transformations, and organisation-building across the US and India. Has designed AI-native products before the category had a name and consistently taken roles where the design problem and the business problem are the same thing.
+Design executive, educator, and builder with 20+ years across fintech, enterprise commerce, conversational AI, and emerging ventures. Works at the intersection of product strategy, design, and go-to-market — leading 0→1 launches, platform transformations, and organisation-building across the US and India. Has designed AI-native products before the category had a name. Dual-trained in industrial design (NID) and architecture (NIT Raipur). Active in design education and the NID institutional community.
 
 EXPERIENCE
 
@@ -1114,43 +1117,92 @@ EXPERIENCE
 
 6. Head of Design, India Operations (concurrent with above roles) | Intuit · Walmart · [247].ai | 2016–2024
    - Grew India design teams from 17 to 62 designers across three organisations
-   - At Intuit: built 50+ designer community; convened and led #D4 — Intuit India's design conference, 5 editions, NPS 80+
+   - At Intuit: built 50+ designer community; convened and led #D4 — Intuit India's annual design conference, 5 editions, NPS 80+
    - Built talent pipelines, mentorship structures, and culture that outlasted each tenure
    - Several mentees moved into leadership and founded independent studios
 
 7. Earlier Career | Jifflenow · Lumium Innovation (Norwest VP) · Tech Mahindra · Fuego Furniture · Sri Design | 2005–2016
    - Led 0→1 design for Jifflenow (Meeting Automation Platform); built UX team at Lumium
    - Designed enterprise products at Tech Mahindra for Philippines, UK, NZ, and Malaysia
+   - Industrial design practice: Fuego Furniture (modular storage), Petals lounge chair (competition entry), jewellery forms, Dhokra bell-metal craft
+   - Transport design: KSRTC Bangalore bus exterior graphics, Kadapa City Service bus (published/exhibited)
    - Won best paper award (CAUE 08 / IndiaHCI) on quantification of user experience
 
-CURRENT VENTURE: Micorza (2025–present)
-   - Head of Product & GTM — building an AI-native experience intelligence platform for physical-world businesses (skin clinics, D2C brands, retail)
-   - Defined product architecture: 3-layer intelligence model, 8 modules, function-routing data model (Company → Function → Goal → Study → Insights → Tasks)
+CURRENT WORK
+
+Micorza (Head of Product & GTM, 2025–present)
+   - Building an AI-native experience intelligence platform for physical-world businesses (skin clinics, D2C brands, retail)
+   - Defined product architecture: 3-layer intelligence model, 8 modules, function-routing data model
    - Own the full product brief: strategy, design, positioning, and go-to-market
-   - Built full prototype (React 19, Vite, Framer Motion) — all screens functional. NOT the founding engineer; product and GTM is the role.
+   - Built full working prototype (React 19, Vite, Framer Motion)
+
+Ano AI (Consulting, 2025–present)
+   - Advisory on AI product strategy and design systems for an AI startup
+
+TEACHING APPOINTMENTS
+NID Jorhat — Space-Form & Structure, Foundation Studies | April 2026
+   - Designed and taught a 12-week module on spatial thinking, form exploration, and material studies
+   - Pedagogy: studio-based, material-first, structured critique cycles
+   - Outcomes: foundational spatial vocabulary, model-making fluency, design discourse skills
+
+Chitkara University — Design Project 3: System Design, B.Des | April–May 2026
+   - Designed and ran a 5-phase project module: Frame → Research → Synthesis → Concept → Presentation
+   - Focus: structured design thinking, brief-writing, system-level problem framing
+   - Ran critique workshops and final jury sessions
+
+NID ACADEMIC SERVICE (2019–present)
+   - Admission Panel Member — NID Ahmedabad: Product Design & Universal Design
+   - Admission Panel Member — NID Bangalore: Product Design & Universal Design
+   - Graduation Project Jury — NID Ahmedabad
+   - Graduation Project Jury — NID Bangalore
+
+SPEAKING & PUBLIC WORK
+2025 — UXIndia — Speaker
+2024 — DesignUp — Speaker
+2024 — Nasscom Product Conclave — Speaker
+2023 — UXIndia — Speaker
+2023 — Product Leadership Forum — Speaker
+2022 — UXIndia — Keynote (Hyderabad)
+2020 — UX Now — Speaker (Delhi)
+2013 — Service Innovation World Conference — Speaker
+2012 — Future Insights — Speaker (Miami)
+2012 — CII NID Summit — Speaker
+2012 — FTC International Workshop — Presenter
+2008 — CAUE Symposium — Best Paper Award (IndiaHCI)
+
+FRAMEWORKS & ORIGINAL METHODOLOGIES
+- Futurecasting in 5 Steps: Original methodology for structured futures thinking and scenario planning. Facilitated at Intuit, Walmart, and [247].ai. Codified as a repeatable facilitation tool used by 100+ designers and non-design stakeholders.
+- Human-Agent Tandem: Framework for designing human-AI collaboration in expert workflows (Intuit VEP)
+- D4D (Design for Delight): Org-wide design-thinking workshop framework, Intuit India
+- Age of Intent: Agentic-futures workshop framework, Intuit
+- #D4: Intuit India annual design conference — founder, organiser, 5 editions
+- Innovation Catalyst: Trained 40 catalysts/year across Intuit, Walmart, [247].ai
 
 SKILLS & FOCUS AREAS
 Product: 0→1 product development · AI-native & agentic design · Platform strategy · SKU & go-to-market · Product-market fit
-Design: Systems thinking · Design systems · Design sprints · AI component design · Information architecture · Industrial design
+Design: Systems thinking · Design systems · Design sprints · AI component design · Information architecture · Industrial design · Spatial design
+Teaching: Module design · Studio-based pedagogy · Structured critique · Project-based learning · Foundation studies
 Leadership: Org design & restructuring · Enterprise transformation · Cross-geography teams · Design capability building · Mentorship
-Domains: Fintech & SMB tools · Enterprise commerce · Conversational AI · CRM & expert platforms · Workforce management
-Methods: Generative research · Follow-the-user studies · Rapid prototyping · Vision storytelling · Futurecasting
+Domains: Fintech & SMB tools · Enterprise commerce · Conversational AI · CRM & expert platforms · Workforce management · Physical products
+Methods: Generative research · Follow-the-user studies · Rapid prototyping · Vision storytelling · Futurecasting · Form studies
 
 EDUCATION
 M.Des — Product Design | National Institute of Design, Ahmedabad
-  Thesis: Bus Design for KSRTC, Bangalore
+  Thesis: Bus Design for KSRTC, Bangalore (transport + service design)
+  Practice: form studies, material exploration, industrial design, craft (Dhokra metalwork)
 
 B.Arch — Architecture | NIT Raipur (Ravishankar Shukla University)
   Best thesis of the year — "Designing with archetype: city center at Indore"
+  Spatial thinking, technical drawing, construction knowledge, urban design
 
 COMMUNITY & RECOGNITION
-- Spoke at CAUE, UXIndia, DesignUp, UXDX, Future Trends (Miami), LTUX
 - Innovation Catalyst Trailblazer (Intuit) — trained 40 catalysts/year
 - Convener, Intuit India Design Internship — ~20% of total hires over 4 years
-- Faculty and mentor across design programs
+- Mentored designers who went on to lead studios and design orgs
+- CAUE Best Paper Award (IndiaHCI 2008) — first published research
 
 LEADERSHIP PHILOSOPHY
-Product, design, and GTM are inseparable. The best work integrates all three to create products that are both well-designed and well-positioned. Believes in building structures and practices that outlast individual contributors. Takes design seriously as a business lever, not an execution function.
+Product, design, and GTM are inseparable. The best work integrates all three to create products that are both well-designed and well-positioned. Teaching and industry practice reinforce each other — the frameworks that work in the field become the pedagogy, and what students challenge sharpens the practitioner's thinking. Believes in building structures and practices that outlast individual contributors.
 `;
 
 /* ══════════════════════════════════
@@ -1175,20 +1227,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* hide screen-only UI before print, restore after */
-const PRINT_HIDE_IDS = ['refine-strip', 'insight-area'];
-window.addEventListener('beforeprint', () => {
-    PRINT_HIDE_IDS.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.setProperty('display', 'none', 'important');
-    });
-});
-window.addEventListener('afterprint', () => {
-    PRINT_HIDE_IDS.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.removeProperty('display');
-    });
-});
+/* Print whichever tab is currently active */
+function printCurrentTab() {
+    const resume = document.getElementById('tab-resume');
+    const cover  = document.getElementById('tab-cover');
+    const isOnCover = cover.classList.contains('active');
+
+    if (isOnCover) {
+        resume.style.setProperty('display', 'none', 'important');
+        cover.style.setProperty('display', 'block', 'important');
+    } else {
+        cover.style.setProperty('display', 'none', 'important');
+        resume.style.setProperty('display', 'block', 'important');
+    }
+
+    window.print();
+
+    // Restore after dialog closes
+    resume.style.removeProperty('display');
+    cover.style.removeProperty('display');
+}
 
 /* ══════════════════════════════════
    API KEY
@@ -1307,35 +1365,52 @@ ${PROFILE}
 
 WORK THROUGH THESE STEPS IN ORDER:
 
+STEP 0 — Role type classification. Determine what kind of role this is before doing anything else:
+
+  TEACHING/FACULTY: Role at a design school, university, or academic institution. Keywords: professor, lecturer, visiting faculty, adjunct, assistant professor, studio, pedagogy, curriculum, design education, foundation studies, B.Des, M.Des, NID, course, module, jury, critique.
+    → If TEACHING/FACULTY: lead with NID M.Des + B.Arch dual background. Surface NID Jorhat and Chitkara teaching appointments as primary experience. Surface NID admission panels and graduation juries as institutional credibility. Weight Futurecasting and workshop frameworks as pedagogy evidence. Weight #D4 and community building over product metrics. Keep industry roles as supporting context, not the lead.
+
+  CONSULTING/ADVISORY: Fractional, interim, or advisory role. Keywords: advisor, consultant, fractional, interim, strategic advisor.
+    → If CONSULTING: lead with breadth across domains, frameworks, and client impact. Surface Micorza and Ano AI. Weight diagnostic thinking and pattern recognition.
+
+  STARTUP/GTM: Early-stage or GTM-heavy role. Keywords: seed, series A, founding, growth, GTM, go-to-market, 0→1, product-market fit.
+    → If STARTUP: lead with Micorza (current), Jifflenow (0→1), and the product+GTM combination. Weight speed, constraint, and commercial instincts.
+
+  INDUSTRY/COMMERCIAL (default): Standard industry role at an established company. Design leadership, product, executive.
+    → Default treatment — follow the scoring and emphasis rules below.
+
 STEP 1 — Read the JD carefully and identify:
-a) The 2–3 capabilities the role is actually hiring for (not just listed requirements — what problem are they solving by hiring this person?)
-b) The register the JD is written in: casual/startup, formal/enterprise, technical/IC, strategic/leadership
-c) What threads in Neha's profile do NOT map to this role (things to suppress or condense)
+a) The real hiring problem: what business pain or opportunity is this role solving? (Not just listed requirements — what breaks if this role isn't filled?)
+b) The 2–3 capabilities that will make or break the hire — distinguish between must-haves (dealbreakers if absent) and nice-to-haves (listed but not essential)
+c) The register the JD is written in: casual/startup, formal/enterprise, technical/IC, strategic/leadership
+d) What threads in Neha's profile do NOT map to this role (things to suppress or condense)
+e) Any domain signals: AI, fintech, enterprise SaaS, commerce, education, healthcare, physical products — match these to Neha's experience
 
 STEP 2 — Score each role 1–3 for relevance to THIS specific JD:
   3 = core match — directly addresses what they're hiring for → 4–5 bullets
   2 = supporting signal — adds credibility or complementary context → 2–3 bullets
-  1 = background only — include but condense to a single line
-Relevance is about fit to this JD, not recency. An older role can score higher than a recent one.
+  1 = background only — include but condense to a single line or omit
+Relevance is about fit to this JD, not recency. An older role can score 3 if it maps directly.
+For TEACHING roles: teaching appointments score 3, industry roles that show research/frameworks/community score 2, pure delivery roles score 1.
 
 STEP 3 — Rewrite bullets to angle, not just select.
-Don't copy bullets from the profile — rewrite them to foreground the aspect most relevant to this role. Stay strictly truthful (no invented metrics, no fabricated experience) but angle the emphasis. Example: "Rebuilt scheduling workflow" becomes "Redesigned expert-scheduling model to cut time-to-service by 85%" if the JD is about operational efficiency.
+Don't copy bullets from the profile — rewrite them to foreground the aspect most relevant to this role. Stay strictly truthful (no invented metrics, no fabricated experience) but angle the emphasis.
 
 STEP 4 — Suppress what the JD doesn't signal.
-If a thread doesn't appear in the JD (org-building for an IC role, India operations for a US-only company, brand work for a pure product role), don't expand it. Use a score-1 condensed line and move on.
+If a thread doesn't appear in the JD, condense it to a score-1 single line. Don't expand every role equally.
 
 STEP 5 — Tone.
 First read the JD's own register and match it. Then apply this modifier: ${toneDescriptions[selectedTone]}
-If the two conflict, the JD's register takes precedence — the preset is a tiebreaker, not an override.
+If the two conflict, the JD's register takes precedence.
 
 COVER LETTER — each paragraph has a specific job:
-P1 — Hook: specific to this company and this moment. Reference something real and particular about why this company or role right now. Not "I am excited to apply."
+P1 — Hook: specific to this company and this moment. Reference something real and particular about why this company or role right now. Not "I am excited to apply." For academic roles, reference the institution's design philosophy or what the specific course/programme is trying to do.
 P2 — Strongest match: the one experience that maps most directly to what they're hiring for. One role, one thread, concrete outcome.
-P3 — Complementary angle: what Neha brings that P2 doesn't cover — the cross-domain thing, the systems view, the product+GTM combination. This is what makes her different from someone who only has P2.
-P4 — Direct close: one sentence on what she'd want to do in the first 90 days, or what conversation she wants to start. No "I look forward to hearing from you."
+P3 — Complementary angle: what Neha brings that P2 doesn't cover. For academic roles, this is where industry practice enriches pedagogy — or vice versa. For industry roles, this is the cross-domain systems view.
+P4 — Direct close: one sentence on what she'd want to do in the first 90 days or the first studio session. No "I look forward to hearing from you."
 
 HARD CONSTRAINTS:
-- Be truthful — only use what is in the profile. Do not invent metrics or experience.
+- Be truthful — only use what is in the profile. Do not invent metrics, courses taught, or institutions visited.
 - Write cover letter in first person.
 - Return ONLY valid JSON, no markdown fences, no commentary.`;
 
@@ -1349,9 +1424,12 @@ Generate a tailored resume and cover letter. Return a single JSON object with th
 
 {
   "insight": {
-    "angle": "1–2 sentences: why this role fits and what to lead with",
-    "gaps": "1 sentence: what the JD asks for that is not well represented in the profile — be honest. If strong fit, write 'None identified.'",
-    "tone_read": "short phrase describing the register inferred from the JD, e.g. 'Enterprise-formal, VP-level' or 'Startup-casual, builder-oriented'"
+    "role_type": "TEACHING/FACULTY | CONSULTING/ADVISORY | STARTUP/GTM | INDUSTRY/COMMERCIAL",
+    "hiring_problem": "1 sentence: the real problem this role solves — what breaks if they don't fill it",
+    "must_haves": "comma-separated list of the 2–3 true dealbreakers from the JD",
+    "angle": "1–2 sentences: why this role fits and what to lead with given the role type",
+    "gaps": "1 sentence: what the JD asks for that is not well represented in the profile. If strong fit, write 'None identified.'",
+    "tone_read": "short phrase: the register of the JD, e.g. 'Enterprise-formal, VP-level' or 'Academic, studio-focused'"
   },
   "resume": {
     "tagline": "tailored tagline for this role (e.g. Product · Design · GTM)",
@@ -1434,11 +1512,28 @@ function renderOutput(data, company, role) {
     const ins = data.insight;
     if (ins) {
         const isObj = typeof ins === 'object';
-        const angle = isObj ? ins.angle : ins;
-        const gaps  = isObj ? ins.gaps  : null;
-        const tone  = isObj ? ins.tone_read : null;
+        const roleType      = isObj ? ins.role_type      : null;
+        const hiringProblem = isObj ? ins.hiring_problem : null;
+        const mustHaves     = isObj ? ins.must_haves     : null;
+        const angle         = isObj ? ins.angle          : ins;
+        const gaps          = isObj ? ins.gaps           : null;
+        const tone          = isObj ? ins.tone_read      : null;
         document.getElementById('insight-area').innerHTML = `
         <div class="insight-strip">
+            ${roleType ? `<div class="insight-row" style="border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:10px;margin-bottom:10px;">
+                <div class="insight-block" style="flex:0 0 auto;">
+                    <div class="insight-label">Role type</div>
+                    <div class="insight-text" style="font-weight:700;">${roleType}</div>
+                </div>
+                ${mustHaves ? `<div class="insight-block">
+                    <div class="insight-label">Must-haves</div>
+                    <div class="insight-text">${mustHaves}</div>
+                </div>` : ''}
+                ${hiringProblem ? `<div class="insight-block">
+                    <div class="insight-label">Hiring problem</div>
+                    <div class="insight-text">${hiringProblem}</div>
+                </div>` : ''}
+            </div>` : ''}
             <div class="insight-row">
                 <div class="insight-block">
                     <div class="insight-label">Angle</div>
