@@ -872,7 +872,242 @@
             .cover-frame { border: none !important; box-shadow: none !important; }
             #cover-output { padding: 10px 16px; }
             .cl-name { font-size: 24px; }
+            #tab-interview { display: none !important; }
         }
+
+        /* ── Interview Prep ── */
+        .iv-setup-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 8px 0 4px;
+        }
+
+        .iv-opt {
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: var(--white);
+        }
+
+        .iv-opt:hover, .iv-opt.selected {
+            border-color: var(--rust);
+            background: rgba(181,52,43,0.04);
+        }
+
+        .iv-opt-name {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .iv-opt-desc {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .iv-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .iv-progress {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .iv-progress-bar {
+            flex: 1;
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .iv-progress-fill {
+            height: 100%;
+            background: var(--rust);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
+
+        .iv-progress-label {
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .iv-chat { display: flex; flex-direction: column; gap: 0; }
+
+        .iv-q-block {
+            background: var(--navy);
+            color: white;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+        }
+
+        .iv-q-meta {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .iv-q-tag {
+            background: rgba(255,255,255,0.12);
+            padding: 2px 7px;
+            border-radius: 3px;
+        }
+
+        .iv-q-text { font-size: 15px; font-weight: 500; line-height: 1.55; }
+
+        .iv-answer-area { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+
+        .iv-answer-area textarea {
+            width: 100%;
+            min-height: 110px;
+            padding: 12px 14px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text);
+            resize: vertical;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .iv-answer-area textarea:focus { border-color: var(--rust); }
+        .iv-answer-area textarea:disabled { background: var(--surface); color: var(--muted); }
+
+        .iv-eval-block {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .iv-eval-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .iv-rating-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .iv-rating-badge.low  { background: rgba(181,52,43,0.10); color: var(--rust); }
+        .iv-rating-badge.mid  { background: rgba(176,64,0,0.10);  color: var(--ochre); }
+        .iv-rating-badge.good { background: rgba(43,125,80,0.10);  color: #2a7a50; }
+        .iv-rating-badge.great{ background: rgba(43,125,80,0.16);  color: #1a5c3b; }
+
+        .iv-eval-title { font-size: 13.5px; font-weight: 600; color: var(--text); }
+        .iv-eval-score { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+
+        .iv-eval-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+
+        .iv-eval-section-title {
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .iv-eval-worked .iv-eval-section-title  { color: #2a7a50; }
+        .iv-eval-model  .iv-eval-section-title  { color: var(--navy); }
+        .iv-eval-improve .iv-eval-section-title { color: var(--ochre); }
+
+        .iv-eval-section p { font-size: 13px; color: var(--text); line-height: 1.55; }
+
+        .iv-loading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .iv-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border);
+            border-top-color: var(--rust);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        .iv-summary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px 28px;
+        }
+
+        .iv-summary h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .iv-summary-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+
+        .iv-score-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .iv-score-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .iv-sc-num { font-size: 22px; font-weight: 800; color: var(--rust); line-height: 1; }
+        .iv-sc-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+
+        .iv-q-summary-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .iv-q-summary-row .iv-rating-badge { width: 32px; height: 32px; font-size: 13px; border-radius: 6px; }
+        .iv-q-summary-qtxt { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
+        .iv-q-summary-lbl  { font-size: 11.5px; color: var(--muted); }
     </style>
 </head>
 <body>
@@ -1035,6 +1270,7 @@
     <div class="tabs">
         <div class="tab active" onclick="switchTab('resume')">Resume</div>
         <div class="tab" onclick="switchTab('cover')">Cover Letter</div>
+        <div class="tab" onclick="switchTab('interview')">Interview Prep</div>
     </div>
 
     <div class="tab-panel active" id="tab-resume">
@@ -1052,6 +1288,74 @@
         </div>
         <div class="cover-frame">
             <div id="cover-output"></div>
+        </div>
+    </div>
+
+    <div class="tab-panel" id="tab-interview">
+        <!-- Setup screen -->
+        <div id="iv-setup">
+            <div style="margin-bottom:22px;">
+                <div style="font-size:16px;font-weight:700;margin-bottom:4px;">Practice Interview</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.5;">8 questions · ~45 minutes · one at a time with evaluation after each answer</div>
+            </div>
+
+            <div class="form-row">
+                <div class="iv-section-label">Question focus</div>
+                <div class="iv-setup-grid">
+                    <div class="iv-opt selected" data-iv-type="both" onclick="selectIvOpt(this,'iv-type')">
+                        <div class="iv-opt-name">Both</div>
+                        <div class="iv-opt-desc">Technical + non-technical mixed</div>
+                    </div>
+                    <div class="iv-opt" data-iv-type="technical" onclick="selectIvOpt(this,'iv-type')">
+                        <div class="iv-opt-name">Technical only</div>
+                        <div class="iv-opt-desc">Design process, decisions, craft</div>
+                    </div>
+                    <div class="iv-opt" data-iv-type="non-technical" onclick="selectIvOpt(this,'iv-type')">
+                        <div class="iv-opt-name">Non-technical only</div>
+                        <div class="iv-opt-desc">Leadership, strategy, collaboration</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="iv-section-label">Difficulty</div>
+                <div class="iv-setup-grid">
+                    <div class="iv-opt selected" data-iv-diff="both" onclick="selectIvOpt(this,'iv-diff')">
+                        <div class="iv-opt-name">Mixed</div>
+                        <div class="iv-opt-desc">4 medium + 4 tough</div>
+                    </div>
+                    <div class="iv-opt" data-iv-diff="medium" onclick="selectIvOpt(this,'iv-diff')">
+                        <div class="iv-opt-name">Medium</div>
+                        <div class="iv-opt-desc">Clear framing required</div>
+                    </div>
+                    <div class="iv-opt" data-iv-diff="tough" onclick="selectIvOpt(this,'iv-diff')">
+                        <div class="iv-opt-name">Tough</div>
+                        <div class="iv-opt-desc">Deep follow-ups, edge cases</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:12px;">
+                <button class="btn btn-rust" onclick="startInterview()" id="iv-start-btn">
+                    Start interview →
+                </button>
+            </div>
+            <div id="iv-setup-error"></div>
+        </div>
+
+        <!-- Interview session -->
+        <div id="iv-session" style="display:none;">
+            <div class="iv-progress">
+                <div class="iv-progress-bar">
+                    <div class="iv-progress-fill" id="iv-progress-fill" style="width:0%"></div>
+                </div>
+                <div class="iv-progress-label" id="iv-progress-label">Question 1 of 8</div>
+                <button class="btn btn-ghost btn-sm" onclick="resetInterview()" style="font-size:11px;padding:5px 10px;">Start over</button>
+            </div>
+
+            <div class="iv-chat" id="iv-chat"></div>
+
+            <div id="iv-summary-block" style="display:none;margin-top:24px;"></div>
         </div>
     </div>
 
@@ -1229,23 +1533,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Print whichever tab is currently active */
 function printCurrentTab() {
-    const resume = document.getElementById('tab-resume');
-    const cover  = document.getElementById('tab-cover');
-    const isOnCover = cover.classList.contains('active');
+    const resume    = document.getElementById('tab-resume');
+    const cover     = document.getElementById('tab-cover');
+    const interview = document.getElementById('tab-interview');
 
+    if (interview.classList.contains('active')) {
+        alert('Switch to Resume or Cover Letter tab to print.');
+        return;
+    }
+
+    const isOnCover = cover.classList.contains('active');
     if (isOnCover) {
         resume.style.setProperty('display', 'none', 'important');
         cover.style.setProperty('display', 'block', 'important');
+        interview.style.setProperty('display', 'none', 'important');
     } else {
         cover.style.setProperty('display', 'none', 'important');
         resume.style.setProperty('display', 'block', 'important');
+        interview.style.setProperty('display', 'none', 'important');
     }
 
     window.print();
 
-    // Restore after dialog closes
     resume.style.removeProperty('display');
     cover.style.removeProperty('display');
+    interview.style.removeProperty('display');
 }
 
 /* ══════════════════════════════════
@@ -1286,12 +1598,10 @@ function showPanel(id) {
 }
 
 function switchTab(name) {
-    document.querySelectorAll('.tab').forEach((t, i) => {
-        t.classList.toggle('active', (name === 'resume' && i === 0) || (name === 'cover' && i === 1));
-    });
-    document.querySelectorAll('.tab-panel').forEach((p, i) => {
-        p.classList.toggle('active', (name === 'resume' && i === 0) || (name === 'cover' && i === 1));
-    });
+    const names = ['resume', 'cover', 'interview'];
+    const idx = names.indexOf(name);
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+    document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
 }
 
 /* ══════════════════════════════════
@@ -1667,6 +1977,347 @@ function renderOutput(data, company, role) {
 
     showPanel('output-panel');
     switchTab('resume');
+}
+
+/* ══════════════════════════════════
+   INTERVIEW PREP
+════════════════════════════════════ */
+const ivState = {
+    qType: 'both',
+    difficulty: 'both',
+    questions: [],
+    currentIdx: 0,
+    transcript: [],
+};
+
+function selectIvOpt(el, group) {
+    el.closest('.iv-setup-grid').querySelectorAll('.iv-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    if (group === 'iv-type') ivState.qType = el.dataset.ivType;
+    if (group === 'iv-diff') ivState.difficulty = el.dataset.ivDiff;
+}
+
+function resetInterview() {
+    ivState.questions = [];
+    ivState.currentIdx = 0;
+    ivState.transcript = [];
+    document.getElementById('iv-session').style.display = 'none';
+    document.getElementById('iv-setup').style.display = 'block';
+    document.getElementById('iv-chat').innerHTML = '';
+    document.getElementById('iv-summary-block').style.display = 'none';
+    document.getElementById('iv-setup-error').innerHTML = '';
+}
+
+async function startInterview() {
+    const apiKey = localStorage.getItem('ns_api_key');
+    if (!apiKey) {
+        document.getElementById('iv-setup-error').innerHTML =
+            '<div class="error-box" style="margin-top:12px;">Set your API key first (top right).</div>';
+        return;
+    }
+
+    const jd      = document.getElementById('jd-input')?.value?.trim() || '';
+    const company = document.getElementById('company-input')?.value?.trim() || 'the company';
+    const role    = document.getElementById('role-input')?.value?.trim() || 'the role';
+
+    if (!jd) {
+        document.getElementById('iv-setup-error').innerHTML =
+            '<div class="error-box" style="margin-top:12px;">Generate a resume first — the interview uses the same job description.</div>';
+        return;
+    }
+
+    const btn = document.getElementById('iv-start-btn');
+    btn.disabled = true;
+    btn.textContent = 'Preparing questions…';
+    document.getElementById('iv-setup-error').innerHTML = '';
+
+    ivState.questions = [];
+    ivState.currentIdx = 0;
+    ivState.transcript = [];
+    ivState._company = company;
+    ivState._role = role;
+
+    const qTypeDesc = {
+        both:          'a balanced mix — roughly half technical (design decisions, process, craft, frameworks, systems thinking) and half non-technical (leadership, strategy, stakeholder management, culture, conflict)',
+        technical:     'only technical questions: design decisions, design process, critique of past work, systems design, frameworks, craft judgment, AI product design',
+        'non-technical': 'only behavioural and strategic questions: leadership situations, team dynamics, stakeholder conflict, strategy, career decisions, culture'
+    }[ivState.qType];
+
+    const diffDesc = {
+        both:   '4 medium-difficulty and 4 tough. Medium = solid preparation required. Tough = edge cases, probing follow-ups, scenarios that demand reflection.',
+        medium: 'all 8 questions at medium difficulty — clear framing, grounded answers expected',
+        tough:  'all 8 questions at tough difficulty — deep probing, edge cases, multi-part scenarios'
+    }[ivState.difficulty];
+
+    const systemPrompt = `You are a senior interviewer at ${company} preparing a structured 45-minute interview for a ${role} position.
+
+The candidate is Neha Saraswat. Her profile:
+${PROFILE}
+
+Generate exactly 8 interview questions.
+Question focus: ${qTypeDesc}
+Difficulty: ${diffDesc}
+
+Rules:
+- Probe real specifics from her profile (not generic "tell me about a time" questions)
+- Progress from more accessible to more probing as the interview advances
+- Each question should reveal something distinct — no overlapping coverage
+- For technical: test actual design judgment, not trivia
+- For non-technical: ask for specific situations, not hypotheticals
+
+Return ONLY valid JSON, no commentary:
+{
+  "questions": [
+    {
+      "number": 1,
+      "question": "...",
+      "type": "technical",
+      "difficulty": "medium",
+      "why_this_question": "one line — what this reveals",
+      "ideal_answer_guide": "3–4 key points a strong answer must cover"
+    }
+  ]
+}`;
+
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey,
+                'anthropic-version': '2023-06-01',
+                'anthropic-dangerous-direct-browser-access': 'true',
+            },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 2500,
+                system: systemPrompt,
+                messages: [{ role: 'user', content: `Job description:\n${jd}` }],
+            }),
+        });
+
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+        const raw  = data.content[0].text.trim();
+        const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+        const parsed  = JSON.parse(cleaned);
+
+        ivState.questions = parsed.questions || [];
+
+        document.getElementById('iv-setup').style.display = 'none';
+        document.getElementById('iv-session').style.display = 'block';
+        document.getElementById('iv-chat').innerHTML = '';
+        document.getElementById('iv-summary-block').style.display = 'none';
+
+        showCurrentQuestion();
+
+    } catch (err) {
+        document.getElementById('iv-setup-error').innerHTML =
+            `<div class="error-box" style="margin-top:12px;">Could not generate questions: ${err.message}</div>`;
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Start interview →';
+    }
+}
+
+function updateIvProgress() {
+    const total   = ivState.questions.length;
+    const done    = ivState.transcript.length;
+    const current = Math.min(ivState.currentIdx + 1, total);
+    const pct     = Math.round((done / total) * 100);
+    document.getElementById('iv-progress-fill').style.width = pct + '%';
+    document.getElementById('iv-progress-label').textContent =
+        done === total ? `Completed — ${total} of ${total}` : `Question ${current} of ${total}`;
+}
+
+function showCurrentQuestion() {
+    if (ivState.currentIdx >= ivState.questions.length) {
+        showInterviewSummary();
+        return;
+    }
+
+    updateIvProgress();
+    const q    = ivState.questions[ivState.currentIdx];
+    const idx  = ivState.currentIdx;
+    const chat = document.getElementById('iv-chat');
+
+    const diffLabel = q.difficulty === 'tough' ? '🔴 Tough' : '🟡 Medium';
+    const typeLabel = q.type === 'technical' ? 'Technical' : 'Non-technical';
+
+    const block = document.createElement('div');
+    block.id = `iv-block-${idx}`;
+    block.innerHTML = `
+        <div class="iv-q-block">
+            <div class="iv-q-meta">
+                <span>Q${q.number} of ${ivState.questions.length}</span>
+                <span class="iv-q-tag">${typeLabel}</span>
+                <span class="iv-q-tag">${diffLabel}</span>
+            </div>
+            <div class="iv-q-text">${q.question}</div>
+        </div>
+        <div class="iv-answer-area" id="iv-answer-area-${idx}">
+            <textarea id="iv-answer-${idx}" rows="5" placeholder="Type your answer here. Take your time — respond as you would in a real interview."></textarea>
+            <div style="display:flex;gap:10px;align-items:center;">
+                <button class="btn btn-rust" onclick="submitAnswer(${idx})">Submit answer →</button>
+                <span style="font-size:11px;color:var(--muted);">Shift+Enter for new line</span>
+            </div>
+        </div>
+        <div id="iv-eval-${idx}"></div>`;
+
+    chat.appendChild(block);
+    setTimeout(() => block.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+async function submitAnswer(idx) {
+    const apiKey = localStorage.getItem('ns_api_key');
+    if (!apiKey) return;
+
+    const answerEl = document.getElementById(`iv-answer-${idx}`);
+    const answer   = answerEl.value.trim();
+
+    if (answer.length < 10) {
+        answerEl.style.borderColor = 'var(--rust)';
+        answerEl.placeholder = 'Please write an answer before submitting…';
+        return;
+    }
+
+    const q      = ivState.questions[idx];
+    const areaEl = document.getElementById(`iv-answer-area-${idx}`);
+    const evalEl = document.getElementById(`iv-eval-${idx}`);
+
+    areaEl.querySelectorAll('button, textarea').forEach(el => el.disabled = true);
+    evalEl.innerHTML = `<div class="iv-loading"><div class="iv-spinner"></div><span>Evaluating your answer…</span></div>`;
+
+    const systemPrompt = `You are evaluating an interview answer from Neha Saraswat for a ${ivState._role} role at ${ivState._company}.
+
+Be honest and specific. Use the ideal answer guide as your benchmark. Rate 1–10:
+1–3  Off-target or missing most key points
+4–5  Partial — some relevant content but incomplete
+6–7  Solid — covers the main points, could be sharper
+8–9  Strong — well-structured, specific, memorable
+10   Exceptional — nothing missing, would impress anyone in the room
+
+Return ONLY valid JSON:
+{
+  "rating": 7,
+  "rating_label": "Solid — covers the main points",
+  "what_worked": "2–3 sentences on what was genuinely strong",
+  "model_answer": "What an 8–10 answer would include — concrete, specific, 3–5 sentences",
+  "to_improve": "2–3 specific, actionable things that would lift this to an 8"
+}`;
+
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey,
+                'anthropic-version': '2023-06-01',
+                'anthropic-dangerous-direct-browser-access': 'true',
+            },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 900,
+                system: systemPrompt,
+                messages: [{ role: 'user', content: `Question: ${q.question}\n\nIdeal answer guide: ${q.ideal_answer_guide}\n\nCandidate's answer: ${answer}` }],
+            }),
+        });
+
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data    = await res.json();
+        const raw     = data.content[0].text.trim();
+        const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
+        const ev      = JSON.parse(cleaned);
+
+        ivState.transcript.push({ question: q, answer, evaluation: ev });
+
+        const r  = ev.rating;
+        const rc = r <= 3 ? 'low' : r <= 5 ? 'mid' : r <= 7 ? 'good' : 'great';
+
+        const isLast = ivState.currentIdx + 1 >= ivState.questions.length;
+        const nextLabel = isLast ? 'See your results →' : 'Next question →';
+        const nextFn    = isLast ? 'showInterviewSummary()' : 'showCurrentQuestion()';
+
+        evalEl.innerHTML = `
+        <div class="iv-eval-block">
+            <div class="iv-eval-header">
+                <div class="iv-rating-badge ${rc}">${r}</div>
+                <div>
+                    <div class="iv-eval-title">${ev.rating_label}</div>
+                    <div class="iv-eval-score">Score: ${r} / 10</div>
+                </div>
+            </div>
+            <div class="iv-eval-body">
+                <div class="iv-eval-section iv-eval-worked">
+                    <div class="iv-eval-section-title">What worked</div>
+                    <p>${ev.what_worked}</p>
+                </div>
+                <div class="iv-eval-section iv-eval-model">
+                    <div class="iv-eval-section-title">Model answer</div>
+                    <p>${ev.model_answer}</p>
+                </div>
+                <div class="iv-eval-section iv-eval-improve">
+                    <div class="iv-eval-section-title">To improve</div>
+                    <p>${ev.to_improve}</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin:12px 0 28px;">
+            <button class="btn btn-primary" onclick="${nextFn}; this.closest('div').remove();">${nextLabel}</button>
+        </div>`;
+
+        ivState.currentIdx++;
+        updateIvProgress();
+
+    } catch (err) {
+        evalEl.innerHTML = `<div class="error-box" style="margin-top:8px;">Evaluation failed: ${err.message}</div>`;
+        areaEl.querySelectorAll('button, textarea').forEach(el => el.disabled = false);
+    }
+}
+
+function showInterviewSummary() {
+    const t = ivState.transcript;
+    if (!t.length) return;
+
+    document.getElementById('iv-progress-fill').style.width = '100%';
+    document.getElementById('iv-progress-label').textContent = `Completed — ${t.length} of ${t.length}`;
+
+    const ratings = t.map(x => x.evaluation.rating);
+    const avg     = (ratings.reduce((a,b) => a+b, 0) / ratings.length).toFixed(1);
+    const best    = Math.max(...ratings);
+    const weakest = Math.min(...ratings);
+    const above7  = ratings.filter(r => r >= 7).length;
+
+    const perQ = t.map((x, i) => {
+        const r  = x.evaluation.rating;
+        const rc = r <= 3 ? 'low' : r <= 5 ? 'mid' : r <= 7 ? 'good' : 'great';
+        const qt = x.question.question;
+        return `<div class="iv-q-summary-row">
+            <div class="iv-rating-badge ${rc}">${r}</div>
+            <div>
+                <div class="iv-q-summary-qtxt">Q${i+1}: ${qt.length > 90 ? qt.substring(0,90)+'…' : qt}</div>
+                <div class="iv-q-summary-lbl">${x.evaluation.rating_label}</div>
+            </div>
+        </div>`;
+    }).join('');
+
+    const summaryEl = document.getElementById('iv-summary-block');
+    summaryEl.style.display = 'block';
+    summaryEl.innerHTML = `
+    <div class="iv-summary">
+        <h3>Interview complete</h3>
+        <div class="iv-summary-sub">${ivState._role} · ${ivState._company}</div>
+        <div class="iv-score-grid">
+            <div class="iv-score-card"><div class="iv-sc-num">${avg}</div><div class="iv-sc-lbl">Avg score</div></div>
+            <div class="iv-score-card"><div class="iv-sc-num">${best}</div><div class="iv-sc-lbl">Best</div></div>
+            <div class="iv-score-card"><div class="iv-sc-num">${weakest}</div><div class="iv-sc-lbl">Weakest</div></div>
+            <div class="iv-score-card"><div class="iv-sc-num">${above7}/${t.length}</div><div class="iv-sc-lbl">Scored 7+</div></div>
+        </div>
+        <div style="margin-bottom:20px;">${perQ}</div>
+        <button class="btn btn-ghost btn-sm" onclick="resetInterview()">Practice again →</button>
+    </div>`;
+
+    setTimeout(() => summaryEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
 }
 
 /* ══════════════════════════════════
