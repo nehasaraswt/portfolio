@@ -1097,6 +1097,71 @@
         .iv-sc-num { font-size: 22px; font-weight: 800; color: var(--rust); line-height: 1; }
         .iv-sc-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
 
+        /* ── History panel ── */
+        .history-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .history-header h1 { font-size: 22px; font-weight: 700; }
+        .history-header .sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+        .history-empty {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .history-empty .he-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.3; }
+        .history-empty .he-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+
+        .history-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .history-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: center;
+            transition: border-color 0.15s;
+        }
+
+        .history-card:hover { border-color: #ccc; }
+
+        .hc-role { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .hc-company { font-size: 12.5px; color: var(--ochre); font-weight: 600; margin-bottom: 6px; }
+
+        .hc-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hc-date { font-size: 11px; color: var(--muted); }
+
+        .hc-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: 3px;
+            background: var(--surface);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .hc-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
         .iv-q-summary-row {
             display: flex;
             align-items: flex-start;
@@ -1154,6 +1219,9 @@
             <h1>New application</h1>
             <div class="sub">Paste the job description and generate a tailored resume + cover letter</div>
         </div>
+        <button class="btn btn-ghost btn-sm" onclick="showHistoryPanel()" id="history-btn" style="display:none;">
+            History <span id="history-count"></span>
+        </button>
     </div>
 
     <div class="form-row">
@@ -1370,6 +1438,20 @@
 
 </div>
 
+<!-- ══════════════════════════════════════
+     PANEL 5: History
+════════════════════════════════════════ -->
+<div class="shell panel" id="history-panel">
+    <div class="history-header">
+        <div>
+            <h1>Applications</h1>
+            <div class="sub">Saved in this browser — click any to view resume, cover letter, or practice interview</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="showPanel('input-panel')">← New application</button>
+    </div>
+    <div id="history-list-container"></div>
+</div>
+
 <script>
 /* ══════════════════════════════════
    NEHA'S COMPLETE PROFILE
@@ -1520,6 +1602,7 @@ let lastOutput = null;
 ════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
     updateKeyStatus();
+    updateHistoryButton();
 
     const hasKey = !!localStorage.getItem('ns_api_key');
     showPanel(hasKey ? 'input-panel' : 'api-panel');
@@ -1800,6 +1883,7 @@ Include ALL roles from the profile in the roles array. Score each 1–3 for rele
         }
 
         lastOutput = parsed;
+        saveToHistory(company, role, jd, selectedTone, parsed);
         renderOutput(parsed, company, role);
 
     } catch (err) {
@@ -2318,6 +2402,136 @@ function showInterviewSummary() {
     </div>`;
 
     setTimeout(() => summaryEl.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+/* ══════════════════════════════════
+   APPLICATION HISTORY
+════════════════════════════════════ */
+const HISTORY_KEY = 'ns_app_history';
+const HISTORY_MAX = 30;
+
+function saveToHistory(company, role, jd, tone, output) {
+    const history = getHistory();
+    const entry = {
+        id: Date.now().toString(),
+        company,
+        role,
+        jd,
+        tone,
+        output,
+        savedAt: Date.now(),
+    };
+    history.unshift(entry);
+    if (history.length > HISTORY_MAX) history.splice(HISTORY_MAX);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    updateHistoryButton();
+}
+
+function getHistory() {
+    try {
+        return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    } catch { return []; }
+}
+
+function updateHistoryButton() {
+    const history = getHistory();
+    const btn = document.getElementById('history-btn');
+    const count = document.getElementById('history-count');
+    if (history.length > 0) {
+        btn.style.display = 'inline-flex';
+        count.textContent = `(${history.length})`;
+    } else {
+        btn.style.display = 'none';
+    }
+}
+
+function deleteHistoryEntry(id) {
+    const history = getHistory().filter(e => e.id !== id);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    updateHistoryButton();
+    showHistoryPanel();
+}
+
+function showHistoryPanel() {
+    const history = getHistory();
+    const container = document.getElementById('history-list-container');
+
+    if (history.length === 0) {
+        container.innerHTML = `
+        <div class="history-empty">
+            <div class="he-icon">📋</div>
+            <div class="he-title">No applications yet</div>
+            <div>Generate your first resume and it will appear here.</div>
+        </div>`;
+    } else {
+        const cards = history.map(entry => {
+            const date = new Date(entry.savedAt).toLocaleDateString('en-GB', {
+                day: 'numeric', month: 'short', year: 'numeric'
+            });
+            const tone = entry.tone
+                ? `<span class="hc-badge">${entry.tone}</span>` : '';
+            const roleType = entry.output?.insight?.role_type
+                ? `<span class="hc-badge">${entry.output.insight.role_type}</span>` : '';
+            return `
+            <div class="history-card">
+                <div>
+                    <div class="hc-role">${entry.role || 'Role'}</div>
+                    <div class="hc-company">${entry.company || 'Company'}</div>
+                    <div class="hc-meta">
+                        <span class="hc-date">${date}</span>
+                        ${tone}${roleType}
+                    </div>
+                </div>
+                <div class="hc-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="loadApplication('${entry.id}','interview')" title="Go straight to interview prep">
+                        Practice interview
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="loadApplication('${entry.id}','resume')">
+                        View →
+                    </button>
+                    <button class="btn btn-ghost btn-sm" onclick="deleteHistoryEntry('${entry.id}')" style="color:#aaa;font-size:11px;padding:7px 10px;" title="Delete">✕</button>
+                </div>
+            </div>`;
+        }).join('');
+        container.innerHTML = `<div class="history-list">${cards}</div>`;
+    }
+
+    showPanel('history-panel');
+}
+
+function loadApplication(id, tab) {
+    const entry = getHistory().find(e => e.id === id);
+    if (!entry) return;
+
+    // Restore JD + fields so interview prep can read them
+    document.getElementById('company-input').value = entry.company || '';
+    document.getElementById('role-input').value    = entry.role    || '';
+    document.getElementById('jd-input').value      = entry.jd     || '';
+    document.getElementById('char-hint').textContent =
+        `${(entry.jd || '').length.toLocaleString()} characters`;
+
+    // Restore tone selection
+    if (entry.tone) {
+        document.querySelectorAll('.tone-opt').forEach(o => {
+            o.classList.toggle('selected', o.dataset.tone === entry.tone);
+        });
+        selectedTone = entry.tone;
+    }
+
+    // Render output
+    renderOutput(entry.output, entry.company, entry.role);
+
+    // Switch to the requested tab
+    switchTab(tab || 'resume');
+
+    // Reset interview state so it picks up the newly loaded JD
+    ivState.questions  = [];
+    ivState.currentIdx = 0;
+    ivState.transcript = [];
+    document.getElementById('iv-session').style.display = 'none';
+    document.getElementById('iv-setup').style.display   = 'block';
+    document.getElementById('iv-chat').innerHTML = '';
+    document.getElementById('iv-summary-block').style.display = 'none';
 }
 
 /* ══════════════════════════════════
