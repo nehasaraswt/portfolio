@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Performance &amp; Skill Betterment — [24]7.ai WFM Platform</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bone: #fefdfb;
+    --text: #2e2e2b;
+    --mid: #565758;
+    --ochre: #b04000;
+    --rust: #b5342b;
+    --border: #eae6df;
+    --247-navy: #1e2d3d;
+    --247-orange: #f4a020;
+    --247-content: #f5f7fa;
+    --247-label: #9aaab8;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bone); color: var(--text); line-height: 1.75; }
+
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 920px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 64px 60px; }
+
+/* Hero */
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); margin-bottom: 12px; }
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+.subtitle { font-size: 16px; color: var(--mid); line-height: 1.65; margin-bottom: 36px; max-width: 740px; }
+
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 0 0 52px; padding: 22px; background: rgba(181,52,43,0.05); border-radius: 6px; border-left: 4px solid var(--rust); }
+.meta-label { color: var(--rust); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.meta-value { color: var(--text); font-size: 13.5px; font-weight: 500; line-height: 1.4; }
+
+/* Headings */
+h2 { font-family: Georgia, serif; font-size: 26px; font-weight: 700; margin: 68px 0 20px; padding-left: 18px; border-left: 4px solid var(--rust); line-height: 1.25; }
+h3 { font-size: 11px; font-weight: 700; color: var(--ochre); text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 14px; }
+
+/* Prose */
+p { margin-bottom: 18px; color: var(--mid); font-size: 15.5px; line-height: 1.8; }
+p strong { color: var(--text); }
+p em { font-style: italic; }
+.opening { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+.opening::first-letter { font-family: Georgia, serif; font-size: 3.2em; font-weight: 700; float: left; line-height: 0.75; padding-right: 8px; padding-top: 6px; color: var(--rust); }
+
+/* Stats row */
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+.stat-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; text-align: center; }
+.stat-box .stat-num { font-family: Georgia, serif; font-size: 30px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.stat-box .stat-label { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+/* Vendor list */
+.vendor-bench { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 18px 22px; margin: 20px 0; }
+.vendor-bench .bench-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 12px; display: block; }
+.vendor-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.vendor-chip { background: var(--bone); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--mid); }
+
+/* Research findings — problems */
+.problems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.problem-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.problem-card .prob-stat { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.problem-card .prob-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.problem-card .prob-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+/* Dependency loop */
+.loop-diagram { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin: 24px 0; }
+.loop-diagram .loop-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 16px; display: block; }
+.loop-row { display: grid; grid-template-columns: 130px 110px 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.loop-row:last-child { border-bottom: none; }
+.loop-role { font-weight: 700; font-size: 13px; color: var(--text); }
+.loop-horizon { font-size: 12px; color: var(--ochre); font-weight: 600; }
+.loop-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+.loop-note { font-size: 12px; color: var(--mid); font-style: italic; text-align: center; padding-top: 10px; border-top: 1px solid var(--border); margin-top: 10px; }
+
+/* Mental model cards */
+.model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.model-card { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; border-top: 3px solid var(--rust); }
+.model-card .m-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--rust); margin-bottom: 6px; }
+.model-card .m-time { font-size: 11px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.model-card .m-need { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.model-card .m-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+/* Self-serve principle */
+.principle-box { background: rgba(176,64,0,0.05); border-left: 4px solid var(--ochre); padding: 20px 24px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.principle-box .p-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 8px; display: block; }
+.principle-box p { margin-bottom: 0; }
+
+/* Sprint inset */
+.sprint-inset { background: var(--247-navy); border-radius: 6px; padding: 24px 28px; margin: 28px 0; }
+.sprint-inset .si-label { color: var(--247-orange); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; display: block; }
+.sprint-event { display: grid; grid-template-columns: 100px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.sprint-event:last-child { border-bottom: none; }
+.sprint-date { color: var(--247-orange); font-size: 13px; font-weight: 700; }
+.sprint-desc { color: #e0e6ed; font-size: 13.5px; line-height: 1.55; }
+
+/* Images */
+img { max-width: 100%; height: auto; margin: 28px 0 8px; border-radius: 6px; border: 1px solid var(--border); display: block; }
+.img-caption { font-size: 12px; color: #999; margin-bottom: 36px; font-style: italic; padding-left: 2px; line-height: 1.5; }
+.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 28px 0 8px; }
+.img-pair img { margin: 0; }
+.img-full { margin: 28px 0 8px; }
+
+/* Section divider */
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+/* Results */
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 28px 0; }
+.result-card { background: white; padding: 22px; border-radius: 6px; border: 1px solid var(--border); }
+.result-card .number { font-family: Georgia, serif; color: var(--rust); font-size: 24px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13px; margin-bottom: 0; color: var(--mid); line-height: 1.5; }
+
+/* Closing quote */
+.closing-quote { font-style: italic; color: var(--mid); margin: 52px 0 40px; padding: 26px 30px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--rust); font-size: 16px; line-height: 1.85; font-family: Georgia, serif; }
+
+/* Footer */
+.footer-bar { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); color: #aaa; font-size: 12px; text-align: center; line-height: 2.2; }
+.footer-bar a { color: var(--ochre); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .container { padding: 32px 20px; }
+    .header-content { padding: 0 20px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .img-pair { grid-template-columns: 1fr; }
+    .loop-row { grid-template-columns: 1fr; gap: 4px; }
+    .sprint-event { grid-template-columns: 1fr; gap: 4px; }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="hero-label">Workforce Management Platform · [24]7.ai · 2016–2019</div>
+        <h1>Agent Performance &amp;<br>Skill Betterment</h1>
+        <p class="subtitle">The workforce management tool existed. It was built for the people who bought it — not for the 14-role ecosystem of people who used it every day. This is the research, the synthesis, and the shipped product that came from going to the floor first.</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Company</div><div class="meta-value">[24]7.ai</div></div>
+            <div><div class="meta-label">Timeline</div><div class="meta-value">Sep 2016 – Apr 2019</div></div>
+            <div><div class="meta-label">Role</div><div class="meta-value">Director of Design — Platform &amp; WFM</div></div>
+            <div><div class="meta-label">MVP</div><div class="meta-value">April 2017</div></div>
+            <div><div class="meta-label">Clients</div><div class="meta-value">Nike Football · Cisco · Hilton · Target</div></div>
+        </div>
+
+        <!-- ── THE FULL ECOSYSTEM ── -->
+        <h2>The ecosystem nobody had mapped</h2>
+
+        <p class="opening">I joined [24]7.ai as design leader for the data platform. My job was described as making reporting dashboards better. Within weeks, a different picture emerged: the people who most needed information had no access to it at the moment they needed it.</p>
+
+        <p>The contact centre ecosystem is not simple. Research revealed 14 distinct roles — each with different responsibilities, different data needs, different tolerances for system complexity, and different relationships with the people around them. WFM, QA, team leads, trainers, agents, planners — none of them were using the same tool in compatible ways. They were operating in parallel, loosely connected, with gaps everywhere between roles.</p>
+
+        <img src="247ai-wfm-connections.png" alt="Chord diagram showing volume of interconnections between 14 contact centre roles — WFM, Team Lead, Agent, Quality Analyst, LOB Manager, Client, Trainer, QA Manager, HR, Trainee Agent">
+        <p class="img-caption">Role interconnection diagram — chord chart showing the volume of communication flows between 14 contact centre roles. Agent and Team Lead carry the highest interconnection load. WFM sits at the intersection of scheduling, rostering, and real-time management but is rarely designed for that centrality.</p>
+
+        <img src="247ai-wfm-size-of-operation.png" alt="Scale diagram showing ratio of roles — Agent is the dominant user at massive scale, with all supporting roles at ratios of 1:50 to 1:400">
+        <p class="img-caption">Size of operation — ratio view. The Agent bubble dominates by orders of magnitude. Team Lead 1:60; Manager 1:60; WFM 1:90; QA 1:50; Trainer 1:60; HoP 1:990. Every tool decision that favours the procurer over the agent is a decision that degrades experience for the single largest group of users in the system.</p>
+
+        <p>The research method was follow-the-user for a full day, across roles: diary studies, observation of system parts that had not been updated in years, and documentation of the gaps between what tools claimed to do and what people actually needed them for. The interconnection diagram above came from that research — it's not a framework, it's a map of what we actually observed.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── FIVE PROBLEMS ── -->
+        <h2>What we found: five specific problems</h2>
+
+        <p>Before touching a screen, the research surfaced five distinct failure modes — each quantified, each traceable to a design gap, each fixable through the right product decision.</p>
+
+        <div class="problems-grid">
+            <div class="problem-card">
+                <span class="prob-stat">20%</span>
+                <div class="prob-title">Break management → abandoned chats</div>
+                <div class="prob-desc">Humans connect with other humans and tend to take breaks together. Without a system that managed break patterns against live chat volume, real-time managers were losing 20% of total chats to uncoordinated breaks. The system needed to care for people while optimising for the operation simultaneously.</div>
+            </div>
+            <div class="problem-card">
+                <span class="prob-stat">40 min/hr</span>
+                <div class="prob-title">Attendance chaos for real-time managers</div>
+                <div class="prob-desc">RTMs spent ~20 min/hour finding the next shift's agents and confirming attendance, then another 20 min finding replacements for absent or delayed agents. Three manual options: hold breaks of existing agents, ask supervisors to log in, convince agents to stay late — none of them fast, none of them data-informed.</div>
+            </div>
+            <div class="problem-card">
+                <span class="prob-stat">No mapping</span>
+                <div class="prob-title">All chats treated equal, all agents treated equal</div>
+                <div class="prob-desc">The system had no skill mapping. Every incoming chat was routed the same way regardless of intent complexity. Every agent was measured the same way regardless of expertise. Performance management defaulted to NPS and resolution rate — the only metrics available when skills aren't tracked.</div>
+            </div>
+            <div class="problem-card">
+                <span class="prob-stat">Overstaffing</span>
+                <div class="prob-title">Disconnected systems → blunt planning</div>
+                <div class="prob-desc">Without real-time data on agent availability and arrival patterns, leads defaulted to overstaffing as the only reliable hedge. Overstaffing lowered abandonment rates but increased cost and drove up low-value non-crucial intent handling — volume without business benefit.</div>
+            </div>
+        </div>
+
+        <img src="247ai-wfm-intent-skills.png" alt="Diagram showing the problem: all chats considered equal, all agents' expertise considered equal — undifferentiated treatment">
+        <p class="img-caption">"All chats are considered equal / All agents' expertise are considered equal." The pre-WFM state — flattened treatment of both demand and supply. No intent classification driving routing, no skill mapping driving assignment. Volume as the only measure of throughput.</p>
+
+        <img src="247ai-wfm-attendance-flow.png" alt="Flow diagram showing agent attendance and availability crisis — RTM options when agents are late or absent: hold breaks, ask supervisors to login, convince agents to stay late">
+        <p class="img-caption">Attendance and availability at shift start — the RTM's manual decision tree when an agent is absent or delayed. Three options, all manual, all slow, all compressing the 20-minute window before the shift gap becomes a service level breach. This diagram came directly from follow-the-user research with real-time managers on the floor.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── DEMAND & SUPPLY FRAMEWORK ── -->
+        <h2>The framing: demand and supply</h2>
+
+        <p>Before designing anything, I needed a conceptual model that the whole team could work from. The framework that emerged from the research: <strong>workforce optimisation is a demand-supply matching problem.</strong></p>
+
+        <p>Demand is the intent of each contact — what the customer actually needs, arriving through chat, phone, voice, or IoT. Supply is the resolution capacity — human agents with specific skills, virtual agents with specific capabilities, routed on the basis of intent match rather than simple queue position.</p>
+
+        <p>The product needed to operate across three time horizons simultaneously: long-term availability (weeks out), rostering and scheduling (this week), and real-time management (right now). Each horizon had different users, different decisions, and different tolerance for error. Getting the sequence of product development right — which to build first — was the first design decision.</p>
+
+        <p><strong>I proposed a maturity model:</strong> start with real-time schedule adherence (highest immediate pain), then build toward forecasting. What actually shipped first was forecasting — driven by a business sequencing decision. The product team built the planning layer first, then closed back toward the floor-level tools. This shaped everything about how adoption worked.</p>
+
+        <img src="247ai-wfm-ground-process.png" alt="Full WFM process flow — Long-term availability, Scheduling, Rostering, Daily schedule adherence, Real-time schedule adherence — showing roles and data flows across all five stages">
+        <p class="img-caption">The full WFM ground process — mapped before any screen design. Five stages (Long-term availability → Scheduling → Rostering → Daily adherence → Real-time management), four role clusters (WFM Planner/Reporter, Manager/Team Lead, RTM, Agent), and the data flows that connected them. Every interface decision mapped back to a node in this diagram.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── THREE MENTAL MODELS ── -->
+        <h2>Three mental models — three separate products</h2>
+
+        <p>The research and the ground process map together revealed the central insight: agents, supervisors, and workforce planners weren't using the same tool in different ways. They had <em>fundamentally incompatible mental models</em> of what the tool was for. No vendor had designed for all three simultaneously — they built for the manager or the planner and bolted agent access on as an afterthought.</p>
+
+        <div class="loop-diagram">
+            <span class="loop-label">The WFM dependency loop — four roles, four time horizons, bidirectional</span>
+            <div class="loop-row">
+                <div class="loop-role">Agents</div>
+                <div class="loop-horizon">Now</div>
+                <div class="loop-desc">Schedule, swap requests, adherence. Maximum three actions. Under 60 seconds between calls.</div>
+            </div>
+            <div class="loop-row">
+                <div class="loop-role">Team Leads / RTM</div>
+                <div class="loop-horizon">Today</div>
+                <div class="loop-desc">Intraday spikes, off-queue management, service level vs. contractual targets. Live metrics, immediately actionable.</div>
+            </div>
+            <div class="loop-row">
+                <div class="loop-role">Managers</div>
+                <div class="loop-horizon">This week</div>
+                <div class="loop-desc">Schedule building, shrinkage, multi-skill rostering. One bad schedule creates a week of intraday problems.</div>
+            </div>
+            <div class="loop-row">
+                <div class="loop-role">Workforce Planners</div>
+                <div class="loop-horizon">Weeks out</div>
+                <div class="loop-desc">Demand forecasting, queue-group planning, long-range availability. Accuracy here determines everything downstream.</div>
+            </div>
+            <div class="loop-note">Each role's output is the next role's input. The planner's forecast accuracy determines how well the supervisor can manage intraday. The loop runs in both directions.</div>
+        </div>
+
+        <img src="247ai-wfm-workflow.png" alt="WFM role and workflow map — four roles across four time horizons with bidirectional dependencies">
+        <p class="img-caption">The WFM role map — Forecast, Scheduling, Rostering, Schedule Adherence, and Real-time Management connected across Agent, Team Lead, Manager, and Workforce Planner. This diagram preceded all screen design. Every interface decision traced back to a node on this map.</p>
+
+        <div class="model-grid">
+            <div class="model-card">
+                <div class="m-role">Agent Portal</div>
+                <div class="m-time">Floor context · Under time pressure</div>
+                <div class="m-need">Subtraction, not power</div>
+                <div class="m-desc">One schedule view. Obvious swap requests. Real-time adherence they could act on without reading a manual. Every feature beyond these three was cognitive tax they couldn't afford between calls.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">Supervisor Intraday</div>
+                <div class="m-time">Live operations · Contractual targets</div>
+                <div class="m-need">See and act, not see and report</div>
+                <div class="m-desc">CSAT, AHT, utilisation, chat waiting, service level — all in one view, all against targets, all immediately actionable. Not a report. A situation board that tells you what to do next.</div>
+            </div>
+            <div class="model-card">
+                <div class="m-role">Planner Forecast</div>
+                <div class="m-time">Weeks out · Queue-level precision</div>
+                <div class="m-need">Accuracy at scale</div>
+                <div class="m-desc">Forecasted volumes, required agent count by day, shrinkage, queue-group navigation. A living plan updated as conditions change — not a document touched once a quarter.</div>
+            </div>
+        </div>
+
+        <div class="principle-box">
+            <span class="p-label">Self-serve as cost reduction — the business case for good UX</span>
+            <p>The WFM tool historically required manager involvement for things agents could handle themselves — swap requests, time-off queries, schedule checks. Making the tool genuinely self-serve was both the right UX decision and a measurable cost-reduction mechanism. Every approval that moved from manager to agent directly reduced operational overhead. This framing got internal buy-in in a way that UX improvement arguments alone never did.</p>
+        </div>
+
+        <img src="247ai-wfm-staggering-shifts.png" alt="Staggered shifts Gantt visualisation — orange bars showing overlapping agent shift start times to maintain continuous coverage">
+        <p class="img-caption">Staggered staffing visualisation — shift Gantt chart showing how agent start times are offset to maintain continuous coverage against fluctuating contact volume. Before the platform could optimise this automatically, managers were doing it manually in spreadsheets. The gaps in the middle section show the coverage drop that results from synchronised (non-staggered) breaks.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── HOW IT GOT BUILT ── -->
+        <h2>How it got built</h2>
+
+        <p>The Workforce Optimisation initiative started as an internal tool — an extension of the Insights platform to support near-real-time forecasting. The MVP launched in April 2017 with 3 designers and 3 product managers rotating through the initiative. The full product reached market by 2020.</p>
+
+        <p>One structural challenge hit immediately: Workforce Optimisation couldn't share a cloud with Insights. Near-real-time refresh requirements meant it had to sit closer to agent systems, process data separately — and therefore use a separate authentication system. Agents already managing too many systems would now need two logins. It took 1.5 years and a platform-level initiative (OKTA via the "Central" team) to solve this.</p>
+
+        <div class="sprint-inset">
+            <span class="si-label">Design Sprint Origin — WFM was the first product at [24]7.ai to run one</span>
+            <div class="sprint-event">
+                <div class="sprint-date">Jul 2016</div>
+                <div class="sprint-desc">Proposed design sprints as a method of rapid concept creation and testing. Proposal rejected.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">Nov 2016</div>
+                <div class="sprint-desc">CDO approval secured. First sprint launched for the WFM product — ran without me as facilitator or participant. I learned the outcome 5 days later.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">Dec 2016</div>
+                <div class="sprint-desc">Sprint outcomes presented. Marked the beginning of a new way of working for [24]7.ai — method adopted across product teams over the following 18 months.</div>
+            </div>
+            <div class="sprint-event">
+                <div class="sprint-date">2017–2019</div>
+                <div class="sprint-desc">I facilitated all subsequent org-wide design sprints — WFM, other products, annual planning. The method became standard practice for the product organisation.</div>
+            </div>
+        </div>
+
+        <img src="247ai-whiteboard-wfm.jpg" alt="WFM architecture whiteboard session in a Bangalore conference room — screen flows and user journey mapped in marker">
+        <p class="img-caption">WFM screen flows and information architecture mapped in a Bangalore conference room. The note on the board reads "Do Not Erase" in Kannada, Hindi, and English — a measure of how long we lived with the problem before it became a product.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── SHIPPED PRODUCT ── -->
+        <h2>The shipped product</h2>
+
+        <p>The WFM platform shipped to Nike Football, Cisco, Hilton, and Target. All screens below are actual shipped UI or validated high-fidelity prototypes from 2017–2019.</p>
+
+        <h3>Supervisor intraday view — Nike Football</h3>
+        <p>The supervisor dashboard was designed for one context: a team lead managing a live contact centre shift. Every metric on screen is actionable. Every number is set against a contractual target. The weekly forecast chart gives the supervisor the week's arc; the performance scorecard tells them where they stand right now against NPS, Sales, Conversion, and AHT commitments.</p>
+
+        <img src="247ai-wfm-intraday-nike.png" alt="Actual shipped UI — [24]7.ai WFM Intraday Overview, Nike Football. Live metrics: available agents, chat waiting, service level, AHT, utilisation, weekly forecast chart, performance scorecard">
+        <p class="img-caption">Actual shipped UI — WFM Intraday Overview, Nike Football client, 2017–18. Available agents · Chat waiting · Service level · AHT · Utilisation — live, against targets. Weekly forecast chart + performance scorecard (NPS / Sales / Conversion / AHT). This is what supervisors saw mid-shift.</p>
+
+        <h3>Real-time operations view — [24]7 Ops</h3>
+        <p>Beyond the single-team supervisor view, the Ops platform gave managers a real-time view of all agents across queues: who was on chat, on concurrent chats, available, in breaks, in wrap-up. The right panel surfaced updates, leave applications, and recent tasks — the operational noise that previously lived in email threads and Slack messages.</p>
+
+        <img src="247ai-wfm-ops-realtime.png" alt="[24]7 Ops real-time view — all agents across queues with live status (on chat, available, break, wrap-up), performance updates, leave applications">
+        <p class="img-caption">[24]7 Ops — real-time agent status across the full team. 25 Chats · 16 Agents · 02 Chats Missed/hour. Individual agent timelines showing status transitions throughout the shift. Right panel: performance updates, leave applications, floor announcements. Bottom: Interactions 2908 · Sales $980 · Queue wait 03 min.</p>
+
+        <h3>Shift and concurrency management</h3>
+        <p>The shift view gave managers a cross-team, cross-queue view of coverage: which shifts had agents, which were short-staffed, and where concurrency changes were needed to reduce queue wait. The AI-generated recommendation ("You may need to change concurrency of 5 agents to fill the deficit") was one of the first predictive features in the platform.</p>
+
+        <img src="247ai-wfm-ops-shifts.png" alt="[24]7 Ops shift and concurrency management — shift grid across 11 shifts and 6 queues with concurrency recommendation">
+        <p class="img-caption">Shift concurrency management — 11 shifts × 6 queues, colour-coded by agent status (double concurrency, single, waiting, short break, long break, absent). Right panel AI recommendation: "You may need to change concurrency of 5 agents to fill the deficit and reduce the queue wait to 5." Interactions: 717 · 59 Active · 15 Abandoned · Agent availability: 59 available, 15 waiting across 5 queues.</p>
+
+        <h3>Supervisor roster with leave management</h3>
+        <p>The roster view gave supervisors the full picture of their team's day in one screen — agent schedules as Gantt bars, live staffing health, key metrics (resolution, utilisation, service level, concurrency), and in-context leave management. A leave request from an agent surfaces directly in the banner with a one-click approve/reject — no context switch, no email.</p>
+
+        <img src="247ai-wfm-supervisor-roster.png" alt="[24]7 Chat supervisor roster — agent schedule Gantt, staffing level (14 of 15 present, healthy), metrics bar, in-context leave approval">
+        <p class="img-caption">Supervisor roster view — agent schedule Gantt bars across the full day, staffing level (14 of 15 agents present: HEALTHY), leave request banner (approve/reject in-context), and metrics: Resolution · % Utilisation · Top Quartile · Chats in Queue · Service Level · Avg. Concurrency. Actions panel: Upload Roster · Assign Breaks · Assign Leaves.</p>
+
+        <h3>Workforce planner forecast — Queue_14</h3>
+        <p>The forecast interface was built for precision at scale across multi-week planning cycles. Queue_14, Week 33, August 2017: forecasted chat volumes, required agent count by day, shrinkage, queue-group navigation, and the Update Forecast workflow that kept the plan current as conditions changed. Not a static document — a living plan.</p>
+
+        <div class="img-pair">
+            <div>
+                <img src="247ai-wfm-forecast-queue.png" alt="WFM Forecast — Queue_14, Week 33, Aug 2017. Forecasted volumes, required agents by day, shrinkage, Update Forecast workflow">
+                <p class="img-caption">Queue_14 Forecast — Week 33, Aug 2017. Forecasted chat volumes · Required agent count by day · Shrinkage · Update Forecast workflow · Queue group navigation.</p>
+            </div>
+            <div>
+                <img src="247ai-wfm-forecast-states.png" alt="WFM forecast states — queue selector, forecast model tabs, weekly summary with revision history">
+                <p class="img-caption">Forecast states — queue group selector, weekly summary with agent count revisions, email/export workflow. Week 33 requires minimum 14 agents; forecasted volumes 442–4269 across the week.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- ── AGENT PERFORMANCE ── -->
+        <h2>Agent performance and skill betterment</h2>
+
+        <p>The platform's intelligence went beyond scheduling. As WFM matured, it connected the workforce planning layer to individual agent performance — making skill-based routing possible and giving team leads the data to have meaningful coaching conversations.</p>
+
+        <p>The research finding was stark: skills weren't mapped anywhere in the system. Every agent was measured the same way, every chat was treated the same way. Performance management defaulted to whatever proxy data existed — NPS and resolution rate — even when those metrics didn't distinguish between a complex technical query resolved in one touch and a simple password reset handled in five minutes.</p>
+
+        <img src="247ai-wfm-agent-performance.png" alt="Agent performance view — Hilton Sales team, September 2018. Individual agent metrics: Score, AHT, Conversion, Sales, Total Chats, Revenue per agent">
+        <p class="img-caption">Agent performance view — Hilton Sales, 19 Sept 2018. Individual agent metrics: Score (44–92) · AHT · Conversion % · Sales · Total Chats · Revenue. Team ABCO, 14 agents. This view gave team leads the data to coach on specific gaps — not on overall NPS, but on individual skill performance against the metrics that actually mattered for the client's business.</p>
+
+        <img src="247ai-wfm-agent-schedule.png" alt="[24]7.ai WFM agent self-serve portal — schedule grid with swap request management and real-time adherence">
+        <p class="img-caption">Agent self-serve portal — schedule grid, swap request management, real-time adherence. Built for a floor context: maximum three primary actions, operable without training. Every approval that moved from manager to agent was a measurable reduction in supervisory overhead.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── RESULTS ── -->
+        <h2>The results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">16%</span>
+                <p>Cost reduction through WFM standardisation, self-serve design, and reduced management overhead</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3%</span>
+                <p>Reduction in blunt overstaffing through unified human + virtual agent planning and real-time routing</p>
+            </div>
+            <div class="result-card">
+                <span class="number">Apr 2017</span>
+                <p>MVP launched — September 2016 to first shipped product in 7 months</p>
+            </div>
+            <div class="result-card">
+                <span class="number">83%</span>
+                <p>Of WFM users had problems with existing tools — the research finding that became the entire design brief</p>
+            </div>
+            <div class="result-card">
+                <span class="number">First</span>
+                <p>Product at [24]7.ai to run design sprints — established the method that became org-wide standard practice</p>
+            </div>
+            <div class="result-card">
+                <span class="number">WFO</span>
+                <p>Evolved into a market-facing Workforce Optimisation product unifying human and virtual agent planning under one model</p>
+            </div>
+        </div>
+
+        <div class="closing-quote">
+            "The people with the most pain were not the people who chose the software. Going to the floor first — mapping 14 roles, quantifying five failure modes, drawing the ground process before touching a screen — was what made the shipped product worth using."
+        </div>
+
+        <div class="footer-bar">
+            [24]7.ai · Workforce Management Platform · Sep 2016 – Apr 2019<br>
+            Director of Design — Platform &amp; WFM · Nike Football · Cisco · Hilton · Target<br>
+            16% cost reduction · 3% overstaffing reduction · MVP in 7 months<br><br>
+            <a href="247ai-head-of-product-case-study.html">← Full [24]7.ai System Story</a> &nbsp;·&nbsp; <a href="PORTFOLIO.html">← Portfolio</a>
+        </div>
+
+    </div>
+</body>
+</html>

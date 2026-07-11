@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Job Nobody Had Defined — [24]7.ai Case Study</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --surface-bone: #fefdfb;
+    --text-primary: #2e2e2b;
+    --text-secondary: #565758;
+    --accent-ochre: #b04000;
+    --accent-rust: #b5342b;
+    --border-light: #eae6df;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--surface-bone); color: var(--text-primary); line-height: 1.75; }
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border-light); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 860px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--accent-rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; }
+.container { max-width: 860px; margin: 0 auto; padding: 60px; }
+
+/* Hero */
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 38px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; padding-bottom: 18px; border-bottom: 4px solid var(--accent-rust); }
+.subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; margin-top: 10px; line-height: 1.6; }
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin: 28px 0 44px; padding: 22px; background: rgba(181,52,43,0.05); border-radius: 6px; }
+.meta-label { color: var(--accent-rust); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.meta-value { color: var(--text-primary); font-size: 14px; font-weight: 500; }
+
+/* Sections */
+h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 700; margin: 56px 0 20px; padding-left: 16px; border-left: 4px solid var(--accent-rust); line-height: 1.3; }
+h3 { font-size: 15px; font-weight: 700; margin: 32px 0 10px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; color: var(--accent-rust); }
+
+/* Prose */
+p { margin-bottom: 18px; color: var(--text-secondary); font-size: 15.5px; line-height: 1.8; }
+p strong { color: var(--text-primary); }
+p em { font-style: italic; }
+
+/* Intro drop-cap feel */
+.opening-p::first-letter {
+    font-family: Georgia, serif;
+    font-size: 3.2em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.75;
+    padding-right: 8px;
+    padding-top: 6px;
+    color: var(--accent-rust);
+}
+
+/* Role map / structured inset */
+.role-map { background: white; border: 1px solid var(--border-light); border-radius: 6px; padding: 24px 28px; margin: 24px 0; }
+.role-map h3 { font-size: 11px; font-weight: 700; color: var(--accent-ochre); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px; }
+.role-row { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border-light); align-items: baseline; }
+.role-row:last-child { border-bottom: none; padding-bottom: 0; }
+.role-name { font-weight: 700; font-size: 13px; color: var(--text-primary); }
+.role-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+/* Handoff package */
+.handoff-package { background: #1e2d3d; border-radius: 6px; padding: 24px 28px; margin: 24px 0; }
+.handoff-package .pkg-label { color: #f4a020; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; display: block; }
+.handoff-item { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.handoff-item:last-child { border-bottom: none; padding-bottom: 0; }
+.handoff-item .key { color: #9aaab8; font-size: 13px; font-weight: 600; }
+.handoff-item .val { color: #e0e6ed; font-size: 13px; line-height: 1.5; }
+
+/* Iteration list */
+.iteration-list { background: white; border-left: 4px solid var(--accent-ochre); padding: 18px 24px; margin: 20px 0; border-radius: 0 4px 4px 0; }
+.iteration-list .iter-label { color: var(--accent-ochre); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; display: block; }
+.iter-row { font-size: 14px; color: var(--text-secondary); padding: 6px 0; border-bottom: 1px solid var(--border-light); }
+.iter-row:last-child { border-bottom: none; }
+.iter-row .iter-num { color: var(--accent-ochre); font-weight: 700; margin-right: 10px; }
+
+/* System resolved list */
+.system-resolved { margin: 20px 0; }
+.resolved-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+.resolved-item:last-child { border-bottom: none; }
+.resolved-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-rust); margin-top: 6px; flex-shrink: 0; }
+.resolved-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+.resolved-text strong { color: var(--text-primary); }
+
+/* Results */
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 28px 0; }
+.result-card { background: white; padding: 22px; border-radius: 6px; border: 1px solid var(--border-light); }
+.result-card .number { color: var(--accent-rust); font-family: Georgia, serif; font-size: 22px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13px; margin-bottom: 0; color: var(--text-secondary); }
+
+/* Platform triangle */
+.platform-triangle { background: #1e2d3d; border-radius: 8px; padding: 30px; margin: 28px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.vertex { text-align: center; }
+.vertex .label { color: #f4a020; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; display: block; }
+.vertex .desc { color: #9aaab8; font-size: 13px; line-height: 1.5; }
+.vertex-center { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; }
+.vertex-center .label { color: #4a90d9; }
+.vertex-center .desc { color: #e0e6ed; font-size: 13px; text-align: center; }
+
+/* Closing quote */
+.closing-quote { font-style: italic; color: var(--text-secondary); margin-top: 48px; margin-bottom: 36px; padding: 24px 28px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--accent-rust); font-size: 16px; line-height: 1.85; font-family: Georgia, serif; }
+
+/* Images */
+img { max-width: 100%; height: auto; margin: 28px 0 8px; border-radius: 6px; border: 1px solid var(--border-light); display: block; }
+.img-caption { font-size: 12px; color: #999; margin-bottom: 28px; font-style: italic; padding-left: 2px; }
+
+/* Footer */
+.footer-bar { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border-light); color: #aaa; font-size: 12px; text-align: center; line-height: 2; }
+.footer-bar a { color: var(--accent-ochre); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .container { padding: 30px 20px; }
+    .header-content { padding: 0 20px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 20px; }
+    .role-row { grid-template-columns: 1fr; gap: 4px; }
+    .handoff-item { grid-template-columns: 1fr; gap: 4px; }
+    .platform-triangle { grid-template-columns: 1fr; }
+    .vertex-center { grid-column: 1; }
+    .results-grid { grid-template-columns: 1fr 1fr; }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>The Job Nobody Had Defined</h1>
+        <p class="subtitle">How I mapped, designed, and unified a fragmented AI platform — one piece at a time, until the whole system became visible</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Company</div><div class="meta-value">[24]7.ai</div></div>
+            <div><div class="meta-label">Timeline</div><div class="meta-value">2016–2019</div></div>
+            <div><div class="meta-label">Role</div><div class="meta-value">Director of Design — Platform, WFM &amp; AI</div></div>
+            <div><div class="meta-label">Clients</div><div class="meta-value">37 enterprise clients · 3 regions</div></div>
+            <div><div class="meta-label">Scale</div><div class="meta-value">Fortune 500 contact centre AI — voice, chat, IVR, digital</div></div>
+        </div>
+
+        <!-- Opening -->
+        <p class="opening-p">I joined [24]7.ai in 2016 with a title that said Director of Design. The actual job was something closer to cartography.</p>
+
+        <p>The platform was a collection of acquired products that happened to share a logo. AIVA, the conversational AI. WFM, workforce management for contact centres. Chat, IVR, ActiveShare for co-browse. Campaign Manager. Search Bidding. The Virtual Customer Console — the client-side widget designer. Model Workbench. Each had been built by a different team, on a different data model, with a different idea of who the user was and what the product was for.</p>
+
+        <p>The numbers when I arrived: 24 million chats per year. 32 enterprise clients. 2,100 agents on the platform. Cyber Monday 2016: 122,205 chats in a single day. The scale was real. The experience coherence was not.</p>
+
+        <p>The first thing I did wasn't draw a platform diagram. It was spend time with agents. What I found — working with Ajay Sreedhar (Sr. Director), Vandana, Bhavna, Mehar, Aditya, and the research team (Ripul Kumar, Yatin, Pooja) — was a set of five problems that agents lived with every shift:</p>
+
+        <div class="role-map" style="margin: 24px 0;">
+            <h3>5 Big Issues for Agents — named in 2016</h3>
+            <div class="role-row"><div class="role-name">Context blindness</div><div class="role-desc">Customer data was visible but unusable. Agents had stopped accessing the context panel entirely. Quote from research: "This is for the technology team, not for us."</div></div>
+            <div class="role-row"><div class="role-name">Process confusion</div><div class="role-desc">No clarity on what to do next. Scripted routines with no situational awareness built in.</div></div>
+            <div class="role-row"><div class="role-name">Information labyrinth</div><div class="role-desc">Information was everywhere and nowhere. Agents kept their own Word documents and notepads because the product couldn't be trusted.</div></div>
+            <div class="role-row"><div class="role-name">Communication uncertainty</div><div class="role-desc">Smart responses were unusable. Agents compiled their own canned messages every morning before their shift began.</div></div>
+            <div class="role-row"><div class="role-name">Performance anxiety</div><div class="role-desc">No access to their own metrics. Agents repeatedly approached team leads for numbers they should have been able to see themselves.</div></div>
+        </div>
+
+        <p>The Agent Console 2.0 work (July–October 2016) addressed the first four. An evolutionary approach: five releases, each one small enough to deploy without retraining 2,100 agents, each one building the foundation for the next. The fifth — performance anxiety — required a different product entirely. That's what led to WFM.</p>
+
+        <p>Nobody had mapped how the products connected. Nobody had designed for the moments between them — what happened when AIVA handed off to a human agent, or when a forecast built by a planner weeks out had to flex against a live queue. The system existed. The experience of the system didn't.</p>
+
+        <p>That's what three years at [24]7.ai was: building the picture one piece at a time, until the whole system became visible.</p>
+
+        <!-- Move 1 -->
+        <h2>Move one: the most ignored user</h2>
+
+        <p>Agents were anxious about their performance. They had no visibility into their own schedules, no agency over their time, no way to plan their shift without going through a manager. The tool that governed all of that — workforce management — sat upstream of everything they experienced.</p>
+
+        <p>The market data confirmed it: 71% of contact centres had no WFM system at all. Of those who did, 83% reported problems with it. Poor communication, lack of speed, systems described as "not fit for purpose."</p>
+
+        <p>The reason was visible immediately in the research: every WFM tool in 2016 had been built for the IT team that procured it and the manager who configured it — not for the people who used it every working day of their lives. Agents, supervisors, and planners had fundamentally different mental models of what the tool was for. Vendors had never resolved that gap because they'd never spent time with the people who felt it most.</p>
+
+        <p>Before touching a screen, I mapped the full workflow — the four roles and how they connected across time.</p>
+
+        <div class="role-map">
+            <h3>The WFM role map</h3>
+            <div class="role-row">
+                <div class="role-name">Agents</div>
+                <div class="role-desc">Present tense — their schedule now, a swap request to go through today, adherence status in real time</div>
+            </div>
+            <div class="role-row">
+                <div class="role-name">Team Leads</div>
+                <div class="role-desc">Near term — managing intraday, handling spikes, watching service levels against contractual targets</div>
+            </div>
+            <div class="role-row">
+                <div class="role-name">Managers</div>
+                <div class="role-desc">Week level — building schedules, managing shrinkage, forecasting volume</div>
+            </div>
+            <div class="role-row">
+                <div class="role-name">Workforce Planners</div>
+                <div class="role-desc">Weeks out — multi-skill requirements, queue-group planning, long-range availability</div>
+            </div>
+        </div>
+
+        <p>No existing tool had designed for all four simultaneously, because no one had mapped how they depended on each other. A planner's forecast accuracy determined how well a supervisor could manage intraday. A supervisor's real-time routing decisions fed back into the planner's historical data. An agent's swap request affected rostering, which affected the next forecast cycle. The loop ran in both directions.</p>
+
+        <img src="247ai-wfm-workflow.png" alt="WFM workflow diagram showing four roles and bidirectional dependencies across time horizons">
+        <p class="img-caption">The WFM role map — four roles across four time horizons, with bidirectional dependencies that no tool had previously modelled</p>
+
+        <p>Three separate design solutions for three separate users — each ruthlessly scoped to their actual context.</p>
+
+        <p>The <strong>agent portal</strong> was built around subtraction. An agent between calls, under time pressure, needs exactly three things: their schedule, a way to request a swap, and their live adherence status. Every configuration option beyond that was cognitive tax. The self-serve principle — making things the agent should be able to do themselves, without manager involvement — was both a design goal and a cost-reduction mechanism.</p>
+
+        <p>The <strong>supervisor intraday view</strong> was built for action. CSAT, AHT, utilisation, chat waiting, service level — all visible in one view, all against contractual targets, all immediately actionable. Not a report. A situation board.</p>
+
+        <p>The <strong>planner forecast interface</strong> was built for precision at scale. Forecasted chat volumes, required agent count by day, shrinkage calculations, queue-group navigation. The update workflow kept the forecast current as conditions changed — not a static document, a living plan.</p>
+
+        <img src="247ai-whiteboard-wfm.jpg" alt="WFM screen flows mapped on a Bangalore conference room whiteboard">
+        <p class="img-caption">WFM screen flows mapped in a Bangalore conference room — the note on the board reads "Do Not Erase" in Kannada, Hindi, and English. This is how long we lived with this problem.</p>
+
+        <p>This shipped to Nike Football, Cisco, Hilton, and Target. The platform delivered a <strong>16% cost reduction</strong> through standardisation, self-serve design, and reduced management overhead, and a <strong>3% reduction in blunt overstaffing</strong> — which, at contact-centre scale, was material.</p>
+
+        <!-- Move 2 -->
+        <h2>Move two: learning to read a client's world</h2>
+
+        <p>WFM had taught me how agents experienced the product. The next problem was understanding how <em>clients</em> — the enterprises — organised their world before we could design anything for them.</p>
+
+        <p>An enterprise like Cisco doesn't have one customer journey. It has Routex customers, Webex customers, a Sales track, a Service track, an IVR track, a Voice Chat track, a Chat-IVR hybrid track. Each business line has its own intent patterns, its own resolution paths, its own tolerance for bot vs. human resolution. You can't design a unified platform for Cisco until you understand how Cisco organises its own complexity.</p>
+
+        <p>I mapped this at the glass — literally. Multiple iterations on the same window, each one more accurate than the last:</p>
+
+        <div class="iteration-list">
+            <span class="iter-label">Cisco product hierarchy — three iterations</span>
+            <div class="iter-row"><span class="iter-num">01</span>Cisco → Routex → Sales, Service, Chat, IVR</div>
+            <div class="iter-row"><span class="iter-num">02</span>Cisco → Sales + Service, Chat → IVR, Router</div>
+            <div class="iter-row"><span class="iter-num">03</span>Cisco → Routers, Switch, Unger, PZ → Chat / Sales / Service / Voice Chat / Chat IVR</div>
+        </div>
+
+        <p>Three iterations, same client, same wall. The product hierarchy kept revealing itself as more layered than the previous version. This wasn't documentation — it was the act of understanding, made visible.</p>
+
+        <img src="247ai-whiteboard-ia.jpg" alt="Glass-wall whiteboard showing three iterations of Cisco's product hierarchy in red marker">
+        <p class="img-caption">Three iterations of Cisco's product hierarchy mapped on a glass wall in red marker — system mapping as physical practice</p>
+
+        <p>This work eventually became the template for Lines of Business discovery across all clients. Rather than asking enterprise clients to define their intent categories manually, the platform ingested their existing contact data — call recordings, chat transcripts, historical interaction logs — and surfaced the intent patterns that were already present. Best Buy's patterns emerged from Best Buy's data. Cisco's from Cisco's.</p>
+
+        <p>That was only possible because someone had first done it manually, on a glass wall, one client at a time — until we understood the shape of the problem well enough to automate it.</p>
+
+        <!-- Move 3 -->
+        <h2>Move three: the handoff gap becomes visible</h2>
+
+        <p>The Agent Console work had named "context blindness" — agents could see customer data but couldn't use it. WFM had shown me the agent's full working day. Now both pieces converged on a single moment: what happened when AIVA transferred to a human.</p>
+
+        <p>AIVA, [24]7.ai's conversational AI, was one of the earliest production systems handling real customer interactions at Fortune 500 scale. When AIVA couldn't resolve something, it transferred to a human. Engineering treated this as an exception flow — the AI failed, the human took over. What it actually was: the most critical moment in every interaction, and nobody had designed it.</p>
+
+        <p>The context blindness problem I'd seen in the console was even worse at handoff: AIVA had just spent two minutes classifying the customer's intent precisely, and the moment it transferred, that classification disappeared. The agent restarted from zero. Without a designed handoff: agents asked customers to repeat themselves, destroying the continuity AIVA had built. Intent classifications done precisely were invisible to the human agent. Customer history was not surfaced at the moment it was most needed. The experience felt like two separate interactions, not one.</p>
+
+        <p>The AIVA Handoff Console reframed what the handoff was. Not a failure state. A briefing system.</p>
+
+        <div class="handoff-package">
+            <span class="pkg-label">The handoff package at transfer</span>
+            <div class="handoff-item">
+                <div class="key">Intent from Line of Business</div>
+                <div class="val">What the customer needs — already classified by AIVA</div>
+            </div>
+            <div class="handoff-item">
+                <div class="key">Full conversation history</div>
+                <div class="val">What AIVA already established — no restart, no repetition</div>
+            </div>
+            <div class="handoff-item">
+                <div class="key">Customer profile</div>
+                <div class="val">History, previous interactions, preferences — surfaced at the right moment</div>
+            </div>
+            <div class="handoff-item">
+                <div class="key">Suggested responses</div>
+                <div class="val">What to say next, drawn from the same response pool AIVA uses</div>
+            </div>
+        </div>
+
+        <p>When AIVA escalates, the agent inherits everything. The customer doesn't repeat themselves. The agent doesn't restart. The interaction continues.</p>
+
+        <p>This was designed and shipped in 2016. The industry now calls the interaction pattern this established <strong>agentic UX</strong>. At the time, there was no framework — we were working from first principles, in production, for real clients.</p>
+
+        <p>The key conceptual move: treating bots and humans as one category of agent, differentiated by capability rather than by nature. Once you accept that framing, everything downstream changes — the design system has to serve both, WFM has to plan for both, the intelligence layer has to be shared. That single architectural decision in 2016 is still the most forward-looking thing about the platform.</p>
+
+        <!-- Move 4 -->
+        <h2>Move four: the design system as the forcing function</h2>
+
+        <p>Eighteen months in, the design system work revealed the problem that had been invisible until then: teams weren't just building different-looking things. They were building <em>different things</em> — different data models, different names for the same entities, different assumptions about how the platform worked.</p>
+
+        <p>A team building the Chat interface didn't know how their patterns would interact with the IVR team's patterns when a customer moved across channels. A team building the reporting module didn't know what the WFM team called the same metric. "Agent utilisation" was "agent occupancy" elsewhere. "Queue" and "Line of Business" were used interchangeably in four different ways.</p>
+
+        <p>The design system — Project Heisenberg — was the mechanism to force resolution.</p>
+
+        <p>It was crowd-sourced, not handed down. That distinction matters. A design system handed down from a central authority gets worked around. A design system built by the teams who use it becomes the shared grammar — because teams had to argue about it, which meant teams had to talk to each other, which meant teams finally saw how their products connected.</p>
+
+        <div class="system-resolved">
+            <div class="resolved-item">
+                <div class="resolved-dot"></div>
+                <div class="resolved-text"><strong>Naming conflicts resolved</strong> — one term per concept, across all surfaces</div>
+            </div>
+            <div class="resolved-item">
+                <div class="resolved-dot"></div>
+                <div class="resolved-text"><strong>70+ components</strong> replacing independently evolved patterns from six product teams</div>
+            </div>
+            <div class="resolved-item">
+                <div class="resolved-dot"></div>
+                <div class="resolved-text"><strong>8 semantic colour palettes</strong> with defined roles — orange for brand/active, green for approved, blue for bot/data, red for status/alert</div>
+            </div>
+            <div class="resolved-item">
+                <div class="resolved-dot"></div>
+                <div class="resolved-text"><strong>Theming system for enterprise clients</strong> — Nike Football's widget looked different from Cisco's without either breaking the system</div>
+            </div>
+        </div>
+
+        <img src="247ai-design-system-palette.png" alt="[24]7.ai colour architecture — eight semantic palettes governing the full product surface">
+        <p class="img-caption">Project Heisenberg colour architecture — eight semantic palettes, each with a defined role across the full product surface</p>
+
+        <p>The design sprints were the adoption engine. Every org-wide sprint during this period served double duty: solving a specific product problem and forcing cross-team contact with the design system in practice. You can't read your way into adoption. You have to make decisions together.</p>
+
+        <p><strong>Timeline:</strong> April 2017 to September 2018. Eighteen months from first component to platform-wide adoption.</p>
+
+        <!-- Move 5 -->
+        <h2>Move five: the system becomes visible</h2>
+
+        <p>The system map wasn't drawn on one day. The frame for it existed much earlier. In January 2017 — eighteen months before the full-wall map happened — I wrote a document called <em>The Enterprise Enabler</em>. It named the platform's three-legged structure: Visitors, Agents, Enterprise. It named the shared intelligence layer: Console, UDE, Prediction Engine, Acquisition, NL Tools, Chat Miner, Model Builder, Unified Admin Console. And it named the organizing question: "Profile of a chat request (intent)" and "Profile of an Agent."</p>
+
+        <p>That was the architectural hypothesis. The three years of work that followed — WFM role mapping, client taxonomy, handoff console, design system, cross-team sprints — were the process of proving it one product at a time. And the design studio that grew around it (Agrima, Aditya, Tejas, Aalok, Edu, Ajay and others) was the mechanism for building it — each designer applying the same demand/supply framework to their product domain.</p>
+
+        <p>There's a moment in any complex systems project when the territory you've been mapping piece by piece suddenly resolves into a whole. For this platform, it happened on a whiteboard — the kind that spans a full wall.</p>
+
+        <p>Every product node. Every connection. Every data flow. The prediction engine feeding both AIVA and the WFM demand forecast. The NL tools serving both chat and IVR. The Bot Builder generating flows that ran through the same channel infrastructure as human agents. The unified admin console that held all of it together for 37 enterprise clients.</p>
+
+        <img src="247ai-system-map.png" alt="Full-wall system map — the complete [24]7.ai product ecosystem as a whiteboard diagram">
+        <p class="img-caption">The full-wall system map — every product node, every connection, every data flow across the [24]7.ai platform. This is what the platform looked like once you'd understood all the pieces.</p>
+
+        <p>The cleaned abstraction of that map became the platform architecture — three vertices, one shared intelligence layer:</p>
+
+        <div class="platform-triangle">
+            <div class="vertex">
+                <span class="label">Visitor</span>
+                <span class="desc">The customer reaching in, across any channel — voice, chat, IVR, digital</span>
+            </div>
+            <div class="vertex">
+                <span class="label">Agents</span>
+                <span class="desc">Bots and humans both, differentiated by capability rather than by nature</span>
+            </div>
+            <div class="vertex">
+                <span class="label">Enterprise</span>
+                <span class="desc">The client layer — insight, reporting, optimisation, billing, 37 clients</span>
+            </div>
+            <div class="vertex vertex-center">
+                <span class="label">Shared intelligence layer</span>
+                <span class="desc">Prediction Engine · NL Tools · Chat Miner · Model Builder · Bot Builder · Unified Admin Console</span>
+            </div>
+        </div>
+
+        <img src="247ai-platform-architecture.png" alt="Platform architecture triangle — Visitor / Agents / Enterprise with shared intelligence layer">
+        <p class="img-caption">The platform architecture — three vertices, one shared intelligence layer. You can't draw this on day one. You earn it.</p>
+
+        <p>You can't draw that triangle on day one. You earn it.</p>
+
+        <p>The three years of work — WFM role mapping, client taxonomy, handoff console, design system, cross-team sprints — all of it was both solving specific problems and building the understanding needed to see the whole. Every small move was two things at once.</p>
+
+        <!-- Results -->
+        <h2>The system at scale</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">37</span>
+                <p>Enterprise clients — SiriusXM, Dish, Optus, Vodafone, Best Buy, Hilton, Target, Choice Hotels, Nike Football, Cisco</p>
+            </div>
+            <div class="result-card">
+                <span class="number">19%</span>
+                <p>YoY revenue growth — two consecutive years following platform unification</p>
+            </div>
+            <div class="result-card">
+                <span class="number">16%</span>
+                <p>Cost reduction through standardisation and platform consolidation</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3%</span>
+                <p>Reduction in blunt overstaffing — material at contact-centre scale</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3</span>
+                <p>Regions — Americas, EMEA, APAC — on one shared platform architecture</p>
+            </div>
+            <div class="result-card">
+                <span class="number">2016</span>
+                <p>Year human-AI handoff was designed and shipped — before the industry had a name for it</p>
+            </div>
+        </div>
+
+        <!-- Studio -->
+        <h2>The studio that built the platform</h2>
+
+        <p>The platform wasn't built by one person. It was built by a studio I hired, framed, and grew — each designer taking a product domain and applying the same organizing logic to it.</p>
+
+        <p>Agrima Nagar started in December 2016 with Insights and Reports to Dashboards. Vandana Abraham brought the Connected Systems analytics lens. Aditya, Bhavna, Mehar, and Tejas built Project Heisenberg — the design system that unified the naming and visual language across every product. Tejas went on to own Central and the Content Creator. Aalok Jaiswal took Personalization and Search Bidding — and in July 2018 wrote a deck that explicitly mapped Predictive Search Bidding against WFM Forecast side by side. Goal, time horizon, trend visualisation, adjust-and-project mechanics, logs. The framework propagated without being mandated. Edu Mohan built the Customer Journey Analysis / Journey Explorer — the analytics layer that let clients understand the patterns in their customer interactions as a queryable hypothesis. Ajay Sreedhar (Sr. Director, Design Studio) owned the agent-side: the NG Console, AIVA-Agent blended experience, async interactions, Active Share widgetization.</p>
+
+        <p>By FY19 the studio was running at: Neha, Ajay, Neil (IVR + Integrated Tools Suite), Vandana, Yatin (research), and Arun (UI dev). 11 Product Engineering projects and 16 UX Research projects completed in nine months — tracked in a quarterly review that was also how I demonstrated design's contribution to the business.</p>
+
+        <!-- Closing -->
+        <h2>What this kind of work actually requires</h2>
+
+        <p>The case for systems work is usually made in hindsight — the beautiful triangle diagram, the unified platform, the revenue growth. What's harder to see is the process that makes the synthesis possible.</p>
+
+        <p>You have to earn the system view by mastering the parts. WFM taught me how agents think under pressure — which became the design logic for the handoff console. The client taxonomy work taught me how enterprises organise their world — which became the Lines of Business model. The design system work taught me what happens when teams name things independently — which became the argument for crowd-sourced governance. Each piece was both end and means.</p>
+
+        <p>The whiteboard IA photo — standing at the glass, mapping Cisco's product hierarchy in red marker, iterating three times on the same wall — is what that process looks like in practice. Not a framework applied. A territory understood, one iteration at a time.</p>
+
+        <p>The full-wall system map is what emerges from enough iterations. You don't plan for that diagram. It becomes possible.</p>
+
+        <div class="closing-quote">
+            "Every small move was two things at once: solving a specific problem and building the understanding needed to see the whole."
+        </div>
+
+        <div class="footer-bar">
+            [24]7.ai · 2016–2019 · Director of Design — Platform, WFM &amp; AI<br>
+            37 enterprise clients · Best Buy · Cisco · Hilton · Nike Football · SiriusXM · Optus · Vodafone · Target<br>
+            19% YoY revenue growth · 16% cost reduction · Customer Engagement Cloud + Customer Acquisition Cloud<br><br>
+            <a href="PORTFOLIO.html">← Back to Portfolio</a>
+        </div>
+
+    </div>
+</body>
+</html>

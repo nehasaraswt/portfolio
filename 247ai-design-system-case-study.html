@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Heisenberg: Building the [24]7.ai Design System — Case Study</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bone: #fcf9f2;
+            --ink: #1c1c18;
+            --mid: #444748;
+            --soft: #6a6a62;
+            --rust: #A85C3D;
+            --rust-deep: #7A3E28;
+            --rust-light: #D8956B;
+            --ochre: #904d00;
+            --border: #e8e2d8;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bone);
+            color: var(--ink);
+            line-height: 1.65;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bone);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link { color: var(--rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+        .back-link:hover { text-decoration: underline; }
+
+        .logo-mark {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 22px; font-weight: 700;
+            color: var(--ink); text-decoration: none;
+        }
+
+        .container { max-width: 860px; margin: 0 auto; padding: 60px 60px 80px; }
+
+        .case-label {
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--rust); margin-bottom: 14px;
+        }
+
+        h1 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 38px; font-weight: 700;
+            line-height: 1.15; color: var(--ink);
+            margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+
+        .opening {
+            font-size: 16px; color: var(--mid);
+            line-height: 1.65; margin-bottom: 32px; max-width: 700px;
+        }
+
+        .metadata {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 0; margin: 32px 0;
+            border: 1px solid var(--border); border-radius: 6px;
+            overflow: hidden; background: var(--white);
+        }
+
+        .meta-item {
+            padding: 16px 20px;
+            border-right: 1px solid var(--border);
+        }
+        .meta-item:last-child { border-right: none; }
+
+        .meta-label {
+            font-size: 9px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--rust); margin-bottom: 4px;
+        }
+
+        .meta-value { font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.35; }
+
+        h2 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 26px; font-weight: 700;
+            color: var(--ink); margin: 52px 0 18px;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rust);
+        }
+
+        h3 { font-size: 14px; font-weight: 700; color: var(--ink); margin: 28px 0 10px; }
+
+        p { font-size: 14px; color: var(--mid); margin-bottom: 16px; line-height: 1.7; }
+
+        img {
+            width: 100%; height: auto;
+            margin: 28px 0; border-radius: 6px;
+            border: 1px solid var(--border); display: block;
+        }
+
+        .img-caption {
+            font-size: 11px; color: var(--soft);
+            text-align: center; margin-top: -20px;
+            margin-bottom: 28px; font-style: italic;
+        }
+
+        /* Team grid */
+        .team-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 12px; margin: 24px 0;
+        }
+
+        .team-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 6px; padding: 14px 12px; text-align: center;
+        }
+
+        .team-name {
+            font-size: 12px; font-weight: 700; color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .team-domain {
+            font-size: 10px; color: var(--soft); line-height: 1.4;
+        }
+
+        .team-lead-card {
+            grid-column: 1 / -1;
+            background: #fff8f2;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--ochre);
+            border-radius: 6px; padding: 16px 20px;
+            display: flex; align-items: center; gap: 20px;
+            margin-bottom: 4px;
+        }
+
+        .team-lead-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+        .team-lead-role { font-size: 12px; color: var(--ochre); font-weight: 600; margin-bottom: 4px; }
+        .team-lead-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+        /* Principle boxes */
+        .principle {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 6px; padding: 20px 24px; margin: 16px 0;
+        }
+
+        .principle-name {
+            font-size: 12px; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--ochre); margin-bottom: 8px;
+        }
+
+        .principle p { margin-bottom: 0; }
+
+        /* Namespace table */
+        .namespace-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; margin: 20px 0;
+        }
+
+        .namespace-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 6px; padding: 16px 18px;
+        }
+
+        .ns-name {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--rust); margin-bottom: 6px;
+        }
+
+        .ns-desc { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+        /* Governance steps */
+        .governance-steps {
+            counter-reset: step;
+            margin: 20px 0;
+        }
+
+        .gov-step {
+            display: flex; gap: 16px; align-items: flex-start;
+            padding: 14px 0; border-bottom: 1px solid var(--border);
+        }
+
+        .gov-step:last-child { border-bottom: none; }
+
+        .step-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--rust); color: white;
+            font-size: 12px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 2px;
+        }
+
+        .step-body { flex: 1; }
+        .step-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+        .step-desc { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+        /* Results */
+        .results-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; margin: 24px 0;
+        }
+
+        .result-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 6px; padding: 20px;
+        }
+
+        .result-number {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 28px; font-weight: 700;
+            color: var(--rust); line-height: 1; margin-bottom: 6px;
+        }
+
+        .result-label { font-size: 12px; color: var(--mid); line-height: 1.45; }
+
+        /* Closing quote */
+        .closing-quote {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 17px; font-style: italic;
+            color: var(--mid); line-height: 1.65;
+            padding: 28px 32px; margin: 40px 0;
+            border-left: 4px solid var(--rust-light);
+            background: var(--white);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .footer {
+            margin-top: 70px; padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 11.5px; color: var(--soft); line-height: 1.8;
+        }
+
+        .footer a { color: var(--ochre); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .container { padding: 30px 24px 60px; }
+            .header-content { padding: 0 24px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+            .metadata { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .results-grid { grid-template-columns: 1fr; }
+            .namespace-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to portfolio</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="case-label">Case Study · [24]7.ai · 2017–2018</div>
+        <h1>Project Heisenberg — Standardisation of Enterprise Experience</h1>
+
+        <p class="opening">When your platform is assembled through acquisitions, each team speaks a different visual language. Project Heisenberg was the design system that forced a shared grammar across 12 products — not by mandate, but by building it together.</p>
+
+        <div class="metadata">
+            <div class="meta-item">
+                <div class="meta-label">Company</div>
+                <div class="meta-value">[24]7.ai</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Timeline</div>
+                <div class="meta-value">April 2017 – September 2018</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Role</div>
+                <div class="meta-value">Director of Design — Design System Lead</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Scope</div>
+                <div class="meta-value">All product surfaces — voice, digital, chat, IVR</div>
+            </div>
+        </div>
+
+        <img src="247ai-heisenberg-cover.jpg" alt="Project Heisenberg cover — Standardisation of Enterprise Experience. Design Studio: Aditya, Bhavna, Mehar, Neha, Tejas. April 2017 to September 2017.">
+
+        <!-- THE BRIEF -->
+        <h2>The Brief</h2>
+
+        <p>The brief was precise: <em>"Create a system to deliver experience for the [24]7 enterprise suite by standardising form, fit and finish."</em> When I joined, [24]7.ai had been built through acquisitions. Teams that had never worked together were now expected to ship a unified platform. Components, colour, motion, and interaction patterns had evolved independently across six separate product lineages.</p>
+
+        <p>The result was a platform that looked and felt like six separate companies — because technically, it had been. A customer moving from chat to IVR to the agent console would encounter three completely different visual systems. Internally, teams had no visibility into how their design patterns would collide with adjacent products when customers crossed channels.</p>
+
+        <p>There was also a second structural problem: no data instrumentation in the console. Teams were designing blind — no usage signals, no performance feedback, no shared understanding of what was working across the platform.</p>
+
+        <p>The design system was the mechanism to solve both.</p>
+
+        <!-- THE ECOSYSTEM -->
+        <h2>The Ecosystem It Had to Serve</h2>
+
+        <p>Before defining any component, I mapped the full product landscape. [24]7.ai's platform spanned 12 products across two functional layers — On-Boarding (client setup, configuration, and the agent experience) and Optimisation (the intelligence layer that made the platform perform over time). A shared design language had to work across all 12, not just the most visible ones.</p>
+
+        <img src="247ai-heisenberg-ecosystem.jpg" alt="[24]7.ai Product Ecosystem — two-layer model showing 12 products across On-Boarding (Client Management, Tagging, Visitor Experience Manager, Personalization, Agent Console, Billing) and Optimisation (Search Bidding, Campaign Management, Prediction as a Service, AIVA Content Manager, Workforce Optimisation, Reporting)">
+        <p class="img-caption">The product ecosystem Heisenberg had to serve — 12 products across two functional layers. Each circle is a product that had evolved its own visual language.</p>
+
+        <p>On-Boarding: Client Management, Tagging & Instrumentation, Visitor Experience Manager, Personalisation, Integrated Agent Console, Billing. Optimisation: Search Bidding, Campaign Management, Prediction as a Service, AIVA Content Manager, Workforce Optimisation, Reporting.</p>
+
+        <p>The design system had to hold across all of these — which meant the component and colour architecture couldn't be designed for the most obvious surface and retrofitted to the rest. It had to be designed for the hardest surface first.</p>
+
+        <!-- THE TEAM -->
+        <h2>The Team</h2>
+
+        <p>This was crowd-sourced, not handed down. Five designers — each owning a product domain — contributed to the system they were going to use. That's why it was adopted rather than worked around.</p>
+
+        <div class="team-lead-card">
+            <div>
+                <div class="team-lead-role">Director of Design — Design System Lead</div>
+                <div class="team-lead-name">Neha Saraswat</div>
+                <div class="team-lead-desc">Initiated and led the project. Defined the brief, the crowd-sourced model, and the governance process. Ran all org-wide design sprints that served as the adoption mechanism. Accountable for platform-wide adoption through 2018.</div>
+            </div>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-name">Aditya</div>
+                <div class="team-domain">Design System components &amp; interaction tokens</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Bhavna</div>
+                <div class="team-domain">Design System visual language &amp; patterns</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Mehar Kaur</div>
+                <div class="team-domain">Chat widgetisation &amp; platform surface audit</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Tejas Srivathsa</div>
+                <div class="team-domain">Heisenberg → CENTRAL platform &amp; Visual Content Creator</div>
+            </div>
+        </div>
+
+        <!-- HOW IT WAS BUILT -->
+        <h2>How It Was Built</h2>
+
+        <img src="247ai-system-map.png" alt="System thinking whiteboard — mapping interconnections across the [24]7.ai product landscape. The design system work began here.">
+        <p class="img-caption">Where the design system work began — mapping the interconnections across the platform before defining how it should look.</p>
+
+        <p>I built Heisenberg ground-up and crowd-sourced — not handed down from a central authority. Every product team had ownership of the language they were using, which is why it actually got adopted rather than worked around. Teams contributed their existing patterns; we resolved conflicts in the open; what emerged reflected how the platform actually worked.</p>
+
+        <p>I ran all org-wide design sprints at [24]7.ai during this period. The sprints served double duty: discovery for specific product problems, and adoption mechanism for the design system. When teams worked together in a sprint, they encountered the design system in practice — as decisions to make together, not documentation to read. That's how adoption happened.</p>
+
+        <p>Timeline: April 2017 to September 2017 for the initial build with the core team. Platform-wide adoption continued through September 2018 as each product team integrated the system into their surfaces.</p>
+
+        <!-- WHAT WAS BUILT -->
+        <h2>What Was Built</h2>
+
+        <img src="247ai-design-system-palette.png" alt="[24]7.ai design system colour architecture — eight semantic palettes (Orange, Magenta, Purple, Lilac, Blue, Green, Red, Neutral) built for a platform running voice, digital, and chat simultaneously.">
+        <p class="img-caption">Eight semantic palettes — each with defined roles across product surfaces. Not brand colours, but a functional colour architecture for a multi-channel, multi-client platform.</p>
+
+        <h3>Component namespaces</h3>
+
+        <p>The library was organised into four namespaces, each designed for a distinct surface context:</p>
+
+        <div class="namespace-grid">
+            <div class="namespace-card">
+                <div class="ns-name">UDE — Unified Design Environment</div>
+                <div class="ns-desc">Core components for the agent console and operator surfaces — the highest-stakes interfaces where agents handle live customer interactions.</div>
+            </div>
+            <div class="namespace-card">
+                <div class="ns-name">Chat</div>
+                <div class="ns-desc">Components for the customer-facing chat widget — the interface 37 enterprise clients' end-customers interacted with directly.</div>
+            </div>
+            <div class="namespace-card">
+                <div class="ns-name">Navigation</div>
+                <div class="ns-desc">Global navigation patterns, wayfinding, and product-switching components — the connective tissue between 12 products.</div>
+            </div>
+            <div class="namespace-card">
+                <div class="ns-name">Themeroller</div>
+                <div class="ns-desc">Client-configurable theming engine — the system that let Nike Football, Cisco, Optus, and others customise their widget's visual identity within the design system's constraints.</div>
+            </div>
+        </div>
+
+        <h3>Client configurability — Themeroller and VCC</h3>
+
+        <p>[24]7.ai served 37 enterprise clients, each with their own brand identity. The design system had to enforce visual consistency at the platform level while giving clients enough configurability to feel like their own product.</p>
+
+        <p>The Themeroller namespace solved this by defining what was configurable (colours, logo, typography) and what wasn't (component structure, interaction patterns, accessibility). The Virtual Customer Console (VCC) gave client teams a WYSIWYG builder to configure their widget appearance within those constraints — so Nike Football's chat widget looked like Nike Football, but behaved like [24]7.ai.</p>
+
+        <img src="247ai-vcc-card-library.jpg" alt="VCC card library — the component system for building chat widget content cards for clients">
+        <p class="img-caption">The VCC card library — content cards (CARD, RESPONSE, CONVERSATION, PROTOCOL, WRAP, FORM) that clients used to configure their customer experience within the design system's constraints.</p>
+
+        <!-- DESIGN PRINCIPLES -->
+        <h2>Design Principles</h2>
+
+        <p>Three principles were named during the project — not decorative values statements, but working tools that teams used to resolve component disputes.</p>
+
+        <div class="principle">
+            <div class="principle-name">Focused Calm</div>
+            <p>The platform handled high-stakes customer interactions — frustrated customers, high contact volumes, agents under pressure. The interface had to reduce cognitive load, not add to it. Every component decision was tested against this: does this help the person do their job, or does it demand their attention?</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-name">Tone of Voice</div>
+            <p>Consistent language patterns across all system states, error messages, and empty states. With 37 enterprise clients and multiple products, language inconsistency was endemic. The Tone of Voice framework gave teams a shared vocabulary for how the system communicates — not just what it shows. A timeout error on the WFM console should sound like the same company as a connection failure in the agent chat widget.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-name">Taxonomy in Play</div>
+            <p>Naming conventions for components, data entities, and user-facing labels applied consistently across all product surfaces. When the same data element was called four different things across four product teams, the design system created the forcing function to resolve that — not through decree, but through shared documentation that teams had built together.</p>
+        </div>
+
+        <!-- GOVERNANCE -->
+        <h2>The Governance Model</h2>
+
+        <p>A design system without governance is a snapshot, not a system. The governance model defined how new components moved from a team's need to the shared library — and who had authority at each step.</p>
+
+        <div class="governance-steps">
+            <div class="gov-step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <div class="step-title">Proposal</div>
+                    <div class="step-desc">Any product team could propose a new component by documenting the need, the context, and the existing pattern (if any). Proposals were visible to all teams — preventing duplicate components from being built in parallel.</div>
+                </div>
+            </div>
+            <div class="gov-step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <div class="step-title">Cross-team review</div>
+                    <div class="step-desc">Adjacent teams weighed in: does this conflict with an existing component? Does another surface need the same thing? Can this be generalised? The design sprint cadence was the natural forum for these conversations.</div>
+                </div>
+            </div>
+            <div class="gov-step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <div class="step-title">Resolution in the open</div>
+                    <div class="step-desc">Conflicts were resolved with the teams that had skin in the game — not in a central design system team's backlog. This is what "crowd-sourced" actually meant: the decision authority sat with the people who would live with the result.</div>
+                </div>
+            </div>
+            <div class="gov-step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <div class="step-title">Adoption through sprints</div>
+                    <div class="step-desc">New components were introduced in design sprints — used in practice before they were documented as standards. This meant teams encountered the design system as a tool that helped them, not a constraint handed down after the fact.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREENS -->
+        <h2>The Platform in Practice</h2>
+
+        <img src="247ai-screens-overview.png" alt="Product screens overview — the design system applied across [24]7.ai: AIVA console, WFM, reporting, client management, all sharing the same visual language.">
+        <p class="img-caption">The design system applied across the platform — AIVA console, WFM, client management, and reporting sharing the same visual grammar for the first time.</p>
+
+        <img src="247ai-client-platform.png" alt="[24]7.ai All Clients view — 37 enterprise clients managed through a unified platform interface">
+        <p class="img-caption">ALL CLIENTS view — 37 enterprise clients managed through a single unified platform. The design system made this possible: one interface architecture serving SiriusXM, Dish, Optus, Vodafone, Nike Football, Cisco, Hilton, Target, Best Buy, and 28 others.</p>
+
+        <!-- RESULTS -->
+        <h2>The Results</h2>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <div class="result-number">70+</div>
+                <div class="result-label">Components across four namespaces — UDE, Chat, Navigation, Themeroller — replacing 6 independently evolved pattern libraries</div>
+            </div>
+            <div class="result-card">
+                <div class="result-number">8 palettes</div>
+                <div class="result-label">Semantic colour architecture built to work across voice, digital, chat, and IVR simultaneously — not brand colours but functional roles</div>
+            </div>
+            <div class="result-card">
+                <div class="result-number">18 months</div>
+                <div class="result-label">April 2017 → September 2018: from first component proposal to platform-wide adoption across all 12 products</div>
+            </div>
+            <div class="result-card">
+                <div class="result-number">37 clients</div>
+                <div class="result-label">Enterprise clients served by a platform that now had a unified visual language — including client-configurable widget theming via Themeroller</div>
+            </div>
+            <div class="result-card">
+                <div class="result-number">5 designers</div>
+                <div class="result-label">Built this together: Aditya, Bhavna, Mehar, Neha, Tejas — each owning a product domain, each contributing to the system they were going to use</div>
+            </div>
+            <div class="result-card">
+                <div class="result-number">One grammar</div>
+                <div class="result-label">Teams that had never worked together — WFM, Chat, IVR, Campaign Manager, AIVA — operating from shared principles and shared components by end of 2018</div>
+            </div>
+        </div>
+
+        <div class="closing-quote">
+            "A design system built crowd-sourced doesn't just deliver visual consistency — it changes how teams think about shared ownership. The hardest part of Heisenberg wasn't the components. It was getting six product teams to agree on what a 'button' meant."
+        </div>
+
+        <div class="footer">
+            <p><strong>Project Heisenberg</strong> · [24]7.ai · April 2017 – September 2018</p>
+            <p>70+ components · 8 semantic palettes · 4 namespaces · 37 enterprise clients · 5-person design studio</p>
+            <p style="margin-top: 16px;"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
