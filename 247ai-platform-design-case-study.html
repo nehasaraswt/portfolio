@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Unified AI Platform Before the Playbook Existed — [24]7.ai Case Study</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --surface-bone: #fefdfb;
+    --text-primary: #2e2e2b;
+    --text-secondary: #565758;
+    --accent-ochre: #b04000;
+    --accent-rust: #b5342b;
+    --border-light: #eae6df;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--surface-bone); color: var(--text-primary); line-height: 1.7; }
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border-light); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 860px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--accent-rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.container { max-width: 860px; margin: 0 auto; padding: 60px; }
+h1 { font-size: 34px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; padding-bottom: 16px; border-bottom: 4px solid var(--accent-rust); }
+.subtitle { font-size: 15px; color: var(--text-secondary); margin-bottom: 30px; margin-top: 8px; }
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; margin: 28px 0 40px; padding: 20px; background: rgba(181,52,43,0.05); border-radius: 6px; }
+.meta-label { color: var(--accent-rust); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.meta-value { color: var(--text-primary); font-size: 14px; font-weight: 500; }
+h2 { font-size: 22px; font-weight: 700; margin: 48px 0 18px; padding-left: 14px; border-left: 4px solid var(--accent-rust); }
+h3 { font-size: 15px; font-weight: 600; margin: 28px 0 10px; color: var(--text-primary); }
+p { margin-bottom: 16px; color: var(--text-secondary); font-size: 15px; }
+p strong { color: var(--text-primary); }
+img { max-width: 100%; height: auto; margin: 28px 0; border-radius: 6px; border: 1px solid var(--border-light); display: block; }
+.img-caption { font-size: 12px; color: #888; text-align: center; margin-top: -20px; margin-bottom: 28px; font-style: italic; }
+.feature-box { background: white; border-left: 4px solid var(--accent-ochre); padding: 20px 20px 14px; margin: 20px 0; border-radius: 0 4px 4px 0; }
+.feature-box strong { color: var(--accent-ochre); display: block; margin-bottom: 8px; font-size: 15px; }
+.feature-box p { margin-bottom: 0; }
+ul { margin-left: 20px; margin-bottom: 16px; }
+li { margin-bottom: 8px; color: var(--text-secondary); font-size: 15px; }
+li strong { color: var(--text-primary); }
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+.result-card { background: white; padding: 20px; border-radius: 6px; border: 1px solid var(--border-light); }
+.result-card .number { color: var(--accent-rust); font-size: 20px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13px; margin-bottom: 0; }
+.positioning-quote { font-style: italic; color: var(--text-secondary); margin-top: 30px; padding: 20px 24px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--accent-rust); font-size: 15px; line-height: 1.7; }
+.footer-bar { margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--border-light); color: #888; font-size: 12px; text-align: center; }
+.footer-bar a { color: var(--accent-ochre); text-decoration: none; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; }
+.mockup-ref { background: white; border: 1px solid var(--border-light); border-radius: 4px; padding: 14px 18px; font-size: 14px; }
+.mockup-ref a { color: var(--accent-ochre); text-decoration: none; }
+.mockup-ref a:hover { text-decoration: underline; }
+@media (max-width: 768px) { .container { padding: 30px 20px; } .header-content { padding: 0 20px; } h1 { font-size: 24px; } .results-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Building a Unified AI Platform Before the Playbook Existed</h1>
+        <p class="subtitle">Unifying fragmented acquired products into the [24]7.ai Customer Engagement Cloud — and designing human-AI collaboration before the industry had a name for it</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Company</div><div class="meta-value">[24]7.ai</div></div>
+            <div><div class="meta-label">Timeline</div><div class="meta-value">2016–2019</div></div>
+            <div><div class="meta-label">Role</div><div class="meta-value">Director of Design — Platform &amp; AI</div></div>
+            <div><div class="meta-label">Clients</div><div class="meta-value">37 enterprise clients across Americas, EMEA, APAC</div></div>
+            <div><div class="meta-label">Platform</div><div class="meta-value">Customer Engagement Cloud + Customer Acquisition Cloud</div></div>
+        </div>
+
+        <h2>The Context</h2>
+        <p>[24]7.ai served Fortune 500 enterprises — Cisco, Hilton, Choice Hotels, SiriusXM, Dish, Optus, Vodafone — with a conversational AI platform for customer engagement across voice, chat, IVR, and digital. The platform had been assembled through acquisitions. Products that handled different parts of the customer journey had evolved independently, operated on different data models, and had no shared experience language.</p>
+        <p>The system had three interconnected parts: the <strong>demand side</strong> (customers reaching in through any channel), the <strong>supply side</strong> (the agents and workforce serving them), and the <strong>enterprise layer</strong> (the insight, reporting, and optimisation tools that made the whole thing manageable). None of these three parts had been designed to work together. My role was to define and build the experience architecture that connected them.</p>
+
+        <h2>Human-AI Tandem</h2>
+        <p>In 2016, [24]7.ai's AIVA was one of the earliest production conversational AI systems handling real customer interactions at Fortune 500 scale. The platform wasn't fully automated — AIVA handled what it could, and when it couldn't, it transferred to a human agent. That transfer was the most important moment in every interaction, and it had never been designed.</p>
+        <p>The principle I brought to this work was what I'd now call the <strong>Human-AI Tandem</strong>: the idea that AI and human capability aren't alternatives — they're a unit. The design question isn't "what does the AI do vs what does the human do?" It's "how does the handoff make both more effective?" That meant designing the AIVA console not as a fallback interface for when AI failed, but as an intelligent briefing system: intent captured by AI, customer history surfaced, suggested responses ready. The human agent doesn't restart the conversation — they continue it.</p>
+        <p>This approach predates the current industry conversation about agentic UX and AI-augmented work. In 2016, the interaction principles had to be built from first principles, in production, for real clients.</p>
+
+        <h2>Key Decisions</h2>
+
+        <div class="feature-box">
+            <strong>The architecture first, the screens second</strong>
+            <p>Before any interface was designed, I spent time mapping the three-legged system: who needed what data, at what moment, in what form. The CEC + CAC architecture wasn't a product decision — it was a design decision. Defining the system's shape was the prerequisite to making any part of it coherent.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Handoff as first-class experience</strong>
+            <p>Engineering treated the AIVA-to-human handoff as an exception flow — it happened when the AI failed. I reframed it as the most critical moment in every interaction: the instant where trust either transfers or breaks. Designing the handoff meant: what does the agent inherit? What does the customer feel? What gets lost, and how do we prevent that? The console was designed around this moment, not around the simpler case where AIVA succeeds.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>The product ecosystem as a coherent whole</strong>
+            <p>The [24]7.ai platform comprised more products than most enterprises realised: AIVA (conversational AI), Chat, IVR, ActiveShare (co-browse), Campaign Manager, Search Bidding, Model Workbench, VCC (Virtual Customer Console — the client-facing widget designer). Designing for one meant understanding how it connected to all the others. I built the IA and experience models for the full ecosystem, not individual surfaces.</p>
+        </div>
+
+        <div class="feature-box">
+            <strong>Design sprints as the coordination mechanism</strong>
+            <p>I ran all org-wide design sprints at [24]7.ai — not just for product discovery, but as the mechanism for cross-team alignment. When isolated teams came together in a sprint, they were forced to confront where their product connected to adjacent ones. That social process is what made the design system stick.</p>
+        </div>
+
+        <h2>The Work: AIVA Handoff Console</h2>
+        <p>When agents received a transferred conversation, they had no context for what had just happened. They asked customers to repeat themselves — undoing everything AIVA had accomplished. The Handoff Console changed that. Intent classification, contact history, and suggested first responses appeared at the moment the call landed: the agent picked up where AIVA left off, not from scratch.</p>
+
+        <p class="mockup-ref">Full interface recreation: <a href="247ai-case-study-preview.html">View the [24]7.ai overview case study →</a></p>
+
+        <h2>Platform at Scale</h2>
+        <img src="247ai-client-platform.png" alt="[24]7.ai enterprise client management platform showing 37 enterprise clients configured with Chat, IVR, and AIVA capabilities">
+        <p class="img-caption">Actual shipped UI — [24]7.ai enterprise client management platform. ALL CLIENTS (37): each enterprise client configured with Chat, IVR, and AIVA capabilities across Lines of Business. This is the unified SaaS architecture that replaced a fragmented set of acquired products.</p>
+
+        <img src="247ai-platform-architecture.png" alt="[24]7.ai platform architecture showing the three-legged model: Visitor, Agents, and Enterprise, with shared intelligence layer">
+        <p class="img-caption">Platform architecture — the three-legged model: Visitor (customer-facing AI), Agents (console, engagement, WFM), and Enterprise (optimisation, billing, reporting). The shared intelligence layer — Prediction Engine, NL Tools, Bot Builder — served all three.</p>
+
+        <p>By 2019 the platform operated across three regions — Americas, EMEA, APAC — with 37 enterprise clients. Clients like Choice Hotels ran global deployments with separate Lines of Business per region. The architecture decisions made in 2016–2017 had to hold at that scale.</p>
+
+        <h2>One Framework, Four Products</h2>
+        <p>The WFM deep-dive produced a <strong>design framework for the whole platform</strong>: every product in the [24]7.ai ecosystem is a demand/supply problem. Customer intent is always the demand. The platform's job is always matching that demand to the right supply — whether the supply is an agent's time, a content response, a bid allocation, or a proactive engagement trigger. Once that framing was visible, what had been a collection of separately-acquired products became a coherent system.</p>
+
+        <img src="247ai-platform-home.jpg" alt="[24]7.ai SaaS platform home page showing Resolution Metrics, Top 5 Intents bubble chart (PAY BILL dominant), Key Metrics, and the split between 387 bot-resolved and 140 agent-resolved contacts">
+        <p class="img-caption">[24]7.ai SaaS platform home — the unified view for enterprise clients. The "Top 5 Intents" bubble chart (PAY BILL, SUPER BOWL, LOG ACCOUNT, CANCEL SERVICE) is the demand map in action. Every downstream product — content, workforce, acquisition — calibrates to these intents. Shown with the Integrated Tool Suite nav open: Digital Content Composer, Bot Builder, Chat Flow Discovery, Modeling Workbench.</p>
+
+        <p>The same demand/supply lens structured four distinct products:</p>
+
+        <div class="feature-box">
+            <strong>Bot Builder / Intents → Demand as conversation architecture</strong>
+            <p>The WFM research showed that treating all contacts as interchangeable was the root failure. Bot Builder took that insight forward: every intent is a structured demand signal, not just a text string. Intents are mapped to channels (voice, text, IVR), assigned states, and used to generate the right content response. The intent taxonomy isn't a configuration — it's the demand model for the entire conversational system.</p>
+        </div>
+
+        <img src="247ai-bot-builder-intents.jpg" alt="[24]7.ai Bot Builder Intents view showing intent categories mapped to channels (Voice, Text, Text+Voice), states, and ownership — the demand architecture for the conversational platform">
+        <p class="img-caption">Bot Builder — Intents view. Each intent is mapped to specific channels and states: the demand architecture that routes every customer to the right response path. The same logic that WFM uses to match contact type to agent skill here determines which bot flow, which human team, and which content fires.</p>
+
+        <div class="feature-box">
+            <strong>Digital Content Composer → Supply as intent-matched content</strong>
+            <p>Before the WFM framework, content was organised by channel: this text for Chat, this response for IVR. After it, content was organised by intent. The Digital Content Composer managed content cards — RESPONSE, CONVERSATION, PROTOCOL, WRAP, FORM types — each mapped to specific intent categories and deployed across AIVA, Chat, and ActiveShare simultaneously. Supply matched to demand, not to delivery channel.</p>
+        </div>
+
+        <img src="247ai-content-composer.jpg" alt="[24]7.ai Digital Content Composer showing content cards (CARD, RESPONSE, CONVERSATION, PROTOCOL, WRAP, FORM types) with channel distribution across AIVA, [24]7 Chat, and Active Share">
+        <p class="img-caption">Digital Content Composer — content library. 500 content cards, each tagged with the channels it serves (AIVA, Chat, Active Share) and mapped to intent categories. The platform surfaces the right supply — the right content — based on what the customer actually needs, not based on which channel they arrived through.</p>
+
+        <div class="feature-box">
+            <strong>Search Bidding (ADS) → Demand as acquisition signal</strong>
+            <p>The WFM insight about demand volume — that you need to forecast contact intent, not just contact count — applied directly to paid acquisition. Search queries are intent signals: someone searching "pay my bill online" is expressing the same intent as a contact centre caller doing the same. Predictive Search Bidding weighted spend against intent quality and forecast ROI, not raw click volume. The same intent taxonomy that structured Bot Builder also structured which keywords earned budget.</p>
+        </div>
+
+        <img src="247ai-search-bidding-ecosystem.jpg" alt="[24]7.ai Search Bidding industry ecosystem — [24]7.ai positioned as a Demand Side Platform tool alongside Google, Facebook, DoubleClick, serving advertisers including Nike, Adidas, Amazon through ad exchanges and publisher platforms">
+        <p class="img-caption">Predictive Search Bidding — industry ecosystem diagram. [24]7.ai positioned as a DSP (Demand Side Platform) tool, with [24]7.ai's technology sitting in the toolchain alongside Google Adwords, DoubleClick, and Facebook — connecting enterprise advertisers (Nike, Adidas, Amazon) to publisher inventory (Bing, Google, Yahoo, Instagram, Facebook). Designed by Aalok Jaiswal, [24]7.ai Design Studio, July 2018.</p>
+
+        <img src="247ai-search-bidding-forecast.jpg" alt="[24]7.ai Predictive Search Bidding forecast UI — Category: NonBrand Snorkels, showing CPN Goal table, Daily Average Forecast curve, and Forecast Pacing chart. Annotated with design rationale for time horizon, goal parameters, trend visualisation, and primary action.">
+        <p class="img-caption">Predictive Search Bidding — Forecast interface. CPN Goal optimisation table, Daily Average Forecast curve, and Forecast Pacing timeline. The interface structure mirrors WFM's demand forecast exactly: time horizon, trend visualisation, adjust-and-project mechanics, and primary action. The parallel was explicit and intentional.</p>
+
+        <img src="247ai-search-bidding-parallels.jpg" alt="Parallels slide: Predictive Search Bidding vs WFO Forecast — explicit side-by-side mapping of goal structure, time horizon, trend visualisation, adjust-and-project mechanics, and logs across both products">
+        <p class="img-caption">"Parallels" — the explicit design brief from Aalok Jaiswal's Predictive Search Bidding deck. Goal, Time, Trend Visualisation, Act and Experiment, Adjust and Project, Logs and Comments — mapped side by side across Search Bidding and WFM Forecast. The demand/supply framework wasn't a retrospective framing. It was the live design principle that structured both products simultaneously.</p>
+
+        <div class="feature-box">
+            <strong>EngageClick / Acquire → Supply as the right moment</strong>
+            <p>WFM research revealed the cost of mistimed agent supply — overstaffing blunts efficiency, understaffing destroys service levels. EngageClick applied the same discipline to proactive web engagement: not every site visitor should get a chat invitation, and the ones who should should get it at the right moment. Intent scoring (behavioural signals, page trajectory, dwell patterns) determined when to deploy the engagement trigger. Precision over volume — the same principle that made WFM design work.</p>
+        </div>
+
+        <img src="247ai-engageclick-campaigns.jpg" alt="[24]7 Personalization platform — Campaigns view showing 70 active campaigns for Optus including Advertising and Website Personalization types, with campaign status, categories and start dates from 2017">
+        <p class="img-caption">[24]7 Personalization — Campaigns view. 70 active campaigns for Optus across Advertising and Website Personalization categories. The left nav shows the full EngageClick product surface: Campaigns, Datasources, Images, Media, Creatives, Advanced Ad Studio, Campaign Analytics, Sites/Apps, Google Adwords, Facebook Ads, Pixels, Web Personalization. The platform managed proactive acquisition across every digital touchpoint.</p>
+
+        <img src="247ai-engageclick-projects.jpg" alt="[24]7 Personalization — Web Projects view showing Optus's Mobile Category Page Personalization deployed across www.optus.com.au, www.optus.com.au/shop/mobile, and http://www.engageclick.com — all ACTIVE">
+        <p class="img-caption">[24]7 Personalization — Web Projects. Optus's Mobile Category Page Personalization deployed across their main website, mobile shop, and the EngageClick domain itself. Intent-scored visitor profiles determined which chat invitation, which promotion, and which moment — matching the right acquisition trigger to the right visitor signal.</p>
+
+        <p>These weren't four separate product decisions. They were the same decision, applied four times: <strong>stop treating demand as undifferentiated, start matching supply to intent</strong>. The WFM work made that principle visible. The Search Bidding team drew the parallel explicitly. The rest of the platform was where it propagated.</p>
+
+        <h2>Innovation: smARt</h2>
+        <p>Alongside the platform unification work, the team was running forward-looking innovation sprints. smARt was an IoT + AR-powered customer care concept I co-designed with a team of five for Sears and Best Buy: AR overlays that let customers resolve appliance issues with visual guidance from a remote expert, IoT device context surfaced directly to AIVA, and field technician routing driven by real-time sensor data. The prototype projected 50% call volume reduction and 90% improvement in resolution time (3–5 days → 4–8 hours). It got VP-level validation at Sears and Best Buy.</p>
+
+        <p>What smARt illustrates about the platform era: we were designing for a multimodal, AI-native future — voice, digital, AR, IoT — that the industry is still catching up to.</p>
+
+        <p><strong>Note:</strong> smARt metrics are from a prototype validated at Sears and Best Buy by a cross-functional team — not shipped product metrics.</p>
+
+        <img src="247ai-whiteboard-ia.jpg" alt="IA session whiteboard mapping Cisco's product hierarchy across Chat, OPS, Routex, Webex, and IVR">
+        <p class="img-caption">IA session mapping Cisco's product hierarchy — how Chat, OPS, Routex, Webex, and IVR connected to the customer journey across voice, IVR, and digital. This was the kind of system thinking that preceded all screen design.</p>
+
+        <h2>The Results</h2>
+        <div class="results-grid">
+            <div class="result-card">
+                <span class="number">19%</span>
+                <p>YoY revenue growth across two consecutive years following platform unification</p>
+            </div>
+            <div class="result-card">
+                <span class="number">37</span>
+                <p>Enterprise clients on the unified platform including Cisco, Nike Football, Hilton, Choice Hotels, SiriusXM, Dish, Optus, Vodafone</p>
+            </div>
+            <div class="result-card">
+                <span class="number">One platform</span>
+                <p>CEC + CAC: from a fragmented set of acquired products to a unified self-serve SaaS architecture</p>
+            </div>
+            <div class="result-card">
+                <span class="number">3 regions</span>
+                <p>Americas · EMEA · APAC — global deployment of a platform designed as one coherent system</p>
+            </div>
+            <div class="result-card">
+                <span class="number">2016</span>
+                <p>Year the AI-human handoff patterns we designed were first shipped — predating the industry conversation about agentic UX by years</p>
+            </div>
+            <div class="result-card">
+                <span class="number">smARt</span>
+                <p>IoT + AR prototype validated by VP-level stakeholders at Sears and Best Buy — 90% resolution time improvement projected</p>
+            </div>
+        </div>
+
+        <div class="positioning-quote">
+            Defined the architecture for [24]7.ai's Customer Engagement Cloud — three interconnected systems (demand, supply, enterprise) unified into a platform serving 37 enterprise clients across three regions. Designed the human-AI handoff patterns that became the operating model for AIVA-to-agent transfer, and ran all org-wide design sprints that brought isolated product teams into alignment. 19% YoY revenue growth, two consecutive years.
+        </div>
+
+        <div class="footer-bar">
+            <p>[24]7.ai — Platform Design &amp; AI · 2016–2019 · 37 enterprise clients · Americas · EMEA · APAC</p>
+            <p style="margin-top:16px"><a href="PORTFOLIO.html">← Back to Portfolio</a></p>
+        </div>
+    </div>
+</body>
+</html>

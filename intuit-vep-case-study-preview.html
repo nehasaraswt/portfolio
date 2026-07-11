@@ -477,7 +477,7 @@
 
         <p>Intuit's Virtual Expert Platform operated at a scale most platforms never reach — 25 million customer contacts per year, 50,000 experts, 535 million live meeting minutes, 95% SLA across every touchpoint. But despite that scale, the platform ran largely on manual coordination: expert schedules built by hand, training disconnected from call performance, customer routing done without system intelligence, and appointment booking fragmented across products.</p>
 
-        <p>In 2023, the mandate changed. Expert Operations needed to become an AI-native, autonomous platform — not because it was technically possible, but because operating at this scale with manual systems was a ceiling that the business had already hit. I led design across the four workstreams that made that shift real: <strong>Shift Builder</strong>, <strong>Appointments</strong>, <strong>Autonomous Operations</strong>, and the <strong>Conversations</strong> platform underpinning all of them.</p>
+        <p>In 2023, the mandate changed. Expert Operations needed to become an AI-native, autonomous platform — operating at this scale with manual systems was a ceiling the business had already hit. I led design across the four workstreams that made that shift real: <strong>Shift Builder</strong>, <strong>Appointments</strong>, <strong>Autonomous Operations</strong>, and the <strong>Conversations</strong> platform underpinning all of them.</p>
 
         <!-- THE FRAMEWORK -->
         <h2>The Framework: Human-Agent Tandem</h2>
@@ -555,7 +555,7 @@
         </div>
 
         <h3>Autonomous Operations — AI-Driven Triage and Resolution</h3>
-        <p>Autonomous Ops was the hardest workstream: designing interfaces for AI that acts rather than assists, across triage, routing, resolution, and escalation. The deliverables included the AI agent dashboard for operations managers, the real-time routing and matching interface, the escalation UI that surfaces AI reasoning to human reviewers, and the override mechanisms that kept humans accountable without making autonomy fragile. In FY25, VEP reached 120 ITPY (interactions per expert per year) connections — a platform connectivity milestone that required every operations surface to function as a coherent system rather than individual tools.</p>
+        <p>Autonomous Ops required designing interfaces for AI that acts rather than assists — across triage, routing, resolution, and escalation. The deliverables included the AI agent dashboard for operations managers, the real-time routing and matching interface, the escalation UI that surfaces AI reasoning to human reviewers, and the override mechanisms that kept humans accountable without making autonomy fragile. In FY25, VEP reached 120 ITPY (interactions per expert per year) connections — a platform connectivity milestone that required every operations surface to function as a coherent system rather than individual tools.</p>
 
         <div class="video-block">
             <div class="video-label">Gallery Walk · Autonomous Operations</div>
@@ -566,7 +566,7 @@
         </div>
 
         <h3>Conversations — Natural Language Platform Layer</h3>
-        <p>The Conversations workstream designed the natural language interface that customers use before a human expert is ever involved: intent capture, context building, smart routing, and handoff from AI to human with full context preserved. The design challenge was preventing both under-escalation (AI trying to resolve what it shouldn't) and over-escalation (unnecessary handoffs that erode trust in the AI). Fallback logic, handoff framing, and context continuity were first-class design requirements — not edge cases to handle later.</p>
+        <p>I designed the natural language layer customers move through before a human expert is ever involved: intent capture, context building, smart routing, and handoff from AI to human with full context preserved. The design challenge was preventing both under-escalation (AI trying to resolve what it shouldn't) and over-escalation (unnecessary handoffs that erode trust in the AI). Fallback logic, handoff framing, and context continuity were first-class design requirements — not edge cases to handle later.</p>
 
         <!-- VEP ARCHITECTURE DIAGRAM -->
         <div class="vep-arch">
@@ -674,11 +674,11 @@
             <li><strong>A framework before a feature</strong> — Human-Agent Tandem gave the team a principled model for what human-AI collaboration should actually look like at this scale, before a single screen was designed. That grounding kept five workstreams coherent across different launch cadences and different user types.</li>
             <li><strong>Designing before patterns existed</strong> — there were no established interaction models for autonomous operations in enterprise at this scale. The principles for when AI acts, when it escalates, how decisions are surfaced and overridden — all of that had to be invented, not borrowed.</li>
             <li><strong>Closed-loop intelligence</strong> — the platform learned from itself. Connecting post-call performance data to personalised training (Flight Simulator) turned the platform from a static operation into one that improves with use. That design decision had long-term structural value beyond any individual metric.</li>
-            <li><strong>Five distinct surfaces, one coherent system</strong> — scheduling, training, routing, conversations, and appointments are different UX domains with different users, rhythms, and mental models. Making them feel like a single platform — while each had its own launch deadline and stakeholder group — was the real design leadership challenge.</li>
+            <li><strong>Five distinct surfaces, one coherent system</strong> — scheduling, training, routing, conversations, and appointments are different UX domains with different users, rhythms, and mental models. Making them feel like a single platform — while each had its own launch deadline and stakeholder group — was the hardest coordination problem: shared principles had to hold across teams that never shipped together.</li>
         </ul>
 
         <div class="positioning-quote">
-            "Rebuilt Intuit's Virtual Expert Platform as an AI-native operation across five workstreams — scheduling, training, routing, conversations, and appointments. Developed the Human-Agent Tandem framework for human-AI collaboration before industry patterns existed. Contributed to 45% live services revenue growth, ~40% cost reduction, and 85% reduction in expert scheduling time."
+            "Rebuilt Intuit's Virtual Expert Platform as an AI-native operation across five workstreams — scheduling, training, routing, conversations, and appointments. Developed the Human-Agent Tandem framework for human-AI collaboration before industry patterns existed. Drove 45% live services revenue growth, ~40% cost reduction, and 85% reduction in expert scheduling time."
         </div>
 
         <div class="footer-bar">
