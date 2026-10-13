@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NID Ahmedabad — Colour, Material, Finish as an Argument · Neha Saraswat</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --bone: #fefdfb;
+    --text: #2e2e2b;
+    --mid: #565758;
+    --ochre: #b04000;
+    --rust: #b5342b;
+    --border: #eae6df;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bone); color: var(--text); line-height: 1.75; }
+
+.header { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border); padding: 12px 0; z-index: 100; }
+.header-content { max-width: 920px; margin: 0 auto; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; }
+.back-link { color: var(--rust); text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.logo-mark { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 64px 60px; }
+
+.hero-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--rust); margin-bottom: 12px; }
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+h1 em { color: var(--rust); }
+.subtitle { font-size: 16px; color: var(--mid); line-height: 1.65; margin-bottom: 36px; max-width: 740px; }
+
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin: 0 0 52px; padding: 22px; background: rgba(181,52,43,0.05); border-radius: 6px; border-left: 4px solid var(--rust); }
+.meta-label { color: var(--rust); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.meta-value { color: var(--text); font-size: 13.5px; font-weight: 500; line-height: 1.4; }
+
+h2 { font-family: Georgia, serif; font-size: 26px; font-weight: 700; margin: 68px 0 20px; padding-left: 18px; border-left: 4px solid var(--rust); line-height: 1.25; }
+h3 { font-size: 11px; font-weight: 700; color: var(--ochre); text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 14px; }
+
+p { margin-bottom: 18px; color: var(--mid); font-size: 15.5px; line-height: 1.8; }
+p strong { color: var(--text); }
+.opening { font-size: 16px; line-height: 1.8; color: var(--mid); margin-bottom: 24px; }
+.opening::first-letter { font-family: Georgia, serif; font-size: 3.2em; font-weight: 700; float: left; line-height: 0.75; padding-right: 8px; padding-top: 6px; color: var(--rust); }
+
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0; }
+.stat-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 20px; text-align: center; }
+.stat-box .stat-num { font-family: Georgia, serif; font-size: 30px; font-weight: 700; color: var(--rust); display: block; margin-bottom: 6px; }
+.stat-box .stat-label { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+
+.arc { list-style: none; counter-reset: s; margin: 24px 0; border-top: 1px solid var(--border); }
+.arc li { display: grid; grid-template-columns: 48px 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--border); counter-increment: s; }
+.arc li::before { content: counter(s); font-family: Georgia, serif; font-size: 28px; font-weight: 700; line-height: 1; color: var(--rust); }
+.arc strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.arc span { font-size: 14.5px; color: var(--mid); line-height: 1.65; }
+
+.principle-box { background: rgba(176,64,0,0.05); border-left: 4px solid var(--ochre); padding: 20px 24px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+.principle-box .p-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 8px; display: block; }
+.principle-box p { margin-bottom: 0; font-family: Georgia, serif; font-size: 17px; color: var(--text); line-height: 1.6; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 24px; }
+.chip { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--mid); }
+
+.img-caption { font-size: 12.5px; color: #8a8a86; margin: 8px 0 32px; line-height: 1.55; }
+.img-caption strong { color: var(--text); font-weight: 600; }
+.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 0; align-items: start; }
+.img-pair img, .img-single { width: 100%; border: 1px solid var(--border); border-radius: 6px; display: block; }
+.img-single { margin-top: 28px; }
+
+.rubric { margin: 24px 0; border-top: 1px solid var(--border); }
+.rubric-row { display: grid; grid-template-columns: 200px 1fr 64px; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.rubric-row .r-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
+.rubric-row .r-q { font-size: 13.5px; color: var(--mid); line-height: 1.6; font-style: italic; }
+.rubric-row .r-w { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--rust); text-align: right; }
+
+.results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 28px 0; }
+.result-card { background: white; padding: 22px; border-radius: 6px; border: 1px solid var(--border); border-top: 3px solid var(--ochre); }
+.result-card .r-head { font-family: Georgia, serif; color: var(--text); font-size: 16px; font-weight: 700; display: block; margin-bottom: 8px; }
+.result-card p { font-size: 13.5px; margin-bottom: 0; color: var(--mid); line-height: 1.6; }
+
+.reflect-box { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 22px 26px; margin: 16px 0; border-left: 4px solid #9a9590; }
+.reflect-box .rf-head { font-weight: 700; color: var(--text); font-size: 15px; margin-bottom: 6px; }
+.reflect-box p { font-size: 14px; margin-bottom: 0; }
+
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+.closing-quote { font-style: italic; color: var(--mid); margin: 52px 0 40px; padding: 26px 30px; background: rgba(181,52,43,0.05); border-left: 4px solid var(--rust); font-size: 16px; line-height: 1.85; font-family: Georgia, serif; }
+
+.footer-bar { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); color: #aaa; font-size: 12px; text-align: center; line-height: 2.2; }
+.footer-bar a { color: var(--ochre); text-decoration: none; }
+
+@media (max-width: 768px) {
+    .container { padding: 32px 20px; }
+    .header-content { padding: 0 20px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 20px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .img-pair { grid-template-columns: 1fr; }
+    .rubric-row { grid-template-columns: 1fr 48px; }
+    .rubric-row .r-q { grid-column: 1 / -1; grid-row: 2; }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="PORTFOLIO.html" class="logo-mark">NS</a>
+            <a href="PORTFOLIO.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="hero-label">Teaching · NID Ahmedabad · August 2026</div>
+        <h1>Colour, material, finish<br>as an <em>argument</em></h1>
+        <p class="subtitle">A palette is a mood. A key colour is a decision. In Design Workshop III, I taught sixteen textile design students to treat colour, material and finish as an argument they can defend to a person, a product and a maker.</p>
+
+        <div class="metadata">
+            <div><div class="meta-label">Course</div><div class="meta-value">Design Workshop III · Colour, Material, Finish</div></div>
+            <div><div class="meta-label">Programme</div><div class="meta-value">B.Des Textile Design, 7th semester, 2023 batch</div></div>
+            <div><div class="meta-label">Run</div><div class="meta-value">24 to 29 August 2026 · 16 students</div></div>
+            <div><div class="meta-label">Faculty</div><div class="meta-value">Visiting faculty, with Nijoo Dubey; anchor faculty Shafique Afzal</div></div>
+        </div>
+
+        <!-- ── PREMISE ── -->
+        <h2>The premise</h2>
+
+        <p class="opening">Colour, material and finish are easy to treat as decoration: a pleasing palette, a list of materials, a finish named in a caption. I wanted students to treat them as a position. Every choice should trace back to a tension in the world, a specific person, and a specific product, and the sample should be able to make the case on its own.</p>
+
+        <p>The method adapts <strong>Futurecasting in 5 Steps</strong>, which I facilitated with design teams at Intuit, Walmart and [24]7.ai, and applies it to textile CMF.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── ARC ── -->
+        <h2>The arc, from trend to sample</h2>
+
+        <ol class="arc">
+            <li><div><strong>Signals</strong><span>Curate, don't spot. Students map published signals on a wheel of opportunity before they name anything.</span></div></li>
+            <li><div><strong>Trend</strong><span>A tension in the students' own words, never a forecaster's label.</span></div></li>
+            <li><div><strong>Person</strong><span>A specific human with a life, not a demographic.</span></div></li>
+            <li><div><strong>Brief</strong><span>One key colour, named first. One question the sample must answer.</span></div></li>
+            <li><div><strong>Sample</strong><span>Make it, test it against the question, and show it in silence before anyone explains it.</span></div></li>
+        </ol>
+
+        <div class="principle-box">
+            <span class="p-label">The test I use everywhere</span>
+            <p>Cover the labels. If you still get it, the work speaks through the material. If you don't, it is only talking about it.</p>
+        </div>
+
+        <p>In crit this became the silent-critique test: look at the sample for thirty seconds without reading the brief or hearing the student explain it, and write down what you think the trend is. If the guess is close, the work is doing its job.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── WHAT STUDENTS MADE ── -->
+        <h2>What sixteen students made</h2>
+
+        <div class="stat-row">
+            <div class="stat-box"><span class="stat-num">16</span><span class="stat-label">students, in pairs and individually</span></div>
+            <div class="stat-box"><span class="stat-num">5</span><span class="stat-label">trend studies, named by the students</span></div>
+            <div class="stat-box"><span class="stat-num">13</span><span class="stat-label">product CMF briefs</span></div>
+            <div class="stat-box"><span class="stat-num">7</span><span class="stat-label">product categories, from cars to a saddle</span></div>
+        </div>
+
+        <h3>The five territories students named</h3>
+        <div class="chips">
+            <span class="chip">JOMO Travel</span>
+            <span class="chip">Mis-fit</span>
+            <span class="chip">We Think</span>
+            <span class="chip">Bad Taste</span>
+            <span class="chip">Digital Spirituality</span>
+        </div>
+
+        <h3>The seven product categories</h3>
+        <div class="chips">
+            <span class="chip">Cars</span>
+            <span class="chip">Footwear</span>
+            <span class="chip">Bags</span>
+            <span class="chip">Outdoor</span>
+            <span class="chip">Audio</span>
+            <span class="chip">Protective gloves</span>
+            <span class="chip">Equestrian</span>
+        </div>
+
+        <div class="img-pair">
+            <img src="nid-dw3-material-board.jpg" alt="Student material board of mixed materials for a car interior">
+            <img src="nid-dw3-interior-flatlay.jpg" alt="Flat-lay of car interior parts translated from the material board">
+        </div>
+        <p class="img-caption"><strong>Material board to Mercedes parts.</strong> A board of mixed materials (left) translated into a flat-lay of interior parts (right). Mercedes C-Class brief.</p>
+
+        <img class="img-single" src="nid-dw3-ev-positioning.jpg" alt="Positioning map of five electric vehicles by finish, fabric and price">
+        <p class="img-caption"><strong>Where the competition sits.</strong> Five EVs plotted on finish, fabric and price, to find the gap for a distinct CMF. Mahindra XEV 9e brief.</p>
+
+        <img class="img-single" src="nid-dw3-tent-swatches.jpg" alt="Swatch study for a rain-reactive tent finish">
+        <p class="img-caption"><strong>Function decides the finish.</strong> Swatch study for a rain-reactive tent finish: grip, visibility and sleep set every colour. Decathlon tent brief.</p>
+
+        <img class="img-single" src="nid-dw3-committed-direction.jpg" alt="Baseline audit, three directions and one final CMF direction for a car interior">
+        <p class="img-caption"><strong>A committed direction.</strong> Baseline audit, three directions, one final. Mercedes C-Class brief.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── ASSESSMENT ── -->
+        <h2>How I assessed</h2>
+
+        <p>Students were graded on NID's five criteria. Behind them sits a six-part evidence rubric, so every grade has a stated reason. The rubric is built so that neither concept without craft nor craft without concept can score high alone.</p>
+
+        <div class="rubric">
+            <div class="rubric-row"><span class="r-name">Trend and persona</span><span class="r-q">Is there a real tension, and a real person, underneath the CMF choices?</span><span class="r-w">15%</span></div>
+            <div class="rubric-row"><span class="r-name">Brief and translation</span><span class="r-q">Does the brief do the translation work, trend into colour, material and finish, for this specific product?</span><span class="r-w">20%</span></div>
+            <div class="rubric-row"><span class="r-name">Material craft</span><span class="r-q">Does the physical sample hold up as a piece of work?</span><span class="r-w">25%</span></div>
+            <div class="rubric-row"><span class="r-name">Coherence of the whole</span><span class="r-q">Do the trend, persona, brief, sample, board and narrative all argue the same thing?</span><span class="r-w">20%</span></div>
+            <div class="rubric-row"><span class="r-name">Narrative voice</span><span class="r-q">Does the writing make you feel the trend before you understand it?</span><span class="r-w">12%</span></div>
+            <div class="rubric-row"><span class="r-name">Rigour and feasibility</span><span class="r-q">Could this brief go to a manufacturer? Is the process visible, not just the output?</span><span class="r-w">8%</span></div>
+        </div>
+
+        <p>Each student received four letter grades with a one-line basis for each, and a remark of 300 characters or fewer: one strength, one fix.</p>
+
+        <hr class="section-divider">
+
+        <!-- ── FINDINGS ── -->
+        <h2>What the cohort showed me</h2>
+
+        <div class="results-grid">
+            <div class="result-card"><span class="r-head">Students can name a territory and a person.</span><p>Five territories in their own language, and most briefs carried a specific persona.</p></div>
+            <div class="result-card"><span class="r-head">The gap is the hand.</span><p>At most 3 of 13 briefs showed material work made by the student. The rest stayed in rendered images.</p></div>
+            <div class="result-card"><span class="r-head">Range crowds out decision.</span><p>Many briefs ended on a shortlist where the brief asked for one answer.</p></div>
+        </div>
+
+        <h3>What I would change</h3>
+
+        <div class="reflect-box"><div class="rf-head">Swatch before render.</div><p>No generated image until a handmade swatch exists.</p></div>
+        <div class="reflect-box"><div class="rf-head">A decision gate.</div><p>One key colour, in writing, by mid-course.</p></div>
+        <div class="reflect-box"><div class="rf-head">A scheduled second crit.</div><p>With a written response to feedback, so revision is built in.</p></div>
+
+        <h3>Practices that travel</h3>
+
+        <div class="reflect-box"><div class="rf-head">Makers as conversation partners.</div><p>A curated pack of contemporary Indian designers and artists, studied for the argument each makes, never lifted as mood-board images.</p></div>
+        <div class="reflect-box"><div class="rf-head">Feedback in 300 characters.</div><p>One strength, one fix, written for the individual.</p></div>
+
+        <div class="closing-quote">A palette is a mood. A key colour is a decision.</div>
+
+        <div class="footer-bar">
+            Student work shown as teaching illustration. Counts and findings are from my course records, October 2026.<br>
+            <a href="PORTFOLIO.html">← Back to Portfolio</a>
+        </div>
+
+    </div>
+</body>
+</html>
