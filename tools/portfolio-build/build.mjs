@@ -62,16 +62,27 @@ const EXTRACT = (sel, ROUTE, IMG, opts) => {
   });
   // image slots
   el.querySelectorAll('image-slot').forEach((s) => {
-    const src = s.getAttribute('src');
+    let src = s.getAttribute('src');
+    if (!src && opts.slotimg[s.id]) src = './' + opts.slotimg[s.id];
     if (!src) { s.remove(); return; }
+    const figcap = s.closest('figure') && s.closest('figure').querySelector('figcaption');
+    if (figcap && figcap.textContent.trim() === 'Caption' && opts.captionFix[s.id]) figcap.textContent = opts.captionFix[s.id];
     const img = document.createElement('img');
     const base = src.split('/').pop();
     img.setAttribute('src', '/portfolio/assets/img/' + (IMG[base] || base));
-    img.setAttribute('alt', (s.getAttribute('placeholder') || '').replace(/^Drop:\s*/, '').replace(/^./, (c) => c.toUpperCase()));
+    img.setAttribute('alt', (figcap && figcap.textContent.trim()) || (s.getAttribute('placeholder') || '').replace(/^Drop:\s*/, '').replace(/^./, (c) => c.toUpperCase()));
     img.setAttribute('loading', 'lazy');
     img.setAttribute('style', 'display:block;width:100%;height:100%;object-fit:contain;' + (s.getAttribute('style') || ''));
+    const par = s.parentElement;
+    if (par && par.style.aspectRatio && !(s.getAttribute('style') || '').includes('aspect-ratio')) {
+      const pad = par.style.paddingTop || '0px';
+      par.style.position = 'relative'; par.style.overflow = 'hidden';
+      img.setAttribute('style', `position:absolute;top:${pad};left:${pad};width:calc(100% - 2 * ${pad});height:calc(100% - 2 * ${pad});object-fit:contain;display:block;`);
+    }
     s.replaceWith(img);
   });
+  // fixed-size artboard wrappers from the design file: let them size to their content
+  el.querySelectorAll('[style*="width: 1152px"]').forEach((n) => { if (n.style.position !== 'relative') { n.style.width = '100%'; n.style.height = 'auto'; } });
   // other imgs
   el.querySelectorAll('img').forEach((i) => {
     let s = i.getAttribute('src') || '';
@@ -155,6 +166,7 @@ const CSS_GET = () => {
   return { css: main ? main.textContent : '', scp, title };
 };
 
+const OPTS = { slotimg: JSON.parse(fs.readFileSync(new URL('./slotimg.json', import.meta.url))), captionFix: { 'wm-shipped-3': 'Draw strategy, settings' } };
 const results = {};
 for (const pg of PAGES) {
   console.log('building', pg.file);
@@ -162,13 +174,13 @@ for (const pg of PAGES) {
   const css = await p.evaluate(CSS_GET);
   let trees = [];
   if (pg.home) {
-    const d = await p.evaluate(EXTRACT, '[id="5d"] [data-screen-label]', ROUTE, IMG, {});
-    const m = await p.evaluate(EXTRACT, '[id="5f"] [data-screen-label]', ROUTE, IMG, {});
+    const d = await p.evaluate(EXTRACT, '[id="5d"] [data-screen-label]', ROUTE, IMG, OPTS);
+    const m = await p.evaluate(EXTRACT, '[id="5f"] [data-screen-label]', ROUTE, IMG, OPTS);
     trees = [{ k: 'd', ...d }, { k: 'm', ...m }];
   } else {
     let tips = null;
     if (pg.life) tips = await lifeTips(p);
-    const t = await p.evaluate(EXTRACT, '[data-screen-label]', ROUTE, IMG, {});
+    const t = await p.evaluate(EXTRACT, '[data-screen-label]', ROUTE, IMG, OPTS);
     trees = [{ k: 'x', ...t, tips }];
   }
   // gate data
