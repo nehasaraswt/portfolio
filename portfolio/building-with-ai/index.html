@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building with AI — Neha Saraswat</title>
+<meta name="description" content="Since Moongazing, I build by hand again, with AI beside me. Ideas are less expensive to try now.">
+<meta name="theme-color" content="#F0EDE4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'11'%20fill%3D'none'%20stroke%3D'%23974315'%20stroke-width%3D'2.5'%2F%3E%3Cpath%20d%3D'M16%205a11%2011%200%200%200%200%2022z'%20fill%3D'%23974315'%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Caveat:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+
+body{margin:0;background:#F0EDE4;-webkit-font-smoothing:antialiased;cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='12' cy='12' r='8' fill='none' stroke='%23974315' stroke-width='1.5'/><path d='M12 4a8 8 0 0 0 0 16z' fill='%23974315'/></svg>") 12 12,auto}
+a{color:#974315;text-decoration:none;cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='12' cy='12' r='8' fill='%23974315' stroke='%23F0EDE4' stroke-width='1.5'/></svg>") 12 12,pointer}
+a:hover{color:#6e2f0e}
+a:focus-visible{outline:2px solid #974315;outline-offset:3px}
+img{display:block}
+@media (max-width:760px){
+section[style*="padding: 72px 64px"]{padding:0!important}
+section[style*="padding: 72px 64px"]>div:first-child:not([data-screen-label]){display:none!important}
+.pg{width:auto!important;padding:12px!important;gap:12px!important}
+[style*="grid-template-columns"]:is([style*="fr 5fr"],[style*="fr 4fr"],[style*="fr 7fr"],[style*="fr 8fr"],[style*="1fr 1fr"],[style*="repeat(2,"],[style*="repeat(3,"],[style*="minmax(0px, 1fr) minmax(0px, 1fr)"]):not([style*="32px minmax"]){grid-template-columns:minmax(0,1fr)!important;gap:12px!important;min-height:0!important}
+[style*="repeat(4, minmax(0px, 1fr))"],[style*="repeat(6, minmax(0px, 1fr))"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+:is([style*="padding: 72px 48px"],[style*="padding: 80px 48px"],[style*="padding: 96px 48px"],[style*="padding: 40px 48px"]):not([style*="background"]){padding:48px 8px 8px!important;gap:20px!important}
+:is([style*="padding: 40px 48px"],[style*="padding: 44px 48px"])[style*="background"]{padding:28px 24px!important;gap:20px!important}
+:is([style^="padding: 72px 0px 0px"],[style^="padding: 80px 0px 0px"],[style^="padding: 96px 0px 0px"],[style*="padding-top: 64px"],[style*="padding-top: 72px"]){padding-top:48px!important}
+[style*="margin-top: 72px"]{margin-top:48px!important}
+aside[data-disclaimer]{margin:48px 8px 0!important}
+:is([style*="padding: 48px;"],[style*="padding: 40px;"],[style*="padding: 40px 36px"],[style*="padding: 36px 40px"],[style*="padding: 32px 36px"]){padding:28px!important}
+[style*="min-height: 520px"],[style*="min-height: 460px"],[style*="min-height: 420px"]{min-height:0!important}
+[style*="min-height: 440px"]{min-height:300px!important}
+:is([style*="height: 520px"],[style*="height: 440px"],[style*="height: 420px"]):not([style*="min-height"]){height:280px!important}
+div:has(>[style*="width: 1152px"]){overflow-x:auto}
+[style*="font-size: 60px"]{font-size:38px!important}
+:is([style*="font-size: 64px"],[style*="font-size: 56px"]){font-size:46px!important}
+:is([style*="font-size: 40px"],[style*="font-size: 38px"]){font-size:30px!important}
+[style*="font-size: 32px"]{font-size:26px!important}
+[style*="font-size: 30px"]{font-size:24px!important}
+:is([style*="font-size: 28px"],[style*="font-size: 27px"],[style*="font-size: 26px"]){font-size:21px!important}
+:is([style*="width: 64px; height: 64px"]){width:44px!important;height:44px!important}
+footer>a:last-child{order:-1}
+}
+
+
+
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+[hidden]{display:none!important}
+
+
+</style>
+</head>
+<body>
+<div data-screen-label="Building with AI note" style="width: 100%; max-width: 1200px; margin: 0px auto; background: rgb(240, 237, 228); color: rgb(31, 26, 21); font-family: &quot;Hanken Grotesk&quot;, sans-serif; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px;" class="pg">
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 8px 6px 14px;"><a href="/portfolio/" style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 18px; color: rgb(31, 26, 21);"><span style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgb(151, 67, 21); background: linear-gradient(90deg, rgb(151, 67, 21) 50%, transparent 50%); box-sizing: border-box;"></span>Neha Saraswat</a><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; color: rgb(110, 98, 90);">Moongazing · 9 of 9</span></header>
+
+    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 24px; min-height: 420px;">
+      <div style="background: rgb(95, 102, 82); color: rgb(240, 237, 228); padding: 40px; display: flex; flex-direction: column; justify-content: space-between;"><span style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgb(240, 237, 228); background: rgb(240, 237, 228); box-sizing: border-box;"></span><div style="display: flex; flex-direction: column; gap: 16px;"><h1 style="margin: 0px; font-weight: 500; font-size: 56px; line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance;">Building with AI</h1><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">Moongazing · 2025–present</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;">3 live products</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px;"><a href="https://moongazing.in" style="color: rgb(240, 237, 228); border-bottom: 1px solid rgb(240, 237, 228);" rel="noopener">moongazing.in</a> · this studio's site, built with AI too</span></div></div>
+      <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 24px;">
+        <div style="background: rgb(241, 211, 201); padding: 28px 32px; display: flex; flex-direction: column; justify-content: flex-end;"><span style="font-family: Caveat, cursive; font-weight: 600; font-size: 30px; color: rgb(151, 67, 21); line-height: 1.05;">the idea and the product, at the same time</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;"><div style="background: rgb(227, 214, 197); color: rgb(31, 26, 21); padding: 22px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;"><span style="font-weight: 500; font-size: 38px; line-height: 1;">3</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; line-height: 1.4;">live products</span></div><div style="background: rgb(184, 169, 217); color: rgb(31, 26, 21); padding: 22px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px;"><span style="font-weight: 500; font-size: 38px; line-height: 1;">1</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; line-height: 1.4;">with customers so far</span></div></div>
+      </div>
+    </div>
+
+    <div style="padding: 72px 48px 0px; display: grid; grid-template-columns: 7fr 4fr; gap: 64px;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <p style="margin: 0px; font-size: 27px; line-height: 1.45; letter-spacing: -0.005em; text-wrap: pretty;">Since Moongazing, I build by hand again, with AI beside me. Ideas are less expensive to try now.</p>
+        <p style="margin: 0px; font-size: 19px; line-height: 1.6; color: rgb(61, 52, 45); text-wrap: pretty;">Three products are live. Micorza is the only one with customers so far; Stretos AI and ANO are earlier.</p>
+      </div>
+      <div></div>
+    </div>
+
+    
+    
+    
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; padding-top: 64px;"><div style="background: rgb(227, 214, 197); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px;"><span style="font-weight: 500; font-size: 32px; line-height: 1.1; color: rgb(151, 67, 21);">Micorza</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; line-height: 1.5;"><a href="https://micorza.com" rel="noopener">micorza.com</a></span><span style="font-size: 16px; line-height: 1.5; color: rgb(61, 52, 45); text-wrap: pretty; padding-top: 6px;">An AI CX platform that helps enterprises collect, process and act on customer signals.</span></div><div style="background: rgb(241, 211, 201); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px;"><span style="font-weight: 500; font-size: 32px; line-height: 1.1; color: rgb(151, 67, 21);">Stretos AI</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; line-height: 1.5;"><a href="https://www.stretos.com/" rel="noopener">stretos.com</a></span><span style="font-size: 16px; line-height: 1.5; color: rgb(61, 52, 45); text-wrap: pretty; padding-top: 6px;">Helps product and finance leaders invest in the right product ideas by turning evidence, AI insights, and financial forecasts into confident capital-allocation decisions.</span></div><div style="background: rgb(227, 214, 197); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px;"><span style="font-weight: 500; font-size: 32px; line-height: 1.1; color: rgb(151, 67, 21);">ANO</span><span style="font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 13px; line-height: 1.5;"><a href="https://anoevt.com" rel="noopener">anoevt.com</a></span><span style="font-size: 16px; line-height: 1.5; color: rgb(61, 52, 45); text-wrap: pretty; padding-top: 6px;">A Celebration OS: the coordination layer for complex multi-day celebrations like Indian weddings, bringing guests, vendors, logistics, rituals and multi-party budgets into one place.</span></div></div>
+    
+    
+    
+
+    <footer style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 56px;"><a href="/portfolio/micorza/" style="background: rgb(184, 169, 217); color: rgb(31, 26, 21); padding: 22px 24px; font-weight: 500; font-size: 18px;">← Micorza — from customer signal to team action</a><a href="/portfolio/jifflenow/" style="background: rgb(151, 67, 21); color: rgb(240, 237, 228); padding: 22px 24px; font-weight: 500; font-size: 18px; text-align: right;">The first systems · Meeting automation →</a></footer>
+  </div>
+<script src="/portfolio/assets/site.js" defer></script>
+</body>
+</html>
