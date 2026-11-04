@@ -191,8 +191,17 @@ for (const [file, dir] of PAGES) {
     const lead = (body.match(/<p[^>]*font-size: ?2[678]px[^>]*>([\s\S]*?)<\/p>/) || [])[1] || '';
     desc = lead.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 200);
   }
-  const html = head({ title: esc(title), desc: esc(desc), css: v.css.css, scp: v.css.scp, life: kind === 'life', home: kind === 'home' })
+  let html = head({ title: esc(title), desc: esc(desc), css: v.css.css, scp: v.css.scp, life: kind === 'life', home: kind === 'home' })
     + body + `\n<script src="/portfolio/assets/site.js" defer></script>\n</body>\n</html>\n`;
+  // relative URLs so the pages also work when opened straight from disk
+  const pre = '../'.repeat(dir.split('/').length);
+  html = html.replace(/(src|href)="\/(?!\/)([^"]*)"/g, (m, a, p) => {
+    const i = p.indexOf('#');
+    let path = i < 0 ? p : p.slice(0, i);
+    const hash = i < 0 ? '' : p.slice(i);
+    if (path === '' || path.endsWith('/')) path += 'index.html';
+    return `${a}="${pre}${path}${hash}"`;
+  });
   fs.mkdirSync(OUT + dir, { recursive: true });
   fs.writeFileSync(OUT + dir + '/index.html', html);
   report.push(`${dir}/index.html ${(html.length / 1024).toFixed(0)}KB  "${title}"`);
