@@ -27,14 +27,14 @@ const IMG = {
   '96721ic68dc3d1622a6d2f-mw0fmynz-ee4p.webp': 'qbd-bank-feeds.webp',
   '96721ic68dc3d1622a6d2f-mw0fmcwt-e18d.webp': 'qbd-bank-feeds.webp',
   'images-1793805247556-64w7.png': 'qbd-ready-for-online.png',
-  'group-1125087497-mw2cixmr-v36j.png': 'd4-on-stage.png',
+  'group-1125087497-mw2cixmr-v36j.png': 'd4-on-stage.webp',
   'screenshot-2026-11-04-at-10-00-14-pm-mw2c1zi4-em8q.png': 'micorza-screen.png',
 };
 fs.mkdirSync(OUT + 'portfolio/assets/img', { recursive: true });
 const cp = (a, b) => fs.copyFileSync(SRC + a, OUT + 'portfolio/assets/img/' + b);
 cp('96721ic68dc3d1622a6d2f-mw0fmynz-ee4p.webp', 'qbd-bank-feeds.webp');
 cp('uploads/images-1793805247556-64w7.png', 'qbd-ready-for-online.png');
-cp('group-1125087497-mw2cixmr-v36j.png', 'd4-on-stage.png');
+// d4-on-stage.webp is supplied directly in portfolio/assets/img (replaces the handoff PNG)
 cp('screenshot-2026-11-04-at-10-00-14-pm-mw2c1zi4-em8q.png', 'micorza-screen.png');
 
 const b = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: 'new' });
