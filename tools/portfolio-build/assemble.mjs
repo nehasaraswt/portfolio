@@ -193,11 +193,10 @@ for (const [file, dir] of PAGES) {
   }
   let html = head({ title: esc(title), desc: esc(desc), css: v.css.css, scp: v.css.scp, life: kind === 'life', home: kind === 'home' })
     + body + `\n<script src="/portfolio/assets/site.js" defer></script>\n</body>\n</html>\n`;
-  // Walmart.com: the two feature cards now describe the search typeahead and results (copy to follow from Neha)
+  // Walmart.com: the Gen Z search and Shop with friends feature cards are removed (their images were replaced by search typeahead and results)
   if (dir === 'portfolio/walmart-com') {
-    html = html
-      .replace(/Search like Gen Z\.<\/span><span[^>]*>[^<]*<\/span>/, 'Search typeahead.</span>')
-      .replace(/Shop with friends\.<\/span><span[^>]*>[^<]*<\/span>/, 'Search results.</span>');
+    for (const t of ['Search like Gen Z\\.', 'Shop with friends\\.'])
+      html = html.replace(new RegExp('<div[^>]*><span[^>]*></span><span[^>]*>' + t + '</span><span[^>]*>[^<]*</span></div>'), '');
   }
   // relative URLs so the pages also work when opened straight from disk
   const pre = '../'.repeat(dir.split('/').length);
