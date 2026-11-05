@@ -193,6 +193,12 @@ for (const [file, dir] of PAGES) {
   }
   let html = head({ title: esc(title), desc: esc(desc), css: v.css.css, scp: v.css.scp, life: kind === 'life', home: kind === 'home' })
     + body + `\n<script src="/portfolio/assets/site.js" defer></script>\n</body>\n</html>\n`;
+  // Walmart.com: the two feature cards now describe the search typeahead and results (copy to follow from Neha)
+  if (dir === 'portfolio/walmart-com') {
+    html = html
+      .replace(/Search like Gen Z\.<\/span><span[^>]*>[^<]*<\/span>/, 'Search typeahead.</span>')
+      .replace(/Shop with friends\.<\/span><span[^>]*>[^<]*<\/span>/, 'Search results.</span>');
+  }
   // relative URLs so the pages also work when opened straight from disk
   const pre = '../'.repeat(dir.split('/').length);
   html = html.replace(/(src|href)="\/(?!\/)([^"]*)"/g, (m, a, p) => {
