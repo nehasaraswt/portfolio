@@ -202,6 +202,19 @@ for (const [file, dir] of PAGES) {
   if (dir === 'portfolio/appointments') {
     html = html.replace('Booking is now open to every QuickBooks Online subscriber, to offer to their own customers.', 'Booking is now open to all top-tier QuickBooks SKUs (Advanced, Accountant and Enterprise Suite), to offer to their own customers.');
   }
+  // Corrections settled by Neha's own notes (5 Nov 2026 hotfix). QuickBooks Desktop is intentionally left as designed.
+  const FIXES = {
+    'portfolio/walmart-assortment': [
+      ['Senior Manager, Design', 'Senior Design Manager'],
+      ['>$6B</span>', '>&gt;$5B</span>'],
+      ['price improvement it contributed to', 'in attributed profits'],
+    ],
+    'portfolio/walmart-com': [['Senior Manager, Design', 'Senior Design Manager']],
+    'portfolio/appointments': [['Clear slots, not manual blocks.', 'Clear slots, booked automatically.']],
+    'portfolio/expert-platform': [['One platform, not many tools.', 'One end-to-end platform.']],
+    'portfolio/design-organization': [['Grow managers, not only teams.', 'Grow managers and teams.']],
+  };
+  for (const [from, to] of FIXES[dir] || []) html = html.split(from).join(to);
   // relative URLs so the pages also work when opened straight from disk
   const pre = '../'.repeat(dir.split('/').length);
   html = html.replace(/(src|href)="\/(?!\/)([^"]*)"/g, (m, a, p) => {
