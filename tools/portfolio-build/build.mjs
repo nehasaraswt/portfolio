@@ -70,7 +70,7 @@ const EXTRACT = (sel, ROUTE, IMG, opts) => {
     const img = document.createElement('img');
     const base = src.split('/').pop();
     img.setAttribute('src', '/portfolio/assets/img/' + (IMG[base] || base));
-    img.setAttribute('alt', (figcap && figcap.textContent.trim()) || (s.getAttribute('placeholder') || '').replace(/^Drop:\s*/, '').replace(/^./, (c) => c.toUpperCase()));
+    img.setAttribute('alt', (figcap && figcap.textContent.trim().length <= 60 && figcap.textContent.trim()) || (s.getAttribute('placeholder') || '').replace(/^Drop:\s*/, '').replace(/^./, (c) => c.toUpperCase()));
     img.setAttribute('loading', 'lazy');
     img.setAttribute('style', 'display:block;width:100%;height:100%;object-fit:contain;' + (s.getAttribute('style') || ''));
     const par = s.parentElement;
