@@ -67,6 +67,7 @@ const EXTRACT = (sel, ROUTE, IMG, opts) => {
     if (!src) { s.remove(); return; }
     const figcap = s.closest('figure') && s.closest('figure').querySelector('figcaption');
     if (figcap && figcap.textContent.trim() === 'Caption' && opts.captionFix[s.id]) figcap.textContent = opts.captionFix[s.id];
+    if (figcap && opts.captionOverride[s.id]) figcap.textContent = opts.captionOverride[s.id];
     const img = document.createElement('img');
     const base = src.split('/').pop();
     img.setAttribute('src', '/portfolio/assets/img/' + (IMG[base] || base));
@@ -166,7 +167,7 @@ const CSS_GET = () => {
   return { css: main ? main.textContent : '', scp, title };
 };
 
-const OPTS = { slotimg: JSON.parse(fs.readFileSync(new URL('./slotimg.json', import.meta.url))), captionFix: { 'wm-shipped-3': 'Draw strategy, settings' } };
+const OPTS = { slotimg: JSON.parse(fs.readFileSync(new URL('./slotimg.json', import.meta.url))), captionFix: { 'wm-shipped-3': 'Draw strategy, settings' }, captionOverride: { 'com-genz': 'Search typeahead - images are representative', 'com-friends': 'Search results - images are representative' } };
 const results = {};
 for (const pg of PAGES) {
   console.log('building', pg.file);
