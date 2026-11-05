@@ -204,6 +204,7 @@ for (const [file, dir] of PAGES) {
   }
   // Corrections settled by Neha's own notes (5 Nov 2026 hotfix). QuickBooks Desktop is intentionally left as designed.
   const FIXES = {
+  'portfolio': [["catch them more often</span>.</p>","catch them more often</span>.</p><p style=\"margin: 0px; font-family: &quot;IBM Plex Mono&quot;, monospace; font-size: 14px; line-height: 1.5; color: rgb(110, 98, 90);\">Ready for design and product leadership in fintech, enterprise SaaS, AI and marketplaces.</p>"],["build frameworks that hold both.</p>","build frameworks that hold both.</p><p style=\"margin: 0px; font-size: 16px; line-height: 1.55; text-wrap: pretty;\">Rolled out AI-aided design for my teams at Intuit: Lovable (late 2024), Figma Make (June 2025) and Claude Code (September 2025). I work in tandem with AI aids day to day.</p>"]],
     'portfolio/walmart-assortment': [
       ['Senior Manager, Design', 'Senior Design Manager'],
       ['>$6B</span>', '>&gt;$5B</span>'],
