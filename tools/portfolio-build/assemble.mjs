@@ -198,6 +198,10 @@ for (const [file, dir] of PAGES) {
     for (const t of ['Search like Gen Z\\.', 'Shop with friends\\.'])
       html = html.replace(new RegExp('<div[^>]*><span[^>]*></span><span[^>]*>' + t + '</span><span[^>]*>[^<]*</span></div>'), '');
   }
+  // Appointments: Neha's correction (5 Nov 2026) - booking is open to the top-tier SKUs, not every QBO subscriber
+  if (dir === 'portfolio/appointments') {
+    html = html.replace('Booking is now open to every QuickBooks Online subscriber, to offer to their own customers.', 'Booking is now open to all top-tier QuickBooks SKUs (Advanced, Accountant and Enterprise Suite), to offer to their own customers.');
+  }
   // relative URLs so the pages also work when opened straight from disk
   const pre = '../'.repeat(dir.split('/').length);
   html = html.replace(/(src|href)="\/(?!\/)([^"]*)"/g, (m, a, p) => {
