@@ -83,5 +83,17 @@
     document.addEventListener('focusout', hide);
   }
 
+  // "Ask me" / "Write to me" open the visitor's email client, addressed to Neha with the subject filled in.
+  var title = document.title.split(' — ')[0];
+  document.querySelectorAll('a').forEach(function (a) {
+    if (!/ask me|write to me/i.test(a.textContent)) return;
+    var subject = 'Hello from your portfolio';
+    if (a.closest('[data-gate]')) subject = 'Video password request: ' + title;
+    else if (a.closest('aside')) subject = 'About ' + title;
+    else if (location.pathname.indexOf('/life') >= 0) subject = 'The story behind the graph';
+    a.href = 'mailto:neha.biti@gmail.com?subject=' + encodeURIComponent(subject) + '&body=Hi%20Neha%2C%0A%0A';
+    a.removeAttribute('target');
+  });
+
   swapGates();
 })();
