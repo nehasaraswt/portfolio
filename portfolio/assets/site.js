@@ -95,5 +95,50 @@
     a.removeAttribute('target');
   });
 
+  // Floating "Back to top" on every page. At the top it turns into "Back down" to return to where the visitor was.
+  (function () {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('data-backtop', '');
+    var s = btn.style;
+    s.position = 'fixed'; s.right = '16px'; s.bottom = 'calc(16px + env(safe-area-inset-bottom, 0px))';
+    s.zIndex = '60'; s.minHeight = '44px'; s.minWidth = '44px'; s.padding = '0 16px';
+    s.background = '#974315'; s.color = '#F0EDE4'; s.border = '1px solid #F0EDE4'; s.borderRadius = '22px';
+    s.font = '500 13px/1 "IBM Plex Mono", ui-monospace, monospace'; s.cursor = 'pointer';
+    s.boxShadow = '0 2px 10px rgba(31,26,21,.25)'; s.opacity = '0'; s.visibility = 'hidden';
+    s.transition = 'opacity .2s, visibility .2s';
+    var saved = null, away = false, mode = 'up';
+    function setMode(m) {
+      mode = m;
+      btn.textContent = m === 'up' ? 'Back to top \u2191' : 'Back down \u2193';
+      btn.setAttribute('aria-label', m === 'up' ? 'Back to top of page' : 'Return to where you were');
+    }
+    function update() {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      var show = false;
+      if (saved !== null) {
+        if (y < 200) { away = true; show = true; if (mode !== 'down') setMode('down'); }
+        else if (away) { saved = null; away = false; }
+      }
+      if (saved === null && y > 600) { show = true; if (mode !== 'up') setMode('up'); }
+      btn.style.opacity = show ? '1' : '0';
+      btn.style.visibility = show ? 'visible' : 'hidden';
+    }
+    btn.addEventListener('click', function () {
+      var y = window.scrollY || document.documentElement.scrollTop;
+      if (mode === 'up') {
+        saved = y; away = false;
+        window.scrollTo({ top: 0 });
+      } else {
+        var back = saved; saved = null; away = false;
+        window.scrollTo({ top: back });
+      }
+    });
+    setMode('up');
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
   swapGates();
 })();
