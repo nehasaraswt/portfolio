@@ -331,21 +331,26 @@ const SITE_JS = `/* Shared behaviour for the portfolio pages: video gate, poster
 
   // Floating "Back to top" on every page. At the top it turns into "Back down" to return to where the visitor was.
   (function () {
+    var css = document.createElement('style');
+    css.textContent = '.ns-backtop{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:6px;height:30px;padding:0 9px;background:#F0EDE4;color:#974315;border:1px solid rgba(151,67,21,.35);border-radius:0;font:400 13px/1 "IBM Plex Mono",ui-monospace,monospace;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,border-color .2s}'
+      + '.ns-backtop::before{content:"";position:absolute;inset:-8px}'
+      + '.ns-backtop.ns-on{opacity:.72;visibility:visible}'
+      + '.ns-backtop.ns-on:hover,.ns-backtop.ns-on:focus-visible{opacity:1;border-color:#974315}'
+      + '@media print{.ns-backtop{display:none}}';
+    document.head.appendChild(css);
     var btn = document.createElement('button');
     btn.type = 'button';
+    btn.className = 'ns-backtop';
     btn.setAttribute('data-backtop', '');
-    var s = btn.style;
-    s.position = 'fixed'; s.right = '16px'; s.bottom = 'calc(16px + env(safe-area-inset-bottom, 0px))';
-    s.zIndex = '60'; s.minHeight = '44px'; s.minWidth = '44px'; s.padding = '0 16px';
-    s.background = '#974315'; s.color = '#F0EDE4'; s.border = '1px solid #F0EDE4'; s.borderRadius = '22px';
-    s.font = '500 13px/1 "IBM Plex Mono", ui-monospace, monospace'; s.cursor = 'pointer';
-    s.boxShadow = '0 2px 10px rgba(31,26,21,.25)'; s.opacity = '0'; s.visibility = 'hidden';
-    s.transition = 'opacity .2s, visibility .2s';
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="#974315" stroke-width="1.5"/><path data-moon fill="#974315" d="M8 1.75a6.25 6.25 0 0 0 0 12.5z"/></svg><span data-arrow>\u2191</span>';
+    var moon = btn.querySelector('[data-moon]'), arrow = btn.querySelector('[data-arrow]');
     var saved = null, away = false, mode = 'up';
     function setMode(m) {
       mode = m;
-      btn.textContent = m === 'up' ? 'Back to top \\u2191' : 'Back down \\u2193';
+      arrow.textContent = m === 'up' ? '\u2191' : '\u2193';
+      moon.setAttribute('d', m === 'up' ? 'M8 1.75a6.25 6.25 0 0 0 0 12.5z' : 'M8 1.75a6.25 6.25 0 0 1 0 12.5z');
       btn.setAttribute('aria-label', m === 'up' ? 'Back to top of page' : 'Return to where you were');
+      btn.title = m === 'up' ? 'Back to top' : 'Back down';
     }
     function update() {
       var y = window.scrollY || document.documentElement.scrollTop;
@@ -355,8 +360,7 @@ const SITE_JS = `/* Shared behaviour for the portfolio pages: video gate, poster
         else if (away) { saved = null; away = false; }
       }
       if (saved === null && y > 600) { show = true; if (mode !== 'up') setMode('up'); }
-      btn.style.opacity = show ? '1' : '0';
-      btn.style.visibility = show ? 'visible' : 'hidden';
+      btn.classList.toggle('ns-on', show);
     }
     btn.addEventListener('click', function () {
       var y = window.scrollY || document.documentElement.scrollTop;
